@@ -9,10 +9,14 @@ package main
 // Please do not change this file.
 //
 
-import "6.824/mr"
-import "time"
-import "os"
-import "fmt"
+import (
+	"fmt"
+	"log"
+	"os"
+	"time"
+
+	"6.824/mr"
+)
 
 func main() {
 	if len(os.Args) < 2 {
@@ -24,6 +28,6 @@ func main() {
 	for m.Done() == false {
 		time.Sleep(time.Second)
 	}
-
+	log.Println("Coorinator exit")
 	time.Sleep(time.Second)
 }

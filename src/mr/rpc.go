@@ -6,8 +6,10 @@ package mr
 // remember to capitalize all names.
 //
 
-import "os"
-import "strconv"
+import (
+	"os"
+	"strconv"
+)
 
 //
 // example to show how to declare the arguments
@@ -21,9 +23,53 @@ type ExampleArgs struct {
 type ExampleReply struct {
 	Y int
 }
+type MapReduceService interface {
+	PollTask(args *PollTaskRequest, reply *PollTaskResponse) error
+	TryCompleteTask(args *TryCompleteTaskRequest, reply *TryCompleteTaskResponse) error
+	ConfirmCompleteTask(args *ConfirmCompleteTaskRequest,reply *ConfirmCompleteTaskResponse) error
+	HearBeat(args *HeartBeatRequest, reply *HeartBeatResponse) error
+}
+type PollTaskRequest struct {
+	WorkerID string
+}
+type PollTaskResponse struct {
+	InputPath string
+	TaskType  int32
+	TaskID    int32
+	NReduce   int32
+}
+
+
+type TryCompleteTaskRequest struct {
+	TaskID   int32
+	TaskType int32
+	WorkerID string
+}
+type TryCompleteTaskResponse struct {
+	InputPath string
+	TaskType  int32
+	TaskID    string
+}
+
+type ConfirmCompleteTaskRequest struct {
+	TaskID   int32
+	TaskType int32
+	WorkerID string
+}
+type ConfirmCompleteTaskResponse struct {
+	InputPath string
+	TaskType  int32
+	TaskID    string
+}
+
+
+type HeartBeatRequest struct {
+	WorkerID string
+}
+type HeartBeatResponse struct {
+}
 
 // Add your RPC definitions here.
-
 
 // Cook up a unique-ish UNIX-domain socket name
 // in /var/tmp, for the coordinator.
