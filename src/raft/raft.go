@@ -37,7 +37,7 @@ const ROLE_PRIMARY = 3
 
 // ElectionTimeout (base - base + interval*ratio)
 const ELECTION_TIMEOUT_BASE = 400 // millisecond
-const ELECTION_TIMEOUT_INTERVAl = 40
+const ELECTION_TIMEOUT_INTERVAl = 60
 const ELECTION_TIMEOUT_RATIO = 10
 
 // as each Raft peer becomes aware that successive log entries are
@@ -93,7 +93,7 @@ type Raft struct {
 	matchidx []int
 
 	//for role control
-	resetCh        chan bool
+	followerCh        chan bool
 	electionTicker *time.Ticker
 	role           int //1:follower,
 	roleLock       sync.RWMutex
@@ -197,7 +197,6 @@ type RequestVoteReply struct {
 // example RequestVote RPC handler.
 func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
-	//TODO: ElectionTime out的interval太近了，时候分不开
 	MyDebug(dVote, "S%d receive vote request from S%d", rf.me, args.CandidateID)
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
@@ -221,7 +220,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 		reply.Term = args.Term
 		reply.VoteGranted = true
 		MyDebug(dVote, "S%d vote and reset", rf.me)
-		rf.resetCh <- true
+		rf.followerCh <- true
 		MyDebug(dVote, "S%d vote for %d", rf.me, args.CandidateID)
 		return
 	}
@@ -259,7 +258,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	MyDebug(dInfo, "S%d beat from s%d", rf.me, args.LeaderID)
 	MyDebug(dInfo, "S%d currTerm=%d,args.Term=%d", rf.me, rf.currentTerm, args.Term)
 
-	rf.resetCh <- true
+	rf.followerCh <- true
 	if rf.currentTerm < args.Term {
 		rf.currentTerm = args.Term
 		rf.voteFor = -1
@@ -369,32 +368,24 @@ func (rf *Raft) ticker() {
 		// be started and to randomize sleeping time using
 		// time.Sleep().
 		// as a follower
-		if rf.role != ROLE_PRIMARY {
+		if rf.role == ROLE_FOLLOWER {
 			//server间，electionTimeOut的interval最好大于heartbeat的时间
+			MyDebug(dInfo, "S%d start being a follower", rf.me)
 			rand.Seed(int64(rf.me) + time.Now().Unix())
 			timeOut := (ELECTION_TIMEOUT_BASE + (rand.Int()%ELECTION_TIMEOUT_RATIO)*ELECTION_TIMEOUT_INTERVAl)
 			//这里必须用一个NewTicker，因为如果因为网络原因没有连接到其他server，原来的ticker里面会积累很多message
 			//ticker就失去了作用
+			electionTicker:=time.NewTicker(time.Duration(timeOut) * time.Millisecond)
+			//rf.electionTicker = time.NewTicker(time.Duration(timeOut) * time.Millisecond)
 
-			rf.electionTicker = time.NewTicker(time.Duration(timeOut) * time.Millisecond)
-		}
-
-		if rf.role == ROLE_FOLLOWER {
-			MyDebug(dInfo, "S%d start being a follower", rf.me)
 		FOLLOWER_LOOP:
 			for {
 				select {
-				case <-rf.exitCh:
-					goto EXIT
-				default:
-				}
-
-				select {
-				case <-rf.resetCh:
+				case <-rf.followerCh:
 					timeOut := (ELECTION_TIMEOUT_BASE + (rand.Int()%ELECTION_TIMEOUT_RATIO)*ELECTION_TIMEOUT_INTERVAl)
-					rf.electionTicker.Reset(time.Duration(timeOut) * time.Millisecond)
+					electionTicker.Reset(time.Duration(timeOut) * time.Millisecond)
 					MyDebug(dInfo, "S%d reset, follower -> follower", rf.me)
-				case <-rf.electionTicker.C:
+				case <-electionTicker.C:
 					MyDebug(dVote, "S%d electionTimeout,follower -> candidate", rf.me)
 					rf.roleLock.Lock()
 					rf.role = ROLE_CANDIDATE
@@ -405,24 +396,25 @@ func (rf *Raft) ticker() {
 				}
 			}
 		} else if rf.role == ROLE_CANDIDATE {
+			timeOut := (ELECTION_TIMEOUT_BASE + (rand.Int()%ELECTION_TIMEOUT_RATIO)*ELECTION_TIMEOUT_INTERVAl)
+			electionTicker:=time.NewTicker(time.Duration(timeOut) * time.Millisecond)
+			resultChan := make(chan int)
+			go startElection(rf, resultChan)
 			select {
-			case <-rf.exitCh:
-				goto EXIT
-			default:
-			}
-
-			successChan := make(chan bool)
-			go startElection(rf, successChan)
-			select {
-			case <-successChan:
-				MyDebug(dVote, "S%d win the election, candidate -> Leader", rf.me)
+			case result:=<-resultChan:
+				if result<0{
+					MyDebug(dVote, "S%d win the election, candidate -> Leader", rf.me)
+					rf.roleLock.Lock()
+					rf.role = ROLE_PRIMARY
+					rf.roleLock.Unlock()
+					break
+				}
 				rf.roleLock.Lock()
-				rf.role = ROLE_PRIMARY
+				rf.role = ROLE_FOLLOWER
 				rf.roleLock.Unlock()
-			case <-rf.electionTicker.C:
+			case <-electionTicker.C:
 				MyDebug(dInfo, "S%d candidate electionTimeout,restart election", rf.me)
-			case <-rf.resetCh:
-				MyDebug(dInfo, "S%d candidate->follower", rf.me)
+			case <-rf.followerCh:
 				rf.roleLock.Lock()
 				rf.role = ROLE_FOLLOWER
 				rf.roleLock.Unlock()
@@ -444,7 +436,7 @@ func (rf *Raft) ticker() {
 				select {
 				case <-rf.exitCh:
 					goto EXIT
-				case <-rf.resetCh:
+				case <-rf.followerCh:
 					MyDebug(dInfo, "S%d Leader -> follower", rf.me)
 					rf.roleLock.Lock()
 					rf.role = ROLE_FOLLOWER
@@ -452,7 +444,7 @@ func (rf *Raft) ticker() {
 					break PRIMARY_LOOP
 				default:
 				}
-				MyDebug(dInfo, "S%d enter main select", rf.me)
+				
 				select {
 				case <-heartbeatTicker.C:
 					MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, accesstionTerm, accessionTime.Nanosecond())
@@ -468,15 +460,16 @@ EXIT:
 	return
 }
 
-func startElection(rf *Raft, successChan chan bool) {
-
+func startElection(rf *Raft, resultChan chan int) {
 	var termBefore int
+	var currentTerm int
 	rf.mu.Lock()
 	termBefore = rf.currentTerm
 	rf.currentTerm++
 	rf.voteFor = rf.me
+	currentTerm=rf.currentTerm
 	rf.mu.Unlock()
-	MyDebug(dVote, "S%d termBefore=%d,electionTerm=%d", rf.me, termBefore, rf.currentTerm)
+	MyDebug(dVote, "S%d termBefore=%d,electionTerm=%d", rf.me, termBefore, currentTerm)
 
 	//1.向所有peers requestVote
 	//2. if voteCount is majority
@@ -490,7 +483,7 @@ func startElection(rf *Raft, successChan chan bool) {
 	finished := 0
 	cond := sync.NewCond(&countLock)
 	request := RequestVoteArgs{
-		Term:        rf.currentTerm,
+		Term:        currentTerm,
 		CandidateID: rf.me,
 		LastLogIdx:  rf.lastLog.Idx,
 		LastLogTerm: rf.lastLog.Term,
@@ -505,6 +498,9 @@ func startElection(rf *Raft, successChan chan bool) {
 
 				if success && response.VoteGranted {
 					count++
+				}else if response.Term > currentTerm {
+					MyDebug(dVote, "S%d more up-to-date term,candidate->follower", rf.me)
+					resultChan<-response.Term
 				}
 				finished++
 				// if response.term > maxReceivedTerm {
@@ -523,7 +519,7 @@ func startElection(rf *Raft, successChan chan bool) {
 		cond.Wait()
 	}
 	if count > halfNumber {
-		successChan <- true
+		resultChan <- -1
 	}
 	countLock.Unlock()
 }
@@ -581,7 +577,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.lastApplied = 0
 	rf.nextidx = make([]int, len(peers))
 	rf.matchidx = make([]int, len(peers))
-	rf.resetCh = make(chan bool)
+	rf.followerCh = make(chan bool)
 	rf.electionTicker = time.NewTicker(time.Duration(10) * time.Hour)
 	rf.role = ROLE_FOLLOWER
 	rf.roleLock = sync.RWMutex{}
