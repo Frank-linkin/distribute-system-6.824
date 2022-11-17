@@ -147,6 +147,7 @@ func TestBasicAgree2B(t *testing.T) {
 		if nd > 0 {
 			t.Fatalf("some have committed before Start()")
 		}
+		MyDebug(dTest, "start one")
 
 		xindex := cfg.one(index*100, servers, false)
 		if xindex != index {
@@ -305,6 +306,7 @@ func TestFailAgree2B(t *testing.T) {
 	// previous agreements, and be able to agree
 	// on new commands.
 	cfg.one(106, servers, true)
+	MyDebug(dInfo, "106 commit")
 	time.Sleep(RaftElectionTimeout)
 	cfg.one(107, servers, true)
 
@@ -393,9 +395,11 @@ loop:
 				defer wg.Done()
 				i, term1, ok := cfg.rafts[leader].Start(100 + i)
 				if term1 != term {
+					MyDebug(dTrace, "S%v return 1", leader)
 					return
 				}
 				if ok != true {
+					MyDebug(dTrace, "S%v return 2", leader)
 					return
 				}
 				is <- i
@@ -407,10 +411,12 @@ loop:
 
 		for j := 0; j < servers; j++ {
 			if t, _ := cfg.rafts[j].GetState(); t != term {
+				MyDebug(dTrace, "S%v ----Term=%v t=%v", j, term, t)
 				// term changed -- can't expect low RPC counts
 				continue loop
 			}
 		}
+		MyDebug(dTrace, "All server term not change")
 
 		failed := false
 		cmds := []int{}
@@ -431,6 +437,7 @@ loop:
 		}
 
 		if failed {
+			MyDebug(dTrace, "failed here")
 			// avoid leaking goroutines
 			go func() {
 				for range is {
@@ -474,6 +481,7 @@ func TestRejoin2B(t *testing.T) {
 
 	// leader network failure
 	leader1 := cfg.checkOneLeader()
+	MyDebug(dTrace, "disconnect S%v", leader1)
 	cfg.disconnect(leader1)
 
 	// make old leader try to agree on some entries
@@ -486,14 +494,17 @@ func TestRejoin2B(t *testing.T) {
 
 	// new leader network failure
 	leader2 := cfg.checkOneLeader()
+	MyDebug(dTrace, "disconnect S%v", leader2)
 	cfg.disconnect(leader2)
 
 	// old leader connected again
+	MyDebug(dTrace, "connect S%v", leader1)
 	cfg.connect(leader1)
 
 	cfg.one(104, 2, true)
 
 	// all together now
+	MyDebug(dTrace, "connect S%v", leader2)
 	cfg.connect(leader2)
 
 	cfg.one(105, servers, true)
@@ -512,25 +523,29 @@ func TestBackup2B(t *testing.T) {
 
 	// put leader and one follower in a partition
 	leader1 := cfg.checkOneLeader()
+	MyDebug(dTrace, "disconnect S%v S%v S%v", leader1+2, leader1+3, leader1+4)
 	cfg.disconnect((leader1 + 2) % servers)
 	cfg.disconnect((leader1 + 3) % servers)
 	cfg.disconnect((leader1 + 4) % servers)
 
 	// submit lots of commands that won't commit
+	MyDebug(dTrace, "start 50 command to S%v", leader1)
 	for i := 0; i < 50; i++ {
 		cfg.rafts[leader1].Start(rand.Int())
 	}
 
 	time.Sleep(RaftElectionTimeout / 2)
-
+	MyDebug(dTrace, "disconnect S%v S%v", (leader1+0)%servers, (leader1+1)%servers)
 	cfg.disconnect((leader1 + 0) % servers)
 	cfg.disconnect((leader1 + 1) % servers)
 
+	MyDebug(dTrace, "connect S%v S%v S%v", (leader1+2)%servers, (leader1+3)%servers, (leader1+4)%servers)
 	// allow other partition to recover
 	cfg.connect((leader1 + 2) % servers)
 	cfg.connect((leader1 + 3) % servers)
 	cfg.connect((leader1 + 4) % servers)
 
+	MyDebug(dTrace, "start 50 command to currentLeader")
 	// lots of successful commands to new group.
 	for i := 0; i < 50; i++ {
 		cfg.one(rand.Int(), 3, true)
@@ -542,9 +557,11 @@ func TestBackup2B(t *testing.T) {
 	if leader2 == other {
 		other = (leader2 + 1) % servers
 	}
+	MyDebug(dTrace, "disconnect S%v", other)
 	cfg.disconnect(other)
 
 	// lots more commands that won't commit
+	MyDebug(dTrace, "start 50 command to currentLeader")
 	for i := 0; i < 50; i++ {
 		cfg.rafts[leader2].Start(rand.Int())
 	}
@@ -555,16 +572,19 @@ func TestBackup2B(t *testing.T) {
 	for i := 0; i < servers; i++ {
 		cfg.disconnect(i)
 	}
+	MyDebug(dTrace, "connect S%v S%v S%v,disconnect others", (leader1+0)%servers, (leader1+1)%servers, other)
 	cfg.connect((leader1 + 0) % servers)
 	cfg.connect((leader1 + 1) % servers)
 	cfg.connect(other)
 
 	// lots of successful commands to new group.
+	MyDebug(dTrace, "start 50 command to currentLeader")
 	for i := 0; i < 50; i++ {
 		cfg.one(rand.Int(), 3, true)
 	}
 
 	// now everyone
+	MyDebug(dTrace, "connect every one and start a command")
 	for i := 0; i < servers; i++ {
 		cfg.connect(i)
 	}
@@ -590,7 +610,7 @@ func TestCount2B(t *testing.T) {
 	leader := cfg.checkOneLeader()
 
 	total1 := rpcs()
-
+	MyDebug(dTrace, "total1=%v", total1)
 	if total1 > 30 || total1 < 1 {
 		t.Fatalf("too many or few RPCs (%v) to elect initial leader\n", total1)
 	}
@@ -656,7 +676,7 @@ loop:
 		if failed {
 			continue loop
 		}
-
+		MyDebug(dTrace, "rpcCount2=%v criterial=%v", total2-total1, (iters+1+3)*3)
 		if total2-total1 > (iters+1+3)*3 {
 			t.Fatalf("too many RPCs (%v) for %v entries\n", total2-total1, iters)
 		}
@@ -675,6 +695,8 @@ loop:
 	for j := 0; j < servers; j++ {
 		total3 += cfg.rpcCount(j)
 	}
+
+	MyDebug(dTrace, "rpcCount3=%v criterial=%v", total3-total2, 3*20)
 
 	if total3-total2 > 3*20 {
 		t.Fatalf("too many RPCs (%v) for 1 second of idleness\n", total3-total2)
