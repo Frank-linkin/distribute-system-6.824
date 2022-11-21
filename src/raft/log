@@ -1,0 +1,4657 @@
+000006 INFO S0 start being a follower
+000007 INFO S1 start being a follower
+000009 INFO S2 start being a follower
+000010 INFO S3 start being a follower
+000011 TRCE m2 start a new value [me]
+000011 CMIT S0 getCurrentTerm
+000011 CMIT S0 start getRole
+000011 TRCE m0 start a new value [me]
+000011 CMIT S0 getCurrentTerm
+000012 CMIT S0 start getRole
+000011 TRCE m1 start a new value [me]
+000012 CMIT S0 getCurrentTerm
+000012 CMIT S0 start getRole
+000012 CMIT S1 getCurrentTerm
+000012 CMIT S1 start getRole
+000012 CMIT S2 getCurrentTerm
+000012 CMIT S2 start getRole
+000012 CMIT S3 getCurrentTerm
+000012 CMIT S3 start getRole
+000012 CMIT S4 getCurrentTerm
+000013 CMIT S4 start getRole
+000013 TRCE m1 I am not OK [me]
+000011 CMIT S1 getCurrentTerm
+000013 CMIT S1 start getRole
+000013 CMIT S2 getCurrentTerm
+000013 CMIT S2 start getRole
+000013 CMIT S3 getCurrentTerm
+000013 CMIT S3 start getRole
+000013 CMIT S4 getCurrentTerm
+000013 CMIT S4 start getRole
+000013 TRCE m2 I am not OK [me]
+000012 CMIT S1 getCurrentTerm
+000013 CMIT S1 start getRole
+000013 CMIT S2 getCurrentTerm
+000013 CMIT S2 start getRole
+000013 CMIT S3 getCurrentTerm
+000013 CMIT S3 start getRole
+000011 INFO S4 start being a follower
+000014 CMIT S4 getCurrentTerm
+000014 CMIT S4 start getRole
+000014 TRCE m0 I am not OK [me]
+000812 TRCE m0 start a new value [me]
+000813 CMIT S0 getCurrentTerm
+000813 CMIT S0 start getRole
+000813 CMIT S1 getCurrentTerm
+000813 CMIT S1 start getRole
+000813 CMIT S2 getCurrentTerm
+000813 CMIT S2 start getRole
+000813 CMIT S3 getCurrentTerm
+000814 CMIT S3 start getRole
+000814 CMIT S4 getCurrentTerm
+000814 CMIT S4 start getRole
+000814 TRCE m0 I am not OK [me]
+000977 TRCE m1 start a new value [me]
+000977 CMIT S0 getCurrentTerm
+000977 CMIT S0 start getRole
+000978 CMIT S1 getCurrentTerm
+000978 CMIT S1 start getRole
+000978 CMIT S2 getCurrentTerm
+000978 CMIT S2 start getRole
+000978 CMIT S3 getCurrentTerm
+000978 CMIT S3 start getRole
+000978 CMIT S4 getCurrentTerm
+000978 CMIT S4 start getRole
+000978 TRCE m1 I am not OK [me]
+001149 TRCE m2 start a new value [me]
+001150 CMIT S0 getCurrentTerm
+001150 CMIT S0 start getRole
+001150 CMIT S1 getCurrentTerm
+001150 CMIT S1 start getRole
+001150 CMIT S2 getCurrentTerm
+001150 CMIT S2 start getRole
+001150 CMIT S3 getCurrentTerm
+001150 CMIT S3 start getRole
+001151 CMIT S4 getCurrentTerm
+001151 CMIT S4 start getRole
+001151 TRCE m2 I am not OK [me]
+001606 TRCE m0 start a new value [me]
+001606 CMIT S0 getCurrentTerm
+001606 CMIT S0 start getRole
+001607 CMIT S1 getCurrentTerm
+001607 CMIT S1 start getRole
+001607 CMIT S2 getCurrentTerm
+001607 CMIT S2 start getRole
+001607 CMIT S3 getCurrentTerm
+001607 CMIT S3 start getRole
+001607 CMIT S4 getCurrentTerm
+001607 CMIT S4 start getRole
+001607 TRCE m0 I am not OK [me]
+001944 TRCE m1 start a new value [me]
+001944 CMIT S0 getCurrentTerm
+001944 CMIT S0 start getRole
+001945 CMIT S1 getCurrentTerm
+001945 CMIT S1 start getRole
+001945 CMIT S2 getCurrentTerm
+001945 CMIT S2 start getRole
+001945 CMIT S3 getCurrentTerm
+001945 CMIT S3 start getRole
+001945 CMIT S4 getCurrentTerm
+001946 CMIT S4 start getRole
+001946 TRCE m1 I am not OK [me]
+002289 TRCE m2 start a new value [me]
+002289 CMIT S0 getCurrentTerm
+002289 CMIT S0 start getRole
+002289 CMIT S1 getCurrentTerm
+002290 CMIT S1 start getRole
+002290 CMIT S2 getCurrentTerm
+002290 CMIT S2 start getRole
+002290 CMIT S3 getCurrentTerm
+002290 CMIT S3 start getRole
+002290 CMIT S4 getCurrentTerm
+002290 CMIT S4 start getRole
+002290 TRCE m2 I am not OK [me]
+002401 TRCE m0 start a new value [me]
+002402 CMIT S0 getCurrentTerm
+002402 CMIT S0 start getRole
+002402 CMIT S1 getCurrentTerm
+002402 CMIT S1 start getRole
+002402 CMIT S2 getCurrentTerm
+002403 CMIT S2 start getRole
+002403 CMIT S3 getCurrentTerm
+002403 CMIT S3 start getRole
+002403 CMIT S4 getCurrentTerm
+002403 CMIT S4 start getRole
+002403 TRCE m0 I am not OK [me]
+002906 TRCE m1 start a new value [me]
+002907 CMIT S0 getCurrentTerm
+002907 CMIT S0 start getRole
+002907 CMIT S1 getCurrentTerm
+002907 CMIT S1 start getRole
+002907 CMIT S2 getCurrentTerm
+002907 CMIT S2 start getRole
+002907 CMIT S3 getCurrentTerm
+002907 CMIT S3 start getRole
+002908 CMIT S4 getCurrentTerm
+002908 CMIT S4 start getRole
+002908 TRCE m1 I am not OK [me]
+003202 TRCE m0 start a new value [me]
+003203 CMIT S0 getCurrentTerm
+003203 CMIT S0 start getRole
+003204 CMIT S1 getCurrentTerm
+003204 CMIT S1 start getRole
+003204 CMIT S2 getCurrentTerm
+003204 CMIT S2 start getRole
+003204 CMIT S3 getCurrentTerm
+003204 CMIT S3 start getRole
+003204 CMIT S4 getCurrentTerm
+003204 CMIT S4 start getRole
+003204 TRCE m0 I am not OK [me]
+003427 TRCE m2 start a new value [me]
+003428 CMIT S0 getCurrentTerm
+003428 CMIT S0 start getRole
+003428 CMIT S1 getCurrentTerm
+003428 CMIT S1 start getRole
+003428 CMIT S2 getCurrentTerm
+003428 CMIT S2 start getRole
+003429 CMIT S3 getCurrentTerm
+003429 CMIT S3 start getRole
+003429 CMIT S4 getCurrentTerm
+003429 CMIT S4 start getRole
+003429 TRCE m2 I am not OK [me]
+003873 TRCE m1 start a new value [me]
+003874 CMIT S0 getCurrentTerm
+003874 CMIT S0 start getRole
+003874 CMIT S1 getCurrentTerm
+003874 CMIT S1 start getRole
+003874 CMIT S2 getCurrentTerm
+003874 CMIT S2 start getRole
+003875 CMIT S3 getCurrentTerm
+003875 CMIT S3 start getRole
+003875 CMIT S4 getCurrentTerm
+003875 CMIT S4 start getRole
+003875 TRCE m1 I am not OK [me]
+003998 TRCE m0 start a new value [me]
+003998 CMIT S0 getCurrentTerm
+003998 CMIT S0 start getRole
+003999 CMIT S1 getCurrentTerm
+003999 CMIT S1 start getRole
+003999 CMIT S2 getCurrentTerm
+003999 CMIT S2 start getRole
+003999 CMIT S3 getCurrentTerm
+003999 CMIT S3 start getRole
+003999 CMIT S4 getCurrentTerm
+003999 CMIT S4 start getRole
+003999 TRCE m0 I am not OK [me]
+004009 VOTE S0 electionTimeout,follower -> candidate
+004010 VOTE S0 termBefore=0,electionTerm=1
+004069 VOTE S1 LastLogTerm=0,lastLogIdex=0
+004069 VOTE S1 vote and reset
+004070 VOTE S1 vote for 0
+004200 VOTE S4 LastLogTerm=0,lastLogIdex=0
+004200 VOTE S4 vote and reset
+004201 VOTE S4 vote for 0
+004202 VOTE S0 win the election, candidate -> Leader
+004202 CMIT S0 commitCriterial=0
+004253 INFO S4 receive AE from 0,PLIdx=0 PLTerm=0
+004254 INFO S4 receive heartbeat, but no sync
+004254 INFO S4 from S0,term=1,PLTerm=0,PLIdx=0
+004256 INFO S2 receive AE from 0,PLIdx=0 PLTerm=0
+004256 INFO S2 receive heartbeat, but no sync
+004256 INFO S2 from S0,term=1,PLTerm=0,PLIdx=0
+004274 VOTE S2 LastLogTerm=0,lastLogIdex=0
+004275 VOTE S2 vote and reset
+004275 VOTE S2 vote for 0
+004276 VOTE S3 LastLogTerm=0,lastLogIdex=0
+004276 VOTE S3 vote and reset
+004276 VOTE S3 vote for 0
+004327 INFO S1 receive AE from 0,PLIdx=0 PLTerm=0
+004327 INFO S1 receive heartbeat, but no sync
+004327 INFO S1 from S0,term=1,PLTerm=0,PLIdx=0
+004398 INFO S3 receive AE from 0,PLIdx=0 PLTerm=0
+004399 INFO S3 receive heartbeat, but no sync
+004399 INFO S3 from S0,term=1,PLTerm=0,PLIdx=0
+004562 TRCE m2 start a new value [me]
+004563 CMIT S0 getCurrentTerm
+004563 CMIT S0 start getRole
+004564 CMIT S0 start 765664838442108765 logIndex=1
+004564 CMIT S1 getCurrentTerm
+004564 CMIT S1 start getRole
+004564 CMIT S2 getCurrentTerm
+004564 CMIT S2 start getRole
+004564 CMIT S3 getCurrentTerm
+004564 CMIT S3 start getRole
+004565 CMIT S4 getCurrentTerm
+004565 CMIT S4 start getRole
+004565 TRCE m2 I am OK[me]
+004604 INFO S0 beat to others,term=1,accessTime=867542613,
+004638 INFO S3 receive AE from 0,PLIdx=1 PLTerm=1
+004638 INFO S1 receive AE from 0,PLIdx=0 PLTerm=0
+004639 VOTE S3 expect XIndex=1 len=1 xterm=0
+004639 CMIT S1 disLogIndex->1 value=765664838442108765
+004639 CMIT S1 commitIdx:0
+004640 TRCE S0 backup[3] logIndex[1,1]
+004640 CMIT S0 s1.matchidx->1
+004640 CMIT S0 s1.nextIndex->2
+004659 INFO S2 receive AE from 0,PLIdx=1 PLTerm=1
+004660 VOTE S2 expect XIndex=1 len=1 xterm=0
+004661 TRCE S0 backup[2] logIndex[1,1]
+004713 INFO S1 receive AE from 0,PLIdx=1 PLTerm=1
+004714 CMIT S1 commitIdx:0
+004776 INFO S2 receive AE from 0,PLIdx=0 PLTerm=0
+004777 CMIT S2 disLogIndex->1 value=765664838442108765
+004777 CMIT S2 commitIdx:0
+004777 CMIT S0 s2.matchidx->1
+004778 CMIT S0 s2.nextIndex->2
+004779 INFO S4 receive AE from 0,PLIdx=0 PLTerm=0
+004780 CMIT S4 disLogIndex->1 value=765664838442108765
+004780 CMIT S4 commitIdx:0
+004781 CMIT S0 s4.matchidx->1
+004781 CMIT S0 s4.nextIndex->2
+004796 TRCE m0 start a new value [me]
+004796 CMIT S0 getCurrentTerm
+004796 CMIT S0 start getRole
+004797 INFO S3 receive AE from 0,PLIdx=0 PLTerm=0
+004797 CMIT S0 start 5696215097886198394 logIndex=2
+004797 CMIT S1 getCurrentTerm
+004797 CMIT S1 start getRole
+004797 CMIT S3 disLogIndex->1 value=765664838442108765
+004797 CMIT S3 commitIdx:0
+004797 CMIT S2 getCurrentTerm
+004798 CMIT S2 start getRole
+004798 CMIT S3 getCurrentTerm
+004798 CMIT S3 start getRole
+004798 CMIT S0 s3.matchidx->1
+004798 CMIT S0 s3.nextIndex->2
+004799 CMIT S4 getCurrentTerm
+004799 CMIT S4 start getRole
+004799 TRCE m0 I am OK[me]
+004807 CMIT S0 commitIndex:0->1
+004831 INFO S4 receive AE from 0,PLIdx=1 PLTerm=1
+004831 CMIT S4 commitIdx:0
+004840 TRCE m1 start a new value [me]
+004840 CMIT S0 getCurrentTerm
+004840 CMIT S0 start getRole
+004841 CMIT S0 start 7415361170526285927 logIndex=3
+004841 CMIT S1 getCurrentTerm
+004841 CMIT S1 start getRole
+004841 CMIT S2 getCurrentTerm
+004841 CMIT S2 start getRole
+004841 CMIT S3 getCurrentTerm
+004842 CMIT S3 start getRole
+004842 CMIT S4 getCurrentTerm
+004842 CMIT S4 start getRole
+004843 TRCE m1 I am OK[me]
+004844 INFO S4 receive AE from 0,PLIdx=2 PLTerm=1
+004844 VOTE S4 expect XIndex=1 len=1 xterm=1
+004845 TRCE S0 backup[4] logIndex[2,3]
+004872 TRCE m2 start a new value [me]
+004872 CMIT S0 getCurrentTerm
+004872 CMIT S0 start getRole
+004873 CMIT S0 start 2923436458412431052 logIndex=4
+004873 CMIT S1 getCurrentTerm
+004873 CMIT S1 start getRole
+004873 CMIT S2 getCurrentTerm
+004873 CMIT S2 start getRole
+004873 CMIT S3 getCurrentTerm
+004874 CMIT S3 start getRole
+004874 CMIT S4 getCurrentTerm
+004874 CMIT S4 start getRole
+004874 TRCE m2 I am OK[me]
+004876 INFO S1 receive AE from 0,PLIdx=3 PLTerm=1
+004877 VOTE S1 expect XIndex=1 len=1 xterm=1
+004878 TRCE S0 backup[1] logIndex[2,4]
+004878 INFO S4 receive AE from 0,PLIdx=1 PLTerm=1
+004879 CMIT S4 disLogIndex->3 value=7415361170526285927
+004879 CMIT S4 commitIdx:0->1
+004880 CMIT S0 s4.matchidx->3
+004880 CMIT S0 s4.nextIndex->4
+004881 TRCE S0 backup[4] logIndex[2,3] finish
+004906 INFO S3 receive AE from 0,PLIdx=0 PLTerm=0
+004906 CMIT S3 commitIdx:0
+004907 TRCE S0 backup[3] logIndex[1,1] finish
+004917 INFO S2 receive AE from 0,PLIdx=2 PLTerm=1
+004918 VOTE S2 expect XIndex=1 len=1 xterm=1
+004921 INFO S3 receive AE from 0,PLIdx=1 PLTerm=1
+004922 CMIT S3 disLogIndex->2 value=5696215097886198394
+004922 CMIT S3 commitIdx:0
+004923 CMIT S0 s3.matchidx->2
+004923 CMIT S0 s3.nextIndex->3
+004924 INFO S2 receive AE from 0,PLIdx=0 PLTerm=0
+004925 CMIT S2 commitIdx:0
+004926 TRCE S0 backup[2] logIndex[1,1] finish
+004926 TRCE S0 backup[2] logIndex[2,4]
+004939 INFO S1 receive AE from 0,PLIdx=1 PLTerm=1
+004940 CMIT S1 disLogIndex->2 value=5696215097886198394
+004940 CMIT S1 commitIdx:0
+004940 CMIT S0 s1.matchidx->2
+004941 CMIT S0 s1.nextIndex->3
+004950 INFO S3 receive AE from 0,PLIdx=2 PLTerm=1
+004951 INFO S4 receive AE from 0,PLIdx=1 PLTerm=1
+004951 CMIT S3 disLogIndex->3 value=7415361170526285927
+004951 CMIT S3 commitIdx:0->1
+004951 CMIT S4 commitIdx:1
+004952 CMIT S0 s3.matchidx->3
+004952 CMIT S0 s3.nextIndex->4
+004984 INFO S1 receive AE from 0,PLIdx=2 PLTerm=1
+004984 CMIT S1 disLogIndex->3 value=7415361170526285927
+004985 CMIT S1 commitIdx:0->1
+004985 CMIT S0 s1.matchidx->3
+004986 CMIT S0 s1.nextIndex->4
+005005 INFO S0 beat to others,term=1,accessTime=867542613,
+005007 INFO S3 receive AE from 0,PLIdx=3 PLTerm=1
+005007 CMIT S3 disLogIndex->4 value=2923436458412431052
+005008 CMIT S3 commitIdx:1
+005009 CMIT S0 s3.matchidx->4
+005009 CMIT S0 s3.nextIndex->5
+005060 INFO S2 receive AE from 0,PLIdx=1 PLTerm=1
+005061 CMIT S2 disLogIndex->2 value=5696215097886198394
+005061 CMIT S2 commitIdx:0
+005062 CMIT S0 s2.matchidx->2
+005063 CMIT S0 s2.nextIndex->3
+005071 INFO S2 receive AE from 0,PLIdx=3 PLTerm=1
+005072 VOTE S2 expect XIndex=1 len=2 xterm=1
+005093 INFO S1 receive AE from 0,PLIdx=1 PLTerm=1
+005094 CMIT S1 disLogIndex->4 value=2923436458412431052
+005094 CMIT S1 commitIdx:1
+005093 INFO S3 receive AE from 0,PLIdx=4 PLTerm=1
+005095 CMIT S0 s1.matchidx->4
+005095 CMIT S0 s1.nextIndex->5
+005095 CMIT S3 commitIdx:1
+005095 TRCE S0 backup[1] logIndex[2,4] finish
+005115 CMIT S0 commitIndex:1->4
+005117 INFO S4 receive AE from 0,PLIdx=3 PLTerm=1
+005117 CMIT S4 disLogIndex->4 value=2923436458412431052
+005117 CMIT S4 commitIdx:1
+005118 CMIT S0 s4.matchidx->4
+005119 CMIT S0 s4.nextIndex->5
+005157 TRCE m1 start a new value [me]
+005158 CMIT S0 getCurrentTerm
+005158 CMIT S0 start getRole
+005158 CMIT S0 start 8629527927030251813 logIndex=5
+005158 CMIT S1 getCurrentTerm
+005159 CMIT S1 start getRole
+005159 CMIT S2 getCurrentTerm
+005159 CMIT S2 start getRole
+005159 CMIT S3 getCurrentTerm
+005159 CMIT S3 start getRole
+005159 CMIT S4 getCurrentTerm
+005159 CMIT S4 start getRole
+005159 TRCE m1 I am OK[me]
+005190 TRCE m2 start a new value [me]
+005190 CMIT S0 getCurrentTerm
+005190 CMIT S0 start getRole
+005191 INFO S1 receive AE from 0,PLIdx=4 PLTerm=1
+005191 CMIT S1 commitIdx:1
+005191 CMIT S0 start 3145581222789597222 logIndex=6
+005192 CMIT S1 getCurrentTerm
+005192 CMIT S1 start getRole
+005192 INFO S4 receive AE from 0,PLIdx=4 PLTerm=1
+005192 CMIT S4 commitIdx:1
+005192 CMIT S2 getCurrentTerm
+005193 CMIT S2 start getRole
+005193 CMIT S3 getCurrentTerm
+005193 CMIT S3 start getRole
+005193 CMIT S4 getCurrentTerm
+005193 CMIT S4 start getRole
+005193 TRCE m2 I am OK[me]
+005195 INFO S4 receive AE from 0,PLIdx=5 PLTerm=1
+005195 VOTE S4 expect XIndex=1 len=4 xterm=1
+005196 TRCE S0 backup[4] logIndex[5,6]
+005203 INFO S2 receive AE from 0,PLIdx=4 PLTerm=1
+005203 VOTE S2 expect XIndex=1 len=2 xterm=1
+005267 INFO S1 receive AE from 0,PLIdx=5 PLTerm=1
+005268 VOTE S1 expect XIndex=1 len=4 xterm=1
+005269 TRCE S0 backup[1] logIndex[5,6]
+005333 INFO S4 receive AE from 0,PLIdx=4 PLTerm=1
+005333 INFO S2 receive AE from 0,PLIdx=1 PLTerm=1
+005334 CMIT S4 commitIdx:1
+005335 CMIT S2 disLogIndex->4 value=2923436458412431052
+005335 CMIT S2 commitIdx:0->1
+005336 CMIT S0 s2.matchidx->4
+005336 CMIT S0 s2.nextIndex->5
+005336 TRCE S0 backup[2] logIndex[2,4] finish
+005337 TRCE S0 backup[2] logIndex[5,6]
+005344 INFO S3 receive AE from 0,PLIdx=4 PLTerm=1
+005345 CMIT S3 disLogIndex->5 value=8629527927030251813
+005346 CMIT S3 commitIdx:1->4
+005347 CMIT S0 s3.matchidx->5
+005347 CMIT S0 s3.nextIndex->6
+005395 INFO S2 receive AE from 0,PLIdx=5 PLTerm=1
+005396 VOTE S2 expect XIndex=1 len=4 xterm=1
+005405 INFO S0 beat to others,term=1,accessTime=867542613,
+005408 INFO S4 receive AE from 0,PLIdx=6 PLTerm=1
+005409 VOTE S4 expect XIndex=1 len=4 xterm=1
+005417 INFO S3 receive AE from 0,PLIdx=5 PLTerm=1
+005419 CMIT S3 disLogIndex->6 value=3145581222789597222
+005419 CMIT S3 commitIdx:4
+005420 CMIT S0 s3.matchidx->6
+005420 CMIT S0 s3.nextIndex->7
+005422 INFO S1 receive AE from 0,PLIdx=4 PLTerm=1
+005423 CMIT S1 disLogIndex->5 value=8629527927030251813
+005423 CMIT S1 commitIdx:1->4
+005424 CMIT S0 s1.matchidx->5
+005425 CMIT S0 s1.nextIndex->6
+005429 INFO S1 receive AE from 0,PLIdx=6 PLTerm=1
+005429 VOTE S1 expect XIndex=1 len=5 xterm=1
+005439 INFO S4 receive AE from 0,PLIdx=4 PLTerm=1
+005440 CMIT S4 disLogIndex->6 value=3145581222789597222
+005440 CMIT S4 commitIdx:1->4
+005441 CMIT S0 s4.matchidx->6
+005441 CMIT S0 s4.nextIndex->7
+005441 TRCE S0 backup[4] logIndex[5,6] finish
+005514 INFO S1 receive AE from 0,PLIdx=4 PLTerm=1
+005515 CMIT S1 disLogIndex->6 value=3145581222789597222
+005515 CMIT S1 commitIdx:4
+005525 INFO S2 receive AE from 0,PLIdx=6 PLTerm=1
+005526 VOTE S2 expect XIndex=1 len=4 xterm=1
+005525 INFO S4 receive AE from 0,PLIdx=4 PLTerm=1
+005528 CMIT S4 commitIdx:4
+005527 INFO S2 receive AE from 0,PLIdx=4 PLTerm=1
+005529 CMIT S2 disLogIndex->6 value=3145581222789597222
+005529 CMIT S2 commitIdx:1->4
+005530 CMIT S0 s2.matchidx->6
+005530 CMIT S0 s2.nextIndex->7
+005530 TRCE S0 backup[2] logIndex[5,6] finish
+005558 INFO S2 receive AE from 0,PLIdx=4 PLTerm=1
+005558 CMIT S2 commitIdx:4
+005559 INFO S3 receive AE from 0,PLIdx=6 PLTerm=1
+005560 CMIT S3 commitIdx:4
+005619 TRCE m0 start a new value [me]
+005619 CMIT S0 getCurrentTerm
+005619 CMIT S0 start getRole
+005620 CMIT S0 start 4788310168418030492 logIndex=7
+005620 CMIT S1 getCurrentTerm
+005620 CMIT S1 start getRole
+005620 CMIT S2 getCurrentTerm
+005621 CMIT S2 start getRole
+005621 CMIT S3 getCurrentTerm
+005621 CMIT S3 start getRole
+005621 CMIT S4 getCurrentTerm
+005621 CMIT S4 start getRole
+005621 TRCE m0 I am OK[me]
+005664 INFO S1 receive AE from 0,PLIdx=6 PLTerm=1
+005665 CMIT S1 disLogIndex->7 value=4788310168418030492
+005665 CMIT S1 commitIdx:4
+005666 CMIT S0 s1.matchidx->7
+005667 CMIT S0 s1.nextIndex->8
+005706 INFO S3 receive AE from 0,PLIdx=6 PLTerm=1
+005707 CMIT S0 commitIndex:4->6
+005707 CMIT S3 disLogIndex->7 value=4788310168418030492
+005707 CMIT S3 commitIdx:4
+005707 INFO S1 receive AE from 0,PLIdx=4 PLTerm=1
+005708 CMIT S1 commitIdx:4
+005708 CMIT S0 s3.matchidx->7
+005709 CMIT S0 s3.nextIndex->8
+005709 TRCE S0 backup[1] logIndex[5,6] finish
+005802 INFO S0 beat to others,term=1,accessTime=867542613,
+005836 INFO S2 receive AE from 0,PLIdx=7 PLTerm=1
+005836 VOTE S2 expect XIndex=1 len=6 xterm=1
+005838 TRCE S0 backup[2] logIndex[7,7]
+005890 INFO S1 receive AE from 0,PLIdx=7 PLTerm=1
+005890 INFO S4 receive AE from 0,PLIdx=6 PLTerm=1
+005891 CMIT S4 disLogIndex->7 value=4788310168418030492
+005891 CMIT S4 commitIdx:4
+005891 CMIT S1 commitIdx:4->6
+005892 CMIT S0 s4.matchidx->7
+005893 CMIT S0 s4.nextIndex->8
+005976 TRCE m1 start a new value [me]
+005977 CMIT S0 getCurrentTerm
+005977 CMIT S0 start getRole
+005978 INFO S4 receive AE from 0,PLIdx=7 PLTerm=1
+005978 CMIT S0 start 8383533796664434122 logIndex=8
+005979 CMIT S1 getCurrentTerm
+005979 CMIT S1 start getRole
+005979 CMIT S2 getCurrentTerm
+005979 CMIT S2 start getRole
+005979 CMIT S3 getCurrentTerm
+005979 CMIT S3 start getRole
+005979 CMIT S4 getCurrentTerm
+005978 CMIT S4 commitIdx:4->6
+005980 CMIT S4 start getRole
+005980 TRCE m1 I am OK[me]
+006009 CMIT S0 commitIndex:6->7
+006010 TRCE m2 start a new value [me]
+006010 CMIT S0 getCurrentTerm
+006010 CMIT S0 start getRole
+006011 CMIT S0 start 4844229050483438867 logIndex=9
+006011 CMIT S1 getCurrentTerm
+006011 CMIT S1 start getRole
+006011 CMIT S2 getCurrentTerm
+006011 CMIT S2 start getRole
+006011 CMIT S3 getCurrentTerm
+006011 CMIT S3 start getRole
+006011 CMIT S4 getCurrentTerm
+006011 CMIT S4 start getRole
+006012 TRCE m2 I am OK[me]
+006012 INFO S2 receive AE from 0,PLIdx=6 PLTerm=1
+006013 CMIT S2 disLogIndex->7 value=4788310168418030492
+006013 CMIT S2 commitIdx:4
+006014 INFO S1 receive AE from 0,PLIdx=8 PLTerm=1
+006014 VOTE S1 expect XIndex=1 len=7 xterm=1
+006015 CMIT S0 s2.matchidx->7
+006015 CMIT S0 s2.nextIndex->8
+006015 TRCE S0 backup[1] logIndex[8,9]
+006037 INFO S2 receive AE from 0,PLIdx=7 PLTerm=1
+006037 INFO S3 receive AE from 0,PLIdx=7 PLTerm=1
+006038 CMIT S3 commitIdx:4->6
+006038 CMIT S2 disLogIndex->8 value=8383533796664434122
+006039 CMIT S2 commitIdx:4->6
+006040 CMIT S0 s2.matchidx->8
+006040 CMIT S0 s2.nextIndex->9
+006048 INFO S2 receive AE from 0,PLIdx=8 PLTerm=1
+006049 CMIT S2 disLogIndex->9 value=4844229050483438867
+006049 CMIT S2 commitIdx:6->7
+006050 CMIT S0 s2.matchidx->9
+006051 CMIT S0 s2.nextIndex->10
+006051 INFO S4 receive AE from 0,PLIdx=7 PLTerm=1
+006052 CMIT S4 disLogIndex->8 value=8383533796664434122
+006052 CMIT S4 commitIdx:6
+006054 INFO S4 receive AE from 0,PLIdx=7 PLTerm=1
+006054 CMIT S4 commitIdx:6
+006055 CMIT S0 s4.matchidx->8
+006055 CMIT S0 s4.nextIndex->9
+006070 INFO S2 receive AE from 0,PLIdx=6 PLTerm=1
+006070 CMIT S2 commitIdx:7
+006072 TRCE S0 backup[2] logIndex[7,7] finish
+006135 INFO S3 receive AE from 0,PLIdx=7 PLTerm=1
+006136 CMIT S3 disLogIndex->8 value=8383533796664434122
+006136 CMIT S3 commitIdx:6
+006137 CMIT S0 s3.matchidx->8
+006137 CMIT S0 s3.nextIndex->9
+006158 INFO S3 receive AE from 0,PLIdx=8 PLTerm=1
+006159 CMIT S3 disLogIndex->9 value=4844229050483438867
+006159 CMIT S3 commitIdx:6->7
+006160 CMIT S0 s3.matchidx->9
+006160 CMIT S0 s3.nextIndex->10
+006180 INFO S4 receive AE from 0,PLIdx=8 PLTerm=1
+006182 CMIT S4 disLogIndex->9 value=4844229050483438867
+006182 CMIT S4 commitIdx:6->7
+006183 CMIT S0 s4.matchidx->9
+006183 CMIT S0 s4.nextIndex->10
+006211 INFO S0 beat to others,term=1,accessTime=867542613,
+006213 INFO S1 receive AE from 0,PLIdx=7 PLTerm=1
+006214 CMIT S1 disLogIndex->9 value=4844229050483438867
+006214 CMIT S1 commitIdx:6->7
+006216 CMIT S0 s1.matchidx->9
+006216 CMIT S0 s1.nextIndex->10
+006217 TRCE S0 backup[1] logIndex[8,9] finish
+006225 INFO S1 receive AE from 0,PLIdx=7 PLTerm=1
+006225 CMIT S1 commitIdx:7
+006235 INFO S2 receive AE from 0,PLIdx=9 PLTerm=1
+006236 CMIT S2 commitIdx:7
+006289 INFO S3 receive AE from 0,PLIdx=9 PLTerm=1
+006289 CMIT S3 commitIdx:7
+006310 CMIT S0 commitIndex:7->9
+006312 INFO S4 receive AE from 0,PLIdx=9 PLTerm=1
+006313 CMIT S4 commitIdx:7
+006313 TRCE m2 start a new value [me]
+006313 CMIT S0 getCurrentTerm
+006313 CMIT S0 start getRole
+006314 CMIT S0 start 1613327838670027400 logIndex=10
+006314 CMIT S1 getCurrentTerm
+006314 CMIT S1 start getRole
+006314 CMIT S2 getCurrentTerm
+006314 CMIT S2 start getRole
+006314 CMIT S3 getCurrentTerm
+006314 CMIT S3 start getRole
+006314 CMIT S4 getCurrentTerm
+006314 CMIT S4 start getRole
+006314 TRCE m2 I am OK[me]
+006344 INFO S3 receive AE from 0,PLIdx=9 PLTerm=1
+006344 CMIT S3 disLogIndex->10 value=1613327838670027400
+006345 CMIT S3 commitIdx:7->9
+006346 CMIT S0 s3.matchidx->10
+006346 CMIT S0 s3.nextIndex->11
+006407 INFO S4 receive AE from 0,PLIdx=9 PLTerm=1
+006408 CMIT S4 disLogIndex->10 value=1613327838670027400
+006408 CMIT S4 commitIdx:7->9
+006407 INFO S1 receive AE from 0,PLIdx=9 PLTerm=1
+006409 CMIT S1 disLogIndex->10 value=1613327838670027400
+006409 CMIT S1 commitIdx:7->9
+006429 INFO S1 receive AE from 0,PLIdx=9 PLTerm=1
+006430 CMIT S1 commitIdx:9
+006429 INFO S2 receive AE from 0,PLIdx=9 PLTerm=1
+006431 CMIT S2 disLogIndex->10 value=1613327838670027400
+006431 CMIT S2 commitIdx:7->9
+006433 CMIT S0 s2.matchidx->10
+006433 CMIT S0 s2.nextIndex->11
+006433 TRCE m0 start a new value [me]
+006433 CMIT S0 getCurrentTerm
+006433 CMIT S0 start getRole
+006434 CMIT S0 start 7321858461163810543 logIndex=11
+006434 CMIT S1 getCurrentTerm
+006434 CMIT S1 start getRole
+006434 CMIT S2 getCurrentTerm
+006434 CMIT S2 start getRole
+006435 CMIT S3 getCurrentTerm
+006435 CMIT S3 start getRole
+006435 CMIT S4 getCurrentTerm
+006435 CMIT S4 start getRole
+006435 TRCE m0 I am OK[me]
+006473 INFO S4 receive AE from 0,PLIdx=10 PLTerm=1
+006473 CMIT S4 disLogIndex->11 value=7321858461163810543
+006473 CMIT S4 commitIdx:9
+006536 INFO S4 receive AE from 0,PLIdx=9 PLTerm=1
+006537 CMIT S4 commitIdx:9
+006538 CMIT S0 s4.matchidx->10
+006538 CMIT S0 s4.nextIndex->11
+006557 INFO S3 receive AE from 0,PLIdx=10 PLTerm=1
+006558 CMIT S3 disLogIndex->11 value=7321858461163810543
+006558 CMIT S3 commitIdx:9
+006559 CMIT S0 s3.matchidx->11
+006559 CMIT S0 s3.nextIndex->12
+006579 INFO S1 receive AE from 0,PLIdx=10 PLTerm=1
+006580 CMIT S1 disLogIndex->11 value=7321858461163810543
+006580 CMIT S1 commitIdx:9
+006582 INFO S1 receive AE from 0,PLIdx=9 PLTerm=1
+006583 CMIT S1 commitIdx:9
+006583 CMIT S0 s1.matchidx->10
+006583 CMIT S0 s1.nextIndex->11
+006601 INFO S4 receive AE from 0,PLIdx=10 PLTerm=1
+006601 CMIT S4 commitIdx:9
+006602 CMIT S0 s4.matchidx->11
+006602 CMIT S0 s4.nextIndex->12
+006603 INFO S0 beat to others,term=1,accessTime=867542613,
+006608 CMIT S0 commitIndex:9->11
+006609 INFO S2 receive AE from 0,PLIdx=11 PLTerm=1
+006610 VOTE S2 expect XIndex=1 len=10 xterm=1
+006618 TRCE m2 start a new value [me]
+006618 CMIT S0 getCurrentTerm
+006618 INFO S4 receive AE from 0,PLIdx=11 PLTerm=1
+006618 CMIT S4 commitIdx:9
+006618 CMIT S0 start getRole
+006618 TRCE S0 backup[2] logIndex[11,11]
+006619 CMIT S0 start 528739571095897965 logIndex=12
+006620 CMIT S1 getCurrentTerm
+006620 CMIT S1 start getRole
+006620 CMIT S2 getCurrentTerm
+006620 CMIT S2 start getRole
+006620 CMIT S3 getCurrentTerm
+006620 CMIT S3 start getRole
+006620 CMIT S4 getCurrentTerm
+006620 CMIT S4 start getRole
+006620 TRCE m2 I am OK[me]
+006654 INFO S2 receive AE from 0,PLIdx=10 PLTerm=1
+006655 CMIT S2 disLogIndex->11 value=7321858461163810543
+006656 CMIT S2 commitIdx:9->11
+006657 CMIT S0 s2.matchidx->11
+006657 CMIT S0 s2.nextIndex->12
+006657 TRCE S0 backup[2] logIndex[11,11] finish
+006665 INFO S1 receive AE from 0,PLIdx=10 PLTerm=1
+006666 CMIT S1 commitIdx:9
+006667 CMIT S0 s1.matchidx->11
+006667 CMIT S0 s1.nextIndex->12
+006687 INFO S3 receive AE from 0,PLIdx=11 PLTerm=1
+006688 CMIT S3 commitIdx:9
+006699 INFO S2 receive AE from 0,PLIdx=10 PLTerm=1
+006699 CMIT S2 commitIdx:11
+006709 INFO S3 receive AE from 0,PLIdx=11 PLTerm=1
+006710 CMIT S3 disLogIndex->12 value=528739571095897965
+006709 INFO S2 receive AE from 0,PLIdx=11 PLTerm=1
+006711 CMIT S2 disLogIndex->12 value=528739571095897965
+006711 CMIT S2 commitIdx:11
+006710 CMIT S3 commitIdx:9->11
+006712 CMIT S0 s2.matchidx->12
+006712 CMIT S0 s2.nextIndex->13
+006712 CMIT S0 s3.matchidx->12
+006713 CMIT S0 s3.nextIndex->13
+006742 TRCE m0 start a new value [me]
+006742 CMIT S0 getCurrentTerm
+006742 CMIT S0 start getRole
+006743 CMIT S0 start 7869441609254885423 logIndex=13
+006743 CMIT S1 getCurrentTerm
+006743 CMIT S1 start getRole
+006743 CMIT S2 getCurrentTerm
+006743 CMIT S2 start getRole
+006743 CMIT S3 getCurrentTerm
+006743 CMIT S3 start getRole
+006743 CMIT S4 getCurrentTerm
+006743 CMIT S4 start getRole
+006743 TRCE m0 I am OK[me]
+006785 INFO S4 receive AE from 0,PLIdx=11 PLTerm=1
+006786 CMIT S4 disLogIndex->12 value=528739571095897965
+006786 CMIT S4 commitIdx:9->11
+006787 CMIT S0 s4.matchidx->12
+006787 CMIT S0 s4.nextIndex->13
+006794 TRCE m1 start a new value [me]
+006795 CMIT S0 getCurrentTerm
+006795 CMIT S0 start getRole
+006795 CMIT S0 start 3636698084335830779 logIndex=14
+006795 CMIT S1 getCurrentTerm
+006795 CMIT S1 start getRole
+006796 CMIT S2 getCurrentTerm
+006796 CMIT S2 start getRole
+006796 CMIT S3 getCurrentTerm
+006796 CMIT S3 start getRole
+006796 CMIT S4 getCurrentTerm
+006796 CMIT S4 start getRole
+006796 TRCE m1 I am OK[me]
+006796 INFO S1 receive AE from 0,PLIdx=11 PLTerm=1
+006797 CMIT S1 commitIdx:9
+006830 INFO S2 receive AE from 0,PLIdx=13 PLTerm=1
+006831 VOTE S2 expect XIndex=1 len=12 xterm=1
+006832 TRCE S0 backup[2] logIndex[13,14]
+006834 INFO S1 receive AE from 0,PLIdx=11 PLTerm=1
+006835 CMIT S1 disLogIndex->12 value=528739571095897965
+006835 CMIT S1 commitIdx:9->11
+006836 CMIT S0 s1.matchidx->12
+006836 CMIT S0 s1.nextIndex->13
+006836 INFO S3 receive AE from 0,PLIdx=12 PLTerm=1
+006837 CMIT S3 disLogIndex->13 value=7869441609254885423
+006837 CMIT S3 commitIdx:11
+006838 CMIT S0 s3.matchidx->13
+006838 CMIT S0 s3.nextIndex->14
+006853 INFO S2 receive AE from 0,PLIdx=12 PLTerm=1
+006853 CMIT S2 disLogIndex->14 value=3636698084335830779
+006853 CMIT S2 commitIdx:11
+006854 CMIT S0 s2.matchidx->14
+006854 CMIT S0 s2.nextIndex->15
+006854 TRCE S0 backup[2] logIndex[13,14] finish
+006855 INFO S2 receive AE from 0,PLIdx=12 PLTerm=1
+006855 CMIT S2 commitIdx:11
+006917 CMIT S0 commitIndex:11->13
+006917 INFO S4 receive AE from 0,PLIdx=12 PLTerm=1
+006919 CMIT S4 disLogIndex->13 value=7869441609254885423
+006919 CMIT S4 commitIdx:11
+006920 CMIT S0 s4.matchidx->13
+006920 CMIT S0 s4.nextIndex->14
+006938 TRCE m2 start a new value [me]
+006939 CMIT S0 getCurrentTerm
+006939 CMIT S0 start getRole
+006939 CMIT S0 start 29683413725861569 logIndex=15
+006940 CMIT S1 getCurrentTerm
+006940 CMIT S1 start getRole
+006940 CMIT S2 getCurrentTerm
+006940 CMIT S2 start getRole
+006940 CMIT S3 getCurrentTerm
+006940 CMIT S3 start getRole
+006940 CMIT S4 getCurrentTerm
+006940 CMIT S4 start getRole
+006940 TRCE m2 I am OK[me]
+006951 INFO S4 receive AE from 0,PLIdx=13 PLTerm=1
+006952 CMIT S4 disLogIndex->14 value=3636698084335830779
+006952 CMIT S4 commitIdx:11
+006953 CMIT S0 s4.matchidx->14
+006953 CMIT S0 s4.nextIndex->15
+006972 INFO S1 receive AE from 0,PLIdx=13 PLTerm=1
+006973 VOTE S1 expect XIndex=1 len=12 xterm=1
+006974 TRCE S0 backup[1] logIndex[13,15]
+006995 INFO S1 receive AE from 0,PLIdx=12 PLTerm=1
+006995 CMIT S1 disLogIndex->13 value=7869441609254885423
+006995 CMIT S1 commitIdx:11
+006996 CMIT S0 s1.matchidx->13
+006996 CMIT S0 s1.nextIndex->14
+007005 INFO S0 beat to others,term=1,accessTime=867542613,
+007005 INFO S4 receive AE from 0,PLIdx=14 PLTerm=1
+007006 CMIT S4 disLogIndex->15 value=29683413725861569
+007006 CMIT S4 commitIdx:11->13
+007016 TRCE disconnect S4
+007016 TRCE start and connect S4
+007016 TRCE connect S4
+007049 INFO S3 receive AE from 0,PLIdx=13 PLTerm=1
+007050 CMIT S3 disLogIndex->14 value=3636698084335830779
+007051 CMIT S3 commitIdx:11
+007052 CMIT S0 s3.matchidx->14
+007052 CMIT S0 s3.nextIndex->15
+007052 TRCE m0 start a new value [me]
+007052 CMIT S0 getCurrentTerm
+007053 CMIT S0 start getRole
+007053 CMIT S0 start 2695248087803367297 logIndex=16
+007053 CMIT S1 getCurrentTerm
+007053 CMIT S1 start getRole
+007053 CMIT S2 getCurrentTerm
+007053 CMIT S2 start getRole
+007054 CMIT S3 getCurrentTerm
+007054 CMIT S3 start getRole
+007054 CMIT S4 getCurrentTerm
+007054 CMIT S4 start getRole
+007054 TRCE m0 I am OK[me]
+007071 INFO S1 receive AE from 0,PLIdx=15 PLTerm=1
+007072 VOTE S1 expect XIndex=1 len=13 xterm=1
+007082 INFO S3 receive AE from 0,PLIdx=15 PLTerm=1
+007083 VOTE S3 expect XIndex=1 len=14 xterm=1
+007084 TRCE S0 backup[3] logIndex[15,16]
+007084 INFO S3 receive AE from 0,PLIdx=14 PLTerm=1
+007085 CMIT S3 disLogIndex->16 value=2695248087803367297
+007085 CMIT S3 commitIdx:11->13
+007086 INFO S4 receive AE from 0,PLIdx=15 PLTerm=1
+007087 CMIT S0 s3.matchidx->16
+007087 CMIT S0 s3.nextIndex->17
+007087 TRCE S0 backup[3] logIndex[15,16] finish
+007087 CMIT S4 disLogIndex->16 value=2695248087803367297
+007087 CMIT S4 commitIdx:13
+007088 CMIT S0 s4.matchidx->16
+007088 CMIT S0 s4.nextIndex->17
+007104 INFO S1 receive AE from 0,PLIdx=14 PLTerm=1
+007104 VOTE S1 expect XIndex=1 len=13 xterm=1
+007137 INFO S2 receive AE from 0,PLIdx=15 PLTerm=1
+007138 VOTE S2 expect XIndex=1 len=14 xterm=1
+007139 TRCE S0 backup[2] logIndex[15,16]
+007159 INFO S3 receive AE from 0,PLIdx=15 PLTerm=1
+007160 CMIT S3 commitIdx:13
+007212 CMIT S0 commitIndex:13->16
+007213 INFO S4 receive AE from 0,PLIdx=15 PLTerm=1
+007213 CMIT S4 commitIdx:13
+007212 INFO S2 receive AE from 0,PLIdx=14 PLTerm=1
+007214 CMIT S2 disLogIndex->15 value=29683413725861569
+007215 CMIT S2 commitIdx:11->13
+007216 CMIT S0 s2.matchidx->15
+007216 CMIT S0 s2.nextIndex->16
+007235 INFO S4 receive AE from 0,PLIdx=14 PLTerm=1
+007235 CMIT S4 commitIdx:13
+007235 INFO S2 receive AE from 0,PLIdx=14 PLTerm=1
+007236 CMIT S2 disLogIndex->16 value=2695248087803367297
+007236 CMIT S2 commitIdx:13
+007236 INFO S1 receive AE from 0,PLIdx=12 PLTerm=1
+007237 CMIT S0 s2.matchidx->16
+007237 CMIT S0 s2.nextIndex->17
+007237 CMIT S1 disLogIndex->15 value=29683413725861569
+007237 TRCE S0 backup[2] logIndex[15,16] finish
+007238 CMIT S1 commitIdx:11->13
+007238 INFO S2 receive AE from 0,PLIdx=15 PLTerm=1
+007238 CMIT S2 commitIdx:13
+007239 CMIT S0 s1.matchidx->15
+007239 CMIT S0 s1.nextIndex->16
+007239 TRCE S0 backup[1] logIndex[13,15] finish
+007239 TRCE S0 backup[1] logIndex[16,16]
+007256 TRCE m2 start a new value [me]
+007256 CMIT S0 getCurrentTerm
+007256 CMIT S0 start getRole
+007257 CMIT S0 start 6464788595850692422 logIndex=17
+007257 CMIT S1 getCurrentTerm
+007257 CMIT S1 start getRole
+007257 CMIT S2 getCurrentTerm
+007257 CMIT S2 start getRole
+007257 CMIT S3 getCurrentTerm
+007257 CMIT S3 start getRole
+007257 CMIT S4 getCurrentTerm
+007257 CMIT S4 start getRole
+007257 TRCE m2 I am OK[me]
+007268 INFO S1 receive AE from 0,PLIdx=15 PLTerm=1
+007268 CMIT S1 disLogIndex->16 value=2695248087803367297
+007268 CMIT S1 commitIdx:13
+007269 CMIT S0 s1.matchidx->16
+007269 CMIT S0 s1.nextIndex->17
+007320 INFO S3 receive AE from 0,PLIdx=14 PLTerm=1
+007321 INFO S1 receive AE from 0,PLIdx=15 PLTerm=1
+007321 CMIT S3 commitIdx:13
+007322 CMIT S1 commitIdx:13->16
+007323 TRCE S0 backup[1] logIndex[16,16] finish
+007362 TRCE m0 start a new value [me]
+007363 CMIT S0 getCurrentTerm
+007363 CMIT S0 start getRole
+007364 CMIT S0 start 5306903356504003184 logIndex=18
+007364 CMIT S1 getCurrentTerm
+007364 CMIT S1 start getRole
+007364 CMIT S2 getCurrentTerm
+007364 CMIT S2 start getRole
+007364 CMIT S3 getCurrentTerm
+007364 CMIT S3 start getRole
+007364 CMIT S4 getCurrentTerm
+007364 CMIT S4 start getRole
+007364 TRCE m0 I am OK[me]
+007404 INFO S0 beat to others,term=1,accessTime=867542613,
+007450 INFO S2 receive AE from 0,PLIdx=15 PLTerm=1
+007451 CMIT S2 commitIdx:13
+007450 INFO S1 receive AE from 0,PLIdx=16 PLTerm=1
+007452 CMIT S1 disLogIndex->17 value=6464788595850692422
+007452 CMIT S1 commitIdx:16
+007453 CMIT S0 s1.matchidx->17
+007453 CMIT S0 s1.nextIndex->18
+007451 INFO S2 receive AE from 0,PLIdx=16 PLTerm=1
+007454 CMIT S2 disLogIndex->17 value=6464788595850692422
+007454 CMIT S2 commitIdx:13->16
+007455 CMIT S0 s2.matchidx->17
+007455 CMIT S0 s2.nextIndex->18
+007462 INFO S3 receive AE from 0,PLIdx=16 PLTerm=1
+007462 CMIT S3 disLogIndex->17 value=6464788595850692422
+007463 CMIT S3 commitIdx:13->16
+007463 CMIT S0 s3.matchidx->17
+007463 CMIT S0 s3.nextIndex->18
+007472 INFO S4 receive AE from 0,PLIdx=16 PLTerm=1
+007473 CMIT S4 disLogIndex->17 value=6464788595850692422
+007473 CMIT S4 commitIdx:13->16
+007474 CMIT S0 s4.matchidx->17
+007474 CMIT S0 s4.nextIndex->18
+007483 INFO S1 receive AE from 0,PLIdx=17 PLTerm=1
+007484 CMIT S1 disLogIndex->18 value=5306903356504003184
+007484 CMIT S1 commitIdx:16
+007485 CMIT S0 s1.matchidx->18
+007485 CMIT S0 s1.nextIndex->19
+007486 INFO S3 receive AE from 0,PLIdx=17 PLTerm=1
+007487 CMIT S3 disLogIndex->18 value=5306903356504003184
+007487 CMIT S3 commitIdx:16
+007488 CMIT S0 s3.matchidx->18
+007488 CMIT S0 s3.nextIndex->19
+007515 CMIT S0 commitIndex:16->18
+007527 INFO S2 receive AE from 0,PLIdx=18 PLTerm=1
+007528 VOTE S2 expect XIndex=1 len=17 xterm=1
+007529 TRCE S0 backup[2] logIndex[18,18]
+007538 INFO S2 receive AE from 0,PLIdx=17 PLTerm=1
+007539 CMIT S2 disLogIndex->18 value=5306903356504003184
+007539 CMIT S2 commitIdx:16
+007540 CMIT S0 s2.matchidx->18
+007540 CMIT S0 s2.nextIndex->19
+007549 INFO S1 receive AE from 0,PLIdx=18 PLTerm=1
+007550 CMIT S1 commitIdx:16
+007570 TRCE m2 start a new value [me]
+007571 CMIT S0 getCurrentTerm
+007571 CMIT S0 start getRole
+007571 INFO S4 receive AE from 0,PLIdx=17 PLTerm=1
+007571 CMIT S0 start 4318773699544630277 logIndex=19
+007572 CMIT S1 getCurrentTerm
+007572 CMIT S1 start getRole
+007572 CMIT S4 disLogIndex->18 value=5306903356504003184
+007572 CMIT S4 commitIdx:16
+007573 CMIT S0 s4.matchidx->18
+007573 CMIT S0 s4.nextIndex->19
+007572 CMIT S2 getCurrentTerm
+007573 CMIT S2 start getRole
+007573 CMIT S3 getCurrentTerm
+007573 CMIT S3 start getRole
+007573 CMIT S4 getCurrentTerm
+007573 CMIT S4 start getRole
+007573 TRCE m2 I am OK[me]
+007582 INFO S4 receive AE from 0,PLIdx=18 PLTerm=1
+007583 CMIT S4 commitIdx:16
+007615 TRCE m1 start a new value [me]
+007615 CMIT S0 getCurrentTerm
+007615 CMIT S0 start getRole
+007616 CMIT S0 start 7848300734038156071 logIndex=20
+007616 CMIT S1 getCurrentTerm
+007616 CMIT S1 start getRole
+007616 CMIT S2 getCurrentTerm
+007616 CMIT S2 start getRole
+007616 CMIT S3 getCurrentTerm
+007616 CMIT S3 start getRole
+007616 CMIT S4 getCurrentTerm
+007616 CMIT S4 start getRole
+007617 TRCE m1 I am OK[me]
+007627 INFO S1 receive AE from 0,PLIdx=18 PLTerm=1
+007627 CMIT S1 disLogIndex->19 value=4318773699544630277
+007628 CMIT S1 commitIdx:16->18
+007629 CMIT S0 s1.matchidx->19
+007629 CMIT S0 s1.nextIndex->20
+007648 INFO S3 receive AE from 0,PLIdx=18 PLTerm=1
+007649 CMIT S3 commitIdx:16
+007648 INFO S2 receive AE from 0,PLIdx=19 PLTerm=1
+007649 VOTE S2 expect XIndex=1 len=18 xterm=1
+007680 TRCE m0 start a new value [me]
+007680 CMIT S0 getCurrentTerm
+007680 CMIT S0 start getRole
+007681 CMIT S0 start 3643002773448280417 logIndex=21
+007681 CMIT S1 getCurrentTerm
+007681 CMIT S1 start getRole
+007681 CMIT S2 getCurrentTerm
+007681 CMIT S2 start getRole
+007681 CMIT S3 getCurrentTerm
+007681 CMIT S3 start getRole
+007681 CMIT S4 getCurrentTerm
+007681 CMIT S4 start getRole
+007681 TRCE m0 I am OK[me]
+007713 INFO S4 receive AE from 0,PLIdx=19 PLTerm=1
+007714 VOTE S4 expect XIndex=1 len=18 xterm=1
+007714 INFO S4 receive AE from 0,PLIdx=20 PLTerm=1
+007714 VOTE S4 expect XIndex=1 len=18 xterm=1
+007715 TRCE S0 backup[4] logIndex[19,21]
+007725 INFO S4 receive AE from 0,PLIdx=18 PLTerm=1
+007726 CMIT S4 disLogIndex->19 value=4318773699544630277
+007726 CMIT S4 commitIdx:16->18
+007727 CMIT S0 s4.matchidx->19
+007727 CMIT S0 s4.nextIndex->20
+007757 INFO S2 receive AE from 0,PLIdx=18 PLTerm=1
+007758 CMIT S2 disLogIndex->19 value=4318773699544630277
+007758 CMIT S2 commitIdx:16->18
+007758 INFO S3 receive AE from 0,PLIdx=19 PLTerm=1
+007760 VOTE S3 expect XIndex=1 len=18 xterm=1
+007759 CMIT S0 s2.matchidx->19
+007760 CMIT S0 s2.nextIndex->20
+007760 TRCE S0 backup[3] logIndex[19,21]
+007767 INFO S3 receive AE from 0,PLIdx=18 PLTerm=1
+007768 CMIT S3 disLogIndex->19 value=4318773699544630277
+007769 CMIT S3 commitIdx:16->18
+007769 CMIT S0 s3.matchidx->19
+007770 CMIT S0 s3.nextIndex->20
+007770 INFO S3 receive AE from 0,PLIdx=18 PLTerm=1
+007771 CMIT S3 commitIdx:18
+007789 INFO S2 receive AE from 0,PLIdx=17 PLTerm=1
+007790 CMIT S2 commitIdx:18
+007790 TRCE S0 backup[2] logIndex[18,18] finish
+007791 TRCE S0 backup[2] logIndex[20,21]
+007801 INFO S2 receive AE from 0,PLIdx=20 PLTerm=1
+007801 INFO S4 receive AE from 0,PLIdx=18 PLTerm=1
+007801 VOTE S2 expect XIndex=1 len=19 xterm=1
+007803 CMIT S4 disLogIndex->21 value=3643002773448280417
+007803 CMIT S4 commitIdx:18
+007803 INFO S0 beat to others,term=1,accessTime=867542613,
+007804 CMIT S0 s4.matchidx->21
+007804 CMIT S0 s4.nextIndex->22
+007804 TRCE S0 backup[4] logIndex[19,21] finish
+007811 CMIT S0 commitIndex:18->19
+007846 INFO S1 receive AE from 0,PLIdx=21 PLTerm=1
+007847 VOTE S1 expect XIndex=1 len=19 xterm=1
+007848 TRCE S0 backup[1] logIndex[20,21]
+007868 INFO S3 receive AE from 0,PLIdx=20 PLTerm=1
+007869 VOTE S3 expect XIndex=1 len=19 xterm=1
+007870 INFO S1 receive AE from 0,PLIdx=19 PLTerm=1
+007871 CMIT S1 disLogIndex->20 value=7848300734038156071
+007871 CMIT S1 commitIdx:18
+007889 TRCE m2 start a new value [me]
+007889 CMIT S0 getCurrentTerm
+007889 CMIT S0 start getRole
+007890 CMIT S0 start 6259417629284833253 logIndex=22
+007890 INFO S1 receive AE from 0,PLIdx=20 PLTerm=1
+007890 CMIT S1 disLogIndex->21 value=3643002773448280417
+007890 CMIT S1 commitIdx:18
+007890 CMIT S1 getCurrentTerm
+007891 CMIT S1 start getRole
+007891 CMIT S2 getCurrentTerm
+007891 CMIT S2 start getRole
+007891 CMIT S3 getCurrentTerm
+007891 CMIT S3 start getRole
+007891 CMIT S0 s1.matchidx->21
+007891 CMIT S0 s1.nextIndex->22
+007891 CMIT S4 getCurrentTerm
+007891 CMIT S4 start getRole
+007892 TRCE m2 I am OK[me]
+007911 INFO S1 receive AE from 0,PLIdx=19 PLTerm=1
+007912 CMIT S1 commitIdx:18
+007935 INFO S2 receive AE from 0,PLIdx=21 PLTerm=1
+007935 VOTE S2 expect XIndex=1 len=19 xterm=1
+007978 INFO S2 receive AE from 0,PLIdx=19 PLTerm=1
+007978 CMIT S2 disLogIndex->21 value=3643002773448280417
+007979 CMIT S2 commitIdx:18
+007980 CMIT S0 s2.matchidx->21
+007980 CMIT S0 s2.nextIndex->22
+007980 TRCE S0 backup[2] logIndex[20,21] finish
+007980 TRCE S0 backup[2] logIndex[22,22]
+008022 INFO S3 receive AE from 0,PLIdx=18 PLTerm=1
+008024 CMIT S3 disLogIndex->21 value=3643002773448280417
+008024 CMIT S3 commitIdx:18
+008023 INFO S2 receive AE from 0,PLIdx=21 PLTerm=1
+008025 CMIT S0 s3.matchidx->21
+008025 CMIT S0 s3.nextIndex->22
+008025 TRCE S0 backup[3] logIndex[19,21] finish
+008025 TRCE S0 backup[3] logIndex[22,22]
+008025 CMIT S2 disLogIndex->22 value=6259417629284833253
+008026 CMIT S2 commitIdx:18->19
+008027 CMIT S0 s2.matchidx->22
+008027 CMIT S0 s2.nextIndex->23
+008027 TRCE S0 backup[2] logIndex[22,22] finish
+008038 INFO S3 receive AE from 0,PLIdx=21 PLTerm=1
+008039 CMIT S3 disLogIndex->22 value=6259417629284833253
+008039 CMIT S3 commitIdx:18->19
+008040 CMIT S0 s3.matchidx->22
+008040 CMIT S0 s3.nextIndex->23
+008040 TRCE S0 backup[3] logIndex[22,22] finish
+008041 INFO S4 receive AE from 0,PLIdx=21 PLTerm=1
+008042 CMIT S4 disLogIndex->22 value=6259417629284833253
+008042 CMIT S4 commitIdx:18->19
+008043 CMIT S0 s4.matchidx->22
+008043 CMIT S0 s4.nextIndex->23
+008044 INFO S3 receive AE from 0,PLIdx=21 PLTerm=1
+008044 CMIT S3 commitIdx:19
+008045 INFO S4 receive AE from 0,PLIdx=21 PLTerm=1
+008046 CMIT S4 commitIdx:19
+008046 INFO S3 receive AE from 0,PLIdx=21 PLTerm=1
+008047 CMIT S3 commitIdx:19
+008060 INFO S1 receive AE from 0,PLIdx=19 PLTerm=1
+008060 CMIT S1 commitIdx:18->19
+008061 TRCE S0 backup[1] logIndex[20,21] finish
+008113 CMIT S0 commitIndex:19->22
+008115 INFO S3 receive AE from 0,PLIdx=21 PLTerm=1
+008115 CMIT S3 commitIdx:19
+008137 INFO S1 receive AE from 0,PLIdx=21 PLTerm=1
+008138 CMIT S1 disLogIndex->22 value=6259417629284833253
+008138 CMIT S1 commitIdx:19
+008138 CMIT S0 s1.matchidx->22
+008139 CMIT S0 s1.nextIndex->23
+008158 INFO S2 receive AE from 0,PLIdx=21 PLTerm=1
+008159 CMIT S2 commitIdx:19
+008200 TRCE m2 start a new value [me]
+008200 CMIT S0 getCurrentTerm
+008200 CMIT S0 start getRole
+008201 CMIT S0 start 6035542247250018286 logIndex=23
+008201 CMIT S1 getCurrentTerm
+008201 CMIT S1 start getRole
+008201 CMIT S2 getCurrentTerm
+008201 CMIT S2 start getRole
+008201 CMIT S3 getCurrentTerm
+008201 CMIT S3 start getRole
+008201 CMIT S4 getCurrentTerm
+008201 CMIT S4 start getRole
+008202 TRCE m2 I am OK[me]
+008202 INFO S0 beat to others,term=1,accessTime=867542613,
+008204 INFO S4 receive AE from 0,PLIdx=23 PLTerm=1
+008204 VOTE S4 expect XIndex=1 len=22 xterm=1
+008222 INFO S2 receive AE from 0,PLIdx=23 PLTerm=1
+008223 VOTE S2 expect XIndex=1 len=22 xterm=1
+008224 TRCE S0 backup[2] logIndex[23,23]
+008276 INFO S2 receive AE from 0,PLIdx=22 PLTerm=1
+008277 CMIT S2 disLogIndex->23 value=6035542247250018286
+008278 CMIT S2 commitIdx:19->22
+008279 CMIT S0 s2.matchidx->23
+008279 CMIT S0 s2.nextIndex->24
+008287 INFO S2 receive AE from 0,PLIdx=22 PLTerm=1
+008288 INFO S1 receive AE from 0,PLIdx=22 PLTerm=1
+008288 CMIT S2 commitIdx:22
+008288 CMIT S1 disLogIndex->23 value=6035542247250018286
+008288 TRCE S0 backup[2] logIndex[23,23] finish
+008289 CMIT S1 commitIdx:19->22
+008290 CMIT S0 s1.matchidx->23
+008290 CMIT S0 s1.nextIndex->24
+008298 INFO S1 receive AE from 0,PLIdx=23 PLTerm=1
+008299 CMIT S1 commitIdx:22
+008349 INFO S3 receive AE from 0,PLIdx=22 PLTerm=1
+008349 CMIT S3 disLogIndex->23 value=6035542247250018286
+008350 CMIT S3 commitIdx:19->22
+008351 CMIT S0 s3.matchidx->23
+008351 CMIT S0 s3.nextIndex->24
+008410 CMIT S0 commitIndex:22->23
+008423 INFO S4 receive AE from 0,PLIdx=22 PLTerm=1
+008424 CMIT S4 disLogIndex->23 value=6035542247250018286
+008424 CMIT S4 commitIdx:19->22
+008425 CMIT S0 s4.matchidx->23
+008425 CMIT S0 s4.nextIndex->24
+008445 TRCE m1 start a new value [me]
+008445 CMIT S0 getCurrentTerm
+008445 CMIT S0 start getRole
+008445 INFO S3 receive AE from 0,PLIdx=23 PLTerm=1
+008446 CMIT S0 start 1124129788447046491 logIndex=24
+008446 CMIT S1 getCurrentTerm
+008446 CMIT S1 start getRole
+008446 CMIT S2 getCurrentTerm
+008446 CMIT S2 start getRole
+008446 CMIT S3 getCurrentTerm
+008446 INFO S4 receive AE from 0,PLIdx=23 PLTerm=1
+008446 CMIT S3 commitIdx:22
+008447 CMIT S4 commitIdx:22
+008447 CMIT S3 start getRole
+008447 CMIT S4 getCurrentTerm
+008447 CMIT S4 start getRole
+008447 TRCE m1 I am OK[me]
+008509 TRCE m2 start a new value [me]
+008510 CMIT S0 getCurrentTerm
+008510 CMIT S0 start getRole
+008510 TRCE m0 start a new value [me]
+008511 CMIT S0 getCurrentTerm
+008511 CMIT S0 start getRole
+008512 CMIT S0 start 490387223874070692 logIndex=26
+008511 CMIT S0 start 723050504336242741 logIndex=25
+008512 CMIT S1 getCurrentTerm
+008513 CMIT S1 start getRole
+008513 CMIT S2 getCurrentTerm
+008513 CMIT S2 start getRole
+008513 CMIT S3 getCurrentTerm
+008513 CMIT S3 start getRole
+008513 CMIT S4 getCurrentTerm
+008513 CMIT S4 start getRole
+008513 TRCE m0 I am OK[me]
+008513 CMIT S1 getCurrentTerm
+008513 CMIT S1 start getRole
+008513 CMIT S2 getCurrentTerm
+008513 CMIT S2 start getRole
+008514 CMIT S3 getCurrentTerm
+008514 CMIT S3 start getRole
+008514 CMIT S4 getCurrentTerm
+008514 CMIT S4 start getRole
+008514 TRCE m2 I am OK[me]
+008543 INFO S1 receive AE from 0,PLIdx=24 PLTerm=1
+008544 VOTE S1 expect XIndex=1 len=23 xterm=1
+008545 TRCE S0 backup[1] logIndex[24,26]
+008546 INFO S3 receive AE from 0,PLIdx=25 PLTerm=1
+008547 VOTE S3 expect XIndex=1 len=23 xterm=1
+008549 TRCE S0 backup[3] logIndex[24,26]
+008566 INFO S4 receive AE from 0,PLIdx=23 PLTerm=1
+008567 CMIT S4 disLogIndex->24 value=1124129788447046491
+008567 CMIT S4 commitIdx:22->23
+008568 CMIT S0 s4.matchidx->24
+008568 CMIT S0 s4.nextIndex->25
+008587 INFO S1 receive AE from 0,PLIdx=25 PLTerm=1
+008588 VOTE S1 expect XIndex=1 len=23 xterm=1
+008598 INFO S1 receive AE from 0,PLIdx=23 PLTerm=1
+008599 CMIT S1 disLogIndex->24 value=1124129788447046491
+008598 INFO S2 receive AE from 0,PLIdx=24 PLTerm=1
+008600 VOTE S2 expect XIndex=1 len=23 xterm=1
+008599 CMIT S1 commitIdx:22->23
+008602 CMIT S0 s1.matchidx->24
+008602 CMIT S0 s1.nextIndex->25
+008602 TRCE S0 backup[2] logIndex[24,26]
+008602 INFO S0 beat to others,term=1,accessTime=867542613,
+008604 INFO S4 receive AE from 0,PLIdx=26 PLTerm=1
+008604 VOTE S4 expect XIndex=1 len=24 xterm=1
+008605 TRCE S0 backup[4] logIndex[25,26]
+008609 INFO S3 receive AE from 0,PLIdx=23 PLTerm=1
+008610 CMIT S3 disLogIndex->24 value=1124129788447046491
+008610 CMIT S3 commitIdx:22->23
+008614 CMIT S0 s3.matchidx->24
+008614 CMIT S0 s3.nextIndex->25
+008642 INFO S2 receive AE from 0,PLIdx=23 PLTerm=1
+008643 CMIT S2 disLogIndex->26 value=490387223874070692
+008644 CMIT S2 commitIdx:22->23
+008645 CMIT S0 s2.matchidx->26
+008645 CMIT S0 s2.nextIndex->27
+008645 TRCE S0 backup[2] logIndex[24,26] finish
+008664 INFO S2 receive AE from 0,PLIdx=23 PLTerm=1
+008664 CMIT S2 commitIdx:23
+008666 INFO S1 receive AE from 0,PLIdx=26 PLTerm=1
+008666 VOTE S1 expect XIndex=1 len=24 xterm=1
+008675 INFO S4 receive AE from 0,PLIdx=25 PLTerm=1
+008676 VOTE S4 expect XIndex=1 len=24 xterm=1
+008677 INFO S4 receive AE from 0,PLIdx=24 PLTerm=1
+008678 CMIT S4 disLogIndex->26 value=490387223874070692
+008678 CMIT S4 commitIdx:23
+008679 CMIT S0 s4.matchidx->26
+008679 CMIT S0 s4.nextIndex->27
+008679 TRCE S0 backup[4] logIndex[25,26] finish
+008685 INFO S3 receive AE from 0,PLIdx=26 PLTerm=1
+008686 VOTE S3 expect XIndex=1 len=24 xterm=1
+008707 CMIT S0 commitIndex:23->26
+008707 INFO S2 receive AE from 0,PLIdx=25 PLTerm=1
+008708 CMIT S2 commitIdx:23
+008730 INFO S1 receive AE from 0,PLIdx=23 PLTerm=1
+008731 CMIT S1 disLogIndex->26 value=490387223874070692
+008731 CMIT S1 commitIdx:23
+008741 INFO S3 receive AE from 0,PLIdx=24 PLTerm=1
+008742 CMIT S3 disLogIndex->25 value=723050504336242741
+008742 CMIT S3 commitIdx:23
+008742 CMIT S0 s3.matchidx->25
+008743 CMIT S0 s3.nextIndex->26
+008751 TRCE m1 start a new value [me]
+008752 CMIT S0 getCurrentTerm
+008752 CMIT S0 start getRole
+008752 INFO S4 receive AE from 0,PLIdx=24 PLTerm=1
+008753 CMIT S4 commitIdx:23
+008752 CMIT S0 start 4057731564299358534 logIndex=27
+008754 CMIT S1 getCurrentTerm
+008754 CMIT S1 start getRole
+008754 CMIT S2 getCurrentTerm
+008754 CMIT S2 start getRole
+008754 CMIT S3 getCurrentTerm
+008754 CMIT S3 start getRole
+008754 CMIT S4 getCurrentTerm
+008754 CMIT S4 start getRole
+008755 TRCE m1 I am OK[me]
+008817 TRCE m0 start a new value [me]
+008818 CMIT S0 getCurrentTerm
+008818 CMIT S0 start getRole
+008818 TRCE m2 start a new value [me]
+008818 CMIT S0 getCurrentTerm
+008818 CMIT S0 start 7647158940192364528 logIndex=28
+008819 CMIT S1 getCurrentTerm
+008819 CMIT S1 start getRole
+008819 CMIT S2 getCurrentTerm
+008819 CMIT S2 start getRole
+008819 CMIT S3 getCurrentTerm
+008819 CMIT S3 start getRole
+008819 CMIT S4 getCurrentTerm
+008819 CMIT S4 start getRole
+008819 TRCE m0 I am OK[me]
+008819 CMIT S0 start getRole
+008820 CMIT S0 start 2259024211557140410 logIndex=29
+008821 CMIT S1 getCurrentTerm
+008821 CMIT S1 start getRole
+008821 CMIT S2 getCurrentTerm
+008821 CMIT S2 start getRole
+008821 CMIT S3 getCurrentTerm
+008821 CMIT S3 start getRole
+008821 CMIT S4 getCurrentTerm
+008821 CMIT S4 start getRole
+008821 TRCE m2 I am OK[me]
+008832 INFO S4 receive AE from 0,PLIdx=26 PLTerm=1
+008833 CMIT S4 disLogIndex->27 value=4057731564299358534
+008834 CMIT S4 commitIdx:23->26
+008835 CMIT S0 s4.matchidx->27
+008835 CMIT S0 s4.nextIndex->28
+008844 INFO S1 receive AE from 0,PLIdx=23 PLTerm=1
+008844 CMIT S1 commitIdx:23
+008845 CMIT S0 s1.matchidx->26
+008845 CMIT S0 s1.nextIndex->27
+008846 TRCE S0 backup[1] logIndex[24,26] finish
+008846 TRCE S0 backup[1] logIndex[27,29]
+008855 INFO S2 receive AE from 0,PLIdx=26 PLTerm=1
+008855 CMIT S2 commitIdx:23
+008866 INFO S4 receive AE from 0,PLIdx=27 PLTerm=1
+008867 CMIT S4 disLogIndex->28 value=7647158940192364528
+008867 CMIT S4 commitIdx:26
+008867 CMIT S0 s4.matchidx->28
+008867 CMIT S0 s4.nextIndex->29
+008920 INFO S4 receive AE from 0,PLIdx=28 PLTerm=1
+008921 CMIT S4 disLogIndex->29 value=2259024211557140410
+008922 CMIT S4 commitIdx:26
+008931 INFO S3 receive AE from 0,PLIdx=27 PLTerm=1
+008932 VOTE S3 expect XIndex=1 len=25 xterm=1
+008953 INFO S2 receive AE from 0,PLIdx=27 PLTerm=1
+008953 VOTE S2 expect XIndex=1 len=26 xterm=1
+008955 TRCE S0 backup[2] logIndex[27,29]
+008975 INFO S1 receive AE from 0,PLIdx=27 PLTerm=1
+008975 VOTE S1 expect XIndex=1 len=26 xterm=1
+008976 INFO S1 receive AE from 0,PLIdx=26 PLTerm=1
+008977 CMIT S1 disLogIndex->27 value=4057731564299358534
+008977 INFO S2 receive AE from 0,PLIdx=26 PLTerm=1
+008977 CMIT S1 commitIdx:23->26
+008978 CMIT S2 disLogIndex->29 value=2259024211557140410
+008978 CMIT S0 s1.matchidx->27
+008978 CMIT S0 s1.nextIndex->28
+008979 CMIT S2 commitIdx:23->26
+008986 INFO S2 receive AE from 0,PLIdx=28 PLTerm=1
+008987 CMIT S2 commitIdx:26
+008988 INFO S2 receive AE from 0,PLIdx=26 PLTerm=1
+008988 CMIT S2 commitIdx:26
+008989 CMIT S0 s2.matchidx->27
+008989 CMIT S0 s2.nextIndex->28
+008998 INFO S3 receive AE from 0,PLIdx=23 PLTerm=1
+008999 CMIT S3 disLogIndex->26 value=490387223874070692
+008999 CMIT S3 commitIdx:23
+009000 CMIT S0 s3.matchidx->26
+009000 CMIT S0 s3.nextIndex->27
+009000 TRCE S0 backup[3] logIndex[24,26] finish
+009000 TRCE S0 backup[3] logIndex[27,29]
+009009 INFO S0 beat to others,term=1,accessTime=867542613,
+009010 CMIT S0 commitIndex:26->27
+009010 INFO S1 receive AE from 0,PLIdx=28 PLTerm=1
+009011 VOTE S1 expect XIndex=1 len=27 xterm=1
+009022 INFO S3 receive AE from 0,PLIdx=26 PLTerm=1
+009022 INFO S2 receive AE from 0,PLIdx=26 PLTerm=1
+009022 CMIT S3 disLogIndex->27 value=4057731564299358534
+009023 CMIT S2 commitIdx:26
+009023 CMIT S3 commitIdx:23->26
+009023 CMIT S0 s2.matchidx->29
+009023 CMIT S0 s2.nextIndex->30
+009023 TRCE S0 backup[2] logIndex[27,29] finish
+009024 CMIT S0 s3.matchidx->27
+009024 CMIT S0 s3.nextIndex->28
+009044 INFO S3 receive AE from 0,PLIdx=29 PLTerm=1
+009044 VOTE S3 expect XIndex=1 len=27 xterm=1
+009064 TRCE m1 start a new value [me]
+009065 CMIT S0 getCurrentTerm
+009065 CMIT S0 start getRole
+009065 CMIT S0 start 124009852324450728 logIndex=30
+009065 CMIT S1 getCurrentTerm
+009065 CMIT S1 start getRole
+009066 CMIT S2 getCurrentTerm
+009066 CMIT S2 start getRole
+009066 CMIT S3 getCurrentTerm
+009066 CMIT S3 start getRole
+009066 CMIT S4 getCurrentTerm
+009066 CMIT S4 start getRole
+009066 TRCE m1 I am OK[me]
+009067 INFO S1 receive AE from 0,PLIdx=26 PLTerm=1
+009068 CMIT S1 disLogIndex->29 value=2259024211557140410
+009069 CMIT S1 commitIdx:26
+009069 CMIT S0 s1.matchidx->29
+009069 CMIT S0 s1.nextIndex->30
+009070 TRCE S0 backup[1] logIndex[27,29] finish
+009070 TRCE S0 backup[1] logIndex[30,30]
+009076 INFO S3 receive AE from 0,PLIdx=28 PLTerm=1
+009077 VOTE S3 expect XIndex=1 len=27 xterm=1
+009087 INFO S4 receive AE from 0,PLIdx=28 PLTerm=1
+009088 CMIT S4 commitIdx:26
+009089 CMIT S0 s4.matchidx->29
+009089 CMIT S0 s4.nextIndex->30
+009119 INFO S1 receive AE from 0,PLIdx=29 PLTerm=1
+009121 CMIT S1 commitIdx:26->27
+009164 INFO S3 receive AE from 0,PLIdx=27 PLTerm=1
+009166 CMIT S3 disLogIndex->28 value=7647158940192364528
+009166 CMIT S3 commitIdx:26
+009167 CMIT S0 s3.matchidx->28
+009168 CMIT S0 s3.nextIndex->29
+009186 INFO S2 receive AE from 0,PLIdx=28 PLTerm=1
+009186 CMIT S2 commitIdx:26
+009189 INFO S3 receive AE from 0,PLIdx=29 PLTerm=1
+009189 VOTE S3 expect XIndex=1 len=28 xterm=1
+009229 INFO S3 receive AE from 0,PLIdx=29 PLTerm=1
+009229 VOTE S3 expect XIndex=1 len=28 xterm=1
+009239 INFO S3 receive AE from 0,PLIdx=26 PLTerm=1
+009240 CMIT S3 disLogIndex->29 value=2259024211557140410
+009240 CMIT S3 commitIdx:26
+009241 CMIT S0 s3.matchidx->29
+009241 CMIT S0 s3.nextIndex->30
+009241 TRCE S0 backup[3] logIndex[27,29] finish
+009241 TRCE S0 backup[3] logIndex[30,30]
+009271 INFO S2 receive AE from 0,PLIdx=29 PLTerm=1
+009272 INFO S1 receive AE from 0,PLIdx=29 PLTerm=1
+009272 CMIT S2 disLogIndex->30 value=124009852324450728
+009273 CMIT S2 commitIdx:26->27
+009273 INFO S2 receive AE from 0,PLIdx=29 PLTerm=1
+009273 CMIT S2 commitIdx:27
+009273 CMIT S1 disLogIndex->30 value=124009852324450728
+009274 CMIT S1 commitIdx:27
+009275 CMIT S0 s1.matchidx->30
+009275 CMIT S0 s1.nextIndex->31
+009272 INFO S4 receive AE from 0,PLIdx=29 PLTerm=1
+009276 CMIT S4 commitIdx:26->27
+009314 CMIT S0 commitIndex:27->29
+009327 INFO S4 receive AE from 0,PLIdx=29 PLTerm=1
+009328 CMIT S4 disLogIndex->30 value=124009852324450728
+009328 CMIT S4 commitIdx:27
+009329 CMIT S0 s4.matchidx->30
+009329 CMIT S0 s4.nextIndex->31
+009369 INFO S1 receive AE from 0,PLIdx=29 PLTerm=1
+009370 CMIT S1 commitIdx:27
+009371 TRCE S0 backup[1] logIndex[30,30] finish
+009410 INFO S0 beat to others,term=1,accessTime=867542613,
+009433 INFO S3 receive AE from 0,PLIdx=29 PLTerm=1
+009434 CMIT S3 disLogIndex->30 value=124009852324450728
+009434 CMIT S3 commitIdx:26->27
+009476 INFO S2 receive AE from 0,PLIdx=29 PLTerm=1
+009477 CMIT S2 commitIdx:27
+009478 CMIT S0 s2.matchidx->30
+009478 CMIT S0 s2.nextIndex->31
+009549 INFO S4 receive AE from 0,PLIdx=30 PLTerm=1
+009550 CMIT S4 commitIdx:27->29
+009581 INFO S2 receive AE from 0,PLIdx=30 PLTerm=1
+009582 CMIT S2 commitIdx:27->29
+009581 INFO S1 receive AE from 0,PLIdx=30 PLTerm=1
+009583 CMIT S1 commitIdx:27->29
+009613 CMIT S0 commitIndex:29->30
+009614 INFO S3 receive AE from 0,PLIdx=30 PLTerm=1
+009616 CMIT S3 commitIdx:27->29
+009617 CMIT S0 s3.matchidx->30
+009617 CMIT S0 s3.nextIndex->31
+009624 TRCE m0 start a new value [me]
+009624 CMIT S0 getCurrentTerm
+009624 CMIT S0 start getRole
+009625 CMIT S0 start 5233281958203162532 logIndex=31
+009625 CMIT S1 getCurrentTerm
+009625 CMIT S1 start getRole
+009625 CMIT S2 getCurrentTerm
+009625 CMIT S2 start getRole
+009625 CMIT S3 getCurrentTerm
+009625 CMIT S3 start getRole
+009625 CMIT S4 getCurrentTerm
+009625 CMIT S4 start getRole
+009625 TRCE m0 I am OK[me]
+009635 TRCE m2 start a new value [me]
+009635 CMIT S0 getCurrentTerm
+009635 CMIT S0 start getRole
+009636 CMIT S0 start 5700051993328695889 logIndex=32
+009636 CMIT S1 getCurrentTerm
+009636 CMIT S1 start getRole
+009636 CMIT S2 getCurrentTerm
+009636 CMIT S2 start getRole
+009636 CMIT S3 getCurrentTerm
+009636 CMIT S3 start getRole
+009636 CMIT S4 getCurrentTerm
+009636 CMIT S4 start getRole
+009636 TRCE m2 I am OK[me]
+009638 INFO S1 receive AE from 0,PLIdx=31 PLTerm=1
+009639 VOTE S1 expect XIndex=1 len=30 xterm=1
+009639 TRCE S0 backup[1] logIndex[31,32]
+009658 INFO S1 receive AE from 0,PLIdx=30 PLTerm=1
+009659 CMIT S1 disLogIndex->31 value=5233281958203162532
+009659 CMIT S1 commitIdx:29->30
+009660 CMIT S0 s1.matchidx->31
+009660 CMIT S0 s1.nextIndex->32
+009680 INFO S3 receive AE from 0,PLIdx=31 PLTerm=1
+009680 VOTE S3 expect XIndex=1 len=30 xterm=1
+009702 INFO S3 receive AE from 0,PLIdx=29 PLTerm=1
+009702 CMIT S3 commitIdx:29
+009703 TRCE S0 backup[3] logIndex[30,30] finish
+009703 TRCE S0 backup[3] logIndex[31,32]
+009746 INFO S3 receive AE from 0,PLIdx=30 PLTerm=1
+009747 CMIT S3 disLogIndex->31 value=5233281958203162532
+009747 CMIT S3 commitIdx:29->30
+009748 CMIT S0 s3.matchidx->31
+009748 CMIT S0 s3.nextIndex->32
+009749 INFO S2 receive AE from 0,PLIdx=30 PLTerm=1
+009749 CMIT S2 disLogIndex->31 value=5233281958203162532
+009750 CMIT S2 commitIdx:29->30
+009768 INFO S4 receive AE from 0,PLIdx=30 PLTerm=1
+009768 CMIT S4 disLogIndex->31 value=5233281958203162532
+009769 CMIT S4 commitIdx:29->30
+009769 CMIT S0 s4.matchidx->31
+009770 CMIT S0 s4.nextIndex->32
+009799 INFO S2 receive AE from 0,PLIdx=30 PLTerm=1
+009800 CMIT S2 commitIdx:30
+009801 CMIT S0 s2.matchidx->31
+009801 CMIT S0 s2.nextIndex->32
+009810 INFO S0 beat to others,term=1,accessTime=867542613,
+009811 INFO S4 receive AE from 0,PLIdx=31 PLTerm=1
+009811 INFO S1 receive AE from 0,PLIdx=30 PLTerm=1
+009811 CMIT S4 disLogIndex->32 value=5700051993328695889
+009812 CMIT S4 commitIdx:30
+009812 CMIT S1 disLogIndex->32 value=5700051993328695889
+009813 CMIT S1 commitIdx:30
+009812 CMIT S0 s4.matchidx->32
+009813 CMIT S0 s4.nextIndex->33
+009813 INFO S1 receive AE from 0,PLIdx=32 PLTerm=1
+009813 CMIT S0 s1.matchidx->32
+009814 CMIT S0 s1.nextIndex->33
+009814 TRCE S0 backup[1] logIndex[31,32] finish
+009813 CMIT S1 commitIdx:30
+009815 INFO S3 receive AE from 0,PLIdx=30 PLTerm=1
+009816 CMIT S3 disLogIndex->32 value=5700051993328695889
+009816 CMIT S3 commitIdx:30
+009816 CMIT S0 s3.matchidx->32
+009817 CMIT S0 s3.nextIndex->33
+009817 TRCE S0 backup[3] logIndex[31,32] finish
+009856 INFO S2 receive AE from 0,PLIdx=31 PLTerm=1
+009857 CMIT S2 disLogIndex->32 value=5700051993328695889
+009857 CMIT S2 commitIdx:30
+009858 CMIT S0 s2.matchidx->32
+009858 CMIT S0 s2.nextIndex->33
+009877 TRCE m1 start a new value [me]
+009877 CMIT S0 getCurrentTerm
+009877 CMIT S0 start getRole
+009878 CMIT S0 start 7224692742654555798 logIndex=33
+009878 CMIT S1 getCurrentTerm
+009878 CMIT S1 start getRole
+009878 CMIT S2 getCurrentTerm
+009878 CMIT S2 start getRole
+009878 CMIT S3 getCurrentTerm
+009878 CMIT S3 start getRole
+009878 CMIT S4 getCurrentTerm
+009878 CMIT S4 start getRole
+009879 TRCE m1 I am OK[me]
+009888 INFO S3 receive AE from 0,PLIdx=32 PLTerm=1
+009889 CMIT S3 commitIdx:30
+009910 CMIT S0 commitIndex:30->32
+009943 TRCE m0 start a new value [me]
+009943 CMIT S0 getCurrentTerm
+009943 CMIT S0 start getRole
+009944 CMIT S0 start 4308856109388664036 logIndex=34
+009944 CMIT S1 getCurrentTerm
+009944 CMIT S1 start getRole
+009944 CMIT S2 getCurrentTerm
+009944 CMIT S2 start getRole
+009944 CMIT S3 getCurrentTerm
+009944 CMIT S3 start getRole
+009944 CMIT S4 getCurrentTerm
+009944 CMIT S4 start getRole
+009944 TRCE m0 I am OK[me]
+009945 TRCE m2 start a new value [me]
+009945 CMIT S0 getCurrentTerm
+009945 CMIT S0 start getRole
+009946 CMIT S0 start 2753187495078769154 logIndex=35
+009946 CMIT S1 getCurrentTerm
+009946 CMIT S1 start getRole
+009946 CMIT S2 getCurrentTerm
+009946 CMIT S2 start getRole
+009946 CMIT S3 getCurrentTerm
+009946 CMIT S3 start getRole
+009946 CMIT S4 getCurrentTerm
+009946 CMIT S4 start getRole
+009946 INFO S2 receive AE from 0,PLIdx=33 PLTerm=1
+009947 VOTE S2 expect XIndex=1 len=32 xterm=1
+009946 TRCE m2 I am OK[me]
+009948 INFO S2 receive AE from 0,PLIdx=34 PLTerm=1
+009948 VOTE S2 expect XIndex=1 len=32 xterm=1
+009949 TRCE S0 backup[2] logIndex[33,35]
+009965 INFO S4 receive AE from 0,PLIdx=32 PLTerm=1
+009966 CMIT S4 commitIdx:30
+009998 INFO S3 receive AE from 0,PLIdx=33 PLTerm=1
+009999 VOTE S3 expect XIndex=1 len=32 xterm=1
+010000 TRCE S0 backup[3] logIndex[33,35]
+010009 INFO S2 receive AE from 0,PLIdx=33 PLTerm=1
+010010 VOTE S2 expect XIndex=1 len=32 xterm=1
+010020 INFO S3 receive AE from 0,PLIdx=34 PLTerm=1
+010022 VOTE S3 expect XIndex=1 len=32 xterm=1
+010031 INFO S4 receive AE from 0,PLIdx=32 PLTerm=1
+010032 CMIT S4 disLogIndex->33 value=7224692742654555798
+010032 CMIT S4 commitIdx:30
+010033 CMIT S0 s4.matchidx->33
+010033 CMIT S0 s4.nextIndex->34
+010042 INFO S4 receive AE from 0,PLIdx=33 PLTerm=1
+010043 CMIT S4 disLogIndex->34 value=4308856109388664036
+010044 CMIT S4 commitIdx:30->32
+010044 CMIT S0 s4.matchidx->34
+010045 CMIT S0 s4.nextIndex->35
+010064 INFO S2 receive AE from 0,PLIdx=32 PLTerm=1
+010065 CMIT S2 commitIdx:30
+010065 INFO S2 receive AE from 0,PLIdx=32 PLTerm=1
+010066 CMIT S2 disLogIndex->33 value=7224692742654555798
+010066 CMIT S2 commitIdx:30
+010067 CMIT S0 s2.matchidx->33
+010067 CMIT S0 s2.nextIndex->34
+010108 INFO S1 receive AE from 0,PLIdx=32 PLTerm=1
+010109 CMIT S1 disLogIndex->33 value=7224692742654555798
+010109 CMIT S1 commitIdx:30
+010110 CMIT S0 s1.matchidx->33
+010110 CMIT S0 s1.nextIndex->34
+010119 INFO S3 receive AE from 0,PLIdx=32 PLTerm=1
+010120 CMIT S3 disLogIndex->35 value=2753187495078769154
+010121 CMIT S3 commitIdx:30->32
+010141 INFO S4 receive AE from 0,PLIdx=32 PLTerm=1
+010142 INFO S2 receive AE from 0,PLIdx=32 PLTerm=1
+010142 INFO S3 receive AE from 0,PLIdx=32 PLTerm=1
+010142 CMIT S2 disLogIndex->35 value=2753187495078769154
+010143 CMIT S2 commitIdx:30->32
+010143 CMIT S0 s2.matchidx->35
+010144 CMIT S0 s2.nextIndex->36
+010144 TRCE S0 backup[2] logIndex[33,35] finish
+010142 CMIT S3 commitIdx:32
+010144 CMIT S0 s3.matchidx->33
+010145 CMIT S0 s3.nextIndex->34
+010142 CMIT S4 commitIdx:32
+010185 INFO S4 receive AE from 0,PLIdx=32 PLTerm=1
+010185 INFO S1 receive AE from 0,PLIdx=34 PLTerm=1
+010186 CMIT S4 commitIdx:32
+010186 VOTE S1 expect XIndex=1 len=33 xterm=1
+010187 TRCE S0 backup[1] logIndex[34,35]
+010206 INFO S0 beat to others,term=1,accessTime=867542613,
+010207 CMIT S0 commitIndex:32->34
+010207 INFO S1 receive AE from 0,PLIdx=33 PLTerm=1
+010208 CMIT S1 disLogIndex->34 value=4308856109388664036
+010208 INFO S4 receive AE from 0,PLIdx=34 PLTerm=1
+010208 CMIT S1 commitIdx:30->32
+010209 CMIT S4 disLogIndex->35 value=2753187495078769154
+010209 CMIT S4 commitIdx:32
+010209 CMIT S0 s1.matchidx->34
+010209 CMIT S0 s1.nextIndex->35
+010210 CMIT S0 s4.matchidx->35
+010210 CMIT S0 s4.nextIndex->36
+010219 INFO S3 receive AE from 0,PLIdx=32 PLTerm=1
+010220 CMIT S3 commitIdx:32
+010221 CMIT S0 s3.matchidx->35
+010221 CMIT S0 s3.nextIndex->36
+010221 TRCE S0 backup[3] logIndex[33,35] finish
+010252 TRCE m0 start a new value [me]
+010252 CMIT S0 getCurrentTerm
+010252 CMIT S0 start getRole
+010253 CMIT S0 start 5072186717027085729 logIndex=36
+010253 CMIT S1 getCurrentTerm
+010253 CMIT S1 start getRole
+010253 CMIT S2 getCurrentTerm
+010253 CMIT S2 start getRole
+010253 CMIT S3 getCurrentTerm
+010254 CMIT S3 start getRole
+010254 CMIT S4 getCurrentTerm
+010254 CMIT S4 start getRole
+010254 TRCE m0 I am OK[me]
+010329 INFO S4 receive AE from 0,PLIdx=35 PLTerm=1
+010330 CMIT S4 disLogIndex->36 value=5072186717027085729
+010330 CMIT S4 commitIdx:32->34
+010331 CMIT S0 s4.matchidx->36
+010331 CMIT S0 s4.nextIndex->37
+010373 INFO S2 receive AE from 0,PLIdx=35 PLTerm=1
+010374 CMIT S2 commitIdx:32->34
+010384 INFO S1 receive AE from 0,PLIdx=35 PLTerm=1
+010384 VOTE S1 expect XIndex=1 len=34 xterm=1
+010416 INFO S2 receive AE from 0,PLIdx=35 PLTerm=1
+010417 CMIT S2 disLogIndex->36 value=5072186717027085729
+010417 CMIT S2 commitIdx:34
+010416 INFO S3 receive AE from 0,PLIdx=35 PLTerm=1
+010418 CMIT S3 disLogIndex->36 value=5072186717027085729
+010419 CMIT S3 commitIdx:32->34
+010420 CMIT S0 s3.matchidx->36
+010420 CMIT S0 s3.nextIndex->37
+010449 INFO S1 receive AE from 0,PLIdx=33 PLTerm=1
+010450 CMIT S1 disLogIndex->35 value=2753187495078769154
+010450 CMIT S1 commitIdx:32
+010451 CMIT S0 s1.matchidx->35
+010451 CMIT S0 s1.nextIndex->36
+010451 TRCE S0 backup[1] logIndex[34,35] finish
+010451 TRCE S0 backup[1] logIndex[36,36]
+010471 INFO S1 receive AE from 0,PLIdx=35 PLTerm=1
+010472 CMIT S1 disLogIndex->36 value=5072186717027085729
+010472 CMIT S1 commitIdx:32->34
+010473 CMIT S0 s1.matchidx->36
+010473 CMIT S0 s1.nextIndex->37
+010493 INFO S3 receive AE from 0,PLIdx=35 PLTerm=1
+010494 CMIT S3 commitIdx:34
+010514 CMIT S0 commitIndex:34->36
+010567 TRCE m0 start a new value [me]
+010568 CMIT S0 getCurrentTerm
+010568 CMIT S0 start getRole
+010569 CMIT S0 start 8010546196290485905 logIndex=37
+010569 CMIT S1 getCurrentTerm
+010569 CMIT S1 start getRole
+010569 CMIT S2 getCurrentTerm
+010569 CMIT S2 start getRole
+010569 CMIT S3 getCurrentTerm
+010569 CMIT S3 start getRole
+010569 CMIT S4 getCurrentTerm
+010569 CMIT S4 start getRole
+010569 TRCE m0 I am OK[me]
+010601 INFO S4 receive AE from 0,PLIdx=35 PLTerm=1
+010602 CMIT S4 commitIdx:34
+010602 INFO S0 beat to others,term=1,accessTime=867542613,
+010605 INFO S4 receive AE from 0,PLIdx=37 PLTerm=1
+010605 VOTE S4 expect XIndex=1 len=36 xterm=1
+010607 TRCE S0 backup[4] logIndex[37,37]
+010623 INFO S1 receive AE from 0,PLIdx=35 PLTerm=1
+010623 INFO S4 receive AE from 0,PLIdx=36 PLTerm=1
+010623 CMIT S1 commitIdx:34
+010624 TRCE S0 backup[1] logIndex[36,36] finish
+010624 CMIT S4 disLogIndex->37 value=8010546196290485905
+010625 CMIT S4 commitIdx:34->36
+010625 CMIT S0 s4.matchidx->37
+010625 CMIT S0 s4.nextIndex->38
+010645 INFO S1 receive AE from 0,PLIdx=37 PLTerm=1
+010645 VOTE S1 expect XIndex=1 len=36 xterm=1
+010646 TRCE S0 backup[1] logIndex[37,37]
+010688 TRCE m1 start a new value [me]
+010688 CMIT S0 getCurrentTerm
+010688 CMIT S0 start getRole
+010689 INFO S2 receive AE from 0,PLIdx=35 PLTerm=1
+010689 CMIT S0 start 629845143856180685 logIndex=38
+010689 CMIT S1 getCurrentTerm
+010689 CMIT S1 start getRole
+010689 CMIT S2 commitIdx:34
+010689 CMIT S2 getCurrentTerm
+010689 CMIT S2 start getRole
+010690 CMIT S3 getCurrentTerm
+010690 CMIT S3 start getRole
+010690 CMIT S4 getCurrentTerm
+010690 CMIT S4 start getRole
+010690 TRCE m1 I am OK[me]
+010690 CMIT S0 s2.matchidx->36
+010690 CMIT S0 s2.nextIndex->37
+010691 INFO S4 receive AE from 0,PLIdx=37 PLTerm=1
+010692 CMIT S4 disLogIndex->38 value=629845143856180685
+010692 CMIT S4 commitIdx:36
+010733 INFO S2 receive AE from 0,PLIdx=37 PLTerm=1
+010734 VOTE S2 expect XIndex=1 len=36 xterm=1
+010734 INFO S2 receive AE from 0,PLIdx=36 PLTerm=1
+010735 TRCE S0 backup[2] logIndex[37,38]
+010735 CMIT S2 disLogIndex->37 value=8010546196290485905
+010736 CMIT S2 commitIdx:34->36
+010737 CMIT S0 s2.matchidx->37
+010737 CMIT S0 s2.nextIndex->38
+010754 TRCE m2 start a new value [me]
+010755 CMIT S0 getCurrentTerm
+010755 CMIT S0 start getRole
+010755 INFO S1 receive AE from 0,PLIdx=36 PLTerm=1
+010755 CMIT S0 start 6857518750597118668 logIndex=39
+010755 CMIT S1 getCurrentTerm
+010756 CMIT S1 disLogIndex->37 value=8010546196290485905
+010757 CMIT S1 commitIdx:34->36
+010757 CMIT S1 start getRole
+010757 CMIT S2 getCurrentTerm
+010757 CMIT S0 s1.matchidx->37
+010757 CMIT S0 s1.nextIndex->38
+010757 CMIT S2 start getRole
+010758 INFO S3 receive AE from 0,PLIdx=38 PLTerm=1
+010758 VOTE S3 expect XIndex=1 len=36 xterm=1
+010758 INFO S4 receive AE from 0,PLIdx=36 PLTerm=1
+010759 CMIT S4 commitIdx:36
+010759 TRCE S0 backup[3] logIndex[37,39]
+010758 CMIT S3 getCurrentTerm
+010759 CMIT S3 start getRole
+010760 CMIT S4 getCurrentTerm
+010760 CMIT S4 start getRole
+010760 TRCE m2 I am OK[me]
+010760 TRCE S0 backup[4] logIndex[37,37] finish
+010766 INFO S3 receive AE from 0,PLIdx=37 PLTerm=1
+010767 VOTE S3 expect XIndex=1 len=36 xterm=1
+010810 CMIT S0 commitIndex:36->37
+010810 INFO S1 receive AE from 0,PLIdx=36 PLTerm=1
+010811 CMIT S1 commitIdx:36
+010811 INFO S3 receive AE from 0,PLIdx=36 PLTerm=1
+010812 TRCE S0 backup[1] logIndex[37,37] finish
+010813 CMIT S3 disLogIndex->37 value=8010546196290485905
+010813 CMIT S3 commitIdx:34->36
+010813 INFO S3 receive AE from 0,PLIdx=37 PLTerm=1
+010814 CMIT S0 s3.matchidx->37
+010814 CMIT S0 s3.nextIndex->38
+010814 CMIT S3 disLogIndex->38 value=629845143856180685
+010814 CMIT S3 commitIdx:36
+010815 CMIT S0 s3.matchidx->38
+010815 CMIT S0 s3.nextIndex->39
+010866 INFO S1 receive AE from 0,PLIdx=37 PLTerm=1
+010868 CMIT S1 disLogIndex->38 value=629845143856180685
+010868 CMIT S1 commitIdx:36
+010869 CMIT S0 s1.matchidx->38
+010870 CMIT S0 s1.nextIndex->39
+010886 TRCE m0 start a new value [me]
+010887 CMIT S0 getCurrentTerm
+010887 CMIT S0 start getRole
+010888 CMIT S0 start 3247994293420440323 logIndex=40
+010888 INFO S2 receive AE from 0,PLIdx=38 PLTerm=1
+010888 VOTE S2 expect XIndex=1 len=37 xterm=1
+010888 CMIT S1 getCurrentTerm
+010889 CMIT S1 start getRole
+010889 CMIT S2 getCurrentTerm
+010889 CMIT S2 start getRole
+010889 CMIT S3 getCurrentTerm
+010889 CMIT S3 start getRole
+010889 CMIT S4 getCurrentTerm
+010889 CMIT S4 start getRole
+010889 TRCE m0 I am OK[me]
+010898 INFO S2 receive AE from 0,PLIdx=37 PLTerm=1
+010899 CMIT S2 disLogIndex->38 value=629845143856180685
+010899 CMIT S2 commitIdx:36
+010900 CMIT S0 s2.matchidx->38
+010900 CMIT S0 s2.nextIndex->39
+010930 INFO S3 receive AE from 0,PLIdx=36 PLTerm=1
+010932 CMIT S3 disLogIndex->39 value=6857518750597118668
+010932 CMIT S3 commitIdx:36
+010932 CMIT S0 s3.matchidx->39
+010932 CMIT S0 s3.nextIndex->40
+010933 TRCE S0 backup[3] logIndex[37,39] finish
+010933 TRCE S0 backup[3] logIndex[40,40]
+010963 INFO S1 receive AE from 0,PLIdx=38 PLTerm=1
+010964 CMIT S1 disLogIndex->39 value=6857518750597118668
+010964 CMIT S1 commitIdx:36
+010963 INFO S4 receive AE from 0,PLIdx=37 PLTerm=1
+010965 CMIT S0 s1.matchidx->39
+010965 CMIT S0 s1.nextIndex->40
+010965 CMIT S4 commitIdx:36
+010967 CMIT S0 s4.matchidx->38
+010967 CMIT S0 s4.nextIndex->39
+011006 INFO S0 beat to others,term=1,accessTime=867542613,
+011008 INFO S4 receive AE from 0,PLIdx=38 PLTerm=1
+011008 CMIT S4 disLogIndex->39 value=6857518750597118668
+011008 CMIT S4 commitIdx:36
+011008 INFO S3 receive AE from 0,PLIdx=39 PLTerm=1
+011009 CMIT S0 s4.matchidx->39
+011009 CMIT S0 s4.nextIndex->40
+011009 CMIT S3 disLogIndex->40 value=3247994293420440323
+011010 CMIT S3 commitIdx:36->37
+011011 INFO S3 receive AE from 0,PLIdx=40 PLTerm=1
+011011 CMIT S0 s3.matchidx->40
+011011 CMIT S0 s3.nextIndex->41
+011012 CMIT S3 commitIdx:37
+011053 INFO S4 receive AE from 0,PLIdx=39 PLTerm=1
+011054 CMIT S4 disLogIndex->40 value=3247994293420440323
+011055 CMIT S4 commitIdx:36->37
+011055 CMIT S0 s4.matchidx->40
+011055 CMIT S0 s4.nextIndex->41
+011064 INFO S1 receive AE from 0,PLIdx=40 PLTerm=1
+011065 VOTE S1 expect XIndex=1 len=39 xterm=1
+011066 TRCE S0 backup[1] logIndex[40,40]
+011097 INFO S2 receive AE from 0,PLIdx=36 PLTerm=1
+011098 CMIT S2 commitIdx:36
+011097 INFO S1 receive AE from 0,PLIdx=39 PLTerm=1
+011099 TRCE S0 backup[2] logIndex[37,38] finish
+011099 TRCE S0 backup[2] logIndex[39,40]
+011099 CMIT S1 disLogIndex->40 value=3247994293420440323
+011100 CMIT S1 commitIdx:36->37
+011101 CMIT S0 s1.matchidx->40
+011101 CMIT S0 s1.nextIndex->41
+011107 CMIT S0 commitIndex:37->40
+011119 INFO S2 receive AE from 0,PLIdx=38 PLTerm=1
+011120 CMIT S2 disLogIndex->40 value=3247994293420440323
+011120 CMIT S2 commitIdx:36->37
+011121 CMIT S0 s2.matchidx->40
+011121 CMIT S0 s2.nextIndex->41
+011121 INFO S2 receive AE from 0,PLIdx=39 PLTerm=1
+011122 CMIT S2 commitIdx:37
+011121 TRCE S0 backup[2] logIndex[39,40] finish
+011152 INFO S3 receive AE from 0,PLIdx=39 PLTerm=1
+011153 CMIT S3 commitIdx:37
+011153 TRCE S0 backup[3] logIndex[40,40] finish
+011194 INFO S1 receive AE from 0,PLIdx=39 PLTerm=1
+011195 CMIT S1 commitIdx:37
+011195 TRCE m0 start a new value [me]
+011195 CMIT S0 getCurrentTerm
+011195 CMIT S0 start getRole
+011196 CMIT S0 start 5350779040345072828 logIndex=41
+011196 TRCE S0 backup[1] logIndex[40,40] finish
+011196 CMIT S1 getCurrentTerm
+011197 CMIT S1 start getRole
+011197 CMIT S2 getCurrentTerm
+011197 CMIT S2 start getRole
+011197 CMIT S3 getCurrentTerm
+011197 CMIT S3 start getRole
+011197 CMIT S4 getCurrentTerm
+011197 CMIT S4 start getRole
+011197 TRCE m0 I am OK[me]
+011279 INFO S4 receive AE from 0,PLIdx=40 PLTerm=1
+011279 INFO S3 receive AE from 0,PLIdx=40 PLTerm=1
+011280 CMIT S4 commitIdx:37
+011279 INFO S2 receive AE from 0,PLIdx=40 PLTerm=1
+011282 CMIT S2 commitIdx:37
+011281 CMIT S3 disLogIndex->41 value=5350779040345072828
+011282 CMIT S3 commitIdx:37->40
+011283 CMIT S0 s3.matchidx->41
+011283 CMIT S0 s3.nextIndex->42
+011323 INFO S4 receive AE from 0,PLIdx=40 PLTerm=1
+011325 CMIT S4 disLogIndex->41 value=5350779040345072828
+011325 CMIT S4 commitIdx:37->40
+011326 CMIT S0 s4.matchidx->41
+011326 CMIT S0 s4.nextIndex->42
+011334 INFO S2 receive AE from 0,PLIdx=40 PLTerm=1
+011335 CMIT S2 disLogIndex->41 value=5350779040345072828
+011336 CMIT S2 commitIdx:37->40
+011336 CMIT S0 s2.matchidx->41
+011337 CMIT S0 s2.nextIndex->42
+011345 INFO S1 receive AE from 0,PLIdx=40 PLTerm=1
+011346 CMIT S1 disLogIndex->41 value=5350779040345072828
+011347 CMIT S1 commitIdx:37->40
+011348 INFO S1 receive AE from 0,PLIdx=40 PLTerm=1
+011349 CMIT S1 commitIdx:40
+011388 INFO S1 receive AE from 0,PLIdx=40 PLTerm=1
+011389 CMIT S1 commitIdx:40
+011390 CMIT S0 s1.matchidx->41
+011390 CMIT S0 s1.nextIndex->42
+011409 INFO S0 beat to others,term=1,accessTime=867542613,
+011409 CMIT S0 commitIndex:40->41
+011464 INFO S2 receive AE from 0,PLIdx=41 PLTerm=1
+011464 INFO S3 receive AE from 0,PLIdx=41 PLTerm=1
+011465 CMIT S2 commitIdx:40->41
+011466 CMIT S3 commitIdx:40->41
+011507 TRCE m0 start a new value [me]
+011507 CMIT S0 getCurrentTerm
+011507 CMIT S0 start getRole
+011507 INFO S4 receive AE from 0,PLIdx=41 PLTerm=1
+011508 CMIT S0 start 407198185363189602 logIndex=42
+011508 CMIT S1 getCurrentTerm
+011508 CMIT S1 start getRole
+011508 CMIT S2 getCurrentTerm
+011508 CMIT S2 start getRole
+011508 CMIT S3 getCurrentTerm
+011508 CMIT S3 start getRole
+011508 CMIT S4 getCurrentTerm
+011507 TRCE m1 start a new value [me]
+011508 CMIT S4 commitIdx:40->41
+011508 CMIT S0 getCurrentTerm
+011509 CMIT S0 start getRole
+011509 CMIT S4 start getRole
+011509 TRCE m0 I am OK[me]
+011509 CMIT S0 start 7227731124539727101 logIndex=43
+011510 CMIT S1 getCurrentTerm
+011510 CMIT S1 start getRole
+011510 CMIT S2 getCurrentTerm
+011510 CMIT S2 start getRole
+011510 CMIT S3 getCurrentTerm
+011510 CMIT S3 start getRole
+011510 CMIT S4 getCurrentTerm
+011510 CMIT S4 start getRole
+011510 TRCE m1 I am OK[me]
+011512 INFO S2 receive AE from 0,PLIdx=42 PLTerm=1
+011513 VOTE S2 expect XIndex=1 len=41 xterm=1
+011514 TRCE S0 backup[2] logIndex[42,43]
+011515 INFO S2 receive AE from 0,PLIdx=41 PLTerm=1
+011515 CMIT S2 disLogIndex->43 value=7227731124539727101
+011515 CMIT S2 commitIdx:41
+011516 CMIT S0 s2.matchidx->43
+011516 CMIT S0 s2.nextIndex->44
+011517 TRCE S0 backup[2] logIndex[42,43] finish
+011535 INFO S3 receive AE from 0,PLIdx=42 PLTerm=1
+011535 VOTE S3 expect XIndex=1 len=41 xterm=1
+011537 TRCE S0 backup[3] logIndex[42,43]
+011546 INFO S1 receive AE from 0,PLIdx=41 PLTerm=1
+011547 CMIT S1 commitIdx:40->41
+011548 INFO S1 receive AE from 0,PLIdx=42 PLTerm=1
+011548 VOTE S1 expect XIndex=1 len=41 xterm=1
+011549 TRCE S0 backup[1] logIndex[42,43]
+011566 TRCE m2 start a new value [me]
+011566 CMIT S0 getCurrentTerm
+011566 CMIT S0 start getRole
+011567 CMIT S0 start 17139650419014775 logIndex=44
+011567 CMIT S1 getCurrentTerm
+011567 CMIT S1 start getRole
+011567 CMIT S2 getCurrentTerm
+011567 CMIT S2 start getRole
+011568 CMIT S3 getCurrentTerm
+011568 CMIT S3 start getRole
+011568 CMIT S4 getCurrentTerm
+011568 CMIT S4 start getRole
+011568 TRCE m2 I am OK[me]
+011569 INFO S3 receive AE from 0,PLIdx=41 PLTerm=1
+011570 CMIT S3 disLogIndex->43 value=7227731124539727101
+011570 CMIT S3 commitIdx:41
+011571 CMIT S0 s3.matchidx->43
+011571 CMIT S0 s3.nextIndex->44
+011571 TRCE S0 backup[3] logIndex[42,43] finish
+011654 INFO S4 receive AE from 0,PLIdx=42 PLTerm=1
+011654 VOTE S4 expect XIndex=1 len=41 xterm=1
+011655 TRCE S0 backup[4] logIndex[42,44]
+011675 INFO S1 receive AE from 0,PLIdx=41 PLTerm=1
+011677 CMIT S1 disLogIndex->42 value=407198185363189602
+011677 CMIT S1 commitIdx:41
+011678 CMIT S0 s1.matchidx->42
+011678 CMIT S0 s1.nextIndex->43
+011697 INFO S4 receive AE from 0,PLIdx=41 PLTerm=1
+011698 CMIT S4 disLogIndex->42 value=407198185363189602
+011698 CMIT S4 commitIdx:41
+011699 CMIT S0 s4.matchidx->42
+011699 CMIT S0 s4.nextIndex->43
+011699 INFO S4 receive AE from 0,PLIdx=43 PLTerm=1
+011700 VOTE S4 expect XIndex=1 len=42 xterm=1
+011708 CMIT S0 commitIndex:41->43
+011720 INFO S3 receive AE from 0,PLIdx=41 PLTerm=1
+011721 CMIT S3 commitIdx:41
+011722 INFO S3 receive AE from 0,PLIdx=43 PLTerm=1
+011723 CMIT S3 disLogIndex->44 value=17139650419014775
+011723 CMIT S3 commitIdx:41
+011724 CMIT S0 s3.matchidx->44
+011724 CMIT S0 s3.nextIndex->45
+011731 INFO S4 receive AE from 0,PLIdx=41 PLTerm=1
+011732 CMIT S4 disLogIndex->44 value=17139650419014775
+011732 CMIT S4 commitIdx:41
+011732 CMIT S0 s4.matchidx->44
+011733 CMIT S0 s4.nextIndex->45
+011733 TRCE S0 backup[4] logIndex[42,44] finish
+011753 INFO S1 receive AE from 0,PLIdx=41 PLTerm=1
+011755 CMIT S1 disLogIndex->43 value=7227731124539727101
+011755 CMIT S1 commitIdx:41
+011755 CMIT S0 s1.matchidx->43
+011756 CMIT S0 s1.nextIndex->44
+011756 TRCE S0 backup[1] logIndex[42,43] finish
+011775 INFO S1 receive AE from 0,PLIdx=43 PLTerm=1
+011777 CMIT S1 disLogIndex->44 value=17139650419014775
+011777 CMIT S1 commitIdx:41
+011778 CMIT S0 s1.matchidx->44
+011778 CMIT S0 s1.nextIndex->45
+011806 INFO S0 beat to others,term=1,accessTime=867542613,
+011809 INFO S2 receive AE from 0,PLIdx=44 PLTerm=1
+011809 VOTE S2 expect XIndex=1 len=43 xterm=1
+011810 TRCE S0 backup[2] logIndex[44,44]
+011828 TRCE m0 start a new value [me]
+011829 CMIT S0 getCurrentTerm
+011829 CMIT S0 start getRole
+011829 TRCE m1 start a new value [me]
+011829 CMIT S0 getCurrentTerm
+011829 CMIT S0 start 6412696240487800280 logIndex=45
+011829 CMIT S1 getCurrentTerm
+011830 CMIT S1 start getRole
+011830 CMIT S2 getCurrentTerm
+011830 CMIT S2 start getRole
+011830 CMIT S3 getCurrentTerm
+011830 CMIT S3 start getRole
+011830 CMIT S4 getCurrentTerm
+011830 CMIT S4 start getRole
+011830 TRCE m0 I am OK[me]
+011830 INFO S1 receive AE from 0,PLIdx=44 PLTerm=1
+011830 CMIT S0 start getRole
+011831 CMIT S0 start 7547371803911379871 logIndex=46
+011831 CMIT S1 getCurrentTerm
+011831 CMIT S1 commitIdx:41->43
+011832 INFO S2 receive AE from 0,PLIdx=43 PLTerm=1
+011832 CMIT S1 start getRole
+011832 CMIT S2 getCurrentTerm
+011833 CMIT S2 disLogIndex->44 value=17139650419014775
+011833 CMIT S2 commitIdx:41->43
+011834 INFO S3 receive AE from 0,PLIdx=45 PLTerm=1
+011834 CMIT S0 s2.matchidx->44
+011834 CMIT S2 start getRole
+011834 CMIT S3 getCurrentTerm
+011834 VOTE S3 expect XIndex=1 len=44 xterm=1
+011834 CMIT S0 s2.nextIndex->45
+011835 TRCE S0 backup[2] logIndex[44,44] finish
+011836 TRCE S0 backup[3] logIndex[45,46]
+011836 CMIT S3 start getRole
+011836 CMIT S4 getCurrentTerm
+011836 CMIT S4 start getRole
+011836 TRCE m1 I am OK[me]
+011857 INFO S4 receive AE from 0,PLIdx=44 PLTerm=1
+011858 CMIT S4 disLogIndex->45 value=6412696240487800280
+011859 CMIT S4 commitIdx:41->43
+011859 CMIT S0 s4.matchidx->45
+011859 CMIT S0 s4.nextIndex->46
+011868 INFO S2 receive AE from 0,PLIdx=41 PLTerm=1
+011869 CMIT S2 commitIdx:43
+011879 INFO S3 receive AE from 0,PLIdx=44 PLTerm=1
+011879 INFO S2 receive AE from 0,PLIdx=43 PLTerm=1
+011880 CMIT S2 commitIdx:43
+011880 CMIT S3 disLogIndex->45 value=6412696240487800280
+011884 CMIT S3 commitIdx:41->43
+011885 CMIT S0 s3.matchidx->45
+011885 CMIT S0 s3.nextIndex->46
+011915 INFO S2 receive AE from 0,PLIdx=45 PLTerm=1
+011916 VOTE S2 expect XIndex=1 len=44 xterm=1
+011934 INFO S2 receive AE from 0,PLIdx=45 PLTerm=1
+011934 INFO S4 receive AE from 0,PLIdx=45 PLTerm=1
+011934 VOTE S2 expect XIndex=1 len=44 xterm=1
+011935 CMIT S4 disLogIndex->46 value=7547371803911379871
+011935 CMIT S4 commitIdx:43
+011935 TRCE S0 backup[2] logIndex[45,46]
+011936 CMIT S0 s4.matchidx->46
+011936 CMIT S0 s4.nextIndex->47
+011989 INFO S1 receive AE from 0,PLIdx=44 PLTerm=1
+011990 CMIT S1 disLogIndex->45 value=6412696240487800280
+011990 CMIT S1 commitIdx:43
+011991 CMIT S0 s1.matchidx->45
+011991 CMIT S0 s1.nextIndex->46
+012011 CMIT S0 commitIndex:43->45
+012012 INFO S3 receive AE from 0,PLIdx=44 PLTerm=1
+012013 CMIT S3 commitIdx:43
+012043 INFO S2 receive AE from 0,PLIdx=44 PLTerm=1
+012044 CMIT S2 disLogIndex->45 value=6412696240487800280
+012044 CMIT S2 commitIdx:43
+012045 CMIT S0 s2.matchidx->45
+012045 CMIT S0 s2.nextIndex->46
+012077 INFO S1 receive AE from 0,PLIdx=45 PLTerm=1
+012078 CMIT S1 disLogIndex->46 value=7547371803911379871
+012078 CMIT S1 commitIdx:43
+012079 CMIT S0 s1.matchidx->46
+012079 CMIT S0 s1.nextIndex->47
+012080 INFO S3 receive AE from 0,PLIdx=44 PLTerm=1
+012081 CMIT S3 disLogIndex->46 value=7547371803911379871
+012081 CMIT S3 commitIdx:43
+012082 CMIT S0 s3.matchidx->46
+012082 CMIT S0 s3.nextIndex->47
+012082 TRCE S0 backup[3] logIndex[45,46] finish
+012141 TRCE m0 start a new value [me]
+012141 CMIT S0 getCurrentTerm
+012141 CMIT S0 start getRole
+012142 INFO S2 receive AE from 0,PLIdx=44 PLTerm=1
+012143 CMIT S0 start 8273863789283676918 logIndex=47
+012143 CMIT S1 getCurrentTerm
+012143 CMIT S1 start getRole
+012143 CMIT S2 getCurrentTerm
+012143 CMIT S2 disLogIndex->46 value=7547371803911379871
+012143 CMIT S2 commitIdx:43
+012144 CMIT S2 start getRole
+012144 CMIT S3 getCurrentTerm
+012144 CMIT S3 start getRole
+012144 CMIT S4 getCurrentTerm
+012144 CMIT S4 start getRole
+012144 TRCE m0 I am OK[me]
+012144 CMIT S0 s2.matchidx->46
+012144 CMIT S0 s2.nextIndex->47
+012144 TRCE S0 backup[2] logIndex[45,46] finish
+012195 INFO S4 receive AE from 0,PLIdx=44 PLTerm=1
+012196 CMIT S4 commitIdx:43
+012206 INFO S0 beat to others,term=1,accessTime=867542613,
+012228 INFO S3 receive AE from 0,PLIdx=44 PLTerm=1
+012229 CMIT S3 commitIdx:43
+012261 INFO S1 receive AE from 0,PLIdx=47 PLTerm=1
+012262 VOTE S1 expect XIndex=1 len=46 xterm=1
+012263 TRCE S0 backup[1] logIndex[47,47]
+012272 INFO S3 receive AE from 0,PLIdx=47 PLTerm=1
+012273 VOTE S3 expect XIndex=1 len=46 xterm=1
+012272 INFO S4 receive AE from 0,PLIdx=47 PLTerm=1
+012274 TRCE S0 backup[3] logIndex[47,47]
+012274 VOTE S4 expect XIndex=1 len=46 xterm=1
+012275 TRCE S0 backup[4] logIndex[47,47]
+012294 INFO S4 receive AE from 0,PLIdx=46 PLTerm=1
+012294 INFO S1 receive AE from 0,PLIdx=46 PLTerm=1
+012295 CMIT S4 disLogIndex->47 value=8273863789283676918
+012297 CMIT S1 disLogIndex->47 value=8273863789283676918
+012297 CMIT S4 commitIdx:43->45
+012297 CMIT S1 commitIdx:43->45
+012298 CMIT S0 s4.matchidx->47
+012298 CMIT S0 s4.nextIndex->48
+012298 CMIT S0 s1.matchidx->47
+012298 CMIT S0 s1.nextIndex->48
+012298 TRCE S0 backup[1] logIndex[47,47] finish
+012317 INFO S2 receive AE from 0,PLIdx=46 PLTerm=1
+012318 CMIT S2 disLogIndex->47 value=8273863789283676918
+012318 CMIT S2 commitIdx:43->45
+012316 CMIT S0 commitIndex:45->47
+012320 CMIT S0 s2.matchidx->47
+012320 CMIT S0 s2.nextIndex->48
+012339 INFO S2 receive AE from 0,PLIdx=47 PLTerm=1
+012339 CMIT S2 commitIdx:45
+012360 INFO S3 receive AE from 0,PLIdx=46 PLTerm=1
+012362 CMIT S3 disLogIndex->47 value=8273863789283676918
+012362 CMIT S3 commitIdx:43->45
+012363 CMIT S0 s3.matchidx->47
+012363 CMIT S0 s3.nextIndex->48
+012382 TRCE m2 start a new value [me]
+012382 CMIT S0 getCurrentTerm
+012382 CMIT S0 start getRole
+012383 CMIT S0 start 3154432483104752743 logIndex=48
+012383 CMIT S1 getCurrentTerm
+012383 CMIT S1 start getRole
+012383 CMIT S2 getCurrentTerm
+012383 CMIT S2 start getRole
+012383 CMIT S3 getCurrentTerm
+012383 CMIT S3 start getRole
+012384 CMIT S4 getCurrentTerm
+012384 CMIT S4 start getRole
+012384 TRCE m2 I am OK[me]
+012394 INFO S1 receive AE from 0,PLIdx=46 PLTerm=1
+012394 CMIT S1 commitIdx:45
+012397 INFO S4 receive AE from 0,PLIdx=46 PLTerm=1
+012397 CMIT S4 commitIdx:45
+012398 TRCE S0 backup[4] logIndex[47,47] finish
+012437 INFO S3 receive AE from 0,PLIdx=47 PLTerm=1
+012438 CMIT S3 disLogIndex->48 value=3154432483104752743
+012439 CMIT S3 commitIdx:45->47
+012440 CMIT S0 s3.matchidx->48
+012440 CMIT S0 s3.nextIndex->49
+012458 TRCE m0 start a new value [me]
+012459 CMIT S0 getCurrentTerm
+012459 CMIT S0 start getRole
+012459 INFO S1 receive AE from 0,PLIdx=47 PLTerm=1
+012460 CMIT S0 start 379030042870573796 logIndex=49
+012460 CMIT S1 getCurrentTerm
+012460 CMIT S1 disLogIndex->48 value=3154432483104752743
+012461 CMIT S1 commitIdx:45->47
+012462 CMIT S1 start getRole
+012462 CMIT S2 getCurrentTerm
+012462 CMIT S2 start getRole
+012462 CMIT S3 getCurrentTerm
+012462 CMIT S3 start getRole
+012463 CMIT S4 getCurrentTerm
+012463 CMIT S4 start getRole
+012463 TRCE m0 I am OK[me]
+012463 CMIT S0 s1.matchidx->48
+012463 CMIT S0 s1.nextIndex->49
+012481 INFO S4 receive AE from 0,PLIdx=47 PLTerm=1
+012482 CMIT S4 disLogIndex->48 value=3154432483104752743
+012483 CMIT S4 commitIdx:45->47
+012484 CMIT S0 s4.matchidx->48
+012484 CMIT S0 s4.nextIndex->49
+012570 INFO S3 receive AE from 0,PLIdx=46 PLTerm=1
+012571 CMIT S3 commitIdx:47
+012571 TRCE S0 backup[3] logIndex[47,47] finish
+012612 CMIT S0 commitIndex:47->48
+012612 INFO S0 beat to others,term=1,accessTime=867542613,
+012613 INFO S2 receive AE from 0,PLIdx=47 PLTerm=1
+012615 CMIT S2 disLogIndex->48 value=3154432483104752743
+012615 CMIT S2 commitIdx:45->47
+012616 CMIT S0 s2.matchidx->48
+012616 CMIT S0 s2.nextIndex->49
+012663 TRCE m1 start a new value [me]
+012663 CMIT S0 getCurrentTerm
+012663 CMIT S0 start getRole
+012664 CMIT S0 start 101599349580301988 logIndex=50
+012664 CMIT S1 getCurrentTerm
+012664 CMIT S1 start getRole
+012664 CMIT S2 getCurrentTerm
+012664 CMIT S2 start getRole
+012664 CMIT S3 getCurrentTerm
+012664 CMIT S3 start getRole
+012664 CMIT S4 getCurrentTerm
+012664 CMIT S4 start getRole
+012665 TRCE m1 I am OK[me]
+012676 INFO S3 receive AE from 0,PLIdx=49 PLTerm=1
+012677 VOTE S3 expect XIndex=1 len=48 xterm=1
+012677 TRCE S0 backup[3] logIndex[49,50]
+012686 TRCE m2 start a new value [me]
+012686 CMIT S0 getCurrentTerm
+012686 CMIT S0 start getRole
+012687 CMIT S0 start 7867174133604583918 logIndex=51
+012687 CMIT S1 getCurrentTerm
+012687 CMIT S1 start getRole
+012687 CMIT S2 getCurrentTerm
+012687 CMIT S2 start getRole
+012687 CMIT S3 getCurrentTerm
+012687 CMIT S3 start getRole
+012687 INFO S4 receive AE from 0,PLIdx=48 PLTerm=1
+012689 CMIT S4 disLogIndex->49 value=379030042870573796
+012689 CMIT S4 commitIdx:47
+012688 CMIT S4 getCurrentTerm
+012689 CMIT S4 start getRole
+012689 TRCE m2 I am OK[me]
+012689 INFO S3 receive AE from 0,PLIdx=50 PLTerm=1
+012690 VOTE S3 expect XIndex=1 len=48 xterm=1
+012690 CMIT S0 s4.matchidx->49
+012690 CMIT S0 s4.nextIndex->50
+012709 INFO S2 receive AE from 0,PLIdx=49 PLTerm=1
+012710 INFO S1 receive AE from 0,PLIdx=49 PLTerm=1
+012711 VOTE S1 expect XIndex=1 len=48 xterm=1
+012710 VOTE S2 expect XIndex=1 len=48 xterm=1
+012712 TRCE S0 backup[1] logIndex[49,51]
+012712 TRCE S0 backup[2] logIndex[49,51]
+012732 INFO S4 receive AE from 0,PLIdx=49 PLTerm=1
+012732 INFO S2 receive AE from 0,PLIdx=48 PLTerm=1
+012733 CMIT S4 disLogIndex->50 value=101599349580301988
+012733 CMIT S2 disLogIndex->49 value=379030042870573796
+012734 CMIT S2 commitIdx:47
+012734 CMIT S4 commitIdx:47->48
+012734 CMIT S0 s4.matchidx->50
+012734 CMIT S0 s4.nextIndex->51
+012776 INFO S3 receive AE from 0,PLIdx=48 PLTerm=1
+012776 INFO S2 receive AE from 0,PLIdx=49 PLTerm=1
+012777 CMIT S3 disLogIndex->49 value=379030042870573796
+012777 CMIT S3 commitIdx:47
+012778 CMIT S2 disLogIndex->50 value=101599349580301988
+012778 CMIT S2 commitIdx:47->48
+012778 CMIT S0 s3.matchidx->49
+012779 CMIT S0 s3.nextIndex->50
+012779 CMIT S0 s2.matchidx->50
+012779 CMIT S0 s2.nextIndex->51
+012799 INFO S4 receive AE from 0,PLIdx=50 PLTerm=1
+012800 INFO S1 receive AE from 0,PLIdx=49 PLTerm=1
+012800 VOTE S1 expect XIndex=1 len=48 xterm=1
+012801 CMIT S4 disLogIndex->51 value=7867174133604583918
+012801 CMIT S4 commitIdx:48
+012802 CMIT S0 s4.matchidx->51
+012802 CMIT S0 s4.nextIndex->52
+012803 INFO S1 receive AE from 0,PLIdx=48 PLTerm=1
+012804 INFO S2 receive AE from 0,PLIdx=48 PLTerm=1
+012804 CMIT S1 disLogIndex->51 value=7867174133604583918
+012805 CMIT S2 disLogIndex->51 value=7867174133604583918
+012805 CMIT S2 commitIdx:48
+012805 CMIT S1 commitIdx:47->48
+012805 CMIT S0 s2.matchidx->51
+012806 CMIT S0 s2.nextIndex->52
+012806 TRCE S0 backup[2] logIndex[49,51] finish
+012806 CMIT S0 s1.matchidx->51
+012806 CMIT S0 s1.nextIndex->52
+012806 TRCE S0 backup[1] logIndex[49,51] finish
+012805 INFO S1 receive AE from 0,PLIdx=48 PLTerm=1
+012807 CMIT S1 commitIdx:48
+012877 INFO S4 receive AE from 0,PLIdx=49 PLTerm=1
+012878 CMIT S4 commitIdx:48
+012898 INFO S2 receive AE from 0,PLIdx=48 PLTerm=1
+012899 CMIT S2 commitIdx:48
+012908 CMIT S0 commitIndex:48->51
+012933 INFO S3 receive AE from 0,PLIdx=48 PLTerm=1
+012933 INFO S2 receive AE from 0,PLIdx=50 PLTerm=1
+012934 CMIT S2 commitIdx:48
+012934 CMIT S3 disLogIndex->50 value=101599349580301988
+012934 CMIT S3 commitIdx:47->48
+012934 INFO S3 receive AE from 0,PLIdx=49 PLTerm=1
+012935 CMIT S0 s3.matchidx->50
+012935 CMIT S0 s3.nextIndex->51
+012935 TRCE S0 backup[3] logIndex[49,50] finish
+012935 TRCE S0 backup[3] logIndex[51,51]
+012935 CMIT S3 commitIdx:48
+012955 INFO S1 receive AE from 0,PLIdx=50 PLTerm=1
+012956 CMIT S1 commitIdx:48
+012975 TRCE m1 start a new value [me]
+012975 CMIT S0 getCurrentTerm
+012975 CMIT S0 start getRole
+012976 CMIT S0 start 8994603065097851476 logIndex=52
+012976 CMIT S1 getCurrentTerm
+012976 CMIT S1 start getRole
+012976 CMIT S2 getCurrentTerm
+012976 CMIT S2 start getRole
+012976 CMIT S3 getCurrentTerm
+012976 CMIT S3 start getRole
+012977 CMIT S4 getCurrentTerm
+012977 CMIT S4 start getRole
+012977 TRCE m1 I am OK[me]
+012977 INFO S3 receive AE from 0,PLIdx=50 PLTerm=1
+012978 CMIT S3 disLogIndex->51 value=7867174133604583918
+012978 CMIT S3 commitIdx:48->51
+012979 CMIT S0 s3.matchidx->51
+012979 CMIT S0 s3.nextIndex->52
+012979 TRCE S0 backup[3] logIndex[51,51] finish
+013008 TRCE m2 start a new value [me]
+013008 CMIT S0 getCurrentTerm
+013008 CMIT S0 start getRole
+013008 INFO S0 beat to others,term=1,accessTime=867542613,
+013009 CMIT S0 start 4032347485910674710 logIndex=53
+013009 CMIT S1 getCurrentTerm
+013009 CMIT S1 start getRole
+013009 CMIT S2 getCurrentTerm
+013009 CMIT S2 start getRole
+013009 CMIT S3 getCurrentTerm
+013009 CMIT S3 start getRole
+013009 CMIT S4 getCurrentTerm
+013009 CMIT S4 start getRole
+013010 TRCE m2 I am OK[me]
+013032 INFO S1 receive AE from 0,PLIdx=51 PLTerm=1
+013032 INFO S2 receive AE from 0,PLIdx=52 PLTerm=1
+013033 CMIT S1 disLogIndex->52 value=8994603065097851476
+013033 VOTE S2 expect XIndex=1 len=51 xterm=1
+013033 CMIT S1 commitIdx:48->51
+013034 CMIT S0 s1.matchidx->52
+013034 CMIT S0 s1.nextIndex->53
+013046 INFO S4 receive AE from 0,PLIdx=49 PLTerm=1
+013048 CMIT S4 commitIdx:48
+013078 INFO S1 receive AE from 0,PLIdx=48 PLTerm=1
+013079 INFO S4 receive AE from 0,PLIdx=51 PLTerm=1
+013079 CMIT S1 commitIdx:51
+013080 CMIT S4 disLogIndex->52 value=8994603065097851476
+013080 CMIT S4 commitIdx:48->51
+013081 CMIT S0 s4.matchidx->52
+013081 CMIT S0 s4.nextIndex->53
+013112 INFO S3 receive AE from 0,PLIdx=53 PLTerm=1
+013113 INFO S1 receive AE from 0,PLIdx=53 PLTerm=1
+013113 VOTE S3 expect XIndex=1 len=51 xterm=1
+013113 VOTE S1 expect XIndex=1 len=52 xterm=1
+013114 TRCE S0 backup[3] logIndex[52,53]
+013114 TRCE S0 backup[1] logIndex[53,53]
+013135 INFO S2 receive AE from 0,PLIdx=51 PLTerm=1
+013136 CMIT S2 disLogIndex->52 value=8994603065097851476
+013136 CMIT S2 commitIdx:48->51
+013137 CMIT S0 s2.matchidx->52
+013137 CMIT S0 s2.nextIndex->53
+013157 INFO S1 receive AE from 0,PLIdx=52 PLTerm=1
+013157 INFO S2 receive AE from 0,PLIdx=53 PLTerm=1
+013158 CMIT S1 disLogIndex->53 value=4032347485910674710
+013158 CMIT S1 commitIdx:51
+013158 VOTE S2 expect XIndex=1 len=52 xterm=1
+013159 CMIT S0 s1.matchidx->53
+013159 CMIT S0 s1.nextIndex->54
+013159 TRCE S0 backup[2] logIndex[53,53]
+013168 INFO S2 receive AE from 0,PLIdx=52 PLTerm=1
+013169 CMIT S2 disLogIndex->53 value=4032347485910674710
+013169 CMIT S2 commitIdx:51
+013169 CMIT S0 s2.matchidx->53
+013169 CMIT S0 s2.nextIndex->54
+013189 INFO S3 receive AE from 0,PLIdx=51 PLTerm=1
+013191 CMIT S3 disLogIndex->52 value=8994603065097851476
+013191 CMIT S3 commitIdx:51
+013191 CMIT S0 s3.matchidx->52
+013192 CMIT S0 s3.nextIndex->53
+013212 CMIT S0 commitIndex:51->53
+013213 INFO S3 receive AE from 0,PLIdx=52 PLTerm=1
+013214 CMIT S3 disLogIndex->53 value=4032347485910674710
+013214 CMIT S3 commitIdx:51
+013215 CMIT S0 s3.matchidx->53
+013215 CMIT S0 s3.nextIndex->54
+013265 INFO S1 receive AE from 0,PLIdx=52 PLTerm=1
+013266 CMIT S1 commitIdx:51
+013267 TRCE S0 backup[1] logIndex[53,53] finish
+013275 TRCE m0 start a new value [me]
+013275 CMIT S0 getCurrentTerm
+013275 CMIT S0 start getRole
+013276 CMIT S0 start 2840761254351477790 logIndex=54
+013276 CMIT S1 getCurrentTerm
+013277 CMIT S1 start getRole
+013277 CMIT S2 getCurrentTerm
+013277 CMIT S2 start getRole
+013277 CMIT S3 getCurrentTerm
+013277 CMIT S3 start getRole
+013277 CMIT S4 getCurrentTerm
+013277 CMIT S4 start getRole
+013277 TRCE m0 I am OK[me]
+013278 TRCE m1 start a new value [me]
+013279 CMIT S0 getCurrentTerm
+013279 CMIT S0 start getRole
+013279 CMIT S0 start 6950022508708840698 logIndex=55
+013279 CMIT S1 getCurrentTerm
+013280 CMIT S1 start getRole
+013280 CMIT S2 getCurrentTerm
+013280 CMIT S2 start getRole
+013280 CMIT S3 getCurrentTerm
+013280 CMIT S3 start getRole
+013280 CMIT S4 getCurrentTerm
+013280 CMIT S4 start getRole
+013280 TRCE m1 I am OK[me]
+013299 INFO S1 receive AE from 0,PLIdx=53 PLTerm=1
+013300 CMIT S1 disLogIndex->54 value=2840761254351477790
+013301 CMIT S1 commitIdx:51->53
+013302 INFO S2 receive AE from 0,PLIdx=54 PLTerm=1
+013303 VOTE S2 expect XIndex=1 len=53 xterm=1
+013302 CMIT S0 s1.matchidx->54
+013303 CMIT S0 s1.nextIndex->55
+013320 TRCE m2 start a new value [me]
+013320 CMIT S0 getCurrentTerm
+013320 CMIT S0 start getRole
+013321 CMIT S0 start 672614030119523212 logIndex=56
+013321 CMIT S1 getCurrentTerm
+013321 CMIT S1 start getRole
+013322 CMIT S2 getCurrentTerm
+013322 CMIT S2 start getRole
+013322 CMIT S3 getCurrentTerm
+013322 CMIT S3 start getRole
+013322 CMIT S4 getCurrentTerm
+013322 CMIT S4 start getRole
+013322 TRCE m2 I am OK[me]
+013332 INFO S1 receive AE from 0,PLIdx=54 PLTerm=1
+013333 CMIT S1 disLogIndex->55 value=6950022508708840698
+013333 CMIT S1 commitIdx:53
+013333 CMIT S0 s1.matchidx->55
+013334 CMIT S0 s1.nextIndex->56
+013343 INFO S4 receive AE from 0,PLIdx=52 PLTerm=1
+013344 CMIT S4 disLogIndex->53 value=4032347485910674710
+013344 CMIT S4 commitIdx:51
+013345 CMIT S0 s4.matchidx->53
+013345 CMIT S0 s4.nextIndex->54
+013354 INFO S2 receive AE from 0,PLIdx=52 PLTerm=1
+013354 INFO S3 receive AE from 0,PLIdx=53 PLTerm=1
+013355 CMIT S2 commitIdx:51
+013355 TRCE S0 backup[2] logIndex[53,53] finish
+013355 CMIT S3 disLogIndex->54 value=2840761254351477790
+013356 CMIT S3 commitIdx:51->53
+013357 CMIT S0 s3.matchidx->54
+013357 CMIT S0 s3.nextIndex->55
+013376 INFO S3 receive AE from 0,PLIdx=51 PLTerm=1
+013377 CMIT S3 commitIdx:53
+013378 TRCE S0 backup[3] logIndex[52,53] finish
+013387 INFO S4 receive AE from 0,PLIdx=54 PLTerm=1
+013388 VOTE S4 expect XIndex=1 len=53 xterm=1
+013389 TRCE S0 backup[4] logIndex[54,56]
+013408 INFO S0 beat to others,term=1,accessTime=867542613,
+013420 INFO S3 receive AE from 0,PLIdx=54 PLTerm=1
+013421 CMIT S3 disLogIndex->55 value=6950022508708840698
+013421 CMIT S3 commitIdx:53
+013420 INFO S2 receive AE from 0,PLIdx=53 PLTerm=1
+013422 CMIT S0 s3.matchidx->55
+013422 CMIT S0 s3.nextIndex->56
+013422 CMIT S2 disLogIndex->54 value=2840761254351477790
+013423 CMIT S2 commitIdx:51->53
+013424 INFO S3 receive AE from 0,PLIdx=55 PLTerm=1
+013424 CMIT S0 s2.matchidx->54
+013424 CMIT S0 s2.nextIndex->55
+013425 CMIT S3 disLogIndex->56 value=672614030119523212
+013425 CMIT S3 commitIdx:53
+013425 CMIT S0 s3.matchidx->56
+013425 CMIT S0 s3.nextIndex->57
+013431 INFO S4 receive AE from 0,PLIdx=56 PLTerm=1
+013432 VOTE S4 expect XIndex=1 len=53 xterm=1
+013432 INFO S4 receive AE from 0,PLIdx=53 PLTerm=1
+013433 CMIT S4 disLogIndex->54 value=2840761254351477790
+013434 CMIT S4 commitIdx:51->53
+013435 CMIT S0 s4.matchidx->54
+013435 CMIT S0 s4.nextIndex->55
+013453 INFO S2 receive AE from 0,PLIdx=56 PLTerm=1
+013454 VOTE S2 expect XIndex=1 len=54 xterm=1
+013454 TRCE S0 backup[2] logIndex[55,56]
+013474 INFO S4 receive AE from 0,PLIdx=53 PLTerm=1
+013475 INFO S1 receive AE from 0,PLIdx=56 PLTerm=1
+013475 VOTE S1 expect XIndex=1 len=55 xterm=1
+013475 CMIT S4 commitIdx:53
+013476 TRCE S0 backup[1] logIndex[56,56]
+013486 INFO S1 receive AE from 0,PLIdx=55 PLTerm=1
+013487 CMIT S1 disLogIndex->56 value=672614030119523212
+013487 CMIT S1 commitIdx:53
+013488 CMIT S0 s1.matchidx->56
+013489 CMIT S0 s1.nextIndex->57
+013517 CMIT S0 commitIndex:53->56
+013540 INFO S4 receive AE from 0,PLIdx=53 PLTerm=1
+013542 CMIT S4 disLogIndex->56 value=672614030119523212
+013542 CMIT S4 commitIdx:53
+013552 INFO S2 receive AE from 0,PLIdx=54 PLTerm=1
+013553 CMIT S2 disLogIndex->55 value=6950022508708840698
+013553 CMIT S2 commitIdx:53
+013554 CMIT S0 s2.matchidx->55
+013554 CMIT S0 s2.nextIndex->56
+013573 INFO S4 receive AE from 0,PLIdx=53 PLTerm=1
+013574 CMIT S4 commitIdx:53
+013575 CMIT S0 s4.matchidx->56
+013575 CMIT S0 s4.nextIndex->57
+013575 TRCE S0 backup[4] logIndex[54,56] finish
+013577 INFO S2 receive AE from 0,PLIdx=55 PLTerm=1
+013578 TRCE m0 start a new value [me]
+013578 CMIT S0 getCurrentTerm
+013578 CMIT S0 start getRole
+013579 CMIT S0 start 8325988432124108703 logIndex=57
+013579 CMIT S1 getCurrentTerm
+013579 CMIT S1 start getRole
+013579 CMIT S2 getCurrentTerm
+013583 CMIT S2 disLogIndex->56 value=672614030119523212
+013583 CMIT S2 commitIdx:53
+013584 CMIT S2 start getRole
+013584 CMIT S3 getCurrentTerm
+013584 CMIT S3 start getRole
+013584 CMIT S0 s2.matchidx->56
+013584 INFO S4 receive AE from 0,PLIdx=55 PLTerm=1
+013585 CMIT S4 commitIdx:53
+013584 CMIT S4 getCurrentTerm
+013585 CMIT S4 start getRole
+013585 TRCE m0 I am OK[me]
+013584 CMIT S0 s2.nextIndex->57
+013594 TRCE m1 start a new value [me]
+013594 CMIT S0 getCurrentTerm
+013594 CMIT S0 start getRole
+013595 CMIT S0 start 611318785198157094 logIndex=58
+013595 CMIT S1 getCurrentTerm
+013595 CMIT S1 start getRole
+013596 CMIT S2 getCurrentTerm
+013596 CMIT S2 start getRole
+013596 CMIT S3 getCurrentTerm
+013596 CMIT S3 start getRole
+013596 CMIT S4 getCurrentTerm
+013596 CMIT S4 start getRole
+013596 TRCE m1 I am OK[me]
+013606 INFO S3 receive AE from 0,PLIdx=56 PLTerm=1
+013607 CMIT S3 commitIdx:53
+013627 TRCE m2 start a new value [me]
+013627 CMIT S0 getCurrentTerm
+013627 CMIT S0 start getRole
+013628 CMIT S0 start 2817784520082645165 logIndex=59
+013628 CMIT S1 getCurrentTerm
+013628 CMIT S1 start getRole
+013628 INFO S4 receive AE from 0,PLIdx=57 PLTerm=1
+013629 VOTE S4 expect XIndex=1 len=56 xterm=1
+013628 CMIT S2 getCurrentTerm
+013630 CMIT S2 start getRole
+013630 CMIT S3 getCurrentTerm
+013630 CMIT S3 start getRole
+013630 CMIT S4 getCurrentTerm
+013630 CMIT S4 start getRole
+013630 TRCE m2 I am OK[me]
+013630 TRCE S0 backup[4] logIndex[57,59]
+013642 INFO S2 receive AE from 0,PLIdx=54 PLTerm=1
+013643 CMIT S2 commitIdx:53
+013643 TRCE S0 backup[2] logIndex[55,56] finish
+013653 INFO S2 receive AE from 0,PLIdx=57 PLTerm=1
+013654 VOTE S2 expect XIndex=1 len=56 xterm=1
+013655 TRCE S0 backup[2] logIndex[57,59]
+013675 INFO S3 receive AE from 0,PLIdx=58 PLTerm=1
+013675 VOTE S3 expect XIndex=1 len=56 xterm=1
+013676 TRCE S0 backup[3] logIndex[57,59]
+013697 INFO S1 receive AE from 0,PLIdx=55 PLTerm=1
+013698 CMIT S1 commitIdx:53
+013697 INFO S3 receive AE from 0,PLIdx=57 PLTerm=1
+013699 TRCE S0 backup[1] logIndex[56,56] finish
+013699 VOTE S3 expect XIndex=1 len=56 xterm=1
+013700 INFO S2 receive AE from 0,PLIdx=58 PLTerm=1
+013700 VOTE S2 expect XIndex=1 len=56 xterm=1
+013720 INFO S4 receive AE from 0,PLIdx=53 PLTerm=1
+013720 CMIT S4 commitIdx:53
+013742 INFO S3 receive AE from 0,PLIdx=56 PLTerm=1
+013743 CMIT S3 disLogIndex->59 value=2817784520082645165
+013743 CMIT S3 commitIdx:53->56
+013744 CMIT S0 s3.matchidx->59
+013744 CMIT S0 s3.nextIndex->60
+013744 TRCE S0 backup[3] logIndex[57,59] finish
+013765 INFO S4 receive AE from 0,PLIdx=58 PLTerm=1
+013766 VOTE S4 expect XIndex=1 len=56 xterm=1
+013766 INFO S4 receive AE from 0,PLIdx=56 PLTerm=1
+013767 CMIT S4 disLogIndex->57 value=8325988432124108703
+013768 CMIT S4 commitIdx:53->56
+013769 CMIT S0 s4.matchidx->57
+013769 CMIT S0 s4.nextIndex->58
+013776 INFO S1 receive AE from 0,PLIdx=56 PLTerm=1
+013778 CMIT S1 disLogIndex->57 value=8325988432124108703
+013778 CMIT S1 commitIdx:53->56
+013779 CMIT S0 s1.matchidx->57
+013779 CMIT S0 s1.nextIndex->58
+013788 INFO S3 receive AE from 0,PLIdx=56 PLTerm=1
+013788 CMIT S3 commitIdx:56
+013809 CMIT S0 commitIndex:56->57
+013809 INFO S0 beat to others,term=1,accessTime=867542613,
+013822 INFO S1 receive AE from 0,PLIdx=57 PLTerm=1
+013823 CMIT S1 disLogIndex->58 value=611318785198157094
+013824 CMIT S1 commitIdx:56
+013824 CMIT S0 s1.matchidx->58
+013824 CMIT S0 s1.nextIndex->59
+013843 INFO S2 receive AE from 0,PLIdx=56 PLTerm=1
+013844 INFO S1 receive AE from 0,PLIdx=58 PLTerm=1
+013845 CMIT S2 disLogIndex->59 value=2817784520082645165
+013845 CMIT S1 disLogIndex->59 value=2817784520082645165
+013845 CMIT S1 commitIdx:56
+013845 CMIT S2 commitIdx:53->56
+013846 CMIT S0 s1.matchidx->59
+013846 CMIT S0 s1.nextIndex->60
+013846 INFO S2 receive AE from 0,PLIdx=56 PLTerm=1
+013846 CMIT S2 commitIdx:56
+013847 CMIT S0 s2.matchidx->57
+013847 CMIT S0 s2.nextIndex->58
+013866 INFO S2 receive AE from 0,PLIdx=59 PLTerm=1
+013868 CMIT S2 commitIdx:56->57
+013869 CMIT S0 s2.matchidx->59
+013869 CMIT S0 s2.nextIndex->60
+013908 TRCE m0 start a new value [me]
+013908 CMIT S0 getCurrentTerm
+013908 CMIT S0 start getRole
+013909 CMIT S0 start 6504957431766978049 logIndex=60
+013909 CMIT S1 getCurrentTerm
+013909 CMIT S1 start getRole
+013909 CMIT S2 getCurrentTerm
+013909 CMIT S2 start getRole
+013909 CMIT S3 getCurrentTerm
+013909 CMIT S3 start getRole
+013909 CMIT S4 getCurrentTerm
+013909 CMIT S4 start getRole
+013909 TRCE m0 I am OK[me]
+013953 INFO S2 receive AE from 0,PLIdx=56 PLTerm=1
+013954 CMIT S2 commitIdx:57
+013955 TRCE S0 backup[2] logIndex[57,59] finish
+013955 TRCE S0 backup[2] logIndex[60,60]
+013964 INFO S4 receive AE from 0,PLIdx=56 PLTerm=1
+013965 CMIT S4 disLogIndex->59 value=2817784520082645165
+013966 CMIT S4 commitIdx:56
+013966 INFO S4 receive AE from 0,PLIdx=59 PLTerm=1
+013966 CMIT S0 s4.matchidx->59
+013967 CMIT S0 s4.nextIndex->60
+013967 TRCE S0 backup[4] logIndex[57,59] finish
+013967 TRCE S0 backup[4] logIndex[60,60]
+013967 CMIT S4 commitIdx:56->57
+013968 INFO S4 receive AE from 0,PLIdx=59 PLTerm=1
+013969 CMIT S4 disLogIndex->60 value=6504957431766978049
+013969 CMIT S4 commitIdx:57
+013969 CMIT S0 s4.matchidx->60
+013969 CMIT S0 s4.nextIndex->61
+013969 TRCE S0 backup[4] logIndex[60,60] finish
+013997 INFO S4 receive AE from 0,PLIdx=59 PLTerm=1
+013998 CMIT S4 commitIdx:57
+014041 INFO S3 receive AE from 0,PLIdx=59 PLTerm=1
+014042 CMIT S3 disLogIndex->60 value=6504957431766978049
+014043 CMIT S3 commitIdx:56->57
+014044 CMIT S0 s3.matchidx->60
+014044 CMIT S0 s3.nextIndex->61
+014062 INFO S1 receive AE from 0,PLIdx=59 PLTerm=1
+014063 CMIT S1 commitIdx:56->57
+014115 CMIT S0 commitIndex:57->60
+014117 INFO S2 receive AE from 0,PLIdx=59 PLTerm=1
+014118 CMIT S2 disLogIndex->60 value=6504957431766978049
+014118 CMIT S2 commitIdx:57
+014119 CMIT S0 s2.matchidx->60
+014120 CMIT S0 s2.nextIndex->61
+014127 INFO S1 receive AE from 0,PLIdx=59 PLTerm=1
+014129 CMIT S1 disLogIndex->60 value=6504957431766978049
+014129 CMIT S1 commitIdx:57
+014130 CMIT S0 s1.matchidx->60
+014130 CMIT S0 s1.nextIndex->61
+014160 INFO S3 receive AE from 0,PLIdx=59 PLTerm=1
+014161 CMIT S3 commitIdx:57
+014182 INFO S2 receive AE from 0,PLIdx=59 PLTerm=1
+014183 CMIT S2 commitIdx:57
+014183 TRCE S0 backup[2] logIndex[60,60] finish
+014203 INFO S0 beat to others,term=1,accessTime=867542613,
+014225 TRCE m0 start a new value [me]
+014225 CMIT S0 getCurrentTerm
+014225 CMIT S0 start getRole
+014226 CMIT S0 start 2833272961284370271 logIndex=61
+014226 CMIT S1 getCurrentTerm
+014226 CMIT S1 start getRole
+014226 CMIT S2 getCurrentTerm
+014226 CMIT S2 start getRole
+014226 CMIT S3 getCurrentTerm
+014226 CMIT S3 start getRole
+014226 CMIT S4 getCurrentTerm
+014227 CMIT S4 start getRole
+014227 TRCE m0 I am OK[me]
+014237 INFO S2 receive AE from 0,PLIdx=60 PLTerm=1
+014238 CMIT S2 commitIdx:57->60
+014259 INFO S4 receive AE from 0,PLIdx=60 PLTerm=1
+014259 INFO S3 receive AE from 0,PLIdx=60 PLTerm=1
+014260 CMIT S4 disLogIndex->61 value=2833272961284370271
+014260 CMIT S3 disLogIndex->61 value=2833272961284370271
+014260 CMIT S4 commitIdx:57->60
+014261 CMIT S3 commitIdx:57->60
+014261 CMIT S0 s4.matchidx->61
+014261 CMIT S0 s4.nextIndex->62
+014262 CMIT S0 s3.matchidx->61
+014262 CMIT S0 s3.nextIndex->62
+014270 INFO S2 receive AE from 0,PLIdx=60 PLTerm=1
+014271 CMIT S2 disLogIndex->61 value=2833272961284370271
+014271 CMIT S2 commitIdx:60
+014272 CMIT S0 s2.matchidx->61
+014272 CMIT S0 s2.nextIndex->62
+014335 INFO S3 receive AE from 0,PLIdx=60 PLTerm=1
+014336 CMIT S3 commitIdx:60
+014410 CMIT S0 commitIndex:60->61
+014410 TRCE m1 start a new value [me]
+014410 CMIT S0 getCurrentTerm
+014411 CMIT S0 start getRole
+014412 CMIT S0 start 1614021922342717045 logIndex=62
+014412 CMIT S1 getCurrentTerm
+014412 CMIT S1 start getRole
+014412 CMIT S2 getCurrentTerm
+014412 CMIT S2 start getRole
+014412 CMIT S3 getCurrentTerm
+014412 CMIT S3 start getRole
+014412 CMIT S4 getCurrentTerm
+014413 CMIT S4 start getRole
+014413 TRCE m1 I am OK[me]
+014425 INFO S4 receive AE from 0,PLIdx=60 PLTerm=1
+014426 INFO S1 receive AE from 0,PLIdx=60 PLTerm=1
+014426 CMIT S4 commitIdx:60
+014427 CMIT S1 disLogIndex->61 value=2833272961284370271
+014428 CMIT S1 commitIdx:57->60
+014428 INFO S1 receive AE from 0,PLIdx=60 PLTerm=1
+014428 CMIT S0 s1.matchidx->61
+014429 CMIT S0 s1.nextIndex->62
+014429 CMIT S1 commitIdx:60
+014460 TRCE m2 start a new value [me]
+014460 CMIT S0 getCurrentTerm
+014460 CMIT S0 start getRole
+014461 CMIT S0 start 6312034553697739631 logIndex=63
+014461 CMIT S1 getCurrentTerm
+014461 CMIT S1 start getRole
+014462 CMIT S2 getCurrentTerm
+014462 CMIT S2 start getRole
+014462 CMIT S3 getCurrentTerm
+014462 CMIT S3 start getRole
+014462 CMIT S4 getCurrentTerm
+014462 CMIT S4 start getRole
+014462 TRCE m2 I am OK[me]
+014463 INFO S1 receive AE from 0,PLIdx=62 PLTerm=1
+014464 VOTE S1 expect XIndex=1 len=61 xterm=1
+014465 TRCE S0 backup[1] logIndex[62,63]
+014475 INFO S4 receive AE from 0,PLIdx=62 PLTerm=1
+014475 VOTE S4 expect XIndex=1 len=61 xterm=1
+014476 TRCE S0 backup[4] logIndex[62,63]
+014508 INFO S4 receive AE from 0,PLIdx=61 PLTerm=1
+014509 CMIT S4 disLogIndex->62 value=1614021922342717045
+014510 CMIT S4 commitIdx:60->61
+014511 CMIT S0 s4.matchidx->62
+014511 CMIT S0 s4.nextIndex->63
+014540 TRCE m0 start a new value [me]
+014540 CMIT S0 getCurrentTerm
+014540 CMIT S0 start getRole
+014541 CMIT S0 start 580839469009054213 logIndex=64
+014541 CMIT S1 getCurrentTerm
+014541 CMIT S1 start getRole
+014541 CMIT S2 getCurrentTerm
+014541 CMIT S2 start getRole
+014541 CMIT S3 getCurrentTerm
+014542 CMIT S3 start getRole
+014542 CMIT S4 getCurrentTerm
+014542 CMIT S4 start getRole
+014542 TRCE m0 I am OK[me]
+014585 INFO S3 receive AE from 0,PLIdx=61 PLTerm=1
+014586 CMIT S3 disLogIndex->62 value=1614021922342717045
+014587 CMIT S3 commitIdx:60->61
+014588 CMIT S0 s3.matchidx->62
+014588 CMIT S0 s3.nextIndex->63
+014605 INFO S0 beat to others,term=1,accessTime=867542613,
+014641 INFO S1 receive AE from 0,PLIdx=64 PLTerm=1
+014641 INFO S2 receive AE from 0,PLIdx=61 PLTerm=1
+014642 VOTE S1 expect XIndex=1 len=61 xterm=1
+014642 CMIT S2 disLogIndex->62 value=1614021922342717045
+014641 INFO S4 receive AE from 0,PLIdx=61 PLTerm=1
+014643 CMIT S2 commitIdx:60->61
+014644 CMIT S0 s2.matchidx->62
+014644 CMIT S0 s2.nextIndex->63
+014644 CMIT S4 disLogIndex->63 value=6312034553697739631
+014644 CMIT S4 commitIdx:61
+014645 CMIT S0 s4.matchidx->63
+014645 CMIT S0 s4.nextIndex->64
+014645 TRCE S0 backup[4] logIndex[62,63] finish
+014647 INFO S1 receive AE from 0,PLIdx=61 PLTerm=1
+014648 CMIT S1 disLogIndex->63 value=6312034553697739631
+014649 CMIT S1 commitIdx:60->61
+014650 CMIT S0 s1.matchidx->63
+014650 CMIT S0 s1.nextIndex->64
+014650 TRCE S0 backup[1] logIndex[62,63] finish
+014650 TRCE S0 backup[1] logIndex[64,64]
+014663 INFO S3 receive AE from 0,PLIdx=62 PLTerm=1
+014664 CMIT S3 disLogIndex->63 value=6312034553697739631
+014664 CMIT S3 commitIdx:61
+014665 CMIT S0 s3.matchidx->63
+014665 CMIT S0 s3.nextIndex->64
+014674 INFO S4 receive AE from 0,PLIdx=64 PLTerm=1
+014675 VOTE S4 expect XIndex=1 len=63 xterm=1
+014674 INFO S2 receive AE from 0,PLIdx=63 PLTerm=1
+014676 VOTE S2 expect XIndex=1 len=62 xterm=1
+014676 TRCE S0 backup[4] logIndex[64,64]
+014677 TRCE S0 backup[2] logIndex[63,64]
+014678 INFO S2 receive AE from 0,PLIdx=62 PLTerm=1
+014679 CMIT S2 disLogIndex->64 value=580839469009054213
+014679 CMIT S2 commitIdx:61
+014680 CMIT S0 s2.matchidx->64
+014680 CMIT S0 s2.nextIndex->65
+014680 TRCE S0 backup[2] logIndex[63,64] finish
+014680 INFO S1 receive AE from 0,PLIdx=61 PLTerm=1
+014681 CMIT S1 commitIdx:61
+014707 CMIT S0 commitIndex:61->63
+014708 INFO S2 receive AE from 0,PLIdx=64 PLTerm=1
+014709 CMIT S2 commitIdx:61
+014719 TRCE m1 start a new value [me]
+014719 CMIT S0 getCurrentTerm
+014719 CMIT S0 start getRole
+014719 CMIT S0 start 2228791153932599952 logIndex=65
+014720 CMIT S1 getCurrentTerm
+014720 CMIT S1 start getRole
+014720 CMIT S2 getCurrentTerm
+014720 CMIT S2 start getRole
+014720 CMIT S3 getCurrentTerm
+014720 CMIT S3 start getRole
+014720 CMIT S4 getCurrentTerm
+014720 CMIT S4 start getRole
+014720 TRCE m1 I am OK[me]
+014730 INFO S4 receive AE from 0,PLIdx=63 PLTerm=1
+014731 CMIT S4 disLogIndex->64 value=580839469009054213
+014732 CMIT S4 commitIdx:61
+014732 CMIT S0 s4.matchidx->64
+014732 CMIT S0 s4.nextIndex->65
+014733 TRCE S0 backup[4] logIndex[64,64] finish
+014734 INFO S4 receive AE from 0,PLIdx=63 PLTerm=1
+014735 CMIT S4 commitIdx:61
+014752 INFO S1 receive AE from 0,PLIdx=64 PLTerm=1
+014752 INFO S3 receive AE from 0,PLIdx=60 PLTerm=1
+014753 VOTE S1 expect XIndex=1 len=63 xterm=1
+014753 CMIT S3 commitIdx:61
+014773 TRCE m2 start a new value [me]
+014774 CMIT S0 getCurrentTerm
+014774 CMIT S0 start getRole
+014774 CMIT S0 start 7847668073232597372 logIndex=66
+014775 CMIT S1 getCurrentTerm
+014775 CMIT S1 start getRole
+014775 CMIT S2 getCurrentTerm
+014775 CMIT S2 start getRole
+014775 CMIT S3 getCurrentTerm
+014775 CMIT S3 start getRole
+014775 CMIT S4 getCurrentTerm
+014775 CMIT S4 start getRole
+014775 TRCE m2 I am OK[me]
+014786 INFO S1 receive AE from 0,PLIdx=63 PLTerm=1
+014786 INFO S3 receive AE from 0,PLIdx=63 PLTerm=1
+014787 CMIT S1 disLogIndex->64 value=580839469009054213
+014787 CMIT S1 commitIdx:61
+014788 CMIT S0 s1.matchidx->64
+014788 CMIT S0 s1.nextIndex->65
+014788 CMIT S3 disLogIndex->64 value=580839469009054213
+014789 CMIT S3 commitIdx:61
+014790 CMIT S0 s3.matchidx->64
+014790 CMIT S0 s3.nextIndex->65
+014807 INFO S3 receive AE from 0,PLIdx=64 PLTerm=1
+014808 INFO S4 receive AE from 0,PLIdx=65 PLTerm=1
+014808 CMIT S3 commitIdx:61
+014809 VOTE S4 expect XIndex=1 len=64 xterm=1
+014809 TRCE S0 backup[4] logIndex[65,66]
+014819 INFO S4 receive AE from 0,PLIdx=60 PLTerm=1
+014820 CMIT S4 commitIdx:61
+014830 INFO S2 receive AE from 0,PLIdx=62 PLTerm=1
+014831 CMIT S2 commitIdx:61
+014862 INFO S1 receive AE from 0,PLIdx=63 PLTerm=1
+014863 CMIT S1 commitIdx:61
+014864 TRCE S0 backup[1] logIndex[64,64] finish
+014864 TRCE S0 backup[1] logIndex[65,66]
+014873 INFO S3 receive AE from 0,PLIdx=64 PLTerm=1
+014875 CMIT S3 disLogIndex->65 value=2228791153932599952
+014875 CMIT S3 commitIdx:61->63
+014876 CMIT S0 s3.matchidx->65
+014876 CMIT S0 s3.nextIndex->66
+014884 INFO S4 receive AE from 0,PLIdx=64 PLTerm=1
+014885 CMIT S4 disLogIndex->65 value=2228791153932599952
+014886 CMIT S4 commitIdx:61->63
+014887 CMIT S0 s4.matchidx->65
+014887 CMIT S0 s4.nextIndex->66
+014895 INFO S4 receive AE from 0,PLIdx=64 PLTerm=1
+014897 CMIT S4 disLogIndex->66 value=7847668073232597372
+014897 CMIT S4 commitIdx:63
+014897 CMIT S0 s4.matchidx->66
+014898 CMIT S0 s4.nextIndex->67
+014898 TRCE S0 backup[4] logIndex[65,66] finish
+014898 INFO S3 receive AE from 0,PLIdx=65 PLTerm=1
+014899 CMIT S3 disLogIndex->66 value=7847668073232597372
+014900 CMIT S3 commitIdx:63
+014900 CMIT S0 s3.matchidx->66
+014900 CMIT S0 s3.nextIndex->67
+014917 INFO S2 receive AE from 0,PLIdx=65 PLTerm=1
+014918 VOTE S2 expect XIndex=1 len=64 xterm=1
+014920 TRCE S0 backup[2] logIndex[65,66]
+014928 INFO S1 receive AE from 0,PLIdx=65 PLTerm=1
+014929 VOTE S1 expect XIndex=1 len=64 xterm=1
+014950 INFO S2 receive AE from 0,PLIdx=64 PLTerm=1
+014951 CMIT S2 disLogIndex->66 value=7847668073232597372
+014952 CMIT S2 commitIdx:61->63
+015004 INFO S0 beat to others,term=1,accessTime=867542613,
+015007 CMIT S0 commitIndex:63->66
+015007 INFO S1 receive AE from 0,PLIdx=64 PLTerm=1
+015009 CMIT S1 disLogIndex->66 value=7847668073232597372
+015009 CMIT S1 commitIdx:61->63
+015010 CMIT S0 s1.matchidx->66
+015010 CMIT S0 s1.nextIndex->67
+015010 TRCE S0 backup[1] logIndex[65,66] finish
+015026 TRCE m1 start a new value [me]
+015026 CMIT S0 getCurrentTerm
+015027 CMIT S0 start getRole
+015027 CMIT S0 start 4254436639782157426 logIndex=67
+015028 CMIT S1 getCurrentTerm
+015028 CMIT S1 start getRole
+015028 CMIT S2 getCurrentTerm
+015028 CMIT S2 start getRole
+015028 CMIT S3 getCurrentTerm
+015028 CMIT S3 start getRole
+015028 CMIT S4 getCurrentTerm
+015028 CMIT S4 start getRole
+015028 TRCE m1 I am OK[me]
+015080 TRCE m2 start a new value [me]
+015080 CMIT S0 getCurrentTerm
+015080 CMIT S0 start getRole
+015081 INFO S2 receive AE from 0,PLIdx=64 PLTerm=1
+015081 CMIT S0 start 447763835459697534 logIndex=68
+015081 CMIT S1 getCurrentTerm
+015081 CMIT S1 start getRole
+015082 CMIT S2 getCurrentTerm
+015085 CMIT S2 commitIdx:63
+015086 CMIT S2 start getRole
+015087 CMIT S3 getCurrentTerm
+015087 CMIT S0 s2.matchidx->66
+015087 CMIT S0 s2.nextIndex->67
+015088 TRCE S0 backup[2] logIndex[65,66] finish
+015087 CMIT S3 start getRole
+015088 CMIT S4 getCurrentTerm
+015088 CMIT S4 start getRole
+015088 TRCE m2 I am OK[me]
+015099 INFO S3 receive AE from 0,PLIdx=66 PLTerm=1
+015100 INFO S1 receive AE from 0,PLIdx=67 PLTerm=1
+015100 CMIT S3 commitIdx:63
+015101 VOTE S1 expect XIndex=1 len=66 xterm=1
+015102 TRCE S0 backup[1] logIndex[67,68]
+015103 INFO S2 receive AE from 0,PLIdx=64 PLTerm=1
+015104 CMIT S2 commitIdx:63
+015165 INFO S2 receive AE from 0,PLIdx=66 PLTerm=1
+015165 INFO S4 receive AE from 0,PLIdx=66 PLTerm=1
+015166 CMIT S2 disLogIndex->67 value=4254436639782157426
+015167 CMIT S4 commitIdx:63
+015167 CMIT S2 commitIdx:63->66
+015169 CMIT S0 s2.matchidx->67
+015169 CMIT S0 s2.nextIndex->68
+015187 INFO S1 receive AE from 0,PLIdx=66 PLTerm=1
+015188 CMIT S1 disLogIndex->67 value=4254436639782157426
+015189 CMIT S1 commitIdx:63->66
+015190 INFO S1 receive AE from 0,PLIdx=66 PLTerm=1
+015190 CMIT S0 s1.matchidx->67
+015190 CMIT S0 s1.nextIndex->68
+015190 CMIT S1 commitIdx:66
+015198 INFO S3 receive AE from 0,PLIdx=67 PLTerm=1
+015199 VOTE S3 expect XIndex=1 len=66 xterm=1
+015200 TRCE S0 backup[3] logIndex[67,68]
+015220 INFO S4 receive AE from 0,PLIdx=67 PLTerm=1
+015221 VOTE S4 expect XIndex=1 len=66 xterm=1
+015222 TRCE S0 backup[4] logIndex[67,68]
+015275 INFO S3 receive AE from 0,PLIdx=66 PLTerm=1
+015276 CMIT S3 disLogIndex->68 value=447763835459697534
+015277 CMIT S3 commitIdx:63->66
+015278 CMIT S0 s3.matchidx->68
+015278 CMIT S0 s3.nextIndex->69
+015278 TRCE S0 backup[3] logIndex[67,68] finish
+015286 INFO S4 receive AE from 0,PLIdx=66 PLTerm=1
+015287 CMIT S4 disLogIndex->67 value=4254436639782157426
+015288 CMIT S4 commitIdx:63->66
+015288 CMIT S0 s4.matchidx->67
+015289 CMIT S0 s4.nextIndex->68
+015297 INFO S2 receive AE from 0,PLIdx=67 PLTerm=1
+015298 CMIT S2 disLogIndex->68 value=447763835459697534
+015298 CMIT S2 commitIdx:66
+015299 CMIT S0 s2.matchidx->68
+015299 CMIT S0 s2.nextIndex->69
+015318 CMIT S0 commitIndex:66->68
+015386 TRCE m0 start a new value [me]
+015387 CMIT S0 getCurrentTerm
+015387 CMIT S0 start getRole
+015387 INFO S4 receive AE from 0,PLIdx=66 PLTerm=1
+015387 INFO S1 receive AE from 0,PLIdx=66 PLTerm=1
+015388 INFO S3 receive AE from 0,PLIdx=66 PLTerm=1
+015388 CMIT S4 disLogIndex->68 value=447763835459697534
+015388 CMIT S4 commitIdx:66
+015387 INFO S2 receive AE from 0,PLIdx=66 PLTerm=1
+015388 CMIT S3 commitIdx:66
+015389 TRCE m1 start a new value [me]
+015389 CMIT S0 getCurrentTerm
+015389 CMIT S0 start getRole
+015389 CMIT S2 commitIdx:66
+015388 CMIT S0 start 4016597821284554370 logIndex=69
+015389 CMIT S1 disLogIndex->68 value=447763835459697534
+015389 CMIT S1 commitIdx:66
+015389 CMIT S0 start 7321536010942031149 logIndex=70
+015389 CMIT S1 getCurrentTerm
+015389 CMIT S1 start getRole
+015389 CMIT S2 getCurrentTerm
+015389 CMIT S2 start getRole
+015390 CMIT S3 getCurrentTerm
+015390 CMIT S3 start getRole
+015390 CMIT S4 getCurrentTerm
+015390 CMIT S4 start getRole
+015389 CMIT S1 getCurrentTerm
+015390 CMIT S1 start getRole
+015390 CMIT S2 getCurrentTerm
+015390 CMIT S2 start getRole
+015390 CMIT S0 s1.matchidx->68
+015390 TRCE m2 start a new value [me]
+015390 CMIT S0 getCurrentTerm
+015390 CMIT S3 getCurrentTerm
+015390 CMIT S3 start getRole
+015390 CMIT S4 getCurrentTerm
+015390 CMIT S4 start getRole
+015390 TRCE m0 I am OK[me]
+015390 CMIT S0 s1.nextIndex->69
+015391 TRCE S0 backup[1] logIndex[67,68] finish
+015390 TRCE m1 I am OK[me]
+015392 CMIT S0 start getRole
+015393 CMIT S0 start 4004258440463318049 logIndex=71
+015393 CMIT S1 getCurrentTerm
+015393 CMIT S1 start getRole
+015393 CMIT S2 getCurrentTerm
+015393 CMIT S2 start getRole
+015393 CMIT S3 getCurrentTerm
+015393 CMIT S3 start getRole
+015393 CMIT S4 getCurrentTerm
+015393 CMIT S4 start getRole
+015393 TRCE m2 I am OK[me]
+015408 INFO S0 beat to others,term=1,accessTime=867542613,
+015414 INFO S4 receive AE from 0,PLIdx=69 PLTerm=1
+015415 VOTE S4 expect XIndex=1 len=68 xterm=1
+015467 INFO S3 receive AE from 0,PLIdx=69 PLTerm=1
+015468 VOTE S3 expect XIndex=1 len=68 xterm=1
+015469 TRCE S0 backup[3] logIndex[69,71]
+015478 INFO S1 receive AE from 0,PLIdx=69 PLTerm=1
+015479 VOTE S1 expect XIndex=1 len=68 xterm=1
+015480 TRCE S0 backup[1] logIndex[69,71]
+015501 INFO S1 receive AE from 0,PLIdx=71 PLTerm=1
+015501 INFO S4 receive AE from 0,PLIdx=68 PLTerm=1
+015503 VOTE S1 expect XIndex=1 len=68 xterm=1
+015505 INFO S1 receive AE from 0,PLIdx=70 PLTerm=1
+015504 CMIT S4 disLogIndex->69 value=4016597821284554370
+015506 VOTE S1 expect XIndex=1 len=68 xterm=1
+015507 CMIT S4 commitIdx:66->68
+015508 CMIT S0 s4.matchidx->69
+015508 CMIT S0 s4.nextIndex->70
+015554 INFO S4 receive AE from 0,PLIdx=66 PLTerm=1
+015555 CMIT S4 commitIdx:68
+015554 INFO S3 receive AE from 0,PLIdx=68 PLTerm=1
+015556 TRCE S0 backup[4] logIndex[67,68] finish
+015558 CMIT S3 disLogIndex->69 value=4016597821284554370
+015559 CMIT S3 commitIdx:66->68
+015560 CMIT S0 s3.matchidx->69
+015560 CMIT S0 s3.nextIndex->70
+015560 INFO S3 receive AE from 0,PLIdx=70 PLTerm=1
+015561 VOTE S3 expect XIndex=1 len=69 xterm=1
+015588 INFO S2 receive AE from 0,PLIdx=70 PLTerm=1
+015589 VOTE S2 expect XIndex=1 len=68 xterm=1
+015590 TRCE S0 backup[2] logIndex[69,71]
+015610 CMIT S0 commitIndex:68->69
+015611 INFO S4 receive AE from 0,PLIdx=71 PLTerm=1
+015612 VOTE S4 expect XIndex=1 len=69 xterm=1
+015613 TRCE S0 backup[4] logIndex[70,71]
+015635 INFO S1 receive AE from 0,PLIdx=68 PLTerm=1
+015636 CMIT S1 disLogIndex->69 value=4016597821284554370
+015637 CMIT S1 commitIdx:66->68
+015638 CMIT S0 s1.matchidx->69
+015638 CMIT S0 s1.nextIndex->70
+015657 INFO S4 receive AE from 0,PLIdx=69 PLTerm=1
+015658 CMIT S4 disLogIndex->71 value=4004258440463318049
+015659 CMIT S4 commitIdx:68->69
+015659 INFO S4 receive AE from 0,PLIdx=70 PLTerm=1
+015660 CMIT S4 commitIdx:69
+015660 CMIT S0 s4.matchidx->71
+015661 CMIT S0 s4.nextIndex->72
+015661 TRCE S0 backup[4] logIndex[70,71] finish
+015679 INFO S3 receive AE from 0,PLIdx=68 PLTerm=1
+015680 INFO S2 receive AE from 0,PLIdx=71 PLTerm=1
+015681 VOTE S2 expect XIndex=1 len=68 xterm=1
+015682 CMIT S3 disLogIndex->71 value=4004258440463318049
+015682 CMIT S3 commitIdx:68
+015682 INFO S1 receive AE from 0,PLIdx=68 PLTerm=1
+015683 CMIT S0 s3.matchidx->71
+015683 CMIT S0 s3.nextIndex->72
+015683 TRCE S0 backup[3] logIndex[69,71] finish
+015683 CMIT S1 disLogIndex->71 value=4004258440463318049
+015683 CMIT S1 commitIdx:68
+015682 INFO S3 receive AE from 0,PLIdx=71 PLTerm=1
+015684 CMIT S3 commitIdx:68
+015684 CMIT S0 s1.matchidx->71
+015684 CMIT S0 s1.nextIndex->72
+015685 TRCE S0 backup[1] logIndex[69,71] finish
+015701 TRCE m0 start a new value [me]
+015701 CMIT S0 getCurrentTerm
+015701 CMIT S0 start getRole
+015702 INFO S2 receive AE from 0,PLIdx=68 PLTerm=1
+015702 CMIT S0 start 9033538841866016482 logIndex=72
+015702 CMIT S1 getCurrentTerm
+015702 CMIT S1 start getRole
+015702 CMIT S2 getCurrentTerm
+015703 CMIT S2 disLogIndex->71 value=4004258440463318049
+015704 CMIT S2 commitIdx:66->68
+015704 CMIT S2 start getRole
+015705 CMIT S3 getCurrentTerm
+015705 CMIT S3 start getRole
+015705 CMIT S4 getCurrentTerm
+015705 CMIT S4 start getRole
+015705 TRCE m0 I am OK[me]
+015705 CMIT S0 s2.matchidx->71
+015705 CMIT S0 s2.nextIndex->72
+015705 TRCE S0 backup[2] logIndex[69,71] finish
+015705 TRCE S0 backup[2] logIndex[72,72]
+015734 INFO S2 receive AE from 0,PLIdx=71 PLTerm=1
+015736 CMIT S2 disLogIndex->72 value=9033538841866016482
+015736 CMIT S2 commitIdx:68->69
+015737 CMIT S0 s2.matchidx->72
+015738 CMIT S0 s2.nextIndex->73
+015778 INFO S2 receive AE from 0,PLIdx=68 PLTerm=1
+015779 CMIT S2 commitIdx:69
+015810 INFO S0 beat to others,term=1,accessTime=867542613,
+015832 INFO S2 receive AE from 0,PLIdx=69 PLTerm=1
+015833 CMIT S2 commitIdx:69
+015864 INFO S2 receive AE from 0,PLIdx=72 PLTerm=1
+015865 CMIT S2 commitIdx:69
+015867 INFO S4 receive AE from 0,PLIdx=71 PLTerm=1
+015868 CMIT S4 disLogIndex->72 value=9033538841866016482
+015868 CMIT S4 commitIdx:69
+015869 CMIT S0 s4.matchidx->72
+015869 CMIT S0 s4.nextIndex->73
+015908 CMIT S0 commitIndex:69->72
+015920 INFO S1 receive AE from 0,PLIdx=72 PLTerm=1
+015922 VOTE S1 expect XIndex=1 len=71 xterm=1
+015922 TRCE S0 backup[1] logIndex[72,72]
+015964 INFO S2 receive AE from 0,PLIdx=71 PLTerm=1
+015965 INFO S1 receive AE from 0,PLIdx=71 PLTerm=1
+015965 INFO S3 receive AE from 0,PLIdx=71 PLTerm=1
+015965 CMIT S2 commitIdx:69
+015966 TRCE S0 backup[2] logIndex[72,72] finish
+015966 CMIT S1 disLogIndex->72 value=9033538841866016482
+015967 CMIT S3 disLogIndex->72 value=9033538841866016482
+015967 CMIT S1 commitIdx:68->72
+015968 CMIT S3 commitIdx:68->69
+015968 CMIT S0 s1.matchidx->72
+015968 CMIT S0 s1.nextIndex->73
+015968 INFO S1 receive AE from 0,PLIdx=71 PLTerm=1
+015969 CMIT S1 commitIdx:72
+015968 TRCE S0 backup[1] logIndex[72,72] finish
+015998 INFO S4 receive AE from 0,PLIdx=72 PLTerm=1
+015999 CMIT S4 commitIdx:69
+016018 TRCE m0 start a new value [me]
+016019 CMIT S0 getCurrentTerm
+016019 CMIT S0 start getRole
+016020 CMIT S0 start 8305777279393917906 logIndex=73
+016020 CMIT S1 getCurrentTerm
+016020 CMIT S1 start getRole
+016020 CMIT S2 getCurrentTerm
+016020 CMIT S2 start getRole
+016020 CMIT S3 getCurrentTerm
+016020 CMIT S3 start getRole
+016020 CMIT S4 getCurrentTerm
+016020 CMIT S4 start getRole
+016020 TRCE m0 I am OK[me]
+016023 INFO S3 receive AE from 0,PLIdx=72 PLTerm=1
+016024 CMIT S3 commitIdx:69
+016024 INFO S3 receive AE from 0,PLIdx=72 PLTerm=1
+016024 CMIT S0 s3.matchidx->72
+016024 CMIT S0 s3.nextIndex->73
+016025 CMIT S3 disLogIndex->73 value=8305777279393917906
+016026 CMIT S3 commitIdx:69->72
+016027 CMIT S0 s3.matchidx->73
+016027 CMIT S0 s3.nextIndex->74
+016041 INFO S1 receive AE from 0,PLIdx=72 PLTerm=1
+016043 CMIT S1 disLogIndex->73 value=8305777279393917906
+016043 CMIT S1 commitIdx:72
+016044 CMIT S0 s1.matchidx->73
+016044 CMIT S0 s1.nextIndex->74
+016063 INFO S4 receive AE from 0,PLIdx=72 PLTerm=1
+016064 INFO S3 receive AE from 0,PLIdx=71 PLTerm=1
+016065 CMIT S4 disLogIndex->73 value=8305777279393917906
+016065 CMIT S3 commitIdx:72
+016065 CMIT S4 commitIdx:69->72
+016066 CMIT S0 s4.matchidx->73
+016066 CMIT S0 s4.nextIndex->74
+016172 INFO S2 receive AE from 0,PLIdx=72 PLTerm=1
+016173 CMIT S2 disLogIndex->73 value=8305777279393917906
+016174 CMIT S2 commitIdx:69->72
+016175 CMIT S0 s2.matchidx->73
+016176 CMIT S0 s2.nextIndex->74
+016203 INFO S0 beat to others,term=1,accessTime=867542613,
+016203 TRCE m1 start a new value [me]
+016204 CMIT S0 getCurrentTerm
+016204 CMIT S0 start getRole
+016203 TRCE m2 start a new value [me]
+016204 CMIT S0 getCurrentTerm
+016205 CMIT S0 start 6957379773389007791 logIndex=74
+016205 CMIT S1 getCurrentTerm
+016205 CMIT S1 start getRole
+016205 CMIT S2 getCurrentTerm
+016205 CMIT S2 start getRole
+016205 CMIT S3 getCurrentTerm
+016205 CMIT S3 start getRole
+016205 CMIT S4 getCurrentTerm
+016205 CMIT S4 start getRole
+016206 TRCE m1 I am OK[me]
+016207 CMIT S0 start getRole
+016208 CMIT S0 start 7495789786281211475 logIndex=75
+016208 CMIT S1 getCurrentTerm
+016208 CMIT S1 start getRole
+016208 CMIT S2 getCurrentTerm
+016208 CMIT S2 start getRole
+016208 CMIT S3 getCurrentTerm
+016208 CMIT S3 start getRole
+016208 CMIT S4 getCurrentTerm
+016209 CMIT S4 start getRole
+016209 TRCE m2 I am OK[me]
+016209 CMIT S0 commitIndex:72->73
+016223 INFO S4 receive AE from 0,PLIdx=74 PLTerm=1
+016224 VOTE S4 expect XIndex=1 len=73 xterm=1
+016225 TRCE S0 backup[4] logIndex[74,75]
+016245 INFO S2 receive AE from 0,PLIdx=73 PLTerm=1
+016247 CMIT S2 disLogIndex->74 value=6957379773389007791
+016247 CMIT S2 commitIdx:72
+016248 INFO S3 receive AE from 0,PLIdx=74 PLTerm=1
+016248 CMIT S0 s2.matchidx->74
+016248 CMIT S0 s2.nextIndex->75
+016249 VOTE S3 expect XIndex=1 len=73 xterm=1
+016249 TRCE S0 backup[3] logIndex[74,75]
+016289 INFO S2 receive AE from 0,PLIdx=73 PLTerm=1
+016290 CMIT S2 commitIdx:72
+016300 INFO S4 receive AE from 0,PLIdx=73 PLTerm=1
+016301 CMIT S4 disLogIndex->74 value=6957379773389007791
+016301 CMIT S4 commitIdx:72
+016302 CMIT S0 s4.matchidx->74
+016302 CMIT S0 s4.nextIndex->75
+016332 TRCE m0 start a new value [me]
+016333 CMIT S0 getCurrentTerm
+016333 CMIT S0 start getRole
+016333 INFO S3 receive AE from 0,PLIdx=74 PLTerm=1
+016334 CMIT S0 start 2277092301925132649 logIndex=76
+016334 CMIT S1 getCurrentTerm
+016334 CMIT S1 start getRole
+016334 CMIT S2 getCurrentTerm
+016334 CMIT S2 start getRole
+016334 VOTE S3 expect XIndex=1 len=73 xterm=1
+016334 CMIT S3 getCurrentTerm
+016334 CMIT S3 start getRole
+016334 CMIT S4 getCurrentTerm
+016334 CMIT S4 start getRole
+016334 TRCE m0 I am OK[me]
+016376 INFO S4 receive AE from 0,PLIdx=73 PLTerm=1
+016376 INFO S2 receive AE from 0,PLIdx=74 PLTerm=1
+016377 CMIT S4 disLogIndex->75 value=7495789786281211475
+016377 CMIT S2 disLogIndex->75 value=7495789786281211475
+016377 CMIT S2 commitIdx:72
+016378 CMIT S4 commitIdx:72->73
+016378 CMIT S0 s2.matchidx->75
+016379 INFO S1 receive AE from 0,PLIdx=73 PLTerm=1
+016379 CMIT S0 s2.nextIndex->76
+016380 CMIT S1 disLogIndex->74 value=6957379773389007791
+016380 CMIT S1 commitIdx:72
+016380 CMIT S0 s4.matchidx->75
+016380 CMIT S0 s4.nextIndex->76
+016380 INFO S1 receive AE from 0,PLIdx=74 PLTerm=1
+016381 CMIT S0 s1.matchidx->74
+016381 CMIT S0 s1.nextIndex->75
+016380 TRCE S0 backup[4] logIndex[74,75] finish
+016382 CMIT S1 disLogIndex->75 value=7495789786281211475
+016382 CMIT S1 commitIdx:72
+016382 CMIT S0 s1.matchidx->75
+016383 CMIT S0 s1.nextIndex->76
+016420 INFO S4 receive AE from 0,PLIdx=73 PLTerm=1
+016420 INFO S3 receive AE from 0,PLIdx=73 PLTerm=1
+016421 CMIT S4 commitIdx:73
+016421 CMIT S3 disLogIndex->74 value=6957379773389007791
+016422 CMIT S3 commitIdx:72
+016422 CMIT S0 s3.matchidx->74
+016423 CMIT S0 s3.nextIndex->75
+016431 INFO S1 receive AE from 0,PLIdx=74 PLTerm=1
+016432 CMIT S1 commitIdx:72
+016475 INFO S3 receive AE from 0,PLIdx=75 PLTerm=1
+016476 VOTE S3 expect XIndex=1 len=74 xterm=1
+016518 CMIT S0 commitIndex:73->75
+016518 INFO S2 receive AE from 0,PLIdx=75 PLTerm=1
+016519 INFO S1 receive AE from 0,PLIdx=75 PLTerm=1
+016519 TRCE m2 start a new value [me]
+016519 CMIT S0 getCurrentTerm
+016519 CMIT S0 start getRole
+016520 CMIT S2 disLogIndex->76 value=2277092301925132649
+016520 CMIT S0 start 4422985329869997320 logIndex=77
+016520 CMIT S1 getCurrentTerm
+016520 CMIT S2 commitIdx:72->73
+016520 CMIT S1 disLogIndex->76 value=2277092301925132649
+016521 CMIT S0 s2.matchidx->76
+016521 CMIT S0 s2.nextIndex->77
+016521 CMIT S1 commitIdx:72->73
+016522 CMIT S1 start getRole
+016522 CMIT S2 getCurrentTerm
+016522 CMIT S2 start getRole
+016522 CMIT S3 getCurrentTerm
+016522 CMIT S3 start getRole
+016522 CMIT S4 getCurrentTerm
+016522 CMIT S4 start getRole
+016522 TRCE m2 I am OK[me]
+016522 CMIT S0 s1.matchidx->76
+016522 CMIT S0 s1.nextIndex->77
+016531 INFO S4 receive AE from 0,PLIdx=75 PLTerm=1
+016535 CMIT S4 disLogIndex->76 value=2277092301925132649
+016537 CMIT S4 commitIdx:73
+016538 CMIT S0 s4.matchidx->76
+016538 CMIT S0 s4.nextIndex->77
+016553 INFO S3 receive AE from 0,PLIdx=76 PLTerm=1
+016553 VOTE S3 expect XIndex=1 len=74 xterm=1
+016555 INFO S3 receive AE from 0,PLIdx=76 PLTerm=1
+016555 VOTE S3 expect XIndex=1 len=74 xterm=1
+016596 INFO S3 receive AE from 0,PLIdx=73 PLTerm=1
+016597 CMIT S3 disLogIndex->75 value=7495789786281211475
+016596 INFO S4 receive AE from 0,PLIdx=76 PLTerm=1
+016598 CMIT S3 commitIdx:72->73
+016599 CMIT S0 s3.matchidx->75
+016599 CMIT S0 s3.nextIndex->76
+016599 TRCE S0 backup[3] logIndex[74,75] finish
+016599 TRCE S0 backup[3] logIndex[76,77]
+016599 CMIT S4 disLogIndex->77 value=4422985329869997320
+016600 CMIT S4 commitIdx:73->75
+016601 CMIT S0 s4.matchidx->77
+016601 CMIT S0 s4.nextIndex->78
+016603 INFO S1 receive AE from 0,PLIdx=76 PLTerm=1
+016604 CMIT S1 disLogIndex->77 value=4422985329869997320
+016604 INFO S0 beat to others,term=1,accessTime=867542613,
+016605 CMIT S1 commitIdx:73->75
+016605 CMIT S0 s1.matchidx->77
+016605 CMIT S0 s1.nextIndex->78
+016633 INFO S2 receive AE from 0,PLIdx=76 PLTerm=1
+016635 CMIT S2 disLogIndex->77 value=4422985329869997320
+016636 CMIT S2 commitIdx:73->75
+016637 CMIT S0 s2.matchidx->77
+016637 CMIT S0 s2.nextIndex->78
+016662 INFO S2 receive AE from 0,PLIdx=77 PLTerm=1
+016663 CMIT S2 commitIdx:75
+016727 INFO S4 receive AE from 0,PLIdx=77 PLTerm=1
+016728 CMIT S4 commitIdx:75
+016727 INFO S3 receive AE from 0,PLIdx=75 PLTerm=1
+016730 CMIT S3 disLogIndex->77 value=4422985329869997320
+016731 CMIT S3 commitIdx:73->75
+016731 CMIT S0 s3.matchidx->77
+016732 CMIT S0 s3.nextIndex->78
+016732 TRCE S0 backup[3] logIndex[76,77] finish
+016811 CMIT S0 commitIndex:75->77
+016824 INFO S1 receive AE from 0,PLIdx=77 PLTerm=1
+016826 CMIT S1 commitIdx:75
+016834 TRCE m2 start a new value [me]
+016834 CMIT S0 getCurrentTerm
+016834 CMIT S0 start getRole
+016836 CMIT S0 start 1241580410604768709 logIndex=78
+016836 CMIT S1 getCurrentTerm
+016836 CMIT S1 start getRole
+016836 CMIT S2 getCurrentTerm
+016837 CMIT S2 start getRole
+016837 CMIT S3 getCurrentTerm
+016837 CMIT S3 start getRole
+016837 CMIT S4 getCurrentTerm
+016837 CMIT S4 start getRole
+016837 TRCE m2 I am OK[me]
+016861 INFO S2 receive AE from 0,PLIdx=77 PLTerm=1
+016863 CMIT S2 disLogIndex->78 value=1241580410604768709
+016864 CMIT S2 commitIdx:75->77
+016865 CMIT S0 s2.matchidx->78
+016865 CMIT S0 s2.nextIndex->79
+016872 INFO S3 receive AE from 0,PLIdx=77 PLTerm=1
+016873 CMIT S3 commitIdx:75
+016958 INFO S4 receive AE from 0,PLIdx=77 PLTerm=1
+016960 CMIT S4 disLogIndex->78 value=1241580410604768709
+016960 CMIT S4 commitIdx:75->77
+016962 CMIT S0 s4.matchidx->78
+016962 CMIT S0 s4.nextIndex->79
+017010 INFO S0 beat to others,term=1,accessTime=867542613,
+017022 TRCE m1 start a new value [me]
+017022 CMIT S0 getCurrentTerm
+017022 CMIT S0 start getRole
+017023 INFO S1 receive AE from 0,PLIdx=77 PLTerm=1
+017023 CMIT S0 start 6444530779449780623 logIndex=79
+017023 CMIT S1 getCurrentTerm
+017024 CMIT S1 disLogIndex->78 value=1241580410604768709
+017024 CMIT S1 commitIdx:75->77
+017025 CMIT S1 start getRole
+017025 CMIT S2 getCurrentTerm
+017025 CMIT S2 start getRole
+017025 CMIT S3 getCurrentTerm
+017025 CMIT S3 start getRole
+017025 CMIT S0 s1.matchidx->78
+017025 CMIT S0 s1.nextIndex->79
+017025 CMIT S4 getCurrentTerm
+017025 CMIT S4 start getRole
+017025 TRCE m1 I am OK[me]
+017077 INFO S3 receive AE from 0,PLIdx=77 PLTerm=1
+017078 CMIT S3 disLogIndex->78 value=1241580410604768709
+017079 CMIT S3 commitIdx:75->77
+017080 CMIT S0 s3.matchidx->78
+017080 CMIT S0 s3.nextIndex->79
+017099 INFO S2 receive AE from 0,PLIdx=78 PLTerm=1
+017100 CMIT S2 disLogIndex->79 value=6444530779449780623
+017100 CMIT S2 commitIdx:77
+017101 CMIT S0 s2.matchidx->79
+017101 CMIT S0 s2.nextIndex->80
+017109 CMIT S0 commitIndex:77->78
+017123 INFO S1 receive AE from 0,PLIdx=78 PLTerm=1
+017123 INFO S3 receive AE from 0,PLIdx=78 PLTerm=1
+017123 INFO S4 receive AE from 0,PLIdx=78 PLTerm=1
+017124 CMIT S1 commitIdx:77
+017124 CMIT S3 commitIdx:77
+017124 CMIT S4 commitIdx:77
+017155 TRCE m0 start a new value [me]
+017156 CMIT S0 getCurrentTerm
+017156 CMIT S0 start getRole
+017156 TRCE m2 start a new value [me]
+017156 CMIT S0 getCurrentTerm
+017157 CMIT S0 start 3782283252283697938 logIndex=80
+017157 CMIT S1 getCurrentTerm
+017157 CMIT S1 start getRole
+017157 CMIT S2 getCurrentTerm
+017157 CMIT S2 start getRole
+017157 CMIT S3 getCurrentTerm
+017157 CMIT S3 start getRole
+017157 CMIT S4 getCurrentTerm
+017157 CMIT S4 start getRole
+017158 TRCE m0 I am OK[me]
+017158 CMIT S0 start getRole
+017159 CMIT S0 start 7387734004744361489 logIndex=81
+017159 CMIT S1 getCurrentTerm
+017159 CMIT S1 start getRole
+017159 CMIT S2 getCurrentTerm
+017159 CMIT S2 start getRole
+017159 CMIT S3 getCurrentTerm
+017159 CMIT S3 start getRole
+017159 CMIT S4 getCurrentTerm
+017159 CMIT S4 start getRole
+017159 TRCE m2 I am OK[me]
+017179 INFO S2 receive AE from 0,PLIdx=78 PLTerm=1
+017180 CMIT S2 commitIdx:77
+017181 INFO S4 receive AE from 0,PLIdx=80 PLTerm=1
+017182 VOTE S4 expect XIndex=1 len=78 xterm=1
+017183 TRCE S0 backup[4] logIndex[79,81]
+017190 INFO S1 receive AE from 0,PLIdx=78 PLTerm=1
+017192 CMIT S1 disLogIndex->79 value=6444530779449780623
+017192 CMIT S1 commitIdx:77
+017192 CMIT S0 s1.matchidx->79
+017193 CMIT S0 s1.nextIndex->80
+017225 INFO S4 receive AE from 0,PLIdx=79 PLTerm=1
+017226 VOTE S4 expect XIndex=1 len=78 xterm=1
+017236 INFO S1 receive AE from 0,PLIdx=80 PLTerm=1
+017236 INFO S2 receive AE from 0,PLIdx=79 PLTerm=1
+017237 VOTE S1 expect XIndex=1 len=79 xterm=1
+017238 CMIT S2 disLogIndex->80 value=3782283252283697938
+017238 TRCE S0 backup[1] logIndex[80,81]
+017239 CMIT S2 commitIdx:77->78
+017240 CMIT S0 s2.matchidx->80
+017240 CMIT S0 s2.nextIndex->81
+017269 INFO S3 receive AE from 0,PLIdx=80 PLTerm=1
+017270 VOTE S3 expect XIndex=1 len=78 xterm=1
+017271 TRCE S0 backup[3] logIndex[79,81]
+017280 INFO S4 receive AE from 0,PLIdx=78 PLTerm=1
+017282 CMIT S4 disLogIndex->79 value=6444530779449780623
+017282 CMIT S4 commitIdx:77
+017283 CMIT S0 s4.matchidx->79
+017283 CMIT S0 s4.nextIndex->80
+017302 INFO S3 receive AE from 0,PLIdx=78 PLTerm=1
+017304 CMIT S3 disLogIndex->81 value=7387734004744361489
+017305 CMIT S3 commitIdx:77->78
+017305 CMIT S0 s3.matchidx->81
+017305 CMIT S0 s3.nextIndex->82
+017306 TRCE S0 backup[3] logIndex[79,81] finish
+017324 INFO S2 receive AE from 0,PLIdx=80 PLTerm=1
+017324 INFO S3 receive AE from 0,PLIdx=79 PLTerm=1
+017325 CMIT S3 commitIdx:78
+017325 CMIT S2 disLogIndex->81 value=7387734004744361489
+017326 CMIT S2 commitIdx:78
+017327 CMIT S0 s2.matchidx->81
+017327 CMIT S0 s2.nextIndex->82
+017410 CMIT S0 commitIndex:78->81
+017411 INFO S3 receive AE from 0,PLIdx=78 PLTerm=1
+017410 INFO S0 beat to others,term=1,accessTime=867542613,
+017412 CMIT S3 commitIdx:78
+017414 INFO S2 receive AE from 0,PLIdx=81 PLTerm=1
+017415 CMIT S2 commitIdx:78->81
+017428 INFO S1 receive AE from 0,PLIdx=79 PLTerm=1
+017430 CMIT S1 disLogIndex->80 value=3782283252283697938
+017430 CMIT S1 commitIdx:77->78
+017431 CMIT S0 s1.matchidx->80
+017431 CMIT S0 s1.nextIndex->81
+017439 INFO S1 receive AE from 0,PLIdx=81 PLTerm=1
+017440 VOTE S1 expect XIndex=1 len=80 xterm=1
+017450 INFO S1 receive AE from 0,PLIdx=79 PLTerm=1
+017450 INFO S4 receive AE from 0,PLIdx=78 PLTerm=1
+017451 CMIT S1 disLogIndex->81 value=7387734004744361489
+017452 CMIT S1 commitIdx:78
+017452 CMIT S4 disLogIndex->81 value=7387734004744361489
+017452 CMIT S0 s1.matchidx->81
+017452 CMIT S0 s1.nextIndex->82
+017452 TRCE S0 backup[1] logIndex[80,81] finish
+017452 CMIT S4 commitIdx:77->78
+017453 CMIT S0 s4.matchidx->81
+017453 CMIT S0 s4.nextIndex->82
+017453 TRCE S0 backup[4] logIndex[79,81] finish
+017471 TRCE m0 start a new value [me]
+017471 TRCE m2 start a new value [me]
+017472 CMIT S0 getCurrentTerm
+017472 CMIT S0 start getRole
+017471 CMIT S0 getCurrentTerm
+017473 CMIT S0 start 2542993162505858003 logIndex=82
+017473 CMIT S1 getCurrentTerm
+017473 CMIT S1 start getRole
+017473 CMIT S2 getCurrentTerm
+017473 CMIT S2 start getRole
+017473 CMIT S3 getCurrentTerm
+017473 CMIT S3 start getRole
+017473 CMIT S4 getCurrentTerm
+017473 CMIT S4 start getRole
+017473 CMIT S0 start getRole
+017473 TRCE m2 I am OK[me]
+017474 CMIT S0 start 3505583955498674824 logIndex=83
+017474 CMIT S1 getCurrentTerm
+017474 CMIT S1 start getRole
+017474 CMIT S2 getCurrentTerm
+017474 CMIT S2 start getRole
+017474 CMIT S3 getCurrentTerm
+017474 CMIT S3 start getRole
+017474 CMIT S4 getCurrentTerm
+017474 CMIT S4 start getRole
+017474 TRCE m0 I am OK[me]
+017505 INFO S4 receive AE from 0,PLIdx=81 PLTerm=1
+017506 CMIT S4 disLogIndex->82 value=2542993162505858003
+017508 CMIT S4 commitIdx:78->81
+017509 CMIT S0 s4.matchidx->82
+017509 CMIT S0 s4.nextIndex->83
+017516 INFO S3 receive AE from 0,PLIdx=81 PLTerm=1
+017517 CMIT S3 commitIdx:78->81
+017548 INFO S1 receive AE from 0,PLIdx=81 PLTerm=1
+017549 CMIT S1 disLogIndex->82 value=2542993162505858003
+017550 CMIT S1 commitIdx:78->81
+017551 CMIT S0 s1.matchidx->82
+017552 CMIT S0 s1.nextIndex->83
+017581 INFO S4 receive AE from 0,PLIdx=81 PLTerm=1
+017582 CMIT S4 commitIdx:81
+017655 INFO S2 receive AE from 0,PLIdx=81 PLTerm=1
+017657 CMIT S2 disLogIndex->82 value=2542993162505858003
+017657 CMIT S2 commitIdx:81
+017658 CMIT S0 s2.matchidx->82
+017658 CMIT S0 s2.nextIndex->83
+017666 INFO S1 receive AE from 0,PLIdx=82 PLTerm=1
+017668 CMIT S1 disLogIndex->83 value=3505583955498674824
+017668 CMIT S1 commitIdx:81
+017688 INFO S2 receive AE from 0,PLIdx=82 PLTerm=1
+017689 CMIT S2 disLogIndex->83 value=3505583955498674824
+017689 CMIT S2 commitIdx:81
+017690 CMIT S0 s2.matchidx->83
+017690 CMIT S0 s2.nextIndex->84
+017699 INFO S3 receive AE from 0,PLIdx=81 PLTerm=1
+017700 CMIT S3 disLogIndex->82 value=2542993162505858003
+017700 CMIT S3 commitIdx:81
+017701 INFO S1 receive AE from 0,PLIdx=82 PLTerm=1
+017702 CMIT S1 commitIdx:81
+017703 CMIT S0 s1.matchidx->83
+017703 CMIT S0 s1.nextIndex->84
+017709 CMIT S0 commitIndex:81->83
+017710 INFO S3 receive AE from 0,PLIdx=82 PLTerm=1
+017712 CMIT S3 disLogIndex->83 value=3505583955498674824
+017712 CMIT S3 commitIdx:81
+017713 CMIT S0 s3.matchidx->83
+017714 CMIT S0 s3.nextIndex->84
+017744 INFO S4 receive AE from 0,PLIdx=82 PLTerm=1
+017745 CMIT S4 disLogIndex->83 value=3505583955498674824
+017746 CMIT S4 commitIdx:81
+017747 CMIT S0 s4.matchidx->83
+017747 CMIT S0 s4.nextIndex->84
+017784 TRCE m0 start a new value [me]
+017784 CMIT S0 getCurrentTerm
+017785 CMIT S0 start getRole
+017785 TRCE m2 start a new value [me]
+017785 CMIT S0 getCurrentTerm
+017785 CMIT S0 start 8733456473810300956 logIndex=84
+017786 CMIT S0 start getRole
+017786 CMIT S1 getCurrentTerm
+017786 CMIT S1 start getRole
+017786 CMIT S2 getCurrentTerm
+017786 CMIT S2 start getRole
+017786 CMIT S3 getCurrentTerm
+017786 CMIT S3 start getRole
+017786 CMIT S4 getCurrentTerm
+017787 CMIT S4 start getRole
+017787 TRCE m0 I am OK[me]
+017787 CMIT S0 start 1555632360480226107 logIndex=85
+017787 CMIT S1 getCurrentTerm
+017787 CMIT S1 start getRole
+017788 CMIT S2 getCurrentTerm
+017788 CMIT S2 start getRole
+017788 CMIT S3 getCurrentTerm
+017788 CMIT S3 start getRole
+017788 CMIT S4 getCurrentTerm
+017788 CMIT S4 start getRole
+017788 TRCE m2 I am OK[me]
+017788 INFO S2 receive AE from 0,PLIdx=83 PLTerm=1
+017790 CMIT S2 disLogIndex->84 value=8733456473810300956
+017790 CMIT S2 commitIdx:81->83
+017792 CMIT S0 s2.matchidx->84
+017792 CMIT S0 s2.nextIndex->85
+017807 INFO S0 beat to others,term=1,accessTime=867542613,
+017820 INFO S3 receive AE from 0,PLIdx=81 PLTerm=1
+017821 CMIT S3 commitIdx:81
+017832 INFO S1 receive AE from 0,PLIdx=85 PLTerm=1
+017833 VOTE S1 expect XIndex=1 len=83 xterm=1
+017834 TRCE S0 backup[1] logIndex[84,85]
+017835 TRCE m1 start a new value [me]
+017836 CMIT S0 getCurrentTerm
+017836 CMIT S0 start getRole
+017838 CMIT S0 start 1097793313941758883 logIndex=86
+017838 CMIT S1 getCurrentTerm
+017838 CMIT S1 start getRole
+017838 CMIT S2 getCurrentTerm
+017838 CMIT S2 start getRole
+017838 CMIT S3 getCurrentTerm
+017839 CMIT S3 start getRole
+017839 CMIT S4 getCurrentTerm
+017839 CMIT S4 start getRole
+017839 TRCE m1 I am OK[me]
+017853 INFO S4 receive AE from 0,PLIdx=85 PLTerm=1
+017854 VOTE S4 expect XIndex=1 len=83 xterm=1
+017855 TRCE S0 backup[4] logIndex[84,86]
+017864 INFO S1 receive AE from 0,PLIdx=83 PLTerm=1
+017866 CMIT S1 disLogIndex->84 value=8733456473810300956
+017866 CMIT S1 commitIdx:81->83
+017867 CMIT S0 s1.matchidx->84
+017868 CMIT S0 s1.nextIndex->85
+017910 INFO S2 receive AE from 0,PLIdx=84 PLTerm=1
+017911 INFO S3 receive AE from 0,PLIdx=85 PLTerm=1
+017912 CMIT S2 disLogIndex->85 value=1555632360480226107
+017912 CMIT S2 commitIdx:83
+017912 VOTE S3 expect XIndex=1 len=83 xterm=1
+017912 CMIT S0 s2.matchidx->85
+017913 CMIT S0 s2.nextIndex->86
+017913 TRCE S0 backup[3] logIndex[84,86]
+017922 INFO S3 receive AE from 0,PLIdx=84 PLTerm=1
+017923 VOTE S3 expect XIndex=1 len=83 xterm=1
+017944 INFO S1 receive AE from 0,PLIdx=83 PLTerm=1
+017944 INFO S4 receive AE from 0,PLIdx=85 PLTerm=1
+017945 VOTE S4 expect XIndex=1 len=83 xterm=1
+017945 CMIT S1 disLogIndex->85 value=1555632360480226107
+017946 CMIT S1 commitIdx:83
+017947 CMIT S0 s1.matchidx->85
+017947 CMIT S0 s1.nextIndex->86
+017947 TRCE S0 backup[1] logIndex[84,85] finish
+017966 INFO S1 receive AE from 0,PLIdx=84 PLTerm=1
+017967 CMIT S1 commitIdx:83
+017977 INFO S2 receive AE from 0,PLIdx=85 PLTerm=1
+017979 CMIT S2 disLogIndex->86 value=1097793313941758883
+017979 CMIT S2 commitIdx:83
+017980 CMIT S0 s2.matchidx->86
+017980 CMIT S0 s2.nextIndex->87
+017989 INFO S3 receive AE from 0,PLIdx=83 PLTerm=1
+017990 CMIT S3 disLogIndex->86 value=1097793313941758883
+017991 CMIT S3 commitIdx:81->83
+017991 INFO S3 receive AE from 0,PLIdx=83 PLTerm=1
+017991 CMIT S0 s3.matchidx->86
+017991 CMIT S0 s3.nextIndex->87
+017991 TRCE S0 backup[3] logIndex[84,86] finish
+017992 CMIT S3 commitIdx:83
+018000 INFO S2 receive AE from 0,PLIdx=85 PLTerm=1
+018001 CMIT S2 commitIdx:83
+018000 INFO S4 receive AE from 0,PLIdx=83 PLTerm=1
+018003 CMIT S4 disLogIndex->84 value=8733456473810300956
+018005 CMIT S4 commitIdx:81->83
+018006 CMIT S0 s4.matchidx->84
+018007 CMIT S0 s4.nextIndex->85
+018007 CMIT S0 commitIndex:83->86
+018055 INFO S3 receive AE from 0,PLIdx=85 PLTerm=1
+018056 CMIT S3 commitIdx:83
+018097 TRCE m0 start a new value [me]
+018097 CMIT S0 getCurrentTerm
+018097 CMIT S0 start getRole
+018099 CMIT S0 start 289448055241371065 logIndex=87
+018099 CMIT S1 getCurrentTerm
+018099 CMIT S1 start getRole
+018099 CMIT S2 getCurrentTerm
+018099 CMIT S2 start getRole
+018099 CMIT S3 getCurrentTerm
+018099 CMIT S3 start getRole
+018099 CMIT S4 getCurrentTerm
+018099 CMIT S4 start getRole
+018099 TRCE m0 I am OK[me]
+018099 TRCE m2 start a new value [me]
+018100 CMIT S0 getCurrentTerm
+018100 CMIT S0 start getRole
+018100 CMIT S0 start 7445521928518517020 logIndex=88
+018100 CMIT S1 getCurrentTerm
+018100 CMIT S1 start getRole
+018101 CMIT S2 getCurrentTerm
+018101 CMIT S2 start getRole
+018101 CMIT S3 getCurrentTerm
+018101 CMIT S3 start getRole
+018101 CMIT S4 getCurrentTerm
+018101 CMIT S4 start getRole
+018101 TRCE m2 I am OK[me]
+018131 INFO S4 receive AE from 0,PLIdx=83 PLTerm=1
+018132 CMIT S4 disLogIndex->86 value=1097793313941758883
+018132 CMIT S4 commitIdx:83
+018133 CMIT S0 s4.matchidx->86
+018133 CMIT S0 s4.nextIndex->87
+018134 TRCE S0 backup[4] logIndex[84,86] finish
+018134 TRCE S0 backup[4] logIndex[87,88]
+018151 TRCE m1 start a new value [me]
+018152 CMIT S0 getCurrentTerm
+018152 CMIT S0 start getRole
+018153 INFO S4 receive AE from 0,PLIdx=84 PLTerm=1
+018153 CMIT S4 commitIdx:83
+018154 CMIT S0 start 864905698066898557 logIndex=89
+018154 CMIT S1 getCurrentTerm
+018154 CMIT S1 start getRole
+018155 CMIT S2 getCurrentTerm
+018155 CMIT S2 start getRole
+018155 CMIT S3 getCurrentTerm
+018155 CMIT S3 start getRole
+018155 CMIT S4 getCurrentTerm
+018155 CMIT S4 start getRole
+018155 TRCE m1 I am OK[me]
+018175 INFO S1 receive AE from 0,PLIdx=85 PLTerm=1
+018177 CMIT S1 disLogIndex->86 value=1097793313941758883
+018177 CMIT S1 commitIdx:83
+018178 CMIT S0 s1.matchidx->86
+018178 CMIT S0 s1.nextIndex->87
+018196 INFO S4 receive AE from 0,PLIdx=87 PLTerm=1
+018197 VOTE S4 expect XIndex=1 len=86 xterm=1
+018206 INFO S0 beat to others,term=1,accessTime=867542613,
+018207 INFO S3 receive AE from 0,PLIdx=87 PLTerm=1
+018208 VOTE S3 expect XIndex=1 len=86 xterm=1
+018209 TRCE S0 backup[3] logIndex[87,89]
+018241 INFO S4 receive AE from 0,PLIdx=86 PLTerm=1
+018243 CMIT S4 disLogIndex->88 value=7445521928518517020
+018244 CMIT S4 commitIdx:83->86
+018245 CMIT S0 s4.matchidx->88
+018245 CMIT S0 s4.nextIndex->89
+018245 TRCE S0 backup[4] logIndex[87,88] finish
+018245 TRCE S0 backup[4] logIndex[89,89]
+018252 INFO S3 receive AE from 0,PLIdx=86 PLTerm=1
+018252 INFO S1 receive AE from 0,PLIdx=87 PLTerm=1
+018255 CMIT S3 disLogIndex->87 value=289448055241371065
+018255 VOTE S1 expect XIndex=1 len=86 xterm=1
+018256 CMIT S3 commitIdx:83->86
+018256 TRCE S0 backup[1] logIndex[87,89]
+018256 INFO S4 receive AE from 0,PLIdx=88 PLTerm=1
+018257 CMIT S0 s3.matchidx->87
+018257 CMIT S0 s3.nextIndex->88
+018256 INFO S3 receive AE from 0,PLIdx=88 PLTerm=1
+018257 CMIT S4 disLogIndex->89 value=864905698066898557
+018258 CMIT S4 commitIdx:86
+018258 VOTE S3 expect XIndex=1 len=87 xterm=1
+018258 CMIT S0 s4.matchidx->89
+018259 CMIT S0 s4.nextIndex->90
+018263 INFO S1 receive AE from 0,PLIdx=86 PLTerm=1
+018264 CMIT S1 disLogIndex->87 value=289448055241371065
+018265 CMIT S1 commitIdx:83->86
+018266 CMIT S0 s1.matchidx->87
+018266 CMIT S0 s1.nextIndex->88
+018274 INFO S2 receive AE from 0,PLIdx=87 PLTerm=1
+018275 VOTE S2 expect XIndex=1 len=86 xterm=1
+018275 TRCE S0 backup[2] logIndex[87,89]
+018307 INFO S1 receive AE from 0,PLIdx=88 PLTerm=1
+018308 VOTE S1 expect XIndex=1 len=87 xterm=1
+018308 CMIT S0 commitIndex:86->87
+018317 INFO S4 receive AE from 0,PLIdx=86 PLTerm=1
+018318 CMIT S4 commitIdx:86
+018339 INFO S4 receive AE from 0,PLIdx=89 PLTerm=1
+018340 CMIT S4 commitIdx:86
+018351 INFO S3 receive AE from 0,PLIdx=86 PLTerm=1
+018352 CMIT S3 disLogIndex->89 value=864905698066898557
+018352 CMIT S3 commitIdx:86
+018353 CMIT S0 s3.matchidx->89
+018353 CMIT S0 s3.nextIndex->90
+018353 TRCE S0 backup[3] logIndex[87,89] finish
+018393 INFO S1 receive AE from 0,PLIdx=89 PLTerm=1
+018394 VOTE S1 expect XIndex=1 len=87 xterm=1
+018393 INFO S2 receive AE from 0,PLIdx=89 PLTerm=1
+018396 VOTE S2 expect XIndex=1 len=86 xterm=1
+018397 INFO S2 receive AE from 0,PLIdx=88 PLTerm=1
+018398 VOTE S2 expect XIndex=1 len=86 xterm=1
+018414 TRCE m0 start a new value [me]
+018415 CMIT S0 getCurrentTerm
+018415 CMIT S0 start getRole
+018416 CMIT S0 start 9039148189570776831 logIndex=90
+018416 CMIT S1 getCurrentTerm
+018416 CMIT S1 start getRole
+018416 CMIT S2 getCurrentTerm
+018416 CMIT S2 start getRole
+018417 CMIT S3 getCurrentTerm
+018417 CMIT S3 start getRole
+018417 CMIT S4 getCurrentTerm
+018417 CMIT S4 start getRole
+018417 TRCE m0 I am OK[me]
+018427 INFO S4 receive AE from 0,PLIdx=88 PLTerm=1
+018428 CMIT S4 commitIdx:86
+018429 TRCE S0 backup[4] logIndex[89,89] finish
+018471 INFO S2 receive AE from 0,PLIdx=89 PLTerm=1
+018472 VOTE S2 expect XIndex=1 len=86 xterm=1
+018473 INFO S2 receive AE from 0,PLIdx=86 PLTerm=1
+018475 CMIT S2 disLogIndex->87 value=289448055241371065
+018476 CMIT S2 commitIdx:83->86
+018476 CMIT S0 s2.matchidx->87
+018476 CMIT S0 s2.nextIndex->88
+018492 INFO S1 receive AE from 0,PLIdx=86 PLTerm=1
+018494 CMIT S1 disLogIndex->89 value=864905698066898557
+018495 CMIT S1 commitIdx:86
+018495 CMIT S0 s1.matchidx->89
+018495 CMIT S0 s1.nextIndex->90
+018496 TRCE S0 backup[1] logIndex[87,89] finish
+018496 TRCE S0 backup[1] logIndex[90,90]
+018514 INFO S2 receive AE from 0,PLIdx=86 PLTerm=1
+018516 CMIT S2 disLogIndex->89 value=864905698066898557
+018516 CMIT S2 commitIdx:86
+018557 INFO S3 receive AE from 0,PLIdx=89 PLTerm=1
+018558 CMIT S3 commitIdx:86
+018600 INFO S4 receive AE from 0,PLIdx=89 PLTerm=1
+018602 CMIT S4 disLogIndex->90 value=9039148189570776831
+018603 CMIT S4 commitIdx:86->87
+018603 INFO S0 beat to others,term=1,accessTime=867542613,
+018603 CMIT S0 s4.matchidx->90
+018604 CMIT S0 s4.nextIndex->91
+018610 CMIT S0 commitIndex:87->89
+018611 INFO S1 receive AE from 0,PLIdx=89 PLTerm=1
+018613 CMIT S1 disLogIndex->90 value=9039148189570776831
+018613 CMIT S1 commitIdx:86->87
+018614 CMIT S0 s1.matchidx->90
+018614 CMIT S0 s1.nextIndex->91
+018665 INFO S1 receive AE from 0,PLIdx=90 PLTerm=1
+018665 INFO S3 receive AE from 0,PLIdx=89 PLTerm=1
+018666 CMIT S1 commitIdx:87
+018668 CMIT S3 disLogIndex->90 value=9039148189570776831
+018669 CMIT S3 commitIdx:86->87
+018669 CMIT S0 s3.matchidx->90
+018670 CMIT S0 s3.nextIndex->91
+018686 INFO S1 receive AE from 0,PLIdx=89 PLTerm=1
+018687 CMIT S1 commitIdx:87
+018688 TRCE S0 backup[1] logIndex[90,90] finish
+018751 INFO S3 receive AE from 0,PLIdx=90 PLTerm=1
+018753 CMIT S3 commitIdx:87
+018815 INFO S4 receive AE from 0,PLIdx=90 PLTerm=1
+018817 CMIT S4 commitIdx:87
+018819 INFO S2 receive AE from 0,PLIdx=90 PLTerm=1
+018820 VOTE S2 expect XIndex=1 len=89 xterm=1
+018821 INFO S1 receive AE from 0,PLIdx=90 PLTerm=1
+018822 CMIT S1 commitIdx:87
+018826 INFO S2 receive AE from 0,PLIdx=86 PLTerm=1
+018827 CMIT S2 commitIdx:86
+018828 CMIT S0 s2.matchidx->89
+018828 CMIT S0 s2.nextIndex->90
+018828 TRCE S0 backup[2] logIndex[87,89] finish
+018828 TRCE S0 backup[2] logIndex[90,90]
+018910 CMIT S0 commitIndex:89->90
+018922 TRCE m2 start a new value [me]
+018923 CMIT S0 getCurrentTerm
+018923 CMIT S0 start getRole
+018924 CMIT S0 start 4880705536751509660 logIndex=91
+018924 CMIT S1 getCurrentTerm
+018924 CMIT S1 start getRole
+018924 CMIT S2 getCurrentTerm
+018924 CMIT S2 start getRole
+018924 CMIT S3 getCurrentTerm
+018924 CMIT S3 start getRole
+018924 CMIT S4 getCurrentTerm
+018924 CMIT S4 start getRole
+018925 TRCE m2 I am OK[me]
+018936 INFO S2 receive AE from 0,PLIdx=89 PLTerm=1
+018939 CMIT S2 disLogIndex->90 value=9039148189570776831
+018941 CMIT S2 commitIdx:86->89
+018942 CMIT S0 s2.matchidx->90
+018942 CMIT S0 s2.nextIndex->91
+018942 TRCE S0 backup[2] logIndex[90,90] finish
+018945 INFO S3 receive AE from 0,PLIdx=90 PLTerm=1
+018946 CMIT S3 commitIdx:87
+018966 TRCE m1 start a new value [me]
+018966 CMIT S0 getCurrentTerm
+018966 CMIT S0 start getRole
+018967 CMIT S0 start 6783041957547279235 logIndex=92
+018968 CMIT S1 getCurrentTerm
+018968 CMIT S1 start getRole
+018968 CMIT S2 getCurrentTerm
+018968 CMIT S2 start getRole
+018968 CMIT S3 getCurrentTerm
+018968 CMIT S3 start getRole
+018968 CMIT S4 getCurrentTerm
+018968 CMIT S4 start getRole
+018968 TRCE m1 I am OK[me]
+019011 INFO S0 beat to others,term=1,accessTime=867542613,
+019012 INFO S4 receive AE from 0,PLIdx=90 PLTerm=1
+019013 CMIT S4 disLogIndex->91 value=4880705536751509660
+019014 CMIT S4 commitIdx:87->90
+019015 CMIT S0 s4.matchidx->91
+019015 CMIT S0 s4.nextIndex->92
+019034 INFO S2 receive AE from 0,PLIdx=92 PLTerm=1
+019036 VOTE S2 expect XIndex=1 len=90 xterm=1
+019037 TRCE S0 backup[2] logIndex[91,92]
+019078 INFO S3 receive AE from 0,PLIdx=90 PLTerm=1
+019080 CMIT S3 disLogIndex->91 value=4880705536751509660
+019080 CMIT S3 commitIdx:87->90
+019081 CMIT S0 s3.matchidx->91
+019081 CMIT S0 s3.nextIndex->92
+019089 INFO S1 receive AE from 0,PLIdx=90 PLTerm=1
+019091 CMIT S1 disLogIndex->91 value=4880705536751509660
+019092 CMIT S1 commitIdx:87->90
+019092 INFO S4 receive AE from 0,PLIdx=91 PLTerm=1
+019093 CMIT S0 s1.matchidx->91
+019093 CMIT S0 s1.nextIndex->92
+019094 CMIT S4 disLogIndex->92 value=6783041957547279235
+019094 CMIT S4 commitIdx:90
+019100 INFO S2 receive AE from 0,PLIdx=90 PLTerm=1
+019102 CMIT S2 disLogIndex->91 value=4880705536751509660
+019103 CMIT S2 commitIdx:89->90
+019104 CMIT S0 s2.matchidx->91
+019104 CMIT S0 s2.nextIndex->92
+019111 INFO S2 receive AE from 0,PLIdx=91 PLTerm=1
+019113 CMIT S2 disLogIndex->92 value=6783041957547279235
+019113 CMIT S2 commitIdx:90
+019114 CMIT S0 s2.matchidx->92
+019114 CMIT S0 s2.nextIndex->93
+019122 INFO S3 receive AE from 0,PLIdx=91 PLTerm=1
+019124 CMIT S3 disLogIndex->92 value=6783041957547279235
+019124 CMIT S3 commitIdx:90
+019155 INFO S1 receive AE from 0,PLIdx=92 PLTerm=1
+019156 VOTE S1 expect XIndex=1 len=91 xterm=1
+019157 INFO S1 receive AE from 0,PLIdx=91 PLTerm=1
+019157 TRCE S0 backup[1] logIndex[92,92]
+019159 CMIT S1 disLogIndex->92 value=6783041957547279235
+019159 CMIT S1 commitIdx:90
+019160 CMIT S0 s1.matchidx->92
+019160 CMIT S0 s1.nextIndex->93
+019166 INFO S4 receive AE from 0,PLIdx=92 PLTerm=1
+019167 CMIT S4 commitIdx:90
+019168 CMIT S0 s4.matchidx->92
+019168 CMIT S0 s4.nextIndex->93
+019177 INFO S3 receive AE from 0,PLIdx=92 PLTerm=1
+019177 INFO S1 receive AE from 0,PLIdx=91 PLTerm=1
+019179 CMIT S3 commitIdx:90
+019180 CMIT S1 commitIdx:90
+019180 CMIT S0 s3.matchidx->92
+019180 CMIT S0 s3.nextIndex->93
+019181 TRCE S0 backup[1] logIndex[92,92] finish
+019189 INFO S3 receive AE from 0,PLIdx=91 PLTerm=1
+019189 CMIT S3 commitIdx:90
+019209 CMIT S0 commitIndex:90->92
+019221 TRCE m0 start a new value [me]
+019221 CMIT S0 getCurrentTerm
+019222 CMIT S0 start getRole
+019223 CMIT S0 start 3055750034651618467 logIndex=93
+019223 CMIT S1 getCurrentTerm
+019223 CMIT S1 start getRole
+019223 CMIT S2 getCurrentTerm
+019223 CMIT S2 start getRole
+019224 CMIT S3 getCurrentTerm
+019224 CMIT S3 start getRole
+019224 CMIT S4 getCurrentTerm
+019224 CMIT S4 start getRole
+019224 TRCE m0 I am OK[me]
+019243 TRCE m2 start a new value [me]
+019243 CMIT S0 getCurrentTerm
+019243 CMIT S0 start getRole
+019244 CMIT S0 start 8100146930266310494 logIndex=94
+019245 CMIT S1 getCurrentTerm
+019245 CMIT S1 start getRole
+019245 CMIT S2 getCurrentTerm
+019245 CMIT S2 start getRole
+019245 CMIT S3 getCurrentTerm
+019246 CMIT S3 start getRole
+019246 CMIT S4 getCurrentTerm
+019246 CMIT S4 start getRole
+019246 TRCE m2 I am OK[me]
+019287 TRCE m1 start a new value [me]
+019287 CMIT S0 getCurrentTerm
+019287 CMIT S0 start getRole
+019288 CMIT S0 start 742429588067862469 logIndex=95
+019288 INFO S2 receive AE from 0,PLIdx=90 PLTerm=1
+019288 CMIT S1 getCurrentTerm
+019288 CMIT S1 start getRole
+019289 CMIT S2 getCurrentTerm
+019289 CMIT S2 commitIdx:90
+019290 TRCE S0 backup[2] logIndex[91,92] finish
+019290 CMIT S2 start getRole
+019290 CMIT S3 getCurrentTerm
+019290 CMIT S3 start getRole
+019290 CMIT S4 getCurrentTerm
+019290 CMIT S4 start getRole
+019290 TRCE m1 I am OK[me]
+019321 INFO S4 receive AE from 0,PLIdx=91 PLTerm=1
+019322 CMIT S4 commitIdx:90
+019323 INFO S4 receive AE from 0,PLIdx=93 PLTerm=1
+019323 VOTE S4 expect XIndex=1 len=92 xterm=1
+019324 TRCE S0 backup[4] logIndex[93,95]
+019325 INFO S4 receive AE from 0,PLIdx=92 PLTerm=1
+019327 CMIT S4 disLogIndex->95 value=742429588067862469
+019328 CMIT S4 commitIdx:90->92
+019328 CMIT S0 s4.matchidx->95
+019328 CMIT S0 s4.nextIndex->96
+019328 TRCE S0 backup[4] logIndex[93,95] finish
+019343 INFO S1 receive AE from 0,PLIdx=92 PLTerm=1
+019345 CMIT S1 disLogIndex->93 value=3055750034651618467
+019346 CMIT S1 commitIdx:90->92
+019347 CMIT S0 s1.matchidx->93
+019347 CMIT S0 s1.nextIndex->94
+019376 INFO S3 receive AE from 0,PLIdx=94 PLTerm=1
+019377 VOTE S3 expect XIndex=1 len=92 xterm=1
+019376 INFO S1 receive AE from 0,PLIdx=93 PLTerm=1
+019378 TRCE S0 backup[3] logIndex[93,95]
+019377 INFO S3 receive AE from 0,PLIdx=93 PLTerm=1
+019379 CMIT S1 disLogIndex->94 value=8100146930266310494
+019379 CMIT S1 commitIdx:92
+019379 VOTE S3 expect XIndex=1 len=92 xterm=1
+019380 CMIT S0 s1.matchidx->94
+019380 CMIT S0 s1.nextIndex->95
+019398 INFO S4 receive AE from 0,PLIdx=94 PLTerm=1
+019399 CMIT S4 commitIdx:92
+019408 INFO S0 beat to others,term=1,accessTime=867542613,
+019409 INFO S3 receive AE from 0,PLIdx=92 PLTerm=1
+019410 CMIT S3 disLogIndex->93 value=3055750034651618467
+019411 CMIT S3 commitIdx:90->92
+019412 CMIT S0 s3.matchidx->93
+019412 CMIT S0 s3.nextIndex->94
+019422 INFO S1 receive AE from 0,PLIdx=95 PLTerm=1
+019423 VOTE S1 expect XIndex=1 len=94 xterm=1
+019423 TRCE S0 backup[1] logIndex[95,95]
+019433 INFO S2 receive AE from 0,PLIdx=95 PLTerm=1
+019435 VOTE S2 expect XIndex=1 len=92 xterm=1
+019436 TRCE S0 backup[2] logIndex[93,95]
+019437 INFO S2 receive AE from 0,PLIdx=93 PLTerm=1
+019438 VOTE S2 expect XIndex=1 len=92 xterm=1
+019444 INFO S2 receive AE from 0,PLIdx=94 PLTerm=1
+019444 INFO S1 receive AE from 0,PLIdx=94 PLTerm=1
+019445 VOTE S2 expect XIndex=1 len=92 xterm=1
+019446 CMIT S1 disLogIndex->95 value=742429588067862469
+019446 CMIT S1 commitIdx:92
+019447 CMIT S0 s1.matchidx->95
+019447 CMIT S0 s1.nextIndex->96
+019476 INFO S4 receive AE from 0,PLIdx=92 PLTerm=1
+019477 INFO S2 receive AE from 0,PLIdx=92 PLTerm=1
+019477 CMIT S4 commitIdx:92
+019478 CMIT S2 disLogIndex->93 value=3055750034651618467
+019481 CMIT S2 commitIdx:90->92
+019481 INFO S2 receive AE from 0,PLIdx=92 PLTerm=1
+019483 CMIT S0 s2.matchidx->93
+019483 CMIT S0 s2.nextIndex->94
+019486 CMIT S2 disLogIndex->95 value=742429588067862469
+019486 CMIT S2 commitIdx:92
+019487 CMIT S0 s2.matchidx->95
+019488 CMIT S0 s2.nextIndex->96
+019488 TRCE S0 backup[2] logIndex[93,95] finish
+019499 INFO S4 receive AE from 0,PLIdx=95 PLTerm=1
+019500 CMIT S4 commitIdx:92
+019509 CMIT S0 commitIndex:92->95
+019527 TRCE m0 start a new value [me]
+019527 CMIT S0 getCurrentTerm
+019527 CMIT S0 start getRole
+019528 CMIT S0 start 4005721818401797152 logIndex=96
+019529 CMIT S1 getCurrentTerm
+019529 CMIT S1 start getRole
+019529 CMIT S2 getCurrentTerm
+019529 CMIT S2 start getRole
+019529 CMIT S3 getCurrentTerm
+019529 CMIT S3 start getRole
+019529 CMIT S4 getCurrentTerm
+019529 CMIT S4 start getRole
+019529 TRCE m0 I am OK[me]
+019543 INFO S1 receive AE from 0,PLIdx=94 PLTerm=1
+019544 CMIT S1 commitIdx:92
+019545 TRCE S0 backup[1] logIndex[95,95] finish
+019553 TRCE m2 start a new value [me]
+019553 CMIT S0 getCurrentTerm
+019553 CMIT S0 start getRole
+019554 CMIT S0 start 6240554247534183277 logIndex=97
+019554 CMIT S1 getCurrentTerm
+019554 CMIT S1 start getRole
+019554 CMIT S2 getCurrentTerm
+019554 CMIT S2 start getRole
+019554 CMIT S3 getCurrentTerm
+019554 CMIT S3 start getRole
+019554 CMIT S4 getCurrentTerm
+019554 CMIT S4 start getRole
+019554 TRCE m2 I am OK[me]
+019597 TRCE m1 start a new value [me]
+019597 CMIT S0 getCurrentTerm
+019598 CMIT S0 start getRole
+019598 INFO S3 receive AE from 0,PLIdx=92 PLTerm=1
+019598 INFO S1 receive AE from 0,PLIdx=96 PLTerm=1
+019599 CMIT S0 start 8181783561802803121 logIndex=98
+019599 CMIT S1 getCurrentTerm
+019599 VOTE S1 expect XIndex=1 len=95 xterm=1
+019600 CMIT S3 disLogIndex->95 value=742429588067862469
+019600 CMIT S3 commitIdx:92
+019600 CMIT S1 start getRole
+019600 CMIT S0 s3.matchidx->95
+019600 CMIT S0 s3.nextIndex->96
+019600 TRCE S0 backup[3] logIndex[93,95] finish
+019600 TRCE S0 backup[3] logIndex[96,98]
+019600 CMIT S2 getCurrentTerm
+019601 CMIT S2 start getRole
+019601 CMIT S3 getCurrentTerm
+019601 CMIT S3 start getRole
+019601 CMIT S4 getCurrentTerm
+019601 CMIT S4 start getRole
+019601 TRCE S0 backup[1] logIndex[96,98]
+019601 TRCE m1 I am OK[me]
+019621 INFO S2 receive AE from 0,PLIdx=95 PLTerm=1
+019622 CMIT S2 disLogIndex->96 value=4005721818401797152
+019623 CMIT S2 commitIdx:92->95
+019624 CMIT S0 s2.matchidx->96
+019624 CMIT S0 s2.nextIndex->97
+019632 INFO S1 receive AE from 0,PLIdx=97 PLTerm=1
+019633 VOTE S1 expect XIndex=1 len=95 xterm=1
+019654 INFO S4 receive AE from 0,PLIdx=95 PLTerm=1
+019656 CMIT S4 disLogIndex->96 value=4005721818401797152
+019657 CMIT S4 commitIdx:92->95
+019665 INFO S3 receive AE from 0,PLIdx=95 PLTerm=1
+019666 CMIT S3 commitIdx:92
+019676 INFO S3 receive AE from 0,PLIdx=96 PLTerm=1
+019678 VOTE S3 expect XIndex=1 len=95 xterm=1
+019679 INFO S4 receive AE from 0,PLIdx=95 PLTerm=1
+019680 CMIT S4 commitIdx:95
+019680 CMIT S0 s4.matchidx->96
+019681 CMIT S0 s4.nextIndex->97
+019698 INFO S4 receive AE from 0,PLIdx=96 PLTerm=1
+019700 CMIT S4 disLogIndex->97 value=6240554247534183277
+019700 CMIT S4 commitIdx:95
+019700 CMIT S0 s4.matchidx->97
+019701 CMIT S0 s4.nextIndex->98
+019702 INFO S4 receive AE from 0,PLIdx=97 PLTerm=1
+019703 CMIT S4 disLogIndex->98 value=8181783561802803121
+019703 CMIT S4 commitIdx:95
+019704 CMIT S0 s4.matchidx->98
+019704 CMIT S0 s4.nextIndex->99
+019752 INFO S1 receive AE from 0,PLIdx=95 PLTerm=1
+019754 CMIT S1 disLogIndex->96 value=4005721818401797152
+019755 CMIT S1 commitIdx:92->95
+019804 INFO S0 beat to others,term=1,accessTime=867542613,
+019805 INFO S2 receive AE from 0,PLIdx=96 PLTerm=1
+019805 INFO S3 receive AE from 0,PLIdx=95 PLTerm=1
+019807 CMIT S2 disLogIndex->97 value=6240554247534183277
+019807 CMIT S2 commitIdx:95
+019807 CMIT S0 s2.matchidx->97
+019807 CMIT S0 s2.nextIndex->98
+019807 CMIT S3 disLogIndex->96 value=4005721818401797152
+019808 CMIT S3 commitIdx:92->95
+019808 INFO S3 receive AE from 0,PLIdx=95 PLTerm=1
+019810 CMIT S3 disLogIndex->98 value=8181783561802803121
+019810 CMIT S3 commitIdx:95
+019852 INFO S2 receive AE from 0,PLIdx=97 PLTerm=1
+019853 CMIT S2 disLogIndex->98 value=8181783561802803121
+019853 CMIT S2 commitIdx:95
+019863 INFO S3 receive AE from 0,PLIdx=97 PLTerm=1
+019863 CMIT S3 commitIdx:95
+019875 INFO S1 receive AE from 0,PLIdx=98 PLTerm=1
+019876 VOTE S1 expect XIndex=1 len=96 xterm=1
+019896 INFO S3 receive AE from 0,PLIdx=98 PLTerm=1
+019897 CMIT S3 commitIdx:95
+019904 INFO S1 receive AE from 0,PLIdx=95 PLTerm=1
+019905 CMIT S1 commitIdx:95
+019928 INFO S4 receive AE from 0,PLIdx=98 PLTerm=1
+019930 CMIT S4 commitIdx:95
+019972 INFO S2 receive AE from 0,PLIdx=98 PLTerm=1
+019973 CMIT S2 commitIdx:95
+019972 INFO S1 receive AE from 0,PLIdx=95 PLTerm=1
+019975 CMIT S1 disLogIndex->98 value=8181783561802803121
+019976 CMIT S1 commitIdx:95
+020206 INFO S0 beat to others,term=1,accessTime=867542613,
+020606 INFO S0 beat to others,term=1,accessTime=867542613,
+021009 INFO S0 beat to others,term=1,accessTime=867542613,
+021022 TRCE disconnect S0
+021022 TRCE start and connect S1
+021023 TRCE connect S1
+021410 INFO S0 beat to others,term=1,accessTime=867542613,
+021806 INFO S0 beat to others,term=1,accessTime=867542613,
+022212 INFO S0 beat to others,term=1,accessTime=867542613,
+022607 INFO S0 beat to others,term=1,accessTime=867542613,
+023013 INFO S0 beat to others,term=1,accessTime=867542613,
+023350 TRCE m0 start a new value [me]
+023350 CMIT S0 getCurrentTerm
+023372 TRCE m2 start a new value [me]
+023372 CMIT S0 getCurrentTerm
+023403 INFO S0 beat to others,term=1,accessTime=867542613,
+023425 TRCE m1 start a new value [me]
+023425 CMIT S0 getCurrentTerm
+023811 INFO S0 beat to others,term=1,accessTime=867542613,
+024207 INFO S0 beat to others,term=1,accessTime=867542613,
+024602 INFO S0 beat to others,term=1,accessTime=867542613,
+025010 INFO S0 beat to others,term=1,accessTime=867542613,
+025404 INFO S0 beat to others,term=1,accessTime=867542613,
+025808 INFO S0 beat to others,term=1,accessTime=867542613,
+026205 INFO S0 beat to others,term=1,accessTime=867542613,
+026610 INFO S0 beat to others,term=1,accessTime=867542613,
+026905 VOTE S3 electionTimeout,follower -> candidate
+026906 VOTE S3 termBefore=1,electionTerm=2
+026937 VOTE S4 electionTimeout,follower -> candidate
+026938 VOTE S4 termBefore=1,electionTerm=2
+026949 VOTE S4 reject vote for 3, voted
+026983 VOTE S1 LastLogTerm=1,lastLogIdex=98
+026984 VOTE S1 vote and reset
+026984 VOTE S1 vote for 3
+027013 INFO S0 beat to others,term=1,accessTime=867542613,
+027057 VOTE S3 reject vote for 4, voted
+027100 VOTE S1 reject vote for 4, voted
+027123 VOTE S2 LastLogTerm=1,lastLogIdex=98
+027124 VOTE S2 vote and reset
+027124 VOTE S2 vote for 4
+027154 VOTE S2 reject vote for 3, voted
+027408 INFO S0 beat to others,term=1,accessTime=867542613,
+027813 INFO S0 beat to others,term=1,accessTime=867542613,
+028033 TRCE start and connect S0
+028034 TRCE connect S0
+028213 INFO S0 beat to others,term=1,accessTime=867542613,
+028607 INFO S0 beat to others,term=1,accessTime=867542613,
+029003 INFO S0 beat to others,term=1,accessTime=867542613,
+029408 INFO S0 beat to others,term=1,accessTime=867542613,
+029805 INFO S0 beat to others,term=1,accessTime=867542613,
+030209 INFO S0 beat to others,term=1,accessTime=867542613,
+030605 INFO S0 beat to others,term=1,accessTime=867542613,
+031011 INFO S0 beat to others,term=1,accessTime=867542613,
+031406 INFO S0 beat to others,term=1,accessTime=867542613,
+031591 VOTE S1 electionTimeout,follower -> candidate
+031592 VOTE S1 termBefore=2,electionTerm=3
+031627 VOTE S4 LastLogTerm=1,lastLogIdex=98
+031628 VOTE S4 vote and reset
+031628 VOTE S4 vote for 1
+031710 VOTE S3 LastLogTerm=1,lastLogIdex=98
+031711 VOTE S3 vote and reset
+031711 VOTE S3 vote for 1
+031712 VOTE S1 win the election, candidate -> Leader
+031712 CMIT S1 commitCriterial=98
+031746 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+031747 INFO S4 receive heartbeat, but no sync
+031748 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+031749 CMIT S1 s4.matchidx->98
+031799 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+031800 INFO S3 receive heartbeat, but no sync
+031800 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+031801 CMIT S1 s3.matchidx->98
+031809 INFO S0 beat to others,term=1,accessTime=867542613,
+031855 VOTE S2 LastLogTerm=1,lastLogIdex=98
+031856 VOTE S2 vote and reset
+031857 VOTE S2 vote for 1
+031886 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+031887 INFO S2 receive heartbeat, but no sync
+031887 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+031888 CMIT S1 s2.matchidx->98
+032122 INFO S1 beat to others,term=3,accessTime=618566880,
+032204 INFO S0 beat to others,term=1,accessTime=867542613,
+032319 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+032320 INFO S2 receive heartbeat, but no sync
+032321 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+032393 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+032395 INFO S3 receive heartbeat, but no sync
+032395 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+032488 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+032490 INFO S4 receive heartbeat, but no sync
+032490 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+032519 INFO S1 beat to others,term=3,accessTime=618566880,
+032604 INFO S0 beat to others,term=1,accessTime=867542613,
+032637 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+032638 INFO S2 receive heartbeat, but no sync
+032638 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+032647 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+032649 INFO S4 receive heartbeat, but no sync
+032649 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+032744 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+032746 INFO S3 receive heartbeat, but no sync
+032746 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+032881 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+032883 INFO S2 receive heartbeat, but no sync
+032883 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+032922 INFO S1 beat to others,term=3,accessTime=618566880,
+032958 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+032959 INFO S4 receive heartbeat, but no sync
+032960 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+033009 INFO S0 beat to others,term=1,accessTime=867542613,
+033085 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+033087 INFO S2 receive heartbeat, but no sync
+033087 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+033147 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+033149 INFO S3 receive heartbeat, but no sync
+033149 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+033282 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+033283 INFO S2 receive heartbeat, but no sync
+033283 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+033312 INFO S1 beat to others,term=3,accessTime=618566880,
+033398 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+033399 INFO S4 receive heartbeat, but no sync
+033399 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+033408 INFO S0 beat to others,term=1,accessTime=867542613,
+033514 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+033515 INFO S3 receive heartbeat, but no sync
+033516 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+033586 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+033587 INFO S2 receive heartbeat, but no sync
+033587 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+033713 INFO S1 beat to others,term=3,accessTime=618566880,
+033789 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+033791 INFO S3 receive heartbeat, but no sync
+033791 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+033810 INFO S0 beat to others,term=1,accessTime=867542613,
+033844 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+033845 INFO S4 receive heartbeat, but no sync
+033845 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+033950 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+033952 INFO S2 receive heartbeat, but no sync
+033952 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+034123 INFO S1 beat to others,term=3,accessTime=618566880,
+034199 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+034201 INFO S3 receive heartbeat, but no sync
+034201 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+034210 INFO S0 beat to others,term=1,accessTime=867542613,
+034254 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+034256 INFO S4 receive heartbeat, but no sync
+034256 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+034361 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+034363 INFO S2 receive heartbeat, but no sync
+034363 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+034414 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+034415 INFO S2 receive heartbeat, but no sync
+034415 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+034517 INFO S1 beat to others,term=3,accessTime=618566880,
+034613 INFO S0 beat to others,term=1,accessTime=867542613,
+034698 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+034700 INFO S4 receive heartbeat, but no sync
+034700 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+034771 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+034773 INFO S3 receive heartbeat, but no sync
+034773 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+034782 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+034784 INFO S2 receive heartbeat, but no sync
+034784 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+034918 INFO S1 beat to others,term=3,accessTime=618566880,
+035007 INFO S0 beat to others,term=1,accessTime=867542613,
+035039 TRCE start and connect S4
+035039 TRCE connect S4
+035039 TRCE crash S4
+035040 TRCE S4 commitupdater killed
+035040 INFO S4 service killed
+035040 WARN S4 exit ticker
+035094 INFO S4 receive AE from 1,PLIdx=98 PLTerm=1
+035095 INFO S4 receive heartbeat, but no sync
+035096 INFO S4 from S1,term=3,PLTerm=98,PLIdx=98
+035157 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+035159 INFO S2 receive heartbeat, but no sync
+035159 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+035169 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+035170 INFO S3 receive heartbeat, but no sync
+035170 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+035315 INFO S1 beat to others,term=3,accessTime=618566880,
+035411 INFO S0 beat to others,term=1,accessTime=867542613,
+035465 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+035467 INFO S3 receive heartbeat, but no sync
+035467 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+035716 INFO S1 beat to others,term=3,accessTime=618566880,
+035760 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+035762 INFO S2 receive heartbeat, but no sync
+035762 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+035803 INFO S0 beat to others,term=1,accessTime=867542613,
+035805 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+035806 INFO S2 receive heartbeat, but no sync
+035806 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+035897 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+035899 INFO S3 receive heartbeat, but no sync
+035899 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+036114 INFO S1 beat to others,term=3,accessTime=618566880,
+036128 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+036129 INFO S2 receive heartbeat, but no sync
+036129 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+036203 INFO S0 beat to others,term=1,accessTime=867542613,
+036204 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+036205 INFO S3 receive heartbeat, but no sync
+036205 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+036517 INFO S1 beat to others,term=3,accessTime=618566880,
+036583 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+036584 INFO S2 receive heartbeat, but no sync
+036584 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+036604 INFO S0 beat to others,term=1,accessTime=867542613,
+036721 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+036723 INFO S3 receive heartbeat, but no sync
+036723 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+036917 INFO S1 beat to others,term=3,accessTime=618566880,
+036932 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+036933 INFO S3 receive heartbeat, but no sync
+036933 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+037012 INFO S0 beat to others,term=1,accessTime=867542613,
+037087 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+037088 INFO S2 receive heartbeat, but no sync
+037088 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+037316 INFO S1 beat to others,term=3,accessTime=618566880,
+037342 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+037343 INFO S2 receive heartbeat, but no sync
+037343 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+037413 INFO S0 beat to others,term=1,accessTime=867542613,
+037720 INFO S1 beat to others,term=3,accessTime=618566880,
+037805 INFO S0 beat to others,term=1,accessTime=867542613,
+037850 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+037851 INFO S2 receive heartbeat, but no sync
+037852 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+037861 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+037862 INFO S3 receive heartbeat, but no sync
+037862 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+037924 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+037926 INFO S3 receive heartbeat, but no sync
+037926 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+038121 INFO S1 beat to others,term=3,accessTime=618566880,
+038207 INFO S0 beat to others,term=1,accessTime=867542613,
+038242 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+038243 INFO S3 receive heartbeat, but no sync
+038243 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+038369 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+038370 INFO S2 receive heartbeat, but no sync
+038370 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+038513 INFO S1 beat to others,term=3,accessTime=618566880,
+038538 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+038539 INFO S2 receive heartbeat, but no sync
+038540 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+038611 INFO S0 beat to others,term=1,accessTime=867542613,
+038761 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+038763 INFO S2 receive heartbeat, but no sync
+038763 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+038817 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+038818 INFO S3 receive heartbeat, but no sync
+038818 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+038912 INFO S1 beat to others,term=3,accessTime=618566880,
+039007 INFO S0 beat to others,term=1,accessTime=867542613,
+039032 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+039033 INFO S2 receive heartbeat, but no sync
+039033 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+039164 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+039166 INFO S3 receive heartbeat, but no sync
+039166 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+039313 INFO S1 beat to others,term=3,accessTime=618566880,
+039409 INFO S0 beat to others,term=1,accessTime=867542613,
+039432 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+039434 INFO S2 receive heartbeat, but no sync
+039434 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+039454 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+039455 INFO S3 receive heartbeat, but no sync
+039455 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+039716 INFO S1 beat to others,term=3,accessTime=618566880,
+039781 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+039783 INFO S2 receive heartbeat, but no sync
+039783 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+039812 INFO S0 beat to others,term=1,accessTime=867542613,
+039867 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+039868 INFO S3 receive heartbeat, but no sync
+039868 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+039908 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+039910 INFO S2 receive heartbeat, but no sync
+039910 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+040115 INFO S1 beat to others,term=3,accessTime=618566880,
+040160 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+040161 INFO S2 receive heartbeat, but no sync
+040162 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+040182 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+040183 INFO S3 receive heartbeat, but no sync
+040183 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+040202 INFO S0 beat to others,term=1,accessTime=867542613,
+040517 INFO S1 beat to others,term=3,accessTime=618566880,
+040551 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+040553 INFO S2 receive heartbeat, but no sync
+040553 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+040602 INFO S0 beat to others,term=1,accessTime=867542613,
+040722 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+040723 INFO S3 receive heartbeat, but no sync
+040723 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+040923 INFO S1 beat to others,term=3,accessTime=618566880,
+040927 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+040928 INFO S3 receive heartbeat, but no sync
+040928 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+041006 INFO S0 beat to others,term=1,accessTime=867542613,
+041145 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+041146 INFO S2 receive heartbeat, but no sync
+041146 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+041189 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+041190 INFO S2 receive heartbeat, but no sync
+041190 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+041318 INFO S1 beat to others,term=3,accessTime=618566880,
+041412 INFO S0 beat to others,term=1,accessTime=867542613,
+041520 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+041521 INFO S2 receive heartbeat, but no sync
+041522 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+041722 INFO S1 beat to others,term=3,accessTime=618566880,
+041755 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+041756 INFO S3 receive heartbeat, but no sync
+041757 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+041766 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+041767 INFO S3 receive heartbeat, but no sync
+041768 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+041808 INFO S0 beat to others,term=1,accessTime=867542613,
+042022 INFO S2 receive AE from 1,PLIdx=98 PLTerm=1
+042024 INFO S2 receive heartbeat, but no sync
+042024 INFO S2 from S1,term=3,PLTerm=98,PLIdx=98
+042042 TRCE disconnect S2
+042115 INFO S1 beat to others,term=3,accessTime=618566880,
+042200 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+042202 INFO S3 receive heartbeat, but no sync
+042202 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+042202 INFO S0 beat to others,term=1,accessTime=867542613,
+042522 INFO S1 beat to others,term=3,accessTime=618566880,
+042609 INFO S0 beat to others,term=1,accessTime=867542613,
+042740 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+042741 INFO S3 receive heartbeat, but no sync
+042742 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+042923 INFO S1 beat to others,term=3,accessTime=618566880,
+043007 INFO S0 beat to others,term=1,accessTime=867542613,
+043145 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+043147 INFO S3 receive heartbeat, but no sync
+043147 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+043313 INFO S1 beat to others,term=3,accessTime=618566880,
+043410 INFO S0 beat to others,term=1,accessTime=867542613,
+043467 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+043468 INFO S3 receive heartbeat, but no sync
+043468 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+043719 INFO S1 beat to others,term=3,accessTime=618566880,
+043733 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+043734 INFO S3 receive heartbeat, but no sync
+043734 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+043805 INFO S0 beat to others,term=1,accessTime=867542613,
+044116 INFO S1 beat to others,term=3,accessTime=618566880,
+044212 INFO S0 beat to others,term=1,accessTime=867542613,
+044355 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+044357 INFO S3 receive heartbeat, but no sync
+044357 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+044455 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+044456 INFO S3 receive heartbeat, but no sync
+044456 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+044517 INFO S1 beat to others,term=3,accessTime=618566880,
+044552 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+044553 INFO S3 receive heartbeat, but no sync
+044553 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+044603 INFO S0 beat to others,term=1,accessTime=867542613,
+044913 INFO S1 beat to others,term=3,accessTime=618566880,
+044938 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+044939 INFO S3 receive heartbeat, but no sync
+044939 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+045010 INFO S0 beat to others,term=1,accessTime=867542613,
+045315 INFO S1 beat to others,term=3,accessTime=618566880,
+045404 INFO S0 beat to others,term=1,accessTime=867542613,
+045499 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+045500 INFO S3 receive heartbeat, but no sync
+045500 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+045607 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+045608 INFO S3 receive heartbeat, but no sync
+045608 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+045717 INFO S1 beat to others,term=3,accessTime=618566880,
+045810 INFO S0 beat to others,term=1,accessTime=867542613,
+045888 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+045890 INFO S3 receive heartbeat, but no sync
+045890 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+046115 INFO S1 beat to others,term=3,accessTime=618566880,
+046209 INFO S0 beat to others,term=1,accessTime=867542613,
+046428 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+046429 INFO S3 receive heartbeat, but no sync
+046429 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+046512 INFO S1 beat to others,term=3,accessTime=618566880,
+046611 INFO S0 beat to others,term=1,accessTime=867542613,
+046633 VOTE S2 electionTimeout,follower -> candidate
+046633 VOTE S2 termBefore=3,electionTerm=4
+046711 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+046713 INFO S3 receive heartbeat, but no sync
+046713 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+046913 INFO S1 beat to others,term=3,accessTime=618566880,
+047009 INFO S0 beat to others,term=1,accessTime=867542613,
+047184 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+047186 INFO S3 receive heartbeat, but no sync
+047186 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+047312 INFO S1 beat to others,term=3,accessTime=618566880,
+047408 INFO S0 beat to others,term=1,accessTime=867542613,
+047476 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+047478 INFO S3 receive heartbeat, but no sync
+047478 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+047719 INFO S1 beat to others,term=3,accessTime=618566880,
+047806 INFO S0 beat to others,term=1,accessTime=867542613,
+047917 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+047918 INFO S3 receive heartbeat, but no sync
+047918 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+048080 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+048082 INFO S3 receive heartbeat, but no sync
+048082 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+048122 INFO S1 beat to others,term=3,accessTime=618566880,
+048207 INFO S0 beat to others,term=1,accessTime=867542613,
+048315 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+048317 INFO S3 receive heartbeat, but no sync
+048317 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+048517 INFO S1 beat to others,term=3,accessTime=618566880,
+048605 INFO S0 beat to others,term=1,accessTime=867542613,
+048659 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+048661 INFO S3 receive heartbeat, but no sync
+048661 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+048920 INFO S1 beat to others,term=3,accessTime=618566880,
+048935 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+048936 INFO S3 receive heartbeat, but no sync
+048936 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+049009 INFO S0 beat to others,term=1,accessTime=867542613,
+049053 TRCE start and connect S3
+049053 TRCE connect S3
+049053 TRCE crash S2
+049054 TRCE S2 commitupdater killed
+049054 INFO S2 service killed
+049054 WARN S2 exit ticker
+049322 INFO S1 beat to others,term=3,accessTime=618566880,
+049366 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+049367 INFO S3 receive heartbeat, but no sync
+049367 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+049408 INFO S0 beat to others,term=1,accessTime=867542613,
+049719 INFO S1 beat to others,term=3,accessTime=618566880,
+049754 INFO S3 receive AE from 1,PLIdx=98 PLTerm=1
+049755 INFO S3 receive heartbeat, but no sync
+049755 INFO S3 from S1,term=3,PLTerm=98,PLIdx=98
+049804 INFO S0 beat to others,term=1,accessTime=867542613,
+050127 INFO S1 beat to others,term=3,accessTime=618566880,

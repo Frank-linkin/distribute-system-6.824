@@ -19,6 +19,7 @@ package raft
 
 import (
 	//	"bytes"
+	"bytes"
 	"log"
 	"math/rand"
 	"os"
@@ -28,7 +29,10 @@ import (
 	"time"
 
 	//	"6.824/labgob"
+	"6.824/labgob"
 	"6.824/labrpc"
+
+	"github.com/sasha-s/go-deadlock"
 )
 
 const HEARTBEAT_INTERVAL = 40
@@ -83,7 +87,6 @@ type Raft struct {
 	currentTerm int
 	voteFor     int //-1 表示没有投票
 
-	//[Question] commitIndex和lastApplied分别是啥意思？
 	commitIdx   int
 	lastApplied int
 
@@ -95,7 +98,7 @@ type Raft struct {
 	followerCh     chan bool
 	electionTicker *time.Ticker
 	role           int
-	roleLock       sync.RWMutex
+	roleLock       deadlock.RWMutex
 
 	//diskLog
 	diskLog      []logEntry
@@ -104,15 +107,15 @@ type Raft struct {
 	exitCh chan bool
 
 	catchUpWorkers []catchUpWorker
-	commitPollers  pollerGroup
-	commitUpdater  commitUpdater
-	applyCh        chan ApplyMsg
+
+	commitUpdater commitUpdater
+	applyCh       chan ApplyMsg
 }
 
 // return currentTerm and whether this server
 // believes it is the leader.
 func (rf *Raft) GetState() (int, bool) {
-
+	
 	var term int
 	var isleader bool
 	// Your code here (2A).
@@ -140,6 +143,24 @@ func (rf *Raft) persist() {
 	// e.Encode(rf.yyy)
 	// data := w.Bytes()
 	// rf.persister.SaveRaftState(data)
+
+	//这个函数必须在lock里面调用
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+
+	currentTerm := rf.currentTerm
+	voteFor := rf.voteFor
+	diskLog := rf.diskLog
+	diskLogIndex := rf.diskLogIndex
+	commitIndex := rf.commitIdx
+
+	e.Encode(currentTerm)
+	e.Encode(voteFor)
+	e.Encode(diskLog)
+	e.Encode(diskLogIndex)
+	e.Encode(commitIndex)
+	data := w.Bytes()
+	rf.persister.SaveRaftState(data)
 }
 
 // restore previously persisted state.
@@ -160,6 +181,25 @@ func (rf *Raft) readPersist(data []byte) {
 	//   rf.xxx = xxx
 	//   rf.yyy = yyy
 	// }
+
+	r := bytes.NewBuffer(data)
+	d := labgob.NewDecoder(r)
+	var currentTerm, voteFor, diskLogIndex, commitIdx int
+	var diskLog []logEntry
+	if d.Decode(&currentTerm) != nil ||
+		d.Decode(&voteFor) != nil ||
+		d.Decode(&diskLog) != nil ||
+		d.Decode(&diskLogIndex) != nil ||
+		d.Decode(&commitIdx) != nil {
+		MyDebug(dError, "decode err")
+	} else {
+		rf.currentTerm = currentTerm
+		rf.voteFor = voteFor
+		rf.diskLog = diskLog
+		rf.diskLogIndex = diskLogIndex
+		rf.commitIdx = commitIdx
+		MyDebug(dInfo, "S%v restore cTerm=%v,lIdx=%v,cmt=%v", rf.me, currentTerm, diskLogIndex, commitIdx)
+	}
 }
 
 // A service wants to switch to snapshot.  Only do so if Raft hasn't
@@ -203,28 +243,34 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	// Your code here (2A, 2B).
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	if args.Term < rf.currentTerm {
+
+	switch {
+	case args.Term < rf.currentTerm:
 		MyDebug(dVote, "S%d reject vote for %d, stale term", rf.me, args.CandidateID)
 		goto REJECT_VOTE
-	}
-
-	//如果candidate term>currentTerm，那么一定没有投过票；只有term=currentTerm的时候，
-	//才考虑拒绝投票
-	if rf.currentTerm == args.Term && rf.voteFor != -1 && rf.voteFor != args.CandidateID {
-		MyDebug(dVote, "S%d reject vote for %d, voted", rf.me, args.CandidateID)
-		goto REJECT_VOTE
+	case args.Term == rf.currentTerm:
+		if rf.voteFor != -1 && rf.voteFor != args.CandidateID {
+			MyDebug(dVote, "S%d reject vote for %d, voted", rf.me, args.CandidateID)
+			goto REJECT_VOTE
+		}
+	case args.Term > rf.currentTerm:
+		rf.currentTerm = args.Term
+		rf.persist()
 	}
 
 	//update-to-date as receiver这个条件的判断
 	if rf.diskLog[rf.diskLogIndex].Term < args.LastLogTerm ||
 		(rf.diskLog[rf.diskLogIndex].Term == args.LastLogTerm && rf.diskLogIndex <= args.LastLogIdx) {
 		//走到这个term相同，则一定没投过票，或就是投给了这个Leader，要么LeaderTerm>currentTerm
+		MyDebug(dVote, "S%d LastLogTerm=%v,lastLogIdex=%v", rf.me, args.LastLogTerm, args.LastLogIdx)
+		//TODO：这个挪到上面去
 		rf.voteFor = args.CandidateID
-		rf.currentTerm = args.Term
+		rf.persist()
+
 		//如果当前是primary，收到VoteRequest也要stopDown
 
 		MyDebug(dVote, "S%d vote and reset", rf.me)
-		rf.followerCh <- true
+		rf.sendSetToFollowerSignal()
 		MyDebug(dVote, "S%d vote for %d", rf.me, args.CandidateID)
 
 		reply.Term = rf.currentTerm
@@ -263,26 +309,27 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		return
 	}
 
+	//prevLogIdex mismatch
+	MyDebug(dInfo, "S%d receive AE from %v,PLIdx=%v PLTerm=%v", rf.me, args.LeaderID, args.PrevLogIdx, args.PrevLogTerm)
+
 	rf.currentTerm = args.Term
 	rf.voteFor = args.LeaderID
+	rf.persist()
 
 	//只有currentTerm<=args.Term的时候，才会发送reset信号
 	//currentTerm==args.Term，证明是follower
 	//currentTerm<args.Term，不用说肯定是落后了
 	if args.LogEntries == nil {
-		rf.followerCh <- true
+		rf.sendSetToFollowerSignal()
 		if args.PrevLogTerm != args.Term {
 			reply.Term = rf.currentTerm
 			reply.Success = true
 			MyDebug(dInfo, "S%d receive heartbeat, but no sync", rf.me)
+			MyDebug(dInfo, "S%d from S%v,term=%v,PLTerm=%v,PLIdx=%v", rf.me, args.LeaderID, args.Term, args.PrevLogIdx, args.PrevLogIdx)
 			return
 		}
 	}
 
-	//prevLogIdex mismatch
-	MyDebug(dVote, "S%d appendEntrie,PrevLogIdx=%v,PrevlogTerm=%v", rf.me, args.PrevLogIdx)
-	MyDebug(dVote, "S%d appendEntrie,PrevlogTerm=%v", rf.me, args.PrevLogTerm)
-	
 	if args.PrevLogIdx > rf.diskLogIndex || rf.diskLog[args.PrevLogIdx].Term != args.PrevLogTerm {
 		reply.XIndex, reply.Xterm, reply.XLen = rf.getExpectedTermInfoLocked(args.PrevLogIdx)
 		reply.Success = false
@@ -336,7 +383,10 @@ func (rf *Raft) TryToAdjustCommitIndexLocked(leaderCommit int) {
 			rf.commitIdx = logIndex
 
 		}
+		rf.persist()
 		MyDebug(dCommit, "S%d commitIdx:%v->%v", rf.me, commitIndexBefore, rf.commitIdx)
+	} else {
+		MyDebug(dCommit, "S%d commitIdx:%v", rf.me, rf.commitIdx)
 	}
 }
 
@@ -360,6 +410,8 @@ func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry) {
 	}
 
 	rf.diskLogIndex = logIndex - 1
+	rf.diskLog = rf.diskLog[:logIndex]
+	rf.persist()
 	MyDebug(dCommit, "S%d disLogIndex->%v value=%v", rf.me, rf.diskLogIndex, rf.diskLog[logIndex-1].Data)
 }
 
@@ -422,12 +474,10 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	isLeader := true
 
 	// Your code here (2B).
-	rf.roleLock.RLock()
-	rf.mu.Lock()
-	term = rf.currentTerm
-	rf.mu.Unlock()
-	currentRole := rf.role
-	rf.roleLock.RUnlock()
+	MyDebug(dCommit, "S%d getCurrentTerm", rf.me)
+	term = rf.getCurrentTerm()
+	MyDebug(dCommit, "S%d start getRole", rf.me)
+	currentRole := rf.getRole()
 	if currentRole != ROLE_PRIMARY {
 		isLeader = false
 		return index, term, isLeader
@@ -461,7 +511,7 @@ func (rf *Raft) Kill() {
 	rf.commitUpdater.stop()
 	atomic.StoreInt32(&rf.dead, 1)
 	// Your code here, if desired.
-	MyDebug(dTest, "S%d service killed", rf.me)
+	MyDebug(dInfo, "S%d service killed", rf.me)
 }
 
 func (rf *Raft) killed() bool {
@@ -482,7 +532,7 @@ func (rf *Raft) ticker() {
 		// be started and to randomize sleeping time using
 		// time.Sleep().
 		// as a follower
-		if rf.role == ROLE_FOLLOWER {
+		if rf.getRole() == ROLE_FOLLOWER {
 			//server间，electionTimeOut的interval最好大于heartbeat的时间
 			rand.Seed(int64(rf.me) + time.Now().Unix())
 			timeOut := (ELECTION_TIMEOUT_BASE + (rand.Int()%ELECTION_TIMEOUT_RATIO)*ELECTION_TIMEOUT_INTERVAl)
@@ -494,67 +544,71 @@ func (rf *Raft) ticker() {
 		FOLLOWER_LOOP:
 			for {
 				select {
+				case <-rf.exitCh:
+					goto EXIT
+				default:
+				}
+
+				select {
 				case <-rf.followerCh:
 					timeOut := (ELECTION_TIMEOUT_BASE + (rand.Int()%ELECTION_TIMEOUT_RATIO)*ELECTION_TIMEOUT_INTERVAl)
 					electionTicker.Reset(time.Duration(timeOut) * time.Millisecond)
-					MyDebug(dInfo, "S%d reset, follower -> follower", rf.me)
+					//MyDebug(dInfo, "S%d reset, follower -> follower", rf.me)
 				case <-electionTicker.C:
 					MyDebug(dVote, "S%d electionTimeout,follower -> candidate", rf.me)
-					rf.roleLock.Lock()
-					rf.role = ROLE_CANDIDATE
-					rf.roleLock.Unlock()
+					rf.setRole(ROLE_CANDIDATE)
 					break FOLLOWER_LOOP
 				case <-rf.exitCh:
 					goto EXIT
 				}
 
 			}
-		} else if rf.role == ROLE_CANDIDATE {
+		} else if rf.getRole() == ROLE_CANDIDATE {
 			timeOut := (ELECTION_TIMEOUT_BASE + (rand.Int()%ELECTION_TIMEOUT_RATIO)*ELECTION_TIMEOUT_INTERVAl)
 			electionTicker := time.NewTicker(time.Duration(timeOut) * time.Millisecond)
 			resultChan := make(chan int)
 			go startElection(rf, resultChan)
-			// select {
-			// case <-rf.exitCh:
-			// 	goto EXIT
-			// default:
-			// }
 
 			select {
 			case result := <-resultChan:
 				if result < 0 {
 					MyDebug(dVote, "S%d win the election, candidate -> Leader", rf.me)
-					rf.roleLock.Lock()
-					rf.role = ROLE_PRIMARY
-					rf.roleLock.Unlock()
+					rf.setRole(ROLE_PRIMARY)
 					break
 				}
-				rf.roleLock.Lock()
-				rf.role = ROLE_FOLLOWER
-				rf.roleLock.Unlock()
+				rf.setRole(ROLE_FOLLOWER)
 			case <-electionTicker.C:
 				MyDebug(dInfo, "S%d candidate electionTimeout,restart election", rf.me)
 			case <-rf.followerCh:
-				rf.roleLock.Lock()
-				rf.role = ROLE_FOLLOWER
-				rf.roleLock.Unlock()
+				rf.setRole(ROLE_FOLLOWER)
 			case <-rf.exitCh:
 				goto EXIT
 			}
-		} else if rf.role == ROLE_PRIMARY {
+		} else if rf.getRole() == ROLE_PRIMARY {
 			//为了保证heartBeatToOthers的时候，防止因为接受了appendEntry改变了term，然后才运行到heartBeart，这样heartBeat出去的就是新接受的term，导致发出appendEntry的
 			//Leader退位。而Leader上位之后，term应该是不变的，因为立刻提取出来
 			accessionTime := time.Now()
 			rf.mu.Lock()
+			rf.commitUpdater.setCommitCriterial(rf.diskLogIndex)
 			accesstionTerm := rf.currentTerm
 			for i := 0; i < len(rf.nextidx); i++ {
 				if i == rf.me {
+					rf.nextidx[i] = rf.diskLogIndex + 1
+					rf.matchidx[i] = rf.diskLogIndex
 					continue
 				}
-				rf.nextidx[i] = rf.commitIdx + 1
+				rf.nextidx[i] = rf.diskLogIndex + 1
+				rf.matchidx[i] = 0
 			}
 			rf.mu.Unlock()
 			//[Question] 我记得Morres说may not send heartbeat when Leader come to power
+
+			//把已有的followerCh消耗干净
+			select {
+			case <-rf.followerCh:
+			default:
+			}
+
 			rf.heartbeatToFollowers()
 			heartbeatTicker := time.NewTicker(time.Duration(HEARTBEAT_INTERVAL) * time.Millisecond)
 		PRIMARY_LOOP:
@@ -562,11 +616,15 @@ func (rf *Raft) ticker() {
 				select {
 				case <-rf.exitCh:
 					goto EXIT
+				default:
+				}
+
+				select {
+				case <-rf.exitCh:
+					goto EXIT
 				case <-rf.followerCh:
 					MyDebug(dInfo, "S%d Leader -> follower", rf.me)
-					rf.roleLock.Lock()
-					rf.role = ROLE_FOLLOWER
-					rf.roleLock.Unlock()
+					rf.setRole(ROLE_FOLLOWER)
 					break PRIMARY_LOOP
 				case <-heartbeatTicker.C:
 					MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, accesstionTerm, accessionTime.Nanosecond())
@@ -576,7 +634,7 @@ func (rf *Raft) ticker() {
 		}
 	}
 EXIT:
-	MyDebug(dWarn, "S%d exit", rf.me)
+	MyDebug(dWarn, "S%d exit ticker", rf.me)
 }
 
 func startElection(rf *Raft, resultChan chan int) {
@@ -622,7 +680,10 @@ func startElection(rf *Raft, resultChan chan int) {
 					count++
 				} else if response.Term > currentTerm {
 					MyDebug(dVote, "S%d more up-to-date term,candidate->follower", rf.me)
+					rf.mu.Lock()
 					rf.currentTerm = response.Term
+					rf.persist()
+					rf.mu.Unlock()
 					resultChan <- response.Term
 				}
 				finished++
@@ -652,39 +713,67 @@ func (rf *Raft) heartbeatToFollowers() {
 }
 
 func (rf *Raft) SendAppendEntriesToFollower(server int, logEntries []logEntry) {
+	//MyDebug(dCommit, "S%v new AppendEntries to s%v", rf.me, server)
 	args := getAppendEntriesArgs(rf, server, logEntries)
 	for {
-		if rf.killed() {
+		if rf.killed() || rf.getRole() != ROLE_PRIMARY {
+			//MyDebug(dCommit, "S%v retry AE s%v,PLIdx=%v,JUMP out", rf.me, server, args.PrevLogIdx)
 			return
 		}
-		response := &AppendEntriesReply{}
-		if success := rf.sendAppendEntries(server, args, response); success {
-			if !response.Success {
-				if response.Term > args.Term {
-					rf.followerCh <- true
-					return
-				}
 
-				nextIndex := getNextIndexLocked(rf, response)
-				if nextIndex <= rf.nextidx[server] {
-					rf.nextidx[server] = nextIndex
-					MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
-					rf.catchUpWorkers[server].sendCatchUpSignal(nextIndex)
-				}
-			} else if logEntries != nil {
-				last := len(logEntries) - 1
-				nextIndex := logEntries[last].Idx + 1
-				rf.mu.Lock()
-				defer rf.mu.Unlock()
-				if rf.nextidx[server] < nextIndex {
-					rf.nextidx[server] = nextIndex
-					MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)
-
-					rf.commitUpdater.addUpdatedFollower(server)
-				}
+		//MyDebug(dCommit, "S%v try AE s%v,PLIdx=%v,pTerm=%v", rf.me, server, args.PrevLogIdx, args.PrevLogTerm)
+		response := AppendEntriesReply{}
+		if success := rf.sendAppendEntries(server, args, &response); success {
+			term := rf.getCurrentTerm()
+			if term == args.Term {
+				dealWithAppendEntriesResponse(rf, &response, server, args, term)
 			}
 			break
 		}
+	}
+}
+
+func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, server int, args *AppendEntriesArgs, currentTerm int) {
+	if !response.Success {
+		if response.Term > args.Term {
+			MyDebug(dVote, "S%v to follower,s%v term=%v", rf.me, server, response.Term)
+			rf.sendSetToFollowerSignal()
+			return
+		}
+
+		nextIndex := getNextIndexLocked(rf, response)
+		if nextIndex <= rf.nextidx[server] {
+			rf.nextidx[server] = nextIndex
+			if nextIndex < rf.nextidx[server] {
+				MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
+			}
+			rf.catchUpWorkers[server].sendCatchUpSignal(nextIndex)
+		}
+	} else {
+		rf.mu.Lock()
+		defer rf.mu.Unlock()
+		var matchIndex, nextIndex int
+		if args.LogEntries != nil {
+			last := len(args.LogEntries) - 1
+			nextIndex = args.LogEntries[last].Idx + 1
+			matchIndex = args.LogEntries[last].Idx
+		} else {
+			matchIndex = args.PrevLogIdx
+			nextIndex = args.PrevLogIdx + 1
+		}
+
+		if matchIndex > rf.matchidx[server] {
+			MyDebug(dCommit, "S%d s%v.matchidx->%v", rf.me, server, matchIndex)
+			rf.matchidx[server] = matchIndex
+		}
+		if rf.nextidx[server] < nextIndex {
+			rf.nextidx[server] = nextIndex
+			rf.matchidx[server] = nextIndex - 1
+			MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)
+
+			rf.commitUpdater.addUpdatedFollower(server)
+		}
+
 	}
 }
 
@@ -693,6 +782,7 @@ func getNextIndexLocked(rf *Raft, XInfo *AppendEntriesReply) int {
 	xIndex := XInfo.XIndex
 	xLen := XInfo.XLen
 	xTailIndex := xIndex + xLen - 1
+	//MyDebug(dCommit, "S%d AE res:xIdx=%v,xlen=%v,xTerm=%v", rf.me, XInfo.XIndex, XInfo.XLen, XInfo.Xterm)
 	switch {
 	case xTailIndex <= rf.diskLogIndex && rf.diskLog[xTailIndex].Term == xTerm:
 		return xTailIndex + 1
@@ -715,6 +805,7 @@ func getAppendEntriesArgs(rf *Raft, server int, logEntries []logEntry) *AppendEn
 
 	if logEntries == nil {
 		prevLogIdx = rf.diskLogIndex
+		//prevLogIdx = rf.nextidx[server] - 1
 	} else {
 		prevLogIdx = logEntries[0].Idx - 1
 	}
@@ -790,7 +881,7 @@ func (c *commitPoller) isLive() bool {
 
 func (rf *Raft) tryToCommit(data logEntry) chan int {
 	doneCh := make(chan int, 1)
-	rf.commitPollers.Add(NewCommitPoller(data.Idx, doneCh))
+	rf.commitUpdater.addPoller(data.Idx, doneCh)
 
 	var logEntries []logEntry
 	logEntries = append(logEntries, data)
@@ -822,6 +913,8 @@ func (rf *Raft) persistToDisk(command interface{}) logEntry {
 
 	rf.diskLogIndex = index
 	rf.nextidx[rf.me] = index + 1
+	rf.matchidx[rf.me] = index
+	rf.persist()
 	return logEntry
 }
 
@@ -851,20 +944,22 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.me = me
 
 	// Your initialization code here (2A, 2B, 2C).
-	rf.currentTerm = 0
-	rf.voteFor = -1
+	if rf.persister.RaftStateSize() == 0 {
+		rf.currentTerm = 0
+		rf.voteFor = -1
+		rf.diskLog = append(rf.diskLog, logEntry{})
+		rf.diskLogIndex = 0
+		rf.commitIdx = 0
+		rf.lastApplied = 0
+	}
 
-	rf.commitIdx = 0
-	rf.lastApplied = 0
 	rf.nextidx = make([]int, len(peers))
 	rf.matchidx = make([]int, len(peers))
 	rf.followerCh = make(chan bool)
 	rf.electionTicker = time.NewTicker(time.Duration(10) * time.Hour)
 	rf.role = ROLE_FOLLOWER
-	rf.roleLock = sync.RWMutex{}
-	rf.diskLog = append(rf.diskLog, logEntry{})
+	rf.roleLock = deadlock.RWMutex{}
 	rf.exitCh = make(chan bool)
-	rf.commitPollers = pollerGroup{}
 	for i := 0; i < len(rf.peers); i++ {
 		worker := NewCatchUpWorker(rf, i)
 		worker.start()
@@ -874,6 +969,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.commitUpdater = *newCommitUpdater(rf, quorom)
 	rf.commitUpdater.start()
 	rf.applyCh = applyCh
+
 	//配置log
 	file := "log"
 	logFile, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0766)
@@ -884,6 +980,8 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
 	// start ticker goroutine to start elections
+	deadlock.Opts.DeadlockTimeout = 3*time.Second
+	
 	go rf.ticker()
 
 	return rf
@@ -898,60 +996,80 @@ type catchUpWorker struct {
 
 func NewCatchUpWorker(rf *Raft, server int) *catchUpWorker {
 	return &catchUpWorker{
-		ch:         make(chan int, 10),
+		ch:         make(chan int, 100),
 		rf:         rf,
 		followerID: server,
 	}
 }
 func (w *catchUpWorker) start() {
 	go func() {
+		server := w.followerID
 		for {
 			if w.rf.killed() {
 				MyDebug(dTest, "S%d catup worker stop", w.rf.me)
 				return
 			}
-			nextIndexs := make([]int, 0, 10)
 
-			nextIndex := <-w.ch
-
-			nextIndexs = append(nextIndexs, nextIndex)
-			lenCh := len(w.ch)
-			for i := 0; i < lenCh; i++ {
-				nextIndexs = append(nextIndexs, <-w.ch)
+			minIndex := getMinIndex(w.ch, w.rf.getMatchIndex(server))
+			nextIndex := w.rf.getNextIndex(server)
+			if minIndex < nextIndex {
+				nextIndex = minIndex
 			}
-			sort.Ints(nextIndexs)
-			nextIndex = nextIndexs[0]
-			MyDebug(dTrace, "S%d s%v nextIndex=%v", w.rf.me, w.followerID, nextIndex)
-
-			data := generateNextCatchUpLogEntries(w.rf, nextIndex)
-			MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v]", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
-			w.rf.SendAppendEntriesToFollower(w.followerID, data)
+			if nextIndex <= w.rf.getDiskLogIndex() {
+				data := generateNextCatchUpLogEntries(w.rf, nextIndex)
+				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v]", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
+				w.rf.SendAppendEntriesToFollower(w.followerID, data)
+				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v] finish", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
+			}
 		}
 	}()
 }
 
+func getMinIndex(ch chan int, matchIndex int) int {
+	nextIndexs := make([]int, 0, 100)
+	nextIndexs = append(nextIndexs, <-ch)
+	lenCh := len(ch)
+	for i := 0; i < lenCh; i++ {
+		nextIndexs = append(nextIndexs, <-ch)
+	}
+	sort.Ints(nextIndexs)
+	for _, idx := range nextIndexs {
+		if idx > matchIndex {
+			return idx
+		}
+	}
+	return matchIndex + 1
+}
+
 func (w *catchUpWorker) sendCatchUpSignal(nextIndex int) {
-	select {
-	case w.ch <- nextIndex:
-	default:
-		MyDebug(dVote, "S%d fail to sent catch-up-signal to s%v", w.rf.me, w.followerID)
+	if w.rf.getRole() == ROLE_PRIMARY {
+		select {
+		case w.ch <- nextIndex:
+		default:
+			MyDebug(dVote, "S%d fail to sent catch-up-signal to s%v", w.rf.me, w.followerID)
+		}
+	} else {
+		// MyDebug(dVote, "S%d fail sent catch-up-signal, no longer Leader", w.rf.me)
 	}
 }
-func generateNextCatchUpLogEntries(rf *Raft, nextIndex int) []logEntry {
+func generateNextCatchUpLogEntries(rf *Raft, startIndex int) []logEntry {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	lastIndex := nextIndex
-	for ; lastIndex < len(rf.diskLog) && rf.diskLog[lastIndex].Term == rf.diskLog[nextIndex].Term; lastIndex++ {
+	lastIndex := startIndex
+	for ; lastIndex < len(rf.diskLog) && rf.diskLog[lastIndex].Term == rf.diskLog[startIndex].Term; lastIndex++ {
 	}
-	return rf.diskLog[nextIndex:lastIndex]
+	return rf.diskLog[startIndex:lastIndex]
 }
 
 type commitUpdater struct {
-	sync.RWMutex
+	deadlock.RWMutex
 	updatedFollower map[int]bool
 	state           int32
 	quorom          int
+	exitCh          chan bool
 	rf              *Raft
+	criteria        int
+	pollers         pollerGroup
 }
 
 const COMMIT_CHECK_INTERVAL = 30
@@ -962,7 +1080,9 @@ func newCommitUpdater(rf *Raft, quorum int) *commitUpdater {
 		quorom:          quorum,
 		rf:              rf,
 		updatedFollower: make(map[int]bool),
+		exitCh:          make(chan bool),
 		state:           0,
+		pollers:         pollerGroup{},
 	}
 }
 
@@ -973,6 +1093,7 @@ func (c *commitUpdater) start() {
 		ticker := time.NewTicker(time.Duration(COMMIT_CHECK_INTERVAL) * time.Millisecond)
 		for {
 			if c.state > 1 {
+				c.exitCh <- true
 				MyDebug(dTrace, "S%d commitupdater killed", c.rf.me)
 				return
 			}
@@ -984,22 +1105,24 @@ func (c *commitUpdater) start() {
 
 func (c *commitUpdater) stop() {
 	atomic.AddInt32(&c.state, 1)
+	//<-c.exitCh
+	MyDebug(dTrace, "S%d commitupdater killed", c.rf.me)
 }
 
 func (c *commitUpdater) checkCommitUpdate() {
 	c.Lock()
 	defer c.Unlock()
 	if len(c.updatedFollower)+1 >= c.quorom {
-		commitIndex := c.rf.updateCommitIndex(c.quorom)
+		commitIndex := c.rf.updateCommitIndex(c.quorom, c.criteria)
 		if commitIndex > 0 {
 			c.updatedFollower = make(map[int]bool)
-			c.rf.commitPollers.Iter(func(w *commitPoller) {
+			c.pollers.Iter(func(w *commitPoller) {
 				if w.isLive() && w.criteria >= commitIndex {
 					w.doneCh <- commitIndex
 					w.liveness = false
 				}
 			})
-			c.rf.commitPollers.gc()
+			c.pollers.gc()
 		}
 	}
 }
@@ -1010,19 +1133,42 @@ func (c *commitUpdater) addUpdatedFollower(follower int) {
 	c.updatedFollower[follower] = true
 }
 
-func (rf *Raft) updateCommitIndex(quorom int) int {
+func (c *commitUpdater) setCommitCriterial(commitCriterial int) {
+	c.Lock()
+	defer c.Unlock()
+	MyDebug(dCommit, "S%d commitCriterial=%v", c.rf.me, commitCriterial)
+	c.criteria = commitCriterial
+}
+
+func (c *commitUpdater) getCommitCriteria() int {
+	c.Lock()
+	defer c.Unlock()
+	return c.criteria
+}
+
+func (c *commitUpdater) getQuorom() int {
+	c.Lock()
+	defer c.Unlock()
+	return c.criteria
+}
+
+func (c *commitUpdater) addPoller(logIndex int, doneCh chan int) {
+	c.pollers.Add(NewCommitPoller(logIndex, doneCh))
+}
+
+func (rf *Raft) updateCommitIndex(quorom int, commitCriterial int) int {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	var nextIndexes []int
-	nextIndexes = append(nextIndexes, rf.nextidx...)
+	var matchidxs []int
+	matchidxs = append(matchidxs, rf.matchidx...)
 
-	sort.Slice(nextIndexes, func(i, j int) bool {
-		return nextIndexes[j] < nextIndexes[i]
+	sort.Slice(matchidxs, func(i, j int) bool {
+		return matchidxs[j] < matchidxs[i]
 	})
 
-	commitIndex := nextIndexes[quorom-1] - 1
-	if commitIndex > rf.commitIdx {
-		for logIndex := rf.commitIdx; logIndex <= commitIndex; logIndex++ {
+	commitIndex := matchidxs[quorom-1]
+	if commitIndex > rf.commitIdx && commitIndex > commitCriterial {
+		for logIndex := rf.commitIdx + 1; logIndex <= commitIndex; logIndex++ {
 			rf.applyCh <- ApplyMsg{
 				CommandValid: true,
 				CommandIndex: logIndex,
@@ -1031,6 +1177,7 @@ func (rf *Raft) updateCommitIndex(quorom int) int {
 		}
 		MyDebug(dCommit, "S%d commitIndex:%v->%v", rf.me, rf.commitIdx, commitIndex)
 		rf.commitIdx = commitIndex
+		rf.persist()
 		return commitIndex
 	} else if commitIndex == rf.commitIdx {
 		return -1
@@ -1038,4 +1185,59 @@ func (rf *Raft) updateCommitIndex(quorom int) int {
 		//打印错误日志
 		return -1
 	}
+}
+
+func (rf *Raft) getRole() int {
+	rf.roleLock.RLock()
+	defer rf.roleLock.RUnlock()
+
+	return rf.role
+}
+
+func (rf *Raft) setRole(role int) {
+	rf.roleLock.Lock()
+	defer rf.roleLock.Unlock()
+
+	rf.role = role
+}
+
+func (rf *Raft) getCurrentTerm() int {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	return rf.currentTerm
+}
+
+func (rf *Raft) getNextIndex(server int) int {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	return rf.nextidx[server]
+}
+
+func (rf *Raft) getMatchIndex(server int) int {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	return rf.matchidx[server]
+}
+
+func (rf *Raft) getDiskLogIndex() int {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	return rf.diskLogIndex
+}
+
+func (rf *Raft) sendSetToFollowerSignal() {
+	select {
+	case rf.followerCh <- true:
+	default:
+	}
+}
+
+func (rf *Raft) showRaftInfo() {
+	rf.showDiskLog()
+}
+func (rf *Raft) showDiskLog() {
+	// rf.mu.Lock()
+	// defer rf.mu.Unlock()
+
+	MyDebug(dTrace, "S%v diskLog:%v", rf.me, rf.diskLog)
 }

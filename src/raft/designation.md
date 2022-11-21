@@ -109,15 +109,31 @@ rf里面用edit记录修改nextIndex的Follower的数量，超过半数的时候
 2.如果一定时间内没有返回，就监听commmitChan,
 感觉快速返回可以取消，
 
-TODO:
-1.
-对sentAppendEntrie的操作应该是统一的，看看能不能统一起来
-2.梳理一下逻辑，准备测试
-现在有一个commitUpdate每10ms周期检查一次commit的update
+20221119
+[knowledge]尽量写易读的代码，这样调试起来会非常容易。
 
-当RequestVote的时候，LastLogIndex是commitIndex，还是写到磁盘上的最高的logEntry的Index?
-应该是写到磁盘上最后的logEntry的Index
+##2C:persistence
+1.是否要persis存在disk里面的状态呢。答：应该是要的
+2.思考一下持久化的变量是什么，写完之后直接测试。
+分为两个文件：
+1.data.meta:存储currentTerm和voteFor信息
+2.data.logEntry:存储disLogEntry
+
+from Persist22C, we can indicate commitIndex should also be persist. 这一点在论文里根本没有提到。
+
+TODO:一次一个Term再优化一下，一个Term或min(leader的上一个Term的最后一数据，len(data)==100,aTerm.lenth())
 
 
-TODO:确定一个diskLogIndex的初值正确，应该为0
-TODO: 实验说明上提到的applyCh在哪
+2C问题
+50%的概率通过，50%的概率通不过
+目前有2个问题
+1.执行时间非常长
+2.one fail to reach agreement
+One这种是正常情况，时间到了，但是还有一个s3没有完全replicate
+3.直接退出
+
+
+TODO:觉得这种设计思路得记下来，比如commit为什么不能用投票，已经记不清楚了。
+
+2.查看一下截止上一个commit之前的改动，想一下CatchUpWorker的逻辑，再修改一下。
+TODO nextIndex[server]应该有catupWorker负责管理,matchIdx[]应该由commitUpdater负责管理

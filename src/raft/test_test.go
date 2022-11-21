@@ -751,6 +751,33 @@ func TestPersist12C(t *testing.T) {
 	cfg.end()
 }
 
+/*
+*
+~重启 √重新加入集群 x断开集群连接
+
+	                            T1   T2
+	0  1         2                   3
+
+s1 0  1(11)     1(12) x        ~ √  4(13)
+s2 0  1(11)     1(12) x
+s3 0  1(11)     1(12) x
+s4 0  1(11)  x           ~ √
+s5 0  1(11)  x           ~ √
+
+T1应该选出s1作为Leader，因为它更up-to-date
+T2中term可能>=4。commit之后cluster中的diskLog应该统一
+
+	0  1         2        3
+
+s1 0  1(11)     1(12)    4(13)
+s2 0  1(11)     1(12)          √ 4(13)
+s3 0  1(11)     1(12)          √ 4(13)
+s4 0  1(11)     1(12)    4(13)
+s5 0  1(11)     1(12)    4(13)
+将上述过程重复5次
+
+**从这个实验可以看出commitIndex也应该被持久化，而论文里面没有提
+*/
 func TestPersist22C(t *testing.T) {
 	servers := 5
 	cfg := make_config(t, servers, false, false)
@@ -797,6 +824,22 @@ func TestPersist22C(t *testing.T) {
 	cfg.end()
 }
 
+/*
+*
+crash -
+start and connect +
+
+	                            T1
+	0  1         2
+
+s1 0  1(101)    1(102)  -      +    leader
+s2 0  1(101)    1(102)  -
+s3 0  1(101)  x            √
+经过T1后，将变为下面
+s1 0  1(101) 1(102)  - +  2(103)        leader
+s2 0  1(101) 1(102)  -            +
+s3 0  1(101) 1(102)       2(103)
+*/
 func TestPersist32C(t *testing.T) {
 	servers := 3
 	cfg := make_config(t, servers, false, false)
@@ -816,7 +859,7 @@ func TestPersist32C(t *testing.T) {
 	cfg.connect((leader + 2) % servers)
 	cfg.start1((leader+0)%servers, cfg.applier)
 	cfg.connect((leader + 0) % servers)
-
+	//T1
 	cfg.one(103, 2, true)
 
 	cfg.start1((leader+1)%servers, cfg.applier)
@@ -835,6 +878,23 @@ func TestPersist32C(t *testing.T) {
 // alive servers isn't enough to form a majority, perhaps start a new server.
 // The leader in a new term may try to finish replicating log entries that
 // haven't been committed yet.
+/**
+- 表示Killed
+cmt->表示某个server认为commit的位置
+        1     2                  3                    4                     5
+s0 0 L 1(101) 1(102)  cmt->2 -
+s1 0   1(101) 1(102)             2(103)               3(104)             L 4(105)
+s2 0   1(101) 1(102)             2(103)               3(104)               4(105)
+s3 0   1(101) 1(102)          L  2(103) cmt->3 -
+s4 0   1(101) 1(102)             2(103)             L 3(104) cmt->4 -
+
+        3               4                  5             6                 7          8
+s0 0 L 3(103) cmt->3  L 4(104) cmt->4 -
+s1 0   3(103)           4(104)                                              +
+s2 0   3(103) cmt->3    4(104)           L 5(105) cmt->5 6(106)            7(107) L 10(108)
+s3 0   3(103) cmt->3    4(104)             5(105)        6(106)         L  7(107) -
+s4 0   3(103) cmt->3                  +    5(105)        6(106) cmt->6
+*/
 func TestFigure82C(t *testing.T) {
 	servers := 5
 	cfg := make_config(t, servers, false, false)
@@ -847,9 +907,10 @@ func TestFigure82C(t *testing.T) {
 	nup := servers
 	for iters := 0; iters < 1000; iters++ {
 		leader := -1
+		//find leader
 		for i := 0; i < servers; i++ {
 			if cfg.rafts[i] != nil {
-				_, _, ok := cfg.rafts[i].Start(rand.Int())
+				_, _, ok := cfg.rafts[i].Start(iters + 1 /*rand.Int()*/)
 				if ok {
 					leader = i
 				}
@@ -863,7 +924,7 @@ func TestFigure82C(t *testing.T) {
 			ms := (rand.Int63() % 13)
 			time.Sleep(time.Duration(ms) * time.Millisecond)
 		}
-
+		//将leader crash 掉
 		if leader != -1 {
 			cfg.crash1(leader)
 			nup -= 1
@@ -927,13 +988,22 @@ func TestFigure8Unreliable2C(t *testing.T) {
 
 	cfg.begin("Test (2C): Figure 8 (unreliable)")
 
+	//先commit任意一个数
 	cfg.one(rand.Int()%10000, 1, true)
 
 	nup := servers
 	for iters := 0; iters < 1000; iters++ {
+		if iters%100 == 0 {
+			MyDebug(dTrace, "iters=%v", iters)
+		}
+
 		if iters == 200 {
+			//2/3的概率睡2s再回复
+			MyDebug(dTrace, "iters=%v,set long reordering", iters)
 			cfg.setlongreordering(true)
 		}
+
+		//找到Leader并让LeaderCommit一个数字
 		leader := -1
 		for i := 0; i < servers; i++ {
 			_, _, ok := cfg.rafts[i].Start(rand.Int() % 10000)
@@ -941,7 +1011,7 @@ func TestFigure8Unreliable2C(t *testing.T) {
 				leader = i
 			}
 		}
-
+		//1/9的可能睡 0~500ms，9/8睡0~13ms
 		if (rand.Int() % 1000) < 100 {
 			ms := rand.Int63() % (int64(RaftElectionTimeout/time.Millisecond) / 2)
 			time.Sleep(time.Duration(ms) * time.Millisecond)
@@ -949,8 +1019,9 @@ func TestFigure8Unreliable2C(t *testing.T) {
 			ms := (rand.Int63() % 13)
 			time.Sleep(time.Duration(ms) * time.Millisecond)
 		}
-
+		//1/2的可能断开这个Leader的连接
 		if leader != -1 && (rand.Int()%1000) < int(RaftElectionTimeout/time.Millisecond)/2 {
+			MyDebug(dTrace, "disconnect S%v", leader)
 			cfg.disconnect(leader)
 			nup -= 1
 		}
@@ -958,6 +1029,7 @@ func TestFigure8Unreliable2C(t *testing.T) {
 		if nup < 3 {
 			s := rand.Int() % servers
 			if cfg.connected[s] == false {
+				MyDebug(dTrace, "reconnect S%v", s)
 				cfg.connect(s)
 				nup += 1
 			}
@@ -966,10 +1038,12 @@ func TestFigure8Unreliable2C(t *testing.T) {
 
 	for i := 0; i < servers; i++ {
 		if cfg.connected[i] == false {
+			MyDebug(dTrace, "recover all connect: S%v", i)
 			cfg.connect(i)
 		}
 	}
 
+	MyDebug(dTrace, "at last,try one")
 	cfg.one(rand.Int()%10000, servers, true)
 
 	cfg.end()
@@ -999,6 +1073,7 @@ func internalChurn(t *testing.T, unreliable bool) {
 			x := rand.Int()
 			index := -1
 			ok := false
+			MyDebug(dTrace, "m%v start a new value [me]", me)
 			for i := 0; i < servers; i++ {
 				// try them all, maybe one of them is a leader
 				cfg.mu.Lock()
@@ -1013,12 +1088,15 @@ func internalChurn(t *testing.T, unreliable bool) {
 				}
 			}
 			if ok {
+				MyDebug(dTrace, "m%v I am OK[me]", me)
 				// maybe leader will commit our value, maybe not.
 				// but don't wait forever.
 				for _, to := range []int{10, 20, 50, 100, 200} {
 					nd, cmd := cfg.nCommitted(index)
 					if nd > 0 {
+						//如果有多于1个认为已经commit
 						if xx, ok := cmd.(int); ok {
+							//如果commit的值就是我们的x，给values拼接上
 							if xx == x {
 								values = append(values, x)
 							}
@@ -1030,10 +1108,13 @@ func internalChurn(t *testing.T, unreliable bool) {
 					time.Sleep(time.Duration(to) * time.Millisecond)
 				}
 			} else {
+				MyDebug(dTrace, "m%v I am not OK [me]", me)
 				time.Sleep(time.Duration(79+me*17) * time.Millisecond)
 			}
 		}
+		//values为要返回的值
 		ret = values
+		MyDebug(dTrace, "m%v 执行结束[me]", me)
 	}
 
 	ncli := 3
@@ -1046,19 +1127,25 @@ func internalChurn(t *testing.T, unreliable bool) {
 	for iters := 0; iters < 20; iters++ {
 		if (rand.Int() % 1000) < 200 {
 			i := rand.Int() % servers
+			MyDebug(dTrace, "disconnect S%v", i)
 			cfg.disconnect(i)
 		}
 
 		if (rand.Int() % 1000) < 500 {
 			i := rand.Int() % servers
+			MyDebug(dTrace, "start and connect S%v", i)
 			if cfg.rafts[i] == nil {
+				MyDebug(dTrace, "start S%v", i)
+
 				cfg.start1(i, cfg.applier)
 			}
+			MyDebug(dTrace, "connect S%v", i)
 			cfg.connect(i)
 		}
 
 		if (rand.Int() % 1000) < 200 {
 			i := rand.Int() % servers
+			MyDebug(dTrace, "crash S%v", i)
 			if cfg.rafts[i] != nil {
 				cfg.crash1(i)
 			}
@@ -1072,6 +1159,7 @@ func internalChurn(t *testing.T, unreliable bool) {
 	}
 
 	time.Sleep(RaftElectionTimeout)
+	MyDebug(dTrace, "setunreliable(false), start and connect all server")
 	cfg.setunreliable(false)
 	for i := 0; i < servers; i++ {
 		if cfg.rafts[i] == nil {
@@ -1079,9 +1167,10 @@ func internalChurn(t *testing.T, unreliable bool) {
 		}
 		cfg.connect(i)
 	}
-
+	MyDebug(dTrace, "停止commit")
 	atomic.StoreInt32(&stop, 1)
 
+	//获取上面方法传回的所有数据
 	values := []int{}
 	for i := 0; i < ncli; i++ {
 		vv := <-cha[i]
@@ -1093,8 +1182,10 @@ func internalChurn(t *testing.T, unreliable bool) {
 
 	time.Sleep(RaftElectionTimeout)
 
+	MyDebug(dTrace, "try to one a value")
 	lastIndex := cfg.one(rand.Int(), servers, true)
 
+	//等到commit到lastIndex，将从1开始commit的值拼接到really里面
 	really := make([]int, lastIndex+1)
 	for index := 1; index <= lastIndex; index++ {
 		v := cfg.wait(index, servers, -1)
@@ -1105,6 +1196,8 @@ func internalChurn(t *testing.T, unreliable bool) {
 		}
 	}
 
+	//所有在values中的值都应该在最后的commit中可以找到
+	MyDebug(dTrace, "try to find match")
 	for _, v1 := range values {
 		ok := false
 		for _, v2 := range really {

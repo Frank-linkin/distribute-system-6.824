@@ -1,0 +1,3517 @@
+000006 INFO S0 start being a follower
+000007 INFO S1 start being a follower
+000008 INFO S2 start being a follower
+000010 INFO S3 start being a follower
+000011 INFO S4 start being a follower
+004018 VOTE S4 electionTimeout,follower -> candidate
+004019 VOTE S4 termBefore=0,electionTerm=1
+004075 VOTE S3 LastLogTerm=0,lastLogIdex=0
+004076 VOTE S3 vote and reset
+004076 VOTE S3 vote for 4
+004086 VOTE S1 LastLogTerm=0,lastLogIdex=0
+004086 VOTE S1 vote and reset
+004086 VOTE S1 vote for 4
+004088 VOTE S4 win the election, candidate -> Leader
+004154 INFO S0 receive AE from 4,PLIdx=0 PLTerm=0
+004154 INFO S0 receive heartbeat, but no sync
+004154 INFO S0 from S4,term=1,PLTerm=0,PLIdx=0
+004165 VOTE S2 LastLogTerm=0,lastLogIdex=0
+004165 VOTE S2 vote and reset
+004165 VOTE S2 vote for 4
+004186 VOTE S0 LastLogTerm=0,lastLogIdex=0
+004186 VOTE S0 vote and reset
+004187 VOTE S0 vote for 4
+004208 INFO S1 receive AE from 4,PLIdx=0 PLTerm=0
+004209 INFO S1 receive heartbeat, but no sync
+004209 INFO S1 from S4,term=1,PLTerm=0,PLIdx=0
+004242 INFO S2 receive AE from 4,PLIdx=0 PLTerm=0
+004243 INFO S2 receive heartbeat, but no sync
+004243 INFO S2 from S4,term=1,PLTerm=0,PLIdx=0
+004315 INFO S3 receive AE from 4,PLIdx=0 PLTerm=0
+004315 INFO S3 receive heartbeat, but no sync
+004315 INFO S3 from S4,term=1,PLTerm=0,PLIdx=0
+004496 INFO S4 beat to others,term=1,accessTime=950080760,
+004563 CMIT S4 start 2557 logIndex=1
+004563 INFO S2 receive AE from 4,PLIdx=0 PLTerm=0
+004563 INFO S2 receive heartbeat, but no sync
+004563 INFO S2 from S4,term=1,PLTerm=0,PLIdx=0
+004575 INFO S3 receive AE from 4,PLIdx=0 PLTerm=0
+004575 INFO S3 receive heartbeat, but no sync
+004575 INFO S3 from S4,term=1,PLTerm=0,PLIdx=0
+004647 INFO S3 receive AE from 4,PLIdx=0 PLTerm=0
+004648 CMIT S3 disLogIndex->1 value=2557
+004648 CMIT S3 commitIdx:0
+004658 INFO S0 receive AE from 4,PLIdx=0 PLTerm=0
+004659 CMIT S0 disLogIndex->1 value=2557
+004659 CMIT S0 commitIdx:0
+004660 CMIT S4 s0.nextIndex->2
+004680 INFO S1 receive AE from 4,PLIdx=0 PLTerm=0
+004681 INFO S1 receive heartbeat, but no sync
+004681 INFO S1 from S4,term=1,PLTerm=0,PLIdx=0
+004701 INFO S2 receive AE from 4,PLIdx=0 PLTerm=0
+004702 CMIT S2 disLogIndex->1 value=2557
+004702 CMIT S2 commitIdx:0
+004703 CMIT S4 s2.nextIndex->2
+004753 INFO S3 receive AE from 4,PLIdx=0 PLTerm=0
+004754 CMIT S3 commitIdx:0
+004755 CMIT S4 s3.nextIndex->2
+004764 INFO S0 receive AE from 4,PLIdx=0 PLTerm=0
+004764 INFO S0 receive heartbeat, but no sync
+004764 INFO S0 from S4,term=1,PLTerm=0,PLIdx=0
+004786 INFO S1 receive AE from 4,PLIdx=0 PLTerm=0
+004786 CMIT S1 disLogIndex->1 value=2557
+004786 CMIT S1 commitIdx:0
+004787 CMIT S4 s1.nextIndex->2
+004817 CMIT S4 commitIndex:0->1
+004899 INFO S4 beat to others,term=1,accessTime=950080760,
+004923 INFO S2 receive AE from 4,PLIdx=1 PLTerm=1
+004923 CMIT S2 commitIdx:0->1
+004973 TRCE iters=0
+004973 CMIT S4 start 3545 logIndex=2
+005058 INFO S1 receive AE from 4,PLIdx=1 PLTerm=1
+005064 CMIT S1 disLogIndex->2 value=3545
+005064 CMIT S1 commitIdx:0->1
+005064 TRCE disconnect S4
+005066 CMIT S4 start 2947 logIndex=3
+005066 CMIT S4 s1.nextIndex->3
+005090 INFO S3 receive AE from 4,PLIdx=1 PLTerm=1
+005091 CMIT S3 commitIdx:0->1
+005124 INFO S0 receive AE from 4,PLIdx=0 PLTerm=0
+005124 INFO S0 receive heartbeat, but no sync
+005124 INFO S0 from S4,term=1,PLTerm=0,PLIdx=0
+005134 INFO S1 receive AE from 4,PLIdx=1 PLTerm=1
+005135 CMIT S1 commitIdx:1
+005136 INFO S3 receive AE from 4,PLIdx=1 PLTerm=1
+005137 CMIT S3 disLogIndex->2 value=3545
+005137 CMIT S3 commitIdx:1
+005155 CMIT S4 start 7216 logIndex=4
+005167 INFO S0 receive AE from 4,PLIdx=1 PLTerm=1
+005168 CMIT S0 disLogIndex->2 value=3545
+005168 CMIT S0 commitIdx:0->1
+005188 CMIT S4 start 2804 logIndex=5
+005199 INFO S2 receive AE from 4,PLIdx=1 PLTerm=1
+005200 CMIT S2 disLogIndex->2 value=3545
+005200 CMIT S2 commitIdx:1
+005294 INFO S4 beat to others,term=1,accessTime=950080760,
+005696 INFO S4 beat to others,term=1,accessTime=950080760,
+006092 INFO S4 beat to others,term=1,accessTime=950080760,
+006493 INFO S4 beat to others,term=1,accessTime=950080760,
+006890 INFO S4 beat to others,term=1,accessTime=950080760,
+007295 INFO S4 beat to others,term=1,accessTime=950080760,
+007358 CMIT S4 start 4703 logIndex=6
+007442 CMIT S4 start 9345 logIndex=7
+007696 INFO S4 beat to others,term=1,accessTime=950080760,
+008093 INFO S4 beat to others,term=1,accessTime=950080760,
+008491 INFO S4 beat to others,term=1,accessTime=950080760,
+008892 INFO S4 beat to others,term=1,accessTime=950080760,
+009293 INFO S4 beat to others,term=1,accessTime=950080760,
+009699 INFO S4 beat to others,term=1,accessTime=950080760,
+009699 VOTE S3 electionTimeout,follower -> candidate
+009700 VOTE S3 termBefore=1,electionTerm=2
+009776 VOTE S2 LastLogTerm=1,lastLogIdex=2
+009777 VOTE S2 vote and reset
+009777 VOTE S2 vote for 3
+009828 VOTE S0 LastLogTerm=1,lastLogIdex=2
+009828 VOTE S0 vote and reset
+009828 VOTE S0 vote for 3
+009829 VOTE S3 win the election, candidate -> Leader
+009831 INFO S0 receive AE from 3,PLIdx=2 PLTerm=1
+009831 INFO S0 receive heartbeat, but no sync
+009831 INFO S0 from S3,term=2,PLTerm=2,PLIdx=2
+009832 CMIT S3 s0.matchidx->2
+009944 INFO S2 receive AE from 3,PLIdx=2 PLTerm=1
+009944 INFO S2 receive heartbeat, but no sync
+009945 INFO S2 from S3,term=2,PLTerm=2,PLIdx=2
+009944 VOTE S1 LastLogTerm=1,lastLogIdex=2
+009945 CMIT S3 s2.matchidx->2
+009946 VOTE S1 vote and reset
+009946 VOTE S1 vote for 3
+009965 INFO S1 receive AE from 3,PLIdx=2 PLTerm=1
+009966 INFO S1 receive heartbeat, but no sync
+009966 INFO S1 from S3,term=2,PLTerm=2,PLIdx=2
+010030 INFO S1 receive AE from 3,PLIdx=2 PLTerm=1
+010031 INFO S1 receive heartbeat, but no sync
+010031 INFO S1 from S3,term=2,PLTerm=2,PLIdx=2
+010032 CMIT S3 s1.matchidx->2
+010091 INFO S4 beat to others,term=1,accessTime=950080760,
+010234 INFO S3 beat to others,term=2,accessTime=524199736,
+010312 INFO S0 receive AE from 3,PLIdx=2 PLTerm=1
+010313 INFO S0 receive heartbeat, but no sync
+010313 INFO S0 from S3,term=2,PLTerm=2,PLIdx=2
+010424 INFO S1 receive AE from 3,PLIdx=2 PLTerm=1
+010425 INFO S1 receive heartbeat, but no sync
+010425 INFO S1 from S3,term=2,PLTerm=2,PLIdx=2
+010495 INFO S4 beat to others,term=1,accessTime=950080760,
+010496 INFO S2 receive AE from 3,PLIdx=2 PLTerm=1
+010497 INFO S2 receive heartbeat, but no sync
+010497 INFO S2 from S3,term=2,PLTerm=2,PLIdx=2
+010591 CMIT S3 start 2577 logIndex=3
+010592 CMIT S4 start 7470 logIndex=8
+010593 CMIT S3 start 862 logIndex=4
+010593 CMIT S4 start 6947 logIndex=9
+010593 TRCE disconnect S3
+010594 CMIT S3 start 793 logIndex=5
+010594 CMIT S4 start 6871 logIndex=10
+010630 INFO S1 receive AE from 3,PLIdx=2 PLTerm=1
+010630 INFO S1 receive heartbeat, but no sync
+010630 INFO S1 from S3,term=2,PLTerm=2,PLIdx=2
+010631 INFO S3 beat to others,term=2,accessTime=524199736,
+010661 CMIT S3 start 8368 logIndex=6
+010662 CMIT S4 start 8917 logIndex=11
+010744 CMIT S3 start 6041 logIndex=7
+010745 CMIT S4 start 9591 logIndex=12
+010832 CMIT S3 start 1121 logIndex=8
+010833 CMIT S4 start 4940 logIndex=13
+010893 INFO S4 beat to others,term=1,accessTime=950080760,
+011038 INFO S3 beat to others,term=2,accessTime=524199736,
+011295 INFO S4 beat to others,term=1,accessTime=950080760,
+011431 INFO S3 beat to others,term=2,accessTime=524199736,
+011697 INFO S4 beat to others,term=1,accessTime=950080760,
+011833 INFO S3 beat to others,term=2,accessTime=524199736,
+012099 INFO S4 beat to others,term=1,accessTime=950080760,
+012230 INFO S3 beat to others,term=2,accessTime=524199736,
+012498 INFO S4 beat to others,term=1,accessTime=950080760,
+012633 INFO S3 beat to others,term=2,accessTime=524199736,
+012895 INFO S4 beat to others,term=1,accessTime=950080760,
+013032 INFO S3 beat to others,term=2,accessTime=524199736,
+013289 INFO S4 beat to others,term=1,accessTime=950080760,
+013382 CMIT S3 start 9611 logIndex=9
+013383 CMIT S4 start 9158 logIndex=14
+013383 CMIT S3 start 9158 logIndex=10
+013383 CMIT S4 start 6248 logIndex=15
+013433 INFO S3 beat to others,term=2,accessTime=524199736,
+013465 CMIT S3 start 2754 logIndex=11
+013465 CMIT S4 start 2008 logIndex=16
+013509 CMIT S3 start 117 logIndex=12
+013509 CMIT S4 start 1981 logIndex=17
+013693 INFO S4 beat to others,term=1,accessTime=950080760,
+013838 INFO S3 beat to others,term=2,accessTime=524199736,
+014092 INFO S4 beat to others,term=1,accessTime=950080760,
+014237 INFO S3 beat to others,term=2,accessTime=524199736,
+014493 INFO S4 beat to others,term=1,accessTime=950080760,
+014635 INFO S3 beat to others,term=2,accessTime=524199736,
+014894 INFO S4 beat to others,term=1,accessTime=950080760,
+015038 INFO S3 beat to others,term=2,accessTime=524199736,
+015290 INFO S4 beat to others,term=1,accessTime=950080760,
+015435 INFO S3 beat to others,term=2,accessTime=524199736,
+015692 INFO S4 beat to others,term=1,accessTime=950080760,
+015834 INFO S3 beat to others,term=2,accessTime=524199736,
+016092 INFO S4 beat to others,term=1,accessTime=950080760,
+016237 INFO S3 beat to others,term=2,accessTime=524199736,
+016431 VOTE S1 electionTimeout,follower -> candidate
+016432 VOTE S1 termBefore=2,electionTerm=3
+016446 VOTE S0 LastLogTerm=1,lastLogIdex=2
+016447 VOTE S0 vote and reset
+016447 VOTE S0 vote for 1
+016498 INFO S4 beat to others,term=1,accessTime=950080760,
+016565 VOTE S2 LastLogTerm=1,lastLogIdex=2
+016565 VOTE S2 vote and reset
+016566 VOTE S2 vote for 1
+016567 VOTE S1 win the election, candidate -> Leader
+016637 INFO S3 beat to others,term=2,accessTime=524199736,
+016670 INFO S2 receive AE from 1,PLIdx=2 PLTerm=1
+016671 INFO S2 receive heartbeat, but no sync
+016671 INFO S2 from S1,term=3,PLTerm=2,PLIdx=2
+016672 CMIT S1 s2.matchidx->2
+016836 INFO S0 receive AE from 1,PLIdx=2 PLTerm=1
+016836 INFO S0 receive heartbeat, but no sync
+016836 INFO S0 from S1,term=3,PLTerm=2,PLIdx=2
+016838 CMIT S1 s0.matchidx->2
+016896 INFO S4 beat to others,term=1,accessTime=950080760,
+016970 INFO S1 beat to others,term=3,accessTime=197986944,
+017033 INFO S3 beat to others,term=2,accessTime=524199736,
+017160 INFO S2 receive AE from 1,PLIdx=2 PLTerm=1
+017161 INFO S2 receive heartbeat, but no sync
+017161 INFO S2 from S1,term=3,PLTerm=2,PLIdx=2
+017171 INFO S0 receive AE from 1,PLIdx=2 PLTerm=1
+017172 INFO S0 receive heartbeat, but no sync
+017172 INFO S0 from S1,term=3,PLTerm=2,PLIdx=2
+017292 INFO S4 beat to others,term=1,accessTime=950080760,
+017374 INFO S1 beat to others,term=3,accessTime=197986944,
+017388 INFO S2 receive AE from 1,PLIdx=2 PLTerm=1
+017389 INFO S2 receive heartbeat, but no sync
+017389 INFO S2 from S1,term=3,PLTerm=2,PLIdx=2
+017432 INFO S3 beat to others,term=2,accessTime=524199736,
+017496 CMIT S1 start 1775 logIndex=3
+017497 CMIT S3 start 8805 logIndex=13
+017497 CMIT S4 start 6555 logIndex=18
+017513 INFO S2 receive AE from 1,PLIdx=2 PLTerm=1
+017513 CMIT S2 disLogIndex->3 value=1775
+017513 CMIT S2 commitIdx:1
+017585 TRCE disconnect S1
+017585 TRCE reconnect S4
+017586 CMIT S1 start 7786 logIndex=4
+017586 CMIT S3 start 8514 logIndex=14
+017587 CMIT S4 start 5701 logIndex=19
+017608 INFO S0 receive AE from 1,PLIdx=2 PLTerm=1
+017608 INFO S0 receive heartbeat, but no sync
+017608 INFO S0 from S1,term=3,PLTerm=2,PLIdx=2
+017637 TRCE disconnect S4
+017637 TRCE reconnect S4
+017638 CMIT S1 start 1214 logIndex=5
+017638 CMIT S3 start 3655 logIndex=15
+017639 CMIT S4 start 2868 logIndex=20
+017660 INFO S0 receive AE from 1,PLIdx=2 PLTerm=1
+017661 CMIT S0 disLogIndex->3 value=1775
+017661 CMIT S0 commitIdx:1
+017691 INFO S4 beat to others,term=1,accessTime=950080760,
+017715 INFO S2 receive AE from 1,PLIdx=2 PLTerm=1
+017715 CMIT S2 commitIdx:1
+017747 TRCE disconnect S4
+017747 TRCE reconnect S3
+017748 CMIT S1 start 6110 logIndex=6
+017748 CMIT S3 start 3047 logIndex=16
+017749 CMIT S4 start 9434 logIndex=21
+017769 INFO S1 beat to others,term=3,accessTime=197986944,
+017827 VOTE S3 to follower,s2 term=3
+017828 INFO S3 Leader -> follower
+017868 CMIT S1 start 8676 logIndex=7
+017869 CMIT S4 start 8195 logIndex=22
+017870 VOTE S3 to follower,s0 term=3
+017942 CMIT S1 start 340 logIndex=8
+017943 CMIT S4 start 1146 logIndex=23
+017986 CMIT S1 start 5387 logIndex=9
+017987 CMIT S4 start 5044 logIndex=24
+018094 INFO S4 beat to others,term=1,accessTime=950080760,
+018094 CMIT S1 start 7796 logIndex=10
+018096 CMIT S4 start 3807 logIndex=25
+018177 INFO S1 beat to others,term=3,accessTime=197986944,
+018189 CMIT S1 start 4992 logIndex=11
+018190 CMIT S4 start 3696 logIndex=26
+018303 CMIT S1 start 8104 logIndex=12
+018304 CMIT S4 start 6122 logIndex=27
+018358 CMIT S1 start 8495 logIndex=13
+018359 CMIT S4 start 7879 logIndex=28
+018390 CMIT S1 start 5092 logIndex=14
+018390 CMIT S4 start 3144 logIndex=29
+018491 INFO S4 beat to others,term=1,accessTime=950080760,
+018492 CMIT S1 start 4514 logIndex=15
+018493 CMIT S4 start 1111 logIndex=30
+018575 INFO S1 beat to others,term=3,accessTime=197986944,
+018587 CMIT S1 start 8961 logIndex=16
+018588 CMIT S4 start 9908 logIndex=31
+018705 CMIT S1 start 6888 logIndex=17
+018706 CMIT S4 start 363 logIndex=32
+018747 CMIT S1 start 2806 logIndex=18
+018748 CMIT S4 start 2270 logIndex=33
+018874 CMIT S1 start 2662 logIndex=19
+018875 CMIT S4 start 4570 logIndex=34
+018896 INFO S4 beat to others,term=1,accessTime=950080760,
+018962 CMIT S1 start 825 logIndex=20
+018963 CMIT S4 start 3066 logIndex=35
+018972 INFO S1 beat to others,term=3,accessTime=197986944,
+019293 INFO S4 beat to others,term=1,accessTime=950080760,
+019375 INFO S1 beat to others,term=3,accessTime=197986944,
+019697 INFO S4 beat to others,term=1,accessTime=950080760,
+019768 INFO S1 beat to others,term=3,accessTime=197986944,
+020092 INFO S4 beat to others,term=1,accessTime=950080760,
+020178 INFO S1 beat to others,term=3,accessTime=197986944,
+020491 INFO S4 beat to others,term=1,accessTime=950080760,
+020573 INFO S1 beat to others,term=3,accessTime=197986944,
+020898 INFO S4 beat to others,term=1,accessTime=950080760,
+020950 CMIT S1 start 9453 logIndex=21
+020951 CMIT S4 start 6392 logIndex=36
+020971 INFO S1 beat to others,term=3,accessTime=197986944,
+021048 CMIT S1 start 2631 logIndex=22
+021049 CMIT S4 start 5647 logIndex=37
+021123 CMIT S1 start 1665 logIndex=23
+021124 CMIT S4 start 902 logIndex=38
+021248 CMIT S1 start 6819 logIndex=24
+021249 CMIT S4 start 5754 logIndex=39
+021299 INFO S4 beat to others,term=1,accessTime=950080760,
+021374 INFO S1 beat to others,term=3,accessTime=197986944,
+021691 INFO S4 beat to others,term=1,accessTime=950080760,
+021775 INFO S1 beat to others,term=3,accessTime=197986944,
+022093 INFO S4 beat to others,term=1,accessTime=950080760,
+022126 CMIT S1 start 2662 logIndex=25
+022127 CMIT S4 start 1492 logIndex=40
+022158 CMIT S1 start 6009 logIndex=26
+022159 CMIT S4 start 1785 logIndex=41
+022169 INFO S1 beat to others,term=3,accessTime=197986944,
+022191 CMIT S1 start 6855 logIndex=27
+022191 CMIT S4 start 1034 logIndex=42
+022446 CMIT S1 start 2756 logIndex=28
+022447 CMIT S4 start 5672 logIndex=43
+022480 CMIT S1 start 7172 logIndex=29
+022482 CMIT S4 start 4933 logIndex=44
+022491 INFO S4 beat to others,term=1,accessTime=950080760,
+022577 INFO S1 beat to others,term=3,accessTime=197986944,
+022589 CMIT S1 start 8896 logIndex=30
+022590 CMIT S4 start 3312 logIndex=45
+022693 CMIT S1 start 8779 logIndex=31
+022694 CMIT S4 start 5142 logIndex=46
+022797 CMIT S1 start 7856 logIndex=32
+022798 CMIT S4 start 7602 logIndex=47
+022831 CMIT S1 start 7480 logIndex=33
+022832 CMIT S4 start 2801 logIndex=48
+022894 INFO S4 beat to others,term=1,accessTime=950080760,
+022927 CMIT S1 start 2387 logIndex=34
+022928 CMIT S4 start 2024 logIndex=49
+022978 INFO S1 beat to others,term=3,accessTime=197986944,
+023053 CMIT S1 start 3920 logIndex=35
+023054 CMIT S4 start 4905 logIndex=50
+023160 CMIT S1 start 7660 logIndex=36
+023161 CMIT S4 start 227 logIndex=51
+023201 CMIT S1 start 2311 logIndex=37
+023202 CMIT S4 start 615 logIndex=52
+023203 CMIT S1 start 9975 logIndex=38
+023203 CMIT S4 start 1232 logIndex=53
+023265 CMIT S1 start 8026 logIndex=39
+023266 CMIT S4 start 3971 logIndex=54
+023297 INFO S4 beat to others,term=1,accessTime=950080760,
+023369 INFO S1 beat to others,term=3,accessTime=197986944,
+023392 CMIT S1 start 9418 logIndex=40
+023393 CMIT S4 start 9632 logIndex=55
+023414 CMIT S1 start 4524 logIndex=41
+023415 CMIT S4 start 5274 logIndex=56
+023479 CMIT S1 start 2026 logIndex=42
+023480 CMIT S4 start 9909 logIndex=57
+023553 CMIT S1 start 864 logIndex=43
+023554 CMIT S4 start 4292 logIndex=58
+023666 CMIT S1 start 748 logIndex=44
+023667 CMIT S4 start 2485 logIndex=59
+023676 VOTE S3 electionTimeout,follower -> candidate
+023676 VOTE S3 termBefore=2,electionTerm=3
+023698 INFO S4 beat to others,term=1,accessTime=950080760,
+023744 VOTE S2 reject vote for 3, voted
+023774 INFO S1 beat to others,term=3,accessTime=197986944,
+023849 VOTE S0 reject vote for 3, voted
+024096 INFO S4 beat to others,term=1,accessTime=950080760,
+024168 INFO S1 beat to others,term=3,accessTime=197986944,
+024498 INFO S4 beat to others,term=1,accessTime=950080760,
+024572 INFO S1 beat to others,term=3,accessTime=197986944,
+024895 INFO S4 beat to others,term=1,accessTime=950080760,
+024973 INFO S1 beat to others,term=3,accessTime=197986944,
+024994 VOTE S2 electionTimeout,follower -> candidate
+024995 VOTE S2 termBefore=3,electionTerm=4
+025132 VOTE S3 LastLogTerm=3,lastLogIdex=3
+025133 VOTE S3 vote and reset
+025133 VOTE S3 vote for 2
+025163 VOTE S0 LastLogTerm=3,lastLogIdex=3
+025164 VOTE S0 vote and reset
+025164 VOTE S0 vote for 2
+025165 VOTE S2 win the election, candidate -> Leader
+025280 INFO S3 receive AE from 2,PLIdx=3 PLTerm=3
+025281 INFO S3 receive heartbeat, but no sync
+025281 INFO S3 from S2,term=4,PLTerm=3,PLIdx=3
+025282 CMIT S2 s3.matchidx->3
+025289 INFO S4 beat to others,term=1,accessTime=950080760,
+025343 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+025343 INFO S0 receive heartbeat, but no sync
+025343 INFO S0 from S2,term=4,PLTerm=3,PLIdx=3
+025373 INFO S1 beat to others,term=3,accessTime=197986944,
+025479 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+025480 INFO S0 receive heartbeat, but no sync
+025480 INFO S0 from S2,term=4,PLTerm=3,PLIdx=3
+025576 INFO S2 beat to others,term=4,accessTime=57736372,
+025661 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+025662 INFO S0 receive heartbeat, but no sync
+025662 INFO S0 from S2,term=4,PLTerm=3,PLIdx=3
+025663 CMIT S2 s0.matchidx->3
+025672 INFO S3 receive AE from 2,PLIdx=3 PLTerm=3
+025673 INFO S3 receive heartbeat, but no sync
+025673 INFO S3 from S2,term=4,PLTerm=3,PLIdx=3
+025693 INFO S4 beat to others,term=1,accessTime=950080760,
+025726 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+025727 INFO S0 receive heartbeat, but no sync
+025727 INFO S0 from S2,term=4,PLTerm=3,PLIdx=3
+025777 INFO S1 beat to others,term=3,accessTime=197986944,
+025968 INFO S2 beat to others,term=4,accessTime=57736372,
+026090 INFO S4 beat to others,term=1,accessTime=950080760,
+026169 INFO S3 receive AE from 2,PLIdx=3 PLTerm=3
+026170 INFO S3 receive heartbeat, but no sync
+026170 INFO S3 from S2,term=4,PLTerm=3,PLIdx=3
+026170 INFO S1 beat to others,term=3,accessTime=197986944,
+026200 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+026201 INFO S0 receive heartbeat, but no sync
+026201 INFO S0 from S2,term=4,PLTerm=3,PLIdx=3
+026365 INFO S2 beat to others,term=4,accessTime=57736372,
+026445 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+026445 INFO S0 receive heartbeat, but no sync
+026445 INFO S0 from S2,term=4,PLTerm=3,PLIdx=3
+026497 INFO S4 beat to others,term=1,accessTime=950080760,
+026571 INFO S1 beat to others,term=3,accessTime=197986944,
+026604 INFO S3 receive AE from 2,PLIdx=3 PLTerm=3
+026605 INFO S3 receive heartbeat, but no sync
+026605 INFO S3 from S2,term=4,PLTerm=3,PLIdx=3
+026773 INFO S2 beat to others,term=4,accessTime=57736372,
+026800 INFO S3 receive AE from 2,PLIdx=3 PLTerm=3
+026801 INFO S3 receive heartbeat, but no sync
+026801 INFO S3 from S2,term=4,PLTerm=3,PLIdx=3
+026892 INFO S4 beat to others,term=1,accessTime=950080760,
+026976 INFO S1 beat to others,term=3,accessTime=197986944,
+027000 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+027001 INFO S0 receive heartbeat, but no sync
+027001 INFO S0 from S2,term=4,PLTerm=3,PLIdx=3
+027148 CMIT S1 start 4723 logIndex=45
+027149 CMIT S2 start 1024 logIndex=4
+027150 CMIT S4 start 8204 logIndex=60
+027169 INFO S2 beat to others,term=4,accessTime=57736372,
+027214 CMIT S1 start 4455 logIndex=46
+027218 CMIT S2 start 4361 logIndex=5
+027219 CMIT S4 start 3387 logIndex=61
+027296 INFO S4 beat to others,term=1,accessTime=950080760,
+027318 CMIT S1 start 4151 logIndex=47
+027319 CMIT S2 start 8094 logIndex=6
+027320 CMIT S4 start 805 logIndex=62
+027322 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+027322 CMIT S0 disLogIndex->4 value=1024
+027322 CMIT S0 commitIdx:1
+027340 INFO S3 receive AE from 2,PLIdx=4 PLTerm=4
+027341 VOTE S3 expect XIndex=3 len=2 xterm=2
+027342 INFO S3 receive AE from 2,PLIdx=4 PLTerm=4
+027342 CMIT S2 s3.nextIndex->3
+027342 TRCE S2 backup[3] logIndex[3,3]
+027342 VOTE S3 expect XIndex=3 len=2 xterm=2
+027344 CMIT S2 s3.nextIndex->3
+027345 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+027345 CMIT S0 commitIdx:1
+027373 INFO S1 beat to others,term=3,accessTime=197986944,
+027374 INFO S3 receive AE from 2,PLIdx=5 PLTerm=4
+027374 VOTE S3 expect XIndex=3 len=3 xterm=2
+027375 CMIT S2 s3.nextIndex->3
+027417 INFO S3 receive AE from 2,PLIdx=2 PLTerm=1
+027418 CMIT S3 disLogIndex->3 value=1775
+027418 CMIT S3 commitIdx:1
+027419 INFO S3 receive AE from 2,PLIdx=3 PLTerm=3
+027419 CMIT S2 s3.nextIndex->4
+027420 TRCE S2 backup[3] logIndex[3,3] finish
+027420 CMIT S3 disLogIndex->4 value=1024
+027420 CMIT S3 commitIdx:1
+027420 TRCE S2 backup[3] logIndex[3,3]
+027421 CMIT S2 s3.nextIndex->5
+027421 INFO S0 receive AE from 2,PLIdx=5 PLTerm=4
+027422 VOTE S0 expect XIndex=4 len=1 xterm=4
+027423 INFO S0 receive AE from 2,PLIdx=4 PLTerm=4
+027423 CMIT S0 commitIdx:1
+027424 CMIT S2 s0.matchidx->4
+027428 INFO S0 receive AE from 2,PLIdx=3 PLTerm=3
+027428 CMIT S0 commitIdx:1
+027429 CMIT S2 s0.nextIndex->5
+027439 INFO S3 receive AE from 2,PLIdx=2 PLTerm=1
+027439 CMIT S3 commitIdx:1
+027440 TRCE S2 backup[3] logIndex[3,3] finish
+027460 INFO S0 receive AE from 2,PLIdx=4 PLTerm=4
+027461 CMIT S0 disLogIndex->5 value=4361
+027461 CMIT S0 commitIdx:1
+027462 CMIT S2 s0.nextIndex->6
+027574 INFO S2 beat to others,term=4,accessTime=57736372,
+027576 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+027577 VOTE S3 expect XIndex=4 len=1 xterm=4
+027578 CMIT S2 s3.nextIndex->5
+027578 TRCE S2 backup[3] logIndex[5,6]
+027601 INFO S3 receive AE from 2,PLIdx=4 PLTerm=4
+027602 CMIT S3 disLogIndex->6 value=8094
+027602 CMIT S3 commitIdx:1
+027602 CMIT S2 s3.nextIndex->7
+027603 TRCE S2 backup[3] logIndex[5,6] finish
+027611 CMIT S2 commitIndex:1->5
+027697 INFO S4 beat to others,term=1,accessTime=950080760,
+027773 INFO S1 beat to others,term=3,accessTime=197986944,
+027839 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+027839 VOTE S0 expect XIndex=4 len=2 xterm=4
+027840 CMIT S2 s0.nextIndex->6
+027840 TRCE S2 backup[0] logIndex[6,6]
+027842 INFO S0 receive AE from 2,PLIdx=5 PLTerm=4
+027842 CMIT S0 disLogIndex->6 value=8094
+027843 CMIT S0 commitIdx:1->5
+027844 CMIT S2 s0.nextIndex->7
+027844 TRCE S2 backup[0] logIndex[6,6] finish
+027975 INFO S2 beat to others,term=4,accessTime=57736372,
+028063 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+028064 CMIT S0 commitIdx:5
+028094 INFO S4 beat to others,term=1,accessTime=950080760,
+028137 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+028138 CMIT S3 commitIdx:1->5
+028178 INFO S1 beat to others,term=3,accessTime=197986944,
+028371 INFO S2 beat to others,term=4,accessTime=57736372,
+028480 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+028481 CMIT S0 commitIdx:5
+028489 INFO S4 beat to others,term=1,accessTime=950080760,
+028574 INFO S1 beat to others,term=3,accessTime=197986944,
+028715 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+028716 CMIT S3 commitIdx:5
+028767 INFO S2 beat to others,term=4,accessTime=57736372,
+028792 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+028792 CMIT S3 commitIdx:5
+028858 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+028859 CMIT S3 commitIdx:5
+028890 INFO S4 beat to others,term=1,accessTime=950080760,
+028944 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+028944 CMIT S0 commitIdx:5
+028976 INFO S1 beat to others,term=3,accessTime=197986944,
+029169 INFO S2 beat to others,term=4,accessTime=57736372,
+029293 INFO S4 beat to others,term=1,accessTime=950080760,
+029328 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+029329 CMIT S3 commitIdx:5
+029369 INFO S1 beat to others,term=3,accessTime=197986944,
+029403 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+029404 CMIT S0 commitIdx:5
+029573 INFO S2 beat to others,term=4,accessTime=57736372,
+029658 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+029659 CMIT S3 commitIdx:5
+029699 INFO S4 beat to others,term=1,accessTime=950080760,
+029774 INFO S1 beat to others,term=3,accessTime=197986944,
+029786 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+029787 CMIT S0 commitIdx:5
+029974 INFO S2 beat to others,term=4,accessTime=57736372,
+030095 INFO S4 beat to others,term=1,accessTime=950080760,
+030096 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+030096 CMIT S3 commitIdx:5
+030168 INFO S1 beat to others,term=3,accessTime=197986944,
+030169 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+030169 CMIT S0 commitIdx:5
+030370 INFO S2 beat to others,term=4,accessTime=57736372,
+030496 INFO S4 beat to others,term=1,accessTime=950080760,
+030571 INFO S1 beat to others,term=3,accessTime=197986944,
+030572 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+030573 CMIT S3 commitIdx:5
+030595 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+030595 CMIT S0 commitIdx:5
+030714 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+030715 CMIT S0 commitIdx:5
+030776 INFO S2 beat to others,term=4,accessTime=57736372,
+030838 TRCE disconnect S2
+030839 TRCE reconnect S2
+030840 CMIT S1 start 6256 logIndex=48
+030840 CMIT S2 start 4755 logIndex=7
+030841 CMIT S4 start 9207 logIndex=63
+030891 INFO S4 beat to others,term=1,accessTime=950080760,
+030904 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+030904 CMIT S0 commitIdx:5
+030968 CMIT S1 start 9590 logIndex=49
+030969 CMIT S2 start 4972 logIndex=8
+030969 INFO S1 beat to others,term=3,accessTime=197986944,
+030969 CMIT S4 start 2679 logIndex=64
+030971 INFO S0 receive AE from 2,PLIdx=7 PLTerm=4
+030971 VOTE S0 expect XIndex=4 len=3 xterm=4
+030972 CMIT S2 s0.nextIndex->7
+030972 TRCE S2 backup[0] logIndex[7,8]
+030972 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+030973 CMIT S0 disLogIndex->7 value=4755
+030973 CMIT S0 commitIdx:5
+030976 CMIT S2 s0.nextIndex->8
+030996 INFO S3 receive AE from 2,PLIdx=7 PLTerm=4
+030996 VOTE S3 expect XIndex=4 len=3 xterm=4
+030997 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+030998 CMIT S3 commitIdx:5
+030998 CMIT S2 s3.nextIndex->7
+030998 TRCE S2 backup[3] logIndex[7,8]
+031070 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+031071 CMIT S3 disLogIndex->7 value=4755
+031071 CMIT S3 commitIdx:5
+031072 CMIT S2 s3.nextIndex->8
+031173 INFO S2 beat to others,term=4,accessTime=57736372,
+031215 CMIT S2 commitIndex:5->7
+031270 INFO S3 receive AE from 2,PLIdx=6 PLTerm=4
+031270 CMIT S3 disLogIndex->8 value=4972
+031270 CMIT S3 commitIdx:5
+031270 INFO S0 receive AE from 2,PLIdx=6 PLTerm=4
+031271 CMIT S2 s3.nextIndex->9
+031271 TRCE S2 backup[3] logIndex[7,8] finish
+031271 CMIT S0 disLogIndex->8 value=4972
+031271 CMIT S0 commitIdx:5
+031272 CMIT S2 s0.nextIndex->9
+031272 TRCE S2 backup[0] logIndex[7,8] finish
+031291 INFO S4 beat to others,term=1,accessTime=950080760,
+031303 INFO S0 receive AE from 2,PLIdx=8 PLTerm=4
+031304 CMIT S0 commitIdx:5
+031317 INFO S3 receive AE from 2,PLIdx=8 PLTerm=4
+031318 CMIT S3 commitIdx:5
+031368 INFO S1 beat to others,term=3,accessTime=197986944,
+031475 INFO S0 receive AE from 2,PLIdx=8 PLTerm=4
+031476 CMIT S0 commitIdx:5
+031516 CMIT S2 commitIndex:7->8
+031568 INFO S2 beat to others,term=4,accessTime=57736372,
+031603 INFO S3 receive AE from 2,PLIdx=8 PLTerm=4
+031603 CMIT S3 commitIdx:5->8
+031603 INFO S0 receive AE from 2,PLIdx=8 PLTerm=4
+031604 CMIT S0 commitIdx:5->8
+031696 INFO S4 beat to others,term=1,accessTime=950080760,
+031772 INFO S1 beat to others,term=3,accessTime=197986944,
+031969 INFO S2 beat to others,term=4,accessTime=57736372,
+032099 INFO S4 beat to others,term=1,accessTime=950080760,
+032100 INFO S3 receive AE from 2,PLIdx=8 PLTerm=4
+032101 CMIT S3 commitIdx:8
+032174 INFO S1 beat to others,term=3,accessTime=197986944,
+032241 INFO S0 receive AE from 2,PLIdx=8 PLTerm=4
+032242 CMIT S0 commitIdx:8
+032365 INFO S2 beat to others,term=4,accessTime=57736372,
+032431 CMIT S1 start 1649 logIndex=50
+032432 CMIT S2 start 9515 logIndex=9
+032432 INFO S3 receive AE from 2,PLIdx=8 PLTerm=4
+032433 CMIT S3 commitIdx:8
+032434 CMIT S4 start 9879 logIndex=65
+032456 TRCE disconnect S2
+032457 CMIT S1 start 9123 logIndex=51
+032457 CMIT S2 start 4964 logIndex=10
+032458 CMIT S4 start 7182 logIndex=66
+032458 TRCE reconnect S2
+032459 CMIT S1 start 4511 logIndex=52
+032459 CMIT S2 start 875 logIndex=11
+032459 CMIT S4 start 4691 logIndex=67
+032480 INFO S3 receive AE from 2,PLIdx=8 PLTerm=4
+032481 CMIT S3 disLogIndex->9 value=9515
+032481 CMIT S3 commitIdx:8
+032482 CMIT S2 s3.nextIndex->10
+032489 INFO S4 beat to others,term=1,accessTime=950080760,
+032491 INFO S0 receive AE from 2,PLIdx=8 PLTerm=4
+032491 CMIT S0 commitIdx:8
+032534 TRCE disconnect S2
+032534 CMIT S1 start 2027 logIndex=53
+032535 CMIT S2 start 5043 logIndex=12
+032536 CMIT S4 start 7113 logIndex=68
+032575 INFO S1 beat to others,term=3,accessTime=197986944,
+032619 TRCE reconnect S4
+032620 CMIT S1 start 6095 logIndex=54
+032620 INFO S3 receive AE from 2,PLIdx=10 PLTerm=4
+032621 CMIT S2 start 3807 logIndex=13
+032621 VOTE S3 expect XIndex=4 len=6 xterm=4
+032622 CMIT S4 start 8459 logIndex=69
+032643 INFO S0 receive AE from 2,PLIdx=8 PLTerm=4
+032643 CMIT S0 disLogIndex->9 value=9515
+032643 CMIT S0 commitIdx:8
+032644 VOTE S4 to follower,s3 term=4
+032644 INFO S4 Leader -> follower
+032665 VOTE S4 to follower,s0 term=4
+032686 INFO S0 receive AE from 2,PLIdx=10 PLTerm=4
+032687 VOTE S0 expect XIndex=4 len=6 xterm=4
+032707 TRCE disconnect S4
+032708 TRCE reconnect S4
+032709 CMIT S1 start 4389 logIndex=55
+032709 CMIT S2 start 741 logIndex=14
+032711 INFO S3 receive AE from 2,PLIdx=9 PLTerm=4
+032711 CMIT S3 disLogIndex->10 value=4964
+032711 CMIT S3 commitIdx:8
+032772 INFO S2 beat to others,term=4,accessTime=57736372,
+032773 CMIT S1 start 9960 logIndex=56
+032774 CMIT S2 start 834 logIndex=15
+032971 INFO S1 beat to others,term=3,accessTime=197986944,
+033173 INFO S2 beat to others,term=4,accessTime=57736372,
+033372 INFO S1 beat to others,term=3,accessTime=197986944,
+033573 INFO S2 beat to others,term=4,accessTime=57736372,
+033777 INFO S1 beat to others,term=3,accessTime=197986944,
+033976 INFO S2 beat to others,term=4,accessTime=57736372,
+034176 INFO S1 beat to others,term=3,accessTime=197986944,
+034370 INFO S2 beat to others,term=4,accessTime=57736372,
+034570 INFO S1 beat to others,term=3,accessTime=197986944,
+034768 INFO S2 beat to others,term=4,accessTime=57736372,
+034974 INFO S1 beat to others,term=3,accessTime=197986944,
+035165 INFO S2 beat to others,term=4,accessTime=57736372,
+035375 INFO S1 beat to others,term=3,accessTime=197986944,
+035574 INFO S2 beat to others,term=4,accessTime=57736372,
+035770 INFO S1 beat to others,term=3,accessTime=197986944,
+035966 INFO S2 beat to others,term=4,accessTime=57736372,
+036169 INFO S1 beat to others,term=3,accessTime=197986944,
+036370 INFO S2 beat to others,term=4,accessTime=57736372,
+036570 INFO S1 beat to others,term=3,accessTime=197986944,
+036638 CMIT S1 start 8031 logIndex=57
+036639 CMIT S2 start 9271 logIndex=16
+036680 CMIT S1 start 1714 logIndex=58
+036681 CMIT S2 start 7007 logIndex=17
+036766 INFO S2 beat to others,term=4,accessTime=57736372,
+036799 CMIT S1 start 2096 logIndex=59
+036800 CMIT S2 start 2100 logIndex=18
+036976 INFO S1 beat to others,term=3,accessTime=197986944,
+037175 INFO S2 beat to others,term=4,accessTime=57736372,
+037375 INFO S1 beat to others,term=3,accessTime=197986944,
+037567 INFO S2 beat to others,term=4,accessTime=57736372,
+037696 VOTE S0 electionTimeout,follower -> candidate
+037696 VOTE S0 termBefore=4,electionTerm=5
+037769 INFO S1 beat to others,term=3,accessTime=197986944,
+037782 VOTE S4 LastLogTerm=4,lastLogIdex=9
+037783 VOTE S4 vote and reset
+037783 VOTE S4 vote for 0
+037971 INFO S2 beat to others,term=4,accessTime=57736372,
+038170 INFO S1 beat to others,term=3,accessTime=197986944,
+038373 INFO S2 beat to others,term=4,accessTime=57736372,
+038576 INFO S1 beat to others,term=3,accessTime=197986944,
+038775 INFO S2 beat to others,term=4,accessTime=57736372,
+038975 INFO S1 beat to others,term=3,accessTime=197986944,
+039174 INFO S2 beat to others,term=4,accessTime=57736372,
+039371 INFO S1 beat to others,term=3,accessTime=197986944,
+039571 INFO S2 beat to others,term=4,accessTime=57736372,
+039773 INFO S1 beat to others,term=3,accessTime=197986944,
+039975 INFO S2 beat to others,term=4,accessTime=57736372,
+040172 INFO S1 beat to others,term=3,accessTime=197986944,
+040374 INFO S2 beat to others,term=4,accessTime=57736372,
+040569 INFO S1 beat to others,term=3,accessTime=197986944,
+040771 INFO S2 beat to others,term=4,accessTime=57736372,
+040975 INFO S1 beat to others,term=3,accessTime=197986944,
+041175 INFO S2 beat to others,term=4,accessTime=57736372,
+041238 VOTE S3 electionTimeout,follower -> candidate
+041238 VOTE S3 termBefore=5,electionTerm=6
+041369 INFO S1 beat to others,term=3,accessTime=197986944,
+041443 VOTE S4 LastLogTerm=4,lastLogIdex=10
+041443 VOTE S4 vote and reset
+041444 VOTE S4 vote for 3
+041474 VOTE S0 LastLogTerm=4,lastLogIdex=10
+041474 VOTE S0 vote and reset
+041475 VOTE S0 vote for 3
+041475 VOTE S3 win the election, candidate -> Leader
+041526 INFO S0 receive AE from 3,PLIdx=10 PLTerm=4
+041528 INFO S0 receive heartbeat, but no sync
+041528 INFO S0 from S3,term=6,PLTerm=10,PLIdx=10
+041570 INFO S2 beat to others,term=4,accessTime=57736372,
+041582 INFO S0 receive AE from 3,PLIdx=10 PLTerm=4
+041583 INFO S0 receive heartbeat, but no sync
+041583 INFO S0 from S3,term=6,PLTerm=10,PLIdx=10
+041584 CMIT S3 s0.matchidx->10
+041644 CMIT S1 start 4163 logIndex=60
+041644 CMIT S2 start 4500 logIndex=19
+041645 CMIT S3 start 2211 logIndex=11
+041687 INFO S4 receive AE from 3,PLIdx=10 PLTerm=4
+041688 INFO S4 receive heartbeat, but no sync
+041689 INFO S4 from S3,term=6,PLTerm=10,PLIdx=10
+041690 CMIT S3 s4.matchidx->10
+041698 CMIT S1 start 8013 logIndex=61
+041699 CMIT S2 start 6939 logIndex=20
+041700 CMIT S3 start 7688 logIndex=12
+041744 INFO S4 receive AE from 3,PLIdx=10 PLTerm=4
+041745 VOTE S4 expect XIndex=1 len=10 xterm=1
+041746 CMIT S3 s4.nextIndex->3
+041746 TRCE S3 backup[4] logIndex[3,3]
+041755 INFO S0 receive AE from 3,PLIdx=11 PLTerm=6
+041755 VOTE S0 expect XIndex=4 len=6 xterm=4
+041756 CMIT S3 s0.nextIndex->10
+041756 TRCE S3 backup[0] logIndex[10,10]
+041765 INFO S4 receive AE from 3,PLIdx=11 PLTerm=6
+041766 VOTE S4 expect XIndex=1 len=11 xterm=1
+041767 CMIT S3 s4.nextIndex->3
+041768 INFO S1 beat to others,term=3,accessTime=197986944,
+041808 TRCE disconnect S3
+041808 TRCE reconnect S2
+041809 CMIT S1 start 7920 logIndex=62
+041809 CMIT S2 start 2571 logIndex=21
+041809 CMIT S3 start 8825 logIndex=13
+041810 TRCE disconnect S2
+041810 CMIT S1 start 8614 logIndex=63
+041810 CMIT S2 start 9975 logIndex=22
+041811 CMIT S3 start 7556 logIndex=14
+041884 INFO S3 beat to others,term=6,accessTime=688813012,
+041886 INFO S4 receive AE from 3,PLIdx=2 PLTerm=1
+041887 CMIT S4 disLogIndex->3 value=1775
+041888 CMIT S4 commitIdx:1->3
+041908 INFO S0 receive AE from 3,PLIdx=10 PLTerm=4
+041909 VOTE S0 expect XIndex=4 len=6 xterm=4
+041972 INFO S2 beat to others,term=4,accessTime=57736372,
+041984 INFO S0 receive AE from 3,PLIdx=9 PLTerm=4
+041985 CMIT S0 disLogIndex->10 value=4964
+041985 CMIT S0 commitIdx:8
+042173 INFO S1 beat to others,term=3,accessTime=197986944,
+042279 INFO S3 beat to others,term=6,accessTime=688813012,
+042375 INFO S2 beat to others,term=4,accessTime=57736372,
+042568 INFO S1 beat to others,term=3,accessTime=197986944,
+042676 INFO S3 beat to others,term=6,accessTime=688813012,
+042772 INFO S2 beat to others,term=4,accessTime=57736372,
+042977 INFO S1 beat to others,term=3,accessTime=197986944,
+043084 INFO S3 beat to others,term=6,accessTime=688813012,
+043170 INFO S2 beat to others,term=4,accessTime=57736372,
+043369 INFO S1 beat to others,term=3,accessTime=197986944,
+043476 INFO S3 beat to others,term=6,accessTime=688813012,
+043575 INFO S2 beat to others,term=4,accessTime=57736372,
+043777 INFO S1 beat to others,term=3,accessTime=197986944,
+043885 INFO S3 beat to others,term=6,accessTime=688813012,
+043972 INFO S2 beat to others,term=4,accessTime=57736372,
+044176 INFO S1 beat to others,term=3,accessTime=197986944,
+044282 INFO S3 beat to others,term=6,accessTime=688813012,
+044367 INFO S2 beat to others,term=4,accessTime=57736372,
+044570 INFO S1 beat to others,term=3,accessTime=197986944,
+044685 INFO S3 beat to others,term=6,accessTime=688813012,
+044772 INFO S2 beat to others,term=4,accessTime=57736372,
+044973 INFO S1 beat to others,term=3,accessTime=197986944,
+045079 INFO S3 beat to others,term=6,accessTime=688813012,
+045174 INFO S2 beat to others,term=4,accessTime=57736372,
+045376 INFO S1 beat to others,term=3,accessTime=197986944,
+045482 INFO S3 beat to others,term=6,accessTime=688813012,
+045568 INFO S2 beat to others,term=4,accessTime=57736372,
+045696 TRCE reconnect S1
+045698 CMIT S1 start 8917 logIndex=64
+045698 CMIT S2 start 8250 logIndex=23
+045699 CMIT S3 start 1693 logIndex=15
+045742 VOTE S1 to follower,s0 term=6
+045742 INFO S1 Leader -> follower
+045825 CMIT S2 start 7565 logIndex=24
+045826 CMIT S3 start 7653 logIndex=16
+045859 VOTE S1 to follower,s4 term=6
+045868 CMIT S2 start 5820 logIndex=25
+045869 CMIT S3 start 8151 logIndex=17
+045879 INFO S3 beat to others,term=6,accessTime=688813012,
+045975 INFO S2 beat to others,term=4,accessTime=57736372,
+046278 INFO S3 beat to others,term=6,accessTime=688813012,
+046367 INFO S2 beat to others,term=4,accessTime=57736372,
+046680 INFO S3 beat to others,term=6,accessTime=688813012,
+046765 INFO S2 beat to others,term=4,accessTime=57736372,
+046786 VOTE S0 electionTimeout,follower -> candidate
+046787 VOTE S0 termBefore=6,electionTerm=7
+046921 VOTE S1 LastLogTerm=4,lastLogIdex=10
+046922 VOTE S1 vote and reset
+046922 VOTE S1 vote for 0
+047047 VOTE S4 LastLogTerm=4,lastLogIdex=10
+047048 VOTE S4 vote and reset
+047048 VOTE S4 vote for 0
+047049 VOTE S0 win the election, candidate -> Leader
+047078 INFO S3 beat to others,term=6,accessTime=688813012,
+047174 INFO S2 beat to others,term=4,accessTime=57736372,
+047198 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+047198 INFO S4 receive heartbeat, but no sync
+047198 INFO S4 from S0,term=7,PLTerm=10,PLIdx=10
+047199 CMIT S0 s4.matchidx->10
+047305 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+047306 INFO S1 receive heartbeat, but no sync
+047306 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+047307 CMIT S0 s1.matchidx->10
+047454 INFO S0 beat to others,term=7,accessTime=246169515,
+047486 INFO S3 beat to others,term=6,accessTime=688813012,
+047570 INFO S2 beat to others,term=4,accessTime=57736372,
+047613 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+047614 INFO S1 receive heartbeat, but no sync
+047615 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+047667 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+047668 INFO S4 receive heartbeat, but no sync
+047668 INFO S4 from S0,term=7,PLTerm=10,PLIdx=10
+047776 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+047777 INFO S1 receive heartbeat, but no sync
+047777 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+047850 INFO S0 beat to others,term=7,accessTime=246169515,
+047883 INFO S3 beat to others,term=6,accessTime=688813012,
+047969 INFO S2 beat to others,term=4,accessTime=57736372,
+048002 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+048003 INFO S4 receive heartbeat, but no sync
+048003 INFO S4 from S0,term=7,PLTerm=10,PLIdx=10
+048079 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+048080 INFO S1 receive heartbeat, but no sync
+048080 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+048134 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+048135 INFO S1 receive heartbeat, but no sync
+048135 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+048250 INFO S0 beat to others,term=7,accessTime=246169515,
+048253 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+048254 INFO S1 receive heartbeat, but no sync
+048254 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+048283 INFO S3 beat to others,term=6,accessTime=688813012,
+048372 INFO S2 beat to others,term=4,accessTime=57736372,
+048374 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+048374 INFO S4 receive heartbeat, but no sync
+048374 INFO S4 from S0,term=7,PLTerm=10,PLIdx=10
+048651 INFO S0 beat to others,term=7,accessTime=246169515,
+048683 INFO S3 beat to others,term=6,accessTime=688813012,
+048770 INFO S2 beat to others,term=4,accessTime=57736372,
+048794 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+048795 INFO S1 receive heartbeat, but no sync
+048795 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+048931 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+048932 INFO S4 receive heartbeat, but no sync
+048932 INFO S4 from S0,term=7,PLTerm=10,PLIdx=10
+049017 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+049018 INFO S4 receive heartbeat, but no sync
+049018 INFO S4 from S0,term=7,PLTerm=10,PLIdx=10
+049059 INFO S0 beat to others,term=7,accessTime=246169515,
+049081 INFO S3 beat to others,term=6,accessTime=688813012,
+049137 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+049138 INFO S1 receive heartbeat, but no sync
+049138 INFO S1 from S0,term=7,PLTerm=10,PLIdx=10
+049170 INFO S2 beat to others,term=4,accessTime=57736372,
+049183 CMIT S0 start 2522 logIndex=11
+049184 CMIT S2 start 1614 logIndex=26
+049184 CMIT S3 start 384 logIndex=18
+049258 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+049259 INFO S4 receive heartbeat, but no sync
+049259 INFO S4 from S0,term=7,PLTerm=10,PLIdx=10
+049366 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+049367 VOTE S4 expect XIndex=3 len=1 xterm=3
+049368 CMIT S0 s4.nextIndex->4
+049368 TRCE S0 backup[4] logIndex[4,10]
+049422 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+049423 VOTE S1 expect XIndex=3 len=8 xterm=3
+049453 INFO S0 beat to others,term=7,accessTime=246169515,
+049486 INFO S3 beat to others,term=6,accessTime=688813012,
+049498 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+049498 VOTE S4 expect XIndex=3 len=1 xterm=3
+049499 CMIT S0 s4.nextIndex->4
+049553 INFO S4 receive AE from 0,PLIdx=3 PLTerm=3
+049554 CMIT S4 disLogIndex->10 value=4964
+049554 CMIT S4 commitIdx:3->8
+049555 CMIT S0 s4.nextIndex->11
+049555 TRCE S0 backup[4] logIndex[4,10] finish
+049555 TRCE S0 backup[4] logIndex[4,10]
+049573 INFO S2 beat to others,term=4,accessTime=57736372,
+049669 INFO S4 receive AE from 0,PLIdx=3 PLTerm=3
+049669 CMIT S4 commitIdx:8
+049670 TRCE S0 backup[4] logIndex[4,10] finish
+049680 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+049681 VOTE S1 expect XIndex=3 len=9 xterm=3
+049683 CMIT S0 s1.nextIndex->4
+049683 TRCE S0 backup[1] logIndex[4,10]
+049776 INFO S1 receive AE from 0,PLIdx=3 PLTerm=3
+049777 CMIT S1 disLogIndex->10 value=4964
+049778 CMIT S1 commitIdx:1->8
+049842 INFO S1 receive AE from 0,PLIdx=10 PLTerm=4
+049843 CMIT S1 disLogIndex->11 value=2522
+049843 CMIT S1 commitIdx:8
+049844 CMIT S0 s1.nextIndex->12
+049852 INFO S0 beat to others,term=7,accessTime=246169515,
+049854 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+049854 VOTE S4 expect XIndex=4 len=7 xterm=4
+049855 CMIT S0 s4.nextIndex->11
+049855 TRCE S0 backup[4] logIndex[11,11]
+049885 INFO S3 beat to others,term=6,accessTime=688813012,
+049931 INFO S1 receive AE from 0,PLIdx=3 PLTerm=3
+049932 CMIT S1 commitIdx:8
+049933 TRCE S0 backup[1] logIndex[4,10] finish
+049973 INFO S2 beat to others,term=4,accessTime=57736372,
+050106 INFO S4 receive AE from 0,PLIdx=10 PLTerm=4
+050106 CMIT S0 commitIndex:8->10
+050107 CMIT S4 disLogIndex->11 value=2522
+050107 CMIT S4 commitIdx:8
+050106 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+050108 CMIT S1 commitIdx:8
+050108 CMIT S0 s4.nextIndex->12
+050108 TRCE S0 backup[4] logIndex[11,11] finish
+050252 INFO S0 beat to others,term=7,accessTime=246169515,
+050284 INFO S3 beat to others,term=6,accessTime=688813012,
+050328 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+050329 CMIT S4 commitIdx:8->10
+050369 INFO S2 beat to others,term=4,accessTime=57736372,
+050370 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+050371 CMIT S1 commitIdx:8->10
+050652 INFO S0 beat to others,term=7,accessTime=246169515,
+050685 INFO S3 beat to others,term=6,accessTime=688813012,
+050687 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+050688 CMIT S4 commitIdx:10
+050774 INFO S2 beat to others,term=4,accessTime=57736372,
+050883 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+050884 CMIT S1 commitIdx:10
+051057 INFO S0 beat to others,term=7,accessTime=246169515,
+051079 INFO S3 beat to others,term=6,accessTime=688813012,
+051102 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+051103 CMIT S1 commitIdx:10
+051166 INFO S2 beat to others,term=4,accessTime=57736372,
+051167 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+051168 CMIT S1 commitIdx:10
+051189 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+051189 CMIT S4 commitIdx:10
+051245 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+051245 CMIT S1 commitIdx:10
+051458 INFO S0 beat to others,term=7,accessTime=246169515,
+051482 INFO S3 beat to others,term=6,accessTime=688813012,
+051482 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+051483 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+051484 CMIT S4 commitIdx:10
+051483 CMIT S1 commitIdx:10
+051566 INFO S2 beat to others,term=4,accessTime=57736372,
+051853 INFO S0 beat to others,term=7,accessTime=246169515,
+051876 INFO S3 beat to others,term=6,accessTime=688813012,
+051909 TRCE disconnect S0
+051909 TRCE reconnect S0
+051909 CMIT S0 start 1411 logIndex=12
+051910 CMIT S2 start 7986 logIndex=27
+051910 CMIT S3 start 172 logIndex=19
+051965 INFO S2 beat to others,term=4,accessTime=57736372,
+051966 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+051967 CMIT S1 disLogIndex->12 value=1411
+051967 CMIT S1 commitIdx:10
+051968 CMIT S0 s1.nextIndex->13
+051976 INFO S1 receive AE from 0,PLIdx=11 PLTerm=7
+051977 CMIT S1 commitIdx:10
+052020 CMIT S0 start 9990 logIndex=13
+052021 CMIT S2 start 377 logIndex=28
+052021 CMIT S3 start 8662 logIndex=20
+052076 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+052077 CMIT S4 commitIdx:10
+052108 CMIT S0 start 7593 logIndex=14
+052110 CMIT S2 start 491 logIndex=29
+052110 CMIT S3 start 244 logIndex=21
+052141 INFO S4 receive AE from 0,PLIdx=12 PLTerm=7
+052141 VOTE S4 expect XIndex=11 len=1 xterm=7
+052142 CMIT S0 s4.nextIndex->12
+052142 TRCE S0 backup[4] logIndex[12,14]
+052151 TRCE disconnect S0
+052151 TRCE reconnect S0
+052151 CMIT S0 start 5483 logIndex=15
+052152 CMIT S2 start 5397 logIndex=30
+052152 CMIT S3 start 479 logIndex=22
+052163 INFO S1 receive AE from 0,PLIdx=12 PLTerm=7
+052163 CMIT S1 disLogIndex->13 value=9990
+052164 CMIT S1 commitIdx:10
+052217 CMIT S0 commitIndex:10->11
+052229 CMIT S0 start 1618 logIndex=16
+052230 CMIT S2 start 6181 logIndex=31
+052231 CMIT S3 start 5940 logIndex=23
+052232 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+052232 CMIT S4 disLogIndex->12 value=1411
+052232 CMIT S4 commitIdx:10
+052233 CMIT S0 s4.nextIndex->13
+052250 INFO S0 beat to others,term=7,accessTime=246169515,
+052263 INFO S1 receive AE from 0,PLIdx=15 PLTerm=7
+052264 VOTE S1 expect XIndex=11 len=3 xterm=7
+052284 INFO S3 beat to others,term=6,accessTime=688813012,
+052284 TRCE disconnect S0
+052285 CMIT S0 start 7843 logIndex=17
+052285 CMIT S2 start 411 logIndex=32
+052286 CMIT S3 start 3577 logIndex=24
+052286 CMIT S0 start 2820 logIndex=18
+052286 CMIT S2 start 1687 logIndex=33
+052287 CMIT S3 start 1253 logIndex=25
+052308 INFO S4 receive AE from 0,PLIdx=13 PLTerm=7
+052308 VOTE S4 expect XIndex=11 len=2 xterm=7
+052329 INFO S1 receive AE from 0,PLIdx=13 PLTerm=7
+052330 CMIT S1 disLogIndex->14 value=7593
+052330 CMIT S1 commitIdx:10
+052329 INFO S4 receive AE from 0,PLIdx=11 PLTerm=7
+052331 CMIT S4 disLogIndex->14 value=7593
+052331 CMIT S4 commitIdx:10
+052341 INFO S4 receive AE from 0,PLIdx=14 PLTerm=7
+052342 CMIT S4 disLogIndex->15 value=5483
+052342 CMIT S4 commitIdx:10
+052341 INFO S1 receive AE from 0,PLIdx=12 PLTerm=7
+052343 CMIT S1 commitIdx:10
+052343 INFO S1 receive AE from 0,PLIdx=15 PLTerm=7
+052344 VOTE S1 expect XIndex=11 len=4 xterm=7
+052364 INFO S1 receive AE from 0,PLIdx=16 PLTerm=7
+052364 VOTE S1 expect XIndex=11 len=4 xterm=7
+052365 INFO S2 beat to others,term=4,accessTime=57736372,
+052373 TRCE reconnect S2
+052374 CMIT S0 start 7182 logIndex=19
+052374 CMIT S2 start 1167 logIndex=34
+052375 CMIT S3 start 5318 logIndex=26
+052388 CMIT S0 start 5883 logIndex=20
+052389 CMIT S2 start 8737 logIndex=35
+052390 CMIT S3 start 2882 logIndex=27
+052418 VOTE S2 to follower,s1 term=7
+052418 INFO S2 Leader -> follower
+052450 INFO S4 receive AE from 0,PLIdx=16 PLTerm=7
+052451 VOTE S4 expect XIndex=11 len=5 xterm=7
+052483 INFO S4 receive AE from 0,PLIdx=15 PLTerm=7
+052484 CMIT S4 disLogIndex->16 value=1618
+052484 CMIT S4 commitIdx:10->11
+052484 VOTE S2 to follower,s1 term=7
+052504 TRCE disconnect S2
+052505 CMIT S0 start 396 logIndex=21
+052506 CMIT S3 start 5328 logIndex=28
+052527 TRCE reconnect S0
+052528 CMIT S0 start 193 logIndex=22
+052529 CMIT S3 start 5035 logIndex=29
+052607 INFO S4 receive AE from 0,PLIdx=21 PLTerm=7
+052608 VOTE S4 expect XIndex=11 len=6 xterm=7
+052650 INFO S0 beat to others,term=7,accessTime=246169515,
+052651 TRCE disconnect S0
+052651 TRCE reconnect S0
+052651 CMIT S0 start 5136 logIndex=23
+052652 CMIT S3 start 9634 logIndex=30
+052652 INFO S1 receive AE from 0,PLIdx=21 PLTerm=7
+052653 VOTE S1 expect XIndex=11 len=4 xterm=7
+052683 INFO S3 beat to others,term=6,accessTime=688813012,
+052695 TRCE disconnect S0
+052695 TRCE reconnect S0
+052695 CMIT S0 start 6783 logIndex=24
+052696 CMIT S3 start 3981 logIndex=31
+052696 INFO S4 receive AE from 0,PLIdx=22 PLTerm=7
+052696 VOTE S4 expect XIndex=11 len=6 xterm=7
+052718 INFO S4 receive AE from 0,PLIdx=22 PLTerm=7
+052718 VOTE S4 expect XIndex=11 len=6 xterm=7
+052750 INFO S4 receive AE from 0,PLIdx=23 PLTerm=7
+052750 VOTE S4 expect XIndex=11 len=6 xterm=7
+052805 INFO S1 receive AE from 0,PLIdx=22 PLTerm=7
+052805 VOTE S1 expect XIndex=11 len=4 xterm=7
+052805 INFO S4 receive AE from 0,PLIdx=22 PLTerm=7
+052807 VOTE S4 expect XIndex=11 len=6 xterm=7
+052827 TRCE disconnect S0
+052827 TRCE reconnect S3
+052828 CMIT S0 start 1813 logIndex=25
+052828 INFO S1 receive AE from 0,PLIdx=22 PLTerm=7
+052829 VOTE S1 expect XIndex=11 len=4 xterm=7
+052830 CMIT S3 start 563 logIndex=32
+052832 VOTE S3 to follower,s4 term=7
+052832 INFO S3 Leader -> follower
+052881 CMIT S0 start 2050 logIndex=26
+052968 CMIT S0 start 9540 logIndex=27
+053054 INFO S0 beat to others,term=7,accessTime=246169515,
+053065 CMIT S0 start 6927 logIndex=28
+053120 CMIT S0 start 4529 logIndex=29
+053456 INFO S0 beat to others,term=7,accessTime=246169515,
+053857 INFO S0 beat to others,term=7,accessTime=246169515,
+054252 INFO S0 beat to others,term=7,accessTime=246169515,
+054650 INFO S0 beat to others,term=7,accessTime=246169515,
+055056 INFO S0 beat to others,term=7,accessTime=246169515,
+055452 INFO S0 beat to others,term=7,accessTime=246169515,
+055852 INFO S0 beat to others,term=7,accessTime=246169515,
+056258 INFO S0 beat to others,term=7,accessTime=246169515,
+056657 INFO S0 beat to others,term=7,accessTime=246169515,
+057055 INFO S0 beat to others,term=7,accessTime=246169515,
+057099 TRCE S3 backup[0] logIndex[10,10] finish
+057131 CMIT S0 start 9227 logIndex=30
+057131 TRCE iters=100
+057132 CMIT S0 start 4652 logIndex=31
+057184 CMIT S0 start 3090 logIndex=32
+057451 INFO S0 beat to others,term=7,accessTime=246169515,
+057860 INFO S0 beat to others,term=7,accessTime=246169515,
+058250 INFO S0 beat to others,term=7,accessTime=246169515,
+058295 CMIT S0 start 5249 logIndex=33
+058338 CMIT S0 start 1823 logIndex=34
+058432 CMIT S0 start 9535 logIndex=35
+058498 CMIT S0 start 5223 logIndex=36
+058563 CMIT S0 start 9984 logIndex=37
+058607 CMIT S0 start 5578 logIndex=38
+058608 VOTE S1 electionTimeout,follower -> candidate
+058609 VOTE S1 termBefore=7,electionTerm=8
+058651 INFO S0 beat to others,term=7,accessTime=246169515,
+058663 CMIT S0 start 6148 logIndex=39
+058664 CMIT S0 start 5732 logIndex=40
+058736 CMIT S0 start 9804 logIndex=41
+058749 VOTE S3 LastLogTerm=7,lastLogIdex=14
+058750 VOTE S3 vote and reset
+058750 VOTE S3 vote for 1
+058759 CMIT S0 start 1648 logIndex=42
+058856 CMIT S0 start 7507 logIndex=43
+058888 VOTE S2 electionTimeout,follower -> candidate
+058889 VOTE S2 termBefore=4,electionTerm=5
+058902 CMIT S0 start 8970 logIndex=44
+058914 CMIT S0 start 9965 logIndex=45
+059020 CMIT S0 start 7521 logIndex=46
+059051 INFO S0 beat to others,term=7,accessTime=246169515,
+059141 CMIT S0 start 3695 logIndex=47
+059248 CMIT S0 start 9594 logIndex=48
+059364 CMIT S0 start 7690 logIndex=49
+059451 INFO S0 beat to others,term=7,accessTime=246169515,
+059485 CMIT S0 start 8534 logIndex=50
+059855 INFO S0 beat to others,term=7,accessTime=246169515,
+060252 INFO S0 beat to others,term=7,accessTime=246169515,
+060651 INFO S0 beat to others,term=7,accessTime=246169515,
+061012 VOTE S4 electionTimeout,follower -> candidate
+061013 VOTE S4 termBefore=8,electionTerm=9
+061056 INFO S0 beat to others,term=7,accessTime=246169515,
+061092 VOTE S3 LastLogTerm=7,lastLogIdex=16
+061093 VOTE S3 vote and reset
+061093 VOTE S3 vote for 4
+061114 VOTE S1 LastLogTerm=7,lastLogIdex=16
+061114 VOTE S1 vote and reset
+061114 VOTE S1 vote for 4
+061115 VOTE S4 win the election, candidate -> Leader
+061129 INFO S1 receive AE from 4,PLIdx=16 PLTerm=7
+061130 INFO S1 receive heartbeat, but no sync
+061130 INFO S1 from S4,term=9,PLTerm=16,PLIdx=16
+061131 CMIT S4 s1.matchidx->16
+061151 INFO S3 receive AE from 4,PLIdx=16 PLTerm=7
+061152 INFO S3 receive heartbeat, but no sync
+061152 INFO S3 from S4,term=9,PLTerm=16,PLIdx=16
+061153 CMIT S4 s3.matchidx->16
+061450 INFO S0 beat to others,term=7,accessTime=246169515,
+061526 INFO S4 beat to others,term=9,accessTime=652800472,
+061529 INFO S1 receive AE from 4,PLIdx=16 PLTerm=7
+061529 INFO S3 receive AE from 4,PLIdx=16 PLTerm=7
+061529 INFO S1 receive heartbeat, but no sync
+061529 INFO S1 from S4,term=9,PLTerm=16,PLIdx=16
+061529 INFO S3 receive heartbeat, but no sync
+061529 INFO S3 from S4,term=9,PLTerm=16,PLIdx=16
+061857 INFO S0 beat to others,term=7,accessTime=246169515,
+061879 CMIT S0 start 1078 logIndex=51
+061880 CMIT S4 start 6059 logIndex=17
+061922 INFO S4 beat to others,term=9,accessTime=652800472,
+061945 INFO S1 receive AE from 4,PLIdx=16 PLTerm=7
+061945 VOTE S1 expect XIndex=11 len=4 xterm=7
+061946 CMIT S4 s1.nextIndex->15
+061946 TRCE S4 backup[1] logIndex[15,16]
+061966 INFO S1 receive AE from 4,PLIdx=17 PLTerm=9
+061967 VOTE S1 expect XIndex=11 len=4 xterm=7
+061988 INFO S1 receive AE from 4,PLIdx=17 PLTerm=9
+061989 VOTE S1 expect XIndex=11 len=4 xterm=7
+061990 CMIT S4 s1.nextIndex->15
+062011 INFO S3 receive AE from 4,PLIdx=17 PLTerm=9
+062011 VOTE S3 expect XIndex=11 len=7 xterm=6
+062012 CMIT S4 s3.nextIndex->11
+062012 TRCE S4 backup[3] logIndex[11,16]
+062107 INFO S3 receive AE from 4,PLIdx=16 PLTerm=7
+062108 VOTE S3 expect XIndex=11 len=6 xterm=6
+062107 INFO S1 receive AE from 4,PLIdx=14 PLTerm=7
+062109 CMIT S4 s3.nextIndex->11
+062109 CMIT S1 disLogIndex->16 value=1618
+062110 CMIT S1 commitIdx:10->11
+062111 CMIT S4 s1.nextIndex->17
+062111 TRCE S4 backup[1] logIndex[15,16] finish
+062111 TRCE S4 backup[1] logIndex[15,16]
+062139 INFO S1 receive AE from 4,PLIdx=14 PLTerm=7
+062140 CMIT S1 commitIdx:11
+062140 TRCE S4 backup[1] logIndex[15,16] finish
+062216 INFO S3 receive AE from 4,PLIdx=10 PLTerm=4
+062217 CMIT S3 disLogIndex->16 value=1618
+062218 CMIT S3 commitIdx:8->11
+062219 CMIT S4 s3.nextIndex->17
+062219 TRCE S4 backup[3] logIndex[11,16] finish
+062219 TRCE S4 backup[3] logIndex[11,16]
+062259 INFO S0 beat to others,term=7,accessTime=246169515,
+062324 INFO S4 beat to others,term=9,accessTime=652800472,
+062368 INFO S3 receive AE from 4,PLIdx=10 PLTerm=4
+062368 CMIT S3 commitIdx:11
+062369 TRCE S4 backup[3] logIndex[11,16] finish
+062412 CMIT S4 commitIndex:11->16
+062422 INFO S1 receive AE from 4,PLIdx=17 PLTerm=9
+062423 VOTE S1 expect XIndex=11 len=6 xterm=7
+062424 CMIT S4 s1.nextIndex->17
+062424 TRCE S4 backup[1] logIndex[17,17]
+062477 INFO S3 receive AE from 4,PLIdx=17 PLTerm=9
+062477 VOTE S3 expect XIndex=11 len=6 xterm=7
+062478 CMIT S4 s3.nextIndex->17
+062478 TRCE S4 backup[3] logIndex[17,17]
+062479 INFO S3 receive AE from 4,PLIdx=16 PLTerm=7
+062480 CMIT S3 disLogIndex->17 value=6059
+062480 CMIT S3 commitIdx:11->16
+062480 CMIT S4 s3.nextIndex->18
+062481 TRCE S4 backup[3] logIndex[17,17] finish
+062520 INFO S1 receive AE from 4,PLIdx=16 PLTerm=7
+062521 CMIT S1 disLogIndex->17 value=6059
+062522 CMIT S1 commitIdx:11->16
+062523 CMIT S4 s1.nextIndex->18
+062523 TRCE S4 backup[1] logIndex[17,17] finish
+062651 INFO S0 beat to others,term=7,accessTime=246169515,
+062714 CMIT S4 commitIndex:16->17
+062725 INFO S4 beat to others,term=9,accessTime=652800472,
+062919 INFO S3 receive AE from 4,PLIdx=17 PLTerm=9
+062920 CMIT S3 commitIdx:16->17
+062996 INFO S1 receive AE from 4,PLIdx=17 PLTerm=9
+062998 CMIT S1 commitIdx:16->17
+063051 INFO S0 beat to others,term=7,accessTime=246169515,
+063116 INFO S4 beat to others,term=9,accessTime=652800472,
+063259 INFO S1 receive AE from 4,PLIdx=17 PLTerm=9
+063260 CMIT S1 commitIdx:17
+063376 TRCE disconnect S4
+063377 CMIT S0 start 4355 logIndex=52
+063378 CMIT S4 start 6241 logIndex=18
+063380 INFO S3 receive AE from 4,PLIdx=17 PLTerm=9
+063380 CMIT S3 commitIdx:17
+063452 INFO S0 beat to others,term=7,accessTime=246169515,
+063483 TRCE reconnect S4
+063484 CMIT S0 start 6031 logIndex=53
+063485 CMIT S4 start 9947 logIndex=19
+063526 TRCE disconnect S4
+063526 TRCE reconnect S4
+063526 INFO S4 beat to others,term=9,accessTime=652800472,
+063527 CMIT S0 start 5785 logIndex=54
+063528 CMIT S4 start 2546 logIndex=20
+063529 INFO S1 receive AE from 4,PLIdx=19 PLTerm=9
+063529 VOTE S1 expect XIndex=17 len=1 xterm=9
+063530 CMIT S4 s1.nextIndex->18
+063530 TRCE S4 backup[1] logIndex[18,20]
+063594 INFO S1 receive AE from 4,PLIdx=18 PLTerm=9
+063594 VOTE S1 expect XIndex=17 len=1 xterm=9
+063595 CMIT S4 s1.nextIndex->18
+063616 INFO S3 receive AE from 4,PLIdx=18 PLTerm=9
+063616 INFO S1 receive AE from 4,PLIdx=19 PLTerm=9
+063617 VOTE S1 expect XIndex=17 len=1 xterm=9
+063616 VOTE S3 expect XIndex=17 len=1 xterm=9
+063618 CMIT S4 s1.nextIndex->18
+063618 CMIT S4 s3.nextIndex->18
+063619 TRCE S4 backup[3] logIndex[18,20]
+063710 INFO S3 receive AE from 4,PLIdx=19 PLTerm=9
+063711 VOTE S3 expect XIndex=17 len=1 xterm=9
+063711 CMIT S4 s3.nextIndex->18
+063712 INFO S1 receive AE from 4,PLIdx=17 PLTerm=9
+063713 CMIT S1 disLogIndex->20 value=2546
+063713 CMIT S1 commitIdx:17
+063714 CMIT S4 s1.nextIndex->21
+063714 TRCE S4 backup[1] logIndex[18,20] finish
+063714 TRCE S4 backup[1] logIndex[18,20]
+063721 INFO S3 receive AE from 4,PLIdx=19 PLTerm=9
+063722 VOTE S3 expect XIndex=17 len=1 xterm=9
+063722 CMIT S4 s3.nextIndex->18
+063805 INFO S1 receive AE from 4,PLIdx=17 PLTerm=9
+063806 CMIT S1 commitIdx:17
+063807 TRCE S4 backup[1] logIndex[18,20] finish
+063859 INFO S0 beat to others,term=7,accessTime=246169515,
+063871 INFO S3 receive AE from 4,PLIdx=17 PLTerm=9
+063871 CMIT S3 disLogIndex->20 value=2546
+063872 CMIT S3 commitIdx:17
+063873 CMIT S4 s3.nextIndex->21
+063873 TRCE S4 backup[3] logIndex[18,20] finish
+063873 TRCE S4 backup[3] logIndex[18,20]
+063914 CMIT S4 commitIndex:17->20
+063924 INFO S4 beat to others,term=9,accessTime=652800472,
+063926 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+063927 CMIT S3 commitIdx:17->20
+063959 INFO S1 receive AE from 4,PLIdx=20 PLTerm=9
+063960 CMIT S1 commitIdx:17->20
+064044 INFO S3 receive AE from 4,PLIdx=17 PLTerm=9
+064045 CMIT S3 commitIdx:20
+064046 TRCE S4 backup[3] logIndex[18,20] finish
+064251 INFO S0 beat to others,term=7,accessTime=246169515,
+064316 INFO S4 beat to others,term=9,accessTime=652800472,
+064359 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+064360 CMIT S3 commitIdx:20
+064489 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+064490 CMIT S3 commitIdx:20
+064557 INFO S1 receive AE from 4,PLIdx=20 PLTerm=9
+064558 CMIT S1 commitIdx:20
+064653 INFO S0 beat to others,term=7,accessTime=246169515,
+064720 INFO S4 beat to others,term=9,accessTime=652800472,
+064841 INFO S1 receive AE from 4,PLIdx=20 PLTerm=9
+064841 CMIT S1 commitIdx:20
+064907 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+064908 CMIT S3 commitIdx:20
+065059 INFO S0 beat to others,term=7,accessTime=246169515,
+065125 INFO S4 beat to others,term=9,accessTime=652800472,
+065191 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+065192 CMIT S3 commitIdx:20
+065342 INFO S1 receive AE from 4,PLIdx=20 PLTerm=9
+065343 CMIT S1 commitIdx:20
+065396 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+065396 CMIT S3 commitIdx:20
+065451 INFO S0 beat to others,term=7,accessTime=246169515,
+065516 INFO S4 beat to others,term=9,accessTime=652800472,
+065682 INFO S1 receive AE from 4,PLIdx=20 PLTerm=9
+065683 CMIT S1 commitIdx:20
+065704 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+065705 CMIT S3 commitIdx:20
+065858 INFO S0 beat to others,term=7,accessTime=246169515,
+065915 CMIT S0 start 2596 logIndex=55
+065916 CMIT S4 start 2629 logIndex=21
+065916 INFO S4 beat to others,term=9,accessTime=652800472,
+065991 INFO S3 receive AE from 4,PLIdx=20 PLTerm=9
+065992 CMIT S3 disLogIndex->21 value=2629
+065992 CMIT S3 commitIdx:20
+065993 CMIT S4 s3.nextIndex->22
+066002 INFO S3 receive AE from 4,PLIdx=21 PLTerm=9
+066003 CMIT S3 commitIdx:20
+066024 CMIT S0 start 9449 logIndex=56
+066025 CMIT S4 start 9700 logIndex=22
+066036 TRCE disconnect S4
+066037 TRCE reconnect S0
+066038 CMIT S0 start 4696 logIndex=57
+066038 CMIT S4 start 9966 logIndex=23
+066081 VOTE S0 to follower,s1 term=9
+066082 INFO S0 Leader -> follower
+066114 INFO S1 receive AE from 4,PLIdx=21 PLTerm=9
+066115 VOTE S1 expect XIndex=17 len=4 xterm=9
+066125 INFO S1 receive AE from 4,PLIdx=20 PLTerm=9
+066126 CMIT S1 disLogIndex->21 value=2629
+066126 CMIT S1 commitIdx:20
+066159 INFO S1 receive AE from 4,PLIdx=21 PLTerm=9
+066159 CMIT S1 disLogIndex->22 value=9700
+066159 CMIT S1 commitIdx:20
+066160 CMIT S4 start 1454 logIndex=24
+066212 CMIT S4 start 5035 logIndex=25
+066213 VOTE S0 to follower,s3 term=9
+066213 INFO S3 receive AE from 4,PLIdx=21 PLTerm=9
+066214 CMIT S3 disLogIndex->22 value=9700
+066214 CMIT S3 commitIdx:20
+066324 INFO S4 beat to others,term=9,accessTime=652800472,
+066336 CMIT S4 start 2509 logIndex=26
+066368 CMIT S4 start 3998 logIndex=27
+066413 CMIT S4 start 2297 logIndex=28
+066458 CMIT S4 start 3981 logIndex=29
+066590 CMIT S4 start 1765 logIndex=30
+066719 INFO S4 beat to others,term=9,accessTime=652800472,
+066957 TRCE S3 backup[4] logIndex[3,3] finish
+066958 TRCE S3 backup[4] logIndex[3,3]
+066958 TRCE S3 backup[4] logIndex[3,3] finish
+067121 INFO S4 beat to others,term=9,accessTime=652800472,
+067522 INFO S4 beat to others,term=9,accessTime=652800472,
+067694 INFO S2 candidate electionTimeout,restart election
+067695 VOTE S2 termBefore=5,electionTerm=6
+067919 INFO S4 beat to others,term=9,accessTime=652800472,
+068316 INFO S4 beat to others,term=9,accessTime=652800472,
+068719 INFO S4 beat to others,term=9,accessTime=652800472,
+069123 INFO S4 beat to others,term=9,accessTime=652800472,
+069516 INFO S4 beat to others,term=9,accessTime=652800472,
+069923 INFO S4 beat to others,term=9,accessTime=652800472,
+070215 VOTE S0 electionTimeout,follower -> candidate
+070216 VOTE S0 termBefore=7,electionTerm=8
+070282 VOTE S3 reject vote for 0, stale term
+070283 VOTE S0 more up-to-date term,candidate->follower
+070324 INFO S4 beat to others,term=9,accessTime=652800472,
+070349 VOTE S1 reject vote for 0, stale term
+070350 VOTE S0 more up-to-date term,candidate->follower
+070724 INFO S4 beat to others,term=9,accessTime=652800472,
+071126 INFO S4 beat to others,term=9,accessTime=652800472,
+071212 VOTE S3 electionTimeout,follower -> candidate
+071212 VOTE S3 termBefore=9,electionTerm=10
+071214 VOTE S1 LastLogTerm=9,lastLogIdex=22
+071215 VOTE S1 vote and reset
+071215 VOTE S1 vote for 3
+071442 CMIT S4 start 3833 logIndex=31
+071474 CMIT S4 start 514 logIndex=32
+071526 INFO S4 beat to others,term=9,accessTime=652800472,
+071559 CMIT S4 start 9401 logIndex=33
+071688 CMIT S4 start 3168 logIndex=34
+071700 CMIT S4 start 781 logIndex=35
+071754 CMIT S4 start 7176 logIndex=36
+071925 INFO S4 beat to others,term=9,accessTime=652800472,
+072316 INFO S4 beat to others,term=9,accessTime=652800472,
+072724 INFO S4 beat to others,term=9,accessTime=652800472,
+073116 INFO S4 beat to others,term=9,accessTime=652800472,
+073525 INFO S4 beat to others,term=9,accessTime=652800472,
+073922 INFO S4 beat to others,term=9,accessTime=652800472,
+073945 CMIT S4 start 4338 logIndex=37
+073988 CMIT S4 start 7967 logIndex=38
+073988 CMIT S4 start 8658 logIndex=39
+074009 CMIT S4 start 2345 logIndex=40
+074323 INFO S4 beat to others,term=9,accessTime=652800472,
+074718 INFO S4 beat to others,term=9,accessTime=652800472,
+075121 INFO S4 beat to others,term=9,accessTime=652800472,
+075219 INFO S3 candidate electionTimeout,restart election
+075220 VOTE S3 termBefore=10,electionTerm=11
+075301 INFO S2 candidate electionTimeout,restart election
+075302 VOTE S2 termBefore=6,electionTerm=7
+075403 VOTE S1 LastLogTerm=9,lastLogIdex=22
+075403 VOTE S1 vote and reset
+075403 VOTE S1 vote for 3
+075522 INFO S4 beat to others,term=9,accessTime=652800472,
+075926 INFO S4 beat to others,term=9,accessTime=652800472,
+076318 INFO S4 beat to others,term=9,accessTime=652800472,
+076691 VOTE S0 electionTimeout,follower -> candidate
+076692 VOTE S0 termBefore=9,electionTerm=10
+076723 INFO S4 beat to others,term=9,accessTime=652800472,
+076780 VOTE S3 reject vote for 0, stale term
+076781 VOTE S0 more up-to-date term,candidate->follower
+076834 VOTE S1 reject vote for 0, stale term
+077125 INFO S4 beat to others,term=9,accessTime=652800472,
+077516 INFO S4 beat to others,term=9,accessTime=652800472,
+077918 INFO S4 beat to others,term=9,accessTime=652800472,
+078324 INFO S4 beat to others,term=9,accessTime=652800472,
+078724 INFO S4 beat to others,term=9,accessTime=652800472,
+078758 CMIT S4 start 2697 logIndex=41
+078844 CMIT S4 start 7406 logIndex=42
+078876 CMIT S4 start 8970 logIndex=43
+079125 INFO S4 beat to others,term=9,accessTime=652800472,
+079516 INFO S4 beat to others,term=9,accessTime=652800472,
+079919 INFO S4 beat to others,term=9,accessTime=652800472,
+080321 INFO S4 beat to others,term=9,accessTime=652800472,
+080718 INFO S4 beat to others,term=9,accessTime=652800472,
+081117 INFO S4 beat to others,term=9,accessTime=652800472,
+081520 INFO S4 beat to others,term=9,accessTime=652800472,
+081922 INFO S4 beat to others,term=9,accessTime=652800472,
+082323 INFO S4 beat to others,term=9,accessTime=652800472,
+082722 INFO S4 beat to others,term=9,accessTime=652800472,
+083122 INFO S4 beat to others,term=9,accessTime=652800472,
+083423 INFO S3 candidate electionTimeout,restart election
+083424 VOTE S3 termBefore=11,electionTerm=12
+083522 INFO S4 beat to others,term=9,accessTime=652800472,
+083558 VOTE S0 LastLogTerm=9,lastLogIdex=22
+083559 VOTE S0 vote and reset
+083559 VOTE S0 vote for 3
+083601 VOTE S1 LastLogTerm=9,lastLogIdex=22
+083602 VOTE S1 vote and reset
+083602 VOTE S1 vote for 3
+083603 VOTE S3 win the election, candidate -> Leader
+083665 CMIT S3 start 5371 logIndex=23
+083667 CMIT S4 start 6582 logIndex=44
+083689 CMIT S3 start 1387 logIndex=24
+083690 CMIT S4 start 447 logIndex=45
+083713 INFO S1 receive AE from 3,PLIdx=22 PLTerm=9
+083713 CMIT S1 disLogIndex->23 value=5371
+083713 CMIT S1 commitIdx:20
+083714 CMIT S3 s1.nextIndex->24
+083787 CMIT S3 start 9739 logIndex=25
+083788 CMIT S4 start 161 logIndex=46
+083819 INFO S1 receive AE from 3,PLIdx=22 PLTerm=9
+083820 INFO S1 receive heartbeat, but no sync
+083820 INFO S1 from S3,term=12,PLTerm=22,PLIdx=22
+083840 CMIT S3 start 3605 logIndex=26
+083841 INFO S1 receive AE from 3,PLIdx=23 PLTerm=12
+083842 CMIT S1 disLogIndex->24 value=1387
+083842 CMIT S1 commitIdx:20
+083841 CMIT S4 start 8562 logIndex=47
+083843 CMIT S3 s1.nextIndex->25
+083863 INFO S0 receive AE from 3,PLIdx=22 PLTerm=9
+083864 INFO S0 receive heartbeat, but no sync
+083864 INFO S0 from S3,term=12,PLTerm=22,PLIdx=22
+083865 CMIT S3 s0.matchidx->22
+083899 INFO S1 receive AE from 3,PLIdx=24 PLTerm=12
+083899 INFO S0 receive AE from 3,PLIdx=22 PLTerm=9
+083900 CMIT S1 disLogIndex->25 value=9739
+083900 CMIT S1 commitIdx:20
+083900 VOTE S0 expect XIndex=11 len=12 xterm=7
+083901 CMIT S3 s0.nextIndex->17
+083901 TRCE S3 backup[0] logIndex[17,22]
+083904 CMIT S3 s1.nextIndex->26
+083908 INFO S0 receive AE from 3,PLIdx=25 PLTerm=12
+083910 VOTE S0 expect XIndex=11 len=15 xterm=7
+083930 INFO S4 beat to others,term=9,accessTime=652800472,
+083931 INFO S0 receive AE from 3,PLIdx=24 PLTerm=12
+083933 VOTE S0 expect XIndex=11 len=14 xterm=7
+083964 TRCE disconnect S3
+083965 TRCE reconnect S3
+083965 INFO S1 receive AE from 3,PLIdx=25 PLTerm=12
+083966 CMIT S3 start 9930 logIndex=27
+083966 CMIT S1 disLogIndex->26 value=3605
+083966 CMIT S1 commitIdx:20
+083966 CMIT S4 start 6772 logIndex=48
+083967 CMIT S3 s1.nextIndex->27
+083987 CMIT S3 start 5824 logIndex=28
+083988 CMIT S4 start 6113 logIndex=49
+083999 INFO S1 receive AE from 3,PLIdx=22 PLTerm=9
+084000 INFO S1 receive heartbeat, but no sync
+084000 INFO S1 from S3,term=12,PLTerm=22,PLIdx=22
+084009 INFO S3 beat to others,term=12,accessTime=901564586,
+084011 INFO S0 receive AE from 3,PLIdx=26 PLTerm=12
+084012 VOTE S0 expect XIndex=11 len=16 xterm=7
+084013 CMIT S3 s0.nextIndex->17
+084013 INFO S0 receive AE from 3,PLIdx=25 PLTerm=12
+084014 VOTE S0 expect XIndex=11 len=15 xterm=7
+084015 CMIT S3 s0.nextIndex->17
+084021 CMIT S3 start 2389 logIndex=29
+084022 INFO S0 receive AE from 3,PLIdx=16 PLTerm=7
+084022 CMIT S0 disLogIndex->22 value=9700
+084022 CMIT S4 start 4163 logIndex=50
+084023 CMIT S0 commitIdx:11->20
+084023 CMIT S3 s0.nextIndex->23
+084024 TRCE S3 backup[0] logIndex[17,22] finish
+084024 TRCE S3 backup[0] logIndex[17,22]
+084033 INFO S1 receive AE from 3,PLIdx=22 PLTerm=9
+084034 INFO S1 receive heartbeat, but no sync
+084034 INFO S1 from S3,term=12,PLTerm=22,PLIdx=22
+084035 INFO S0 receive AE from 3,PLIdx=16 PLTerm=7
+084036 CMIT S0 commitIdx:20
+084036 TRCE S3 backup[0] logIndex[17,22] finish
+084044 INFO S0 receive AE from 3,PLIdx=27 PLTerm=12
+084045 VOTE S0 expect XIndex=17 len=6 xterm=9
+084046 CMIT S3 s0.nextIndex->23
+084046 TRCE S3 backup[0] logIndex[23,29]
+084066 INFO S1 receive AE from 3,PLIdx=28 PLTerm=12
+084066 INFO S0 receive AE from 3,PLIdx=24 PLTerm=12
+084067 VOTE S1 expect XIndex=23 len=4 xterm=12
+084067 VOTE S0 expect XIndex=17 len=6 xterm=9
+084068 CMIT S3 s1.nextIndex->27
+084068 CMIT S3 s0.nextIndex->23
+084068 TRCE S3 backup[1] logIndex[27,29]
+084100 INFO S0 receive AE from 3,PLIdx=28 PLTerm=12
+084100 VOTE S0 expect XIndex=17 len=6 xterm=9
+084110 INFO S2 candidate electionTimeout,restart election
+084110 VOTE S2 termBefore=7,electionTerm=8
+084123 INFO S0 receive AE from 3,PLIdx=23 PLTerm=12
+084124 VOTE S0 expect XIndex=17 len=6 xterm=9
+084124 TRCE disconnect S3
+084124 TRCE reconnect S4
+084125 CMIT S3 start 6312 logIndex=30
+084125 CMIT S4 start 3744 logIndex=51
+084154 INFO S1 receive AE from 3,PLIdx=26 PLTerm=12
+084155 CMIT S1 disLogIndex->29 value=2389
+084155 CMIT S1 commitIdx:20
+084166 INFO S1 receive AE from 3,PLIdx=27 PLTerm=12
+084166 CMIT S1 commitIdx:20
+084187 CMIT S3 start 4628 logIndex=31
+084187 INFO S1 receive AE from 3,PLIdx=26 PLTerm=12
+084188 CMIT S1 commitIdx:20
+084188 CMIT S4 start 590 logIndex=52
+084210 INFO S0 receive AE from 3,PLIdx=28 PLTerm=12
+084211 VOTE S0 expect XIndex=17 len=6 xterm=9
+084210 INFO S1 receive AE from 3,PLIdx=28 PLTerm=12
+084211 CMIT S1 commitIdx:20
+084242 CMIT S3 start 4228 logIndex=32
+084243 CMIT S4 start 7609 logIndex=53
+084288 VOTE S4 to follower,s1 term=12
+084288 INFO S4 Leader -> follower
+084298 INFO S0 receive AE from 3,PLIdx=22 PLTerm=9
+084299 CMIT S0 disLogIndex->29 value=2389
+084299 CMIT S0 commitIdx:20
+084310 CMIT S3 commitIndex:20->22
+084310 VOTE S4 to follower,s0 term=12
+084363 CMIT S3 start 4659 logIndex=33
+084385 CMIT S3 start 3024 logIndex=34
+084407 INFO S3 beat to others,term=12,accessTime=901564586,
+084420 VOTE S4 to follower,s1 term=12
+084441 CMIT S3 start 3659 logIndex=35
+084441 VOTE S4 to follower,s1 term=12
+084464 VOTE S4 to follower,s0 term=12
+084497 VOTE S4 to follower,s0 term=12
+084529 CMIT S3 start 4772 logIndex=36
+084572 CMIT S3 start 4576 logIndex=37
+084811 INFO S3 beat to others,term=12,accessTime=901564586,
+085206 INFO S3 beat to others,term=12,accessTime=901564586,
+085610 INFO S3 beat to others,term=12,accessTime=901564586,
+086005 INFO S3 beat to others,term=12,accessTime=901564586,
+086411 INFO S3 beat to others,term=12,accessTime=901564586,
+086805 INFO S3 beat to others,term=12,accessTime=901564586,
+087205 INFO S3 beat to others,term=12,accessTime=901564586,
+087605 INFO S3 beat to others,term=12,accessTime=901564586,
+087830 CMIT S3 start 6698 logIndex=38
+087939 CMIT S3 start 1041 logIndex=39
+087940 CMIT S3 start 7159 logIndex=40
+088003 INFO S3 beat to others,term=12,accessTime=901564586,
+088070 CMIT S3 start 5756 logIndex=41
+088092 CMIT S3 start 6487 logIndex=42
+088320 CMIT S3 start 1052 logIndex=43
+088404 INFO S3 beat to others,term=12,accessTime=901564586,
+088428 CMIT S3 start 9749 logIndex=44
+088470 VOTE S0 electionTimeout,follower -> candidate
+088470 VOTE S0 termBefore=12,electionTerm=13
+088493 VOTE S4 LastLogTerm=12,lastLogIdex=29
+088494 VOTE S4 vote and reset
+088494 VOTE S4 vote for 0
+088547 CMIT S3 start 1460 logIndex=45
+088634 CMIT S3 start 9466 logIndex=46
+088732 CMIT S3 start 9823 logIndex=47
+088734 VOTE S1 LastLogTerm=12,lastLogIdex=29
+088735 VOTE S1 vote and reset
+088735 VOTE S1 vote for 0
+088735 VOTE S0 win the election, candidate -> Leader
+088810 INFO S3 beat to others,term=12,accessTime=901564586,
+088833 INFO S4 receive AE from 0,PLIdx=29 PLTerm=12
+088834 INFO S4 receive heartbeat, but no sync
+088834 INFO S4 from S0,term=13,PLTerm=29,PLIdx=29
+088834 CMIT S0 s4.matchidx->29
+088864 CMIT S0 start 7479 logIndex=30
+088865 CMIT S3 start 7639 logIndex=48
+088887 INFO S1 receive AE from 0,PLIdx=29 PLTerm=12
+088887 INFO S4 receive AE from 0,PLIdx=29 PLTerm=12
+088888 INFO S1 receive heartbeat, but no sync
+088888 INFO S1 from S0,term=13,PLTerm=29,PLIdx=29
+088888 VOTE S4 expect XIndex=17 len=13 xterm=9
+088889 CMIT S0 s4.nextIndex->23
+088909 TRCE disconnect S0
+088909 TRCE reconnect S2
+088910 CMIT S0 start 5949 logIndex=31
+088911 CMIT S3 start 2717 logIndex=49
+088932 INFO S1 receive AE from 0,PLIdx=29 PLTerm=12
+088933 CMIT S1 disLogIndex->30 value=7479
+088933 CMIT S1 commitIdx:20
+088943 CMIT S0 start 4335 logIndex=32
+088944 CMIT S3 start 5825 logIndex=50
+088955 CMIT S0 start 8929 logIndex=33
+088956 CMIT S3 start 6713 logIndex=51
+089040 INFO S1 receive AE from 0,PLIdx=29 PLTerm=12
+089041 INFO S1 receive heartbeat, but no sync
+089041 INFO S1 from S0,term=13,PLTerm=29,PLIdx=29
+089051 CMIT S0 start 3264 logIndex=34
+089052 CMIT S3 start 8641 logIndex=52
+089137 INFO S0 beat to others,term=13,accessTime=414812823,
+089138 CMIT S0 start 3971 logIndex=35
+089139 CMIT S3 start 3882 logIndex=53
+089152 CMIT S0 start 4420 logIndex=36
+089152 CMIT S3 start 952 logIndex=54
+089206 INFO S3 beat to others,term=12,accessTime=901564586,
+089217 CMIT S0 start 1091 logIndex=37
+089218 CMIT S3 start 6517 logIndex=55
+089271 CMIT S0 start 7584 logIndex=38
+089272 CMIT S3 start 3902 logIndex=56
+089541 INFO S0 beat to others,term=13,accessTime=414812823,
+089606 INFO S3 beat to others,term=12,accessTime=901564586,
+089946 INFO S0 beat to others,term=13,accessTime=414812823,
+090011 INFO S3 beat to others,term=12,accessTime=901564586,
+090345 INFO S0 beat to others,term=13,accessTime=414812823,
+090411 INFO S3 beat to others,term=12,accessTime=901564586,
+090746 INFO S0 beat to others,term=13,accessTime=414812823,
+090810 INFO S3 beat to others,term=12,accessTime=901564586,
+091137 INFO S0 beat to others,term=13,accessTime=414812823,
+091213 INFO S3 beat to others,term=12,accessTime=901564586,
+091537 INFO S0 beat to others,term=13,accessTime=414812823,
+091614 INFO S3 beat to others,term=12,accessTime=901564586,
+091938 INFO S0 beat to others,term=13,accessTime=414812823,
+092012 INFO S3 beat to others,term=12,accessTime=901564586,
+092336 INFO S0 beat to others,term=13,accessTime=414812823,
+092412 INFO S3 beat to others,term=12,accessTime=901564586,
+092743 INFO S0 beat to others,term=13,accessTime=414812823,
+092808 INFO S3 beat to others,term=12,accessTime=901564586,
+093140 INFO S0 beat to others,term=13,accessTime=414812823,
+093203 INFO S3 beat to others,term=12,accessTime=901564586,
+093520 INFO S2 candidate electionTimeout,restart election
+093520 VOTE S2 termBefore=8,electionTerm=9
+093542 INFO S0 beat to others,term=13,accessTime=414812823,
+093543 CMIT S0 start 3611 logIndex=39
+093543 CMIT S3 start 4131 logIndex=57
+093610 INFO S3 beat to others,term=12,accessTime=901564586,
+093632 CMIT S0 start 6675 logIndex=40
+093633 CMIT S3 start 8070 logIndex=58
+093666 VOTE S1 reject vote for 2, stale term
+093667 VOTE S2 more up-to-date term,candidate->follower
+093938 INFO S0 beat to others,term=13,accessTime=414812823,
+094004 INFO S3 beat to others,term=12,accessTime=901564586,
+094252 VOTE S1 electionTimeout,follower -> candidate
+094252 VOTE S1 termBefore=13,electionTerm=14
+094276 VOTE S4 LastLogTerm=13,lastLogIdex=30
+094277 VOTE S4 vote and reset
+094277 VOTE S4 vote for 1
+094298 VOTE S2 LastLogTerm=13,lastLogIdex=30
+094299 VOTE S2 vote and reset
+094299 VOTE S2 vote for 1
+094300 VOTE S1 win the election, candidate -> Leader
+094341 INFO S0 beat to others,term=13,accessTime=414812823,
+094405 INFO S3 beat to others,term=12,accessTime=901564586,
+094547 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+094548 INFO S2 receive heartbeat, but no sync
+094548 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+094549 CMIT S1 s2.matchidx->30
+094558 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+094559 INFO S4 receive heartbeat, but no sync
+094559 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+094559 CMIT S1 s4.matchidx->30
+094708 INFO S1 beat to others,term=14,accessTime=971237263,
+094741 INFO S0 beat to others,term=13,accessTime=414812823,
+094786 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+094787 INFO S4 receive heartbeat, but no sync
+094788 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+094786 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+094789 INFO S2 receive heartbeat, but no sync
+094789 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+094808 INFO S3 beat to others,term=12,accessTime=901564586,
+095100 INFO S1 beat to others,term=14,accessTime=971237263,
+095145 INFO S0 beat to others,term=13,accessTime=414812823,
+095178 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+095179 INFO S2 receive heartbeat, but no sync
+095179 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+095209 INFO S3 beat to others,term=12,accessTime=901564586,
+095339 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+095340 INFO S4 receive heartbeat, but no sync
+095340 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+095501 INFO S1 beat to others,term=14,accessTime=971237263,
+095545 INFO S0 beat to others,term=13,accessTime=414812823,
+095612 INFO S3 beat to others,term=12,accessTime=901564586,
+095755 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+095756 INFO S4 receive heartbeat, but no sync
+095756 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+095766 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+095767 INFO S2 receive heartbeat, but no sync
+095767 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+095908 INFO S1 beat to others,term=14,accessTime=971237263,
+095941 INFO S0 beat to others,term=13,accessTime=414812823,
+096006 INFO S3 beat to others,term=12,accessTime=901564586,
+096052 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+096053 INFO S2 receive heartbeat, but no sync
+096053 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+096151 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+096152 INFO S4 receive heartbeat, but no sync
+096153 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+096312 INFO S1 beat to others,term=14,accessTime=971237263,
+096344 INFO S0 beat to others,term=13,accessTime=414812823,
+096409 INFO S3 beat to others,term=12,accessTime=901564586,
+096497 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+096498 INFO S4 receive heartbeat, but no sync
+096499 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+096531 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+096531 INFO S2 receive heartbeat, but no sync
+096531 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+096703 INFO S1 beat to others,term=14,accessTime=971237263,
+096736 INFO S0 beat to others,term=13,accessTime=414812823,
+096748 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+096749 INFO S2 receive heartbeat, but no sync
+096749 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+096748 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+096750 INFO S4 receive heartbeat, but no sync
+096750 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+096811 INFO S3 beat to others,term=12,accessTime=901564586,
+097062 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+097063 INFO S2 receive heartbeat, but no sync
+097063 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+097106 INFO S1 beat to others,term=14,accessTime=971237263,
+097139 INFO S0 beat to others,term=13,accessTime=414812823,
+097206 INFO S3 beat to others,term=12,accessTime=901564586,
+097327 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+097328 INFO S2 receive heartbeat, but no sync
+097328 INFO S2 from S1,term=14,PLTerm=30,PLIdx=30
+097369 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+097370 INFO S4 receive heartbeat, but no sync
+097370 INFO S4 from S1,term=14,PLTerm=30,PLIdx=30
+097499 CMIT S0 start 7090 logIndex=41
+097500 CMIT S1 start 7627 logIndex=31
+097501 CMIT S3 start 7646 logIndex=59
+097501 INFO S1 beat to others,term=14,accessTime=971237263,
+097533 INFO S4 receive AE from 1,PLIdx=31 PLTerm=14
+097534 VOTE S4 expect XIndex=17 len=15 xterm=9
+097535 CMIT S1 s4.nextIndex->23
+097535 TRCE S1 backup[4] logIndex[23,29]
+097536 INFO S0 beat to others,term=13,accessTime=414812823,
+097555 INFO S4 receive AE from 1,PLIdx=22 PLTerm=9
+097556 CMIT S4 disLogIndex->29 value=2389
+097556 CMIT S4 commitIdx:20
+097557 CMIT S1 s4.nextIndex->30
+097558 TRCE S1 backup[4] logIndex[23,29] finish
+097566 CMIT S0 start 4716 logIndex=42
+097566 CMIT S1 start 2125 logIndex=32
+097567 CMIT S3 start 9969 logIndex=60
+097579 TRCE disconnect S1
+097579 CMIT S0 start 7427 logIndex=43
+097580 CMIT S1 start 3309 logIndex=33
+097580 CMIT S3 start 9533 logIndex=61
+097611 INFO S3 beat to others,term=12,accessTime=901564586,
+097612 INFO S4 receive AE from 1,PLIdx=30 PLTerm=13
+097612 VOTE S4 expect XIndex=23 len=7 xterm=12
+097623 INFO S2 receive AE from 1,PLIdx=31 PLTerm=14
+097624 VOTE S2 expect XIndex=4 len=28 xterm=4
+097645 INFO S4 receive AE from 1,PLIdx=31 PLTerm=14
+097646 VOTE S4 expect XIndex=23 len=7 xterm=12
+097669 INFO S2 receive AE from 1,PLIdx=31 PLTerm=14
+097669 VOTE S2 expect XIndex=4 len=28 xterm=4
+097764 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+097765 VOTE S2 expect XIndex=4 len=27 xterm=4
+097906 INFO S1 beat to others,term=14,accessTime=971237263,
+097939 INFO S0 beat to others,term=13,accessTime=414812823,
+098014 INFO S3 beat to others,term=12,accessTime=901564586,
+098304 INFO S1 beat to others,term=14,accessTime=971237263,
+098338 INFO S0 beat to others,term=13,accessTime=414812823,
+098404 INFO S3 beat to others,term=12,accessTime=901564586,
+098711 INFO S1 beat to others,term=14,accessTime=971237263,
+098736 INFO S0 beat to others,term=13,accessTime=414812823,
+098813 INFO S3 beat to others,term=12,accessTime=901564586,
+099100 INFO S1 beat to others,term=14,accessTime=971237263,
+099143 INFO S0 beat to others,term=13,accessTime=414812823,
+099210 INFO S3 beat to others,term=12,accessTime=901564586,
+099503 INFO S1 beat to others,term=14,accessTime=971237263,
+099536 INFO S0 beat to others,term=13,accessTime=414812823,
+099613 INFO S3 beat to others,term=12,accessTime=901564586,
+099906 INFO S1 beat to others,term=14,accessTime=971237263,
+099940 INFO S0 beat to others,term=13,accessTime=414812823,
+100006 INFO S3 beat to others,term=12,accessTime=901564586,
+100307 INFO S1 beat to others,term=14,accessTime=971237263,
+100340 INFO S0 beat to others,term=13,accessTime=414812823,
+100406 INFO S3 beat to others,term=12,accessTime=901564586,
+100705 INFO S1 beat to others,term=14,accessTime=971237263,
+100739 INFO S0 beat to others,term=13,accessTime=414812823,
+100810 INFO S3 beat to others,term=12,accessTime=901564586,
+101102 INFO S1 beat to others,term=14,accessTime=971237263,
+101146 INFO S0 beat to others,term=13,accessTime=414812823,
+101210 INFO S3 beat to others,term=12,accessTime=901564586,
+101510 INFO S1 beat to others,term=14,accessTime=971237263,
+101543 INFO S0 beat to others,term=13,accessTime=414812823,
+101608 INFO S3 beat to others,term=12,accessTime=901564586,
+101907 INFO S1 beat to others,term=14,accessTime=971237263,
+101942 INFO S0 beat to others,term=13,accessTime=414812823,
+101974 TRCE reconnect S1
+101975 CMIT S0 start 6740 logIndex=44
+101976 CMIT S1 start 7606 logIndex=34
+101978 CMIT S3 start 4909 logIndex=62
+102008 INFO S3 beat to others,term=12,accessTime=901564586,
+102073 INFO S2 receive AE from 1,PLIdx=33 PLTerm=14
+102074 VOTE S2 expect XIndex=4 len=30 xterm=4
+102075 CMIT S1 s2.nextIndex->11
+102075 TRCE S1 backup[2] logIndex[11,16]
+102093 TRCE disconnect S1
+102094 CMIT S0 start 4328 logIndex=45
+102095 CMIT S1 start 720 logIndex=35
+102096 CMIT S3 start 5779 logIndex=63
+102171 INFO S4 receive AE from 1,PLIdx=33 PLTerm=14
+102172 VOTE S4 expect XIndex=23 len=7 xterm=12
+102213 CMIT S0 start 7261 logIndex=46
+102213 INFO S2 receive AE from 1,PLIdx=10 PLTerm=4
+102214 CMIT S1 start 6355 logIndex=36
+102220 CMIT S2 disLogIndex->16 value=1618
+102222 CMIT S2 commitIdx:8->16
+102225 CMIT S3 start 4428 logIndex=64
+102307 INFO S1 beat to others,term=14,accessTime=971237263,
+102339 TRCE reconnect S0
+102340 INFO S0 beat to others,term=13,accessTime=414812823,
+102341 CMIT S0 start 5887 logIndex=47
+102341 CMIT S1 start 1624 logIndex=37
+102342 CMIT S3 start 6167 logIndex=65
+102405 INFO S3 beat to others,term=12,accessTime=901564586,
+102417 TRCE disconnect S0
+102417 TRCE reconnect S3
+102418 CMIT S0 start 1681 logIndex=48
+102418 CMIT S1 start 3624 logIndex=38
+102419 CMIT S3 start 3603 logIndex=66
+102452 VOTE S3 to follower,s4 term=14
+102452 INFO S3 Leader -> follower
+102539 TRCE disconnect S3
+102539 TRCE reconnect S0
+102540 CMIT S0 start 2966 logIndex=49
+102541 CMIT S1 start 4037 logIndex=39
+102574 VOTE S0 to follower,s2 term=14
+102574 INFO S0 Leader -> follower
+102618 TRCE disconnect S0
+102618 TRCE reconnect S1
+102619 CMIT S1 start 2631 logIndex=40
+102621 INFO S2 receive AE from 1,PLIdx=39 PLTerm=14
+102622 VOTE S2 expect XIndex=11 len=6 xterm=7
+102684 CMIT S1 start 520 logIndex=41
+102705 INFO S1 beat to others,term=14,accessTime=971237263,
+102740 INFO S4 receive AE from 1,PLIdx=39 PLTerm=14
+102741 VOTE S4 expect XIndex=23 len=7 xterm=12
+102751 CMIT S1 start 7151 logIndex=42
+102773 INFO S2 receive AE from 1,PLIdx=41 PLTerm=14
+102774 VOTE S2 expect XIndex=11 len=6 xterm=7
+102818 INFO S4 receive AE from 1,PLIdx=41 PLTerm=14
+102819 INFO S2 receive AE from 1,PLIdx=40 PLTerm=14
+102819 VOTE S4 expect XIndex=23 len=7 xterm=12
+102819 VOTE S2 expect XIndex=11 len=6 xterm=7
+102820 CMIT S1 s4.nextIndex->30
+102821 TRCE S1 backup[4] logIndex[30,30]
+102829 VOTE S2 electionTimeout,follower -> candidate
+102830 VOTE S2 termBefore=14,electionTerm=15
+102863 TRCE disconnect S1
+102864 CMIT S1 start 6186 logIndex=43
+102864 INFO S4 receive AE from 1,PLIdx=29 PLTerm=12
+102865 CMIT S4 disLogIndex->30 value=7479
+102866 CMIT S4 commitIdx:20
+102875 TRCE reconnect S0
+102876 CMIT S1 start 8715 logIndex=44
+102899 INFO S4 receive AE from 1,PLIdx=40 PLTerm=14
+102900 VOTE S4 expect XIndex=30 len=1 xterm=13
+102953 INFO S4 receive AE from 1,PLIdx=39 PLTerm=14
+102954 VOTE S4 expect XIndex=30 len=1 xterm=13
+102954 INFO S4 receive AE from 1,PLIdx=41 PLTerm=14
+102955 VOTE S4 expect XIndex=30 len=1 xterm=13
+102996 CMIT S1 start 2838 logIndex=45
+103084 CMIT S1 start 6669 logIndex=46
+103105 INFO S1 beat to others,term=14,accessTime=971237263,
+103106 CMIT S1 start 4964 logIndex=47
+103138 TRCE iters=200
+103139 TRCE iters=200,set long reordering
+103139 CMIT S1 start 554 logIndex=48
+103228 CMIT S1 start 647 logIndex=49
+103313 CMIT S1 start 6508 logIndex=50
+103314 CMIT S1 start 5334 logIndex=51
+103509 INFO S1 beat to others,term=14,accessTime=971237263,
+103564 CMIT S1 start 210 logIndex=52
+103675 CMIT S1 start 3532 logIndex=53
+103729 CMIT S1 start 6621 logIndex=54
+103817 CMIT S1 start 136 logIndex=55
+103839 CMIT S1 start 8965 logIndex=56
+103894 CMIT S1 start 5905 logIndex=57
+103904 INFO S1 beat to others,term=14,accessTime=971237263,
+103982 CMIT S1 start 2734 logIndex=58
+104048 CMIT S1 start 9779 logIndex=59
+104081 CMIT S1 start 4757 logIndex=60
+104082 CMIT S1 start 6969 logIndex=61
+104305 INFO S1 beat to others,term=14,accessTime=971237263,
+104704 INFO S1 beat to others,term=14,accessTime=971237263,
+105102 INFO S1 beat to others,term=14,accessTime=971237263,
+105505 INFO S1 beat to others,term=14,accessTime=971237263,
+105905 INFO S1 beat to others,term=14,accessTime=971237263,
+106307 INFO S1 beat to others,term=14,accessTime=971237263,
+106442 CMIT S1 start 6983 logIndex=62
+106444 CMIT S1 start 7223 logIndex=63
+106464 CMIT S1 start 1067 logIndex=64
+106554 CMIT S1 start 3207 logIndex=65
+106639 CMIT S1 start 4037 logIndex=66
+106673 CMIT S1 start 607 logIndex=67
+106705 INFO S1 beat to others,term=14,accessTime=971237263,
+106796 CMIT S1 start 5463 logIndex=68
+106840 CMIT S1 start 7409 logIndex=69
+106873 CMIT S1 start 4585 logIndex=70
+106895 CMIT S1 start 2264 logIndex=71
+106896 CMIT S1 start 5365 logIndex=72
+106909 CMIT S1 start 6928 logIndex=73
+107039 CMIT S1 start 6431 logIndex=74
+107071 CMIT S1 start 911 logIndex=75
+107103 INFO S1 beat to others,term=14,accessTime=971237263,
+107150 CMIT S1 start 2196 logIndex=76
+107204 CMIT S1 start 3010 logIndex=77
+107247 CMIT S1 start 2702 logIndex=78
+107299 CMIT S1 start 7376 logIndex=79
+107332 CMIT S1 start 9267 logIndex=80
+107420 CMIT S1 start 8977 logIndex=81
+107452 CMIT S1 start 8842 logIndex=82
+107496 CMIT S1 start 2626 logIndex=83
+107507 INFO S1 beat to others,term=14,accessTime=971237263,
+107508 CMIT S1 start 408 logIndex=84
+107530 CMIT S1 start 7219 logIndex=85
+107584 CMIT S1 start 4070 logIndex=86
+107650 CMIT S1 start 4739 logIndex=87
+107695 CMIT S1 start 8522 logIndex=88
+107816 CMIT S1 start 9573 logIndex=89
+107902 INFO S1 beat to others,term=14,accessTime=971237263,
+108306 INFO S1 beat to others,term=14,accessTime=971237263,
+108638 INFO S2 candidate electionTimeout,restart election
+108638 VOTE S2 termBefore=15,electionTerm=16
+108704 INFO S1 beat to others,term=14,accessTime=971237263,
+109101 INFO S1 beat to others,term=14,accessTime=971237263,
+109503 INFO S1 beat to others,term=14,accessTime=971237263,
+109904 INFO S1 beat to others,term=14,accessTime=971237263,
+110305 INFO S1 beat to others,term=14,accessTime=971237263,
+110708 INFO S1 beat to others,term=14,accessTime=971237263,
+110784 VOTE S0 electionTimeout,follower -> candidate
+110785 VOTE S0 termBefore=16,electionTerm=17
+110798 VOTE S2 LastLogTerm=13,lastLogIdex=49
+110799 VOTE S2 vote and reset
+110799 VOTE S2 vote for 0
+111111 INFO S1 beat to others,term=14,accessTime=971237263,
+111509 INFO S1 beat to others,term=14,accessTime=971237263,
+111719 CMIT S1 start 8233 logIndex=90
+111835 CMIT S1 start 7538 logIndex=91
+111857 VOTE S3 electionTimeout,follower -> candidate
+111858 VOTE S3 termBefore=12,electionTerm=13
+111889 CMIT S1 start 1377 logIndex=92
+111912 INFO S1 beat to others,term=14,accessTime=971237263,
+111935 CMIT S1 start 406 logIndex=93
+112033 CMIT S1 start 4828 logIndex=94
+112129 CMIT S1 start 1822 logIndex=95
+112181 CMIT S1 start 367 logIndex=96
+112215 CMIT S1 start 718 logIndex=97
+112226 VOTE S4 electionTimeout,follower -> candidate
+112226 VOTE S4 termBefore=16,electionTerm=17
+112259 VOTE S2 reject vote for 4, voted
+112281 VOTE S0 reject vote for 4, voted
+112303 INFO S1 beat to others,term=14,accessTime=971237263,
+112326 CMIT S1 start 5341 logIndex=98
+112381 CMIT S1 start 7867 logIndex=99
+112425 CMIT S1 start 1351 logIndex=100
+112469 CMIT S1 start 2152 logIndex=101
+112599 CMIT S1 start 9281 logIndex=102
+112643 CMIT S1 start 901 logIndex=103
+112708 INFO S1 beat to others,term=14,accessTime=971237263,
+112764 CMIT S1 start 1405 logIndex=104
+112785 CMIT S1 start 7618 logIndex=105
+112915 CMIT S1 start 3690 logIndex=106
+112937 CMIT S1 start 9653 logIndex=107
+113013 CMIT S1 start 234 logIndex=108
+113100 INFO S1 beat to others,term=14,accessTime=971237263,
+113123 CMIT S1 start 876 logIndex=109
+113255 CMIT S1 start 4796 logIndex=110
+113377 CMIT S1 start 298 logIndex=111
+113495 CMIT S1 start 6766 logIndex=112
+113503 INFO S1 beat to others,term=14,accessTime=971237263,
+113571 CMIT S1 start 1509 logIndex=113
+113702 CMIT S1 start 2986 logIndex=114
+113777 CMIT S1 start 7161 logIndex=115
+113906 INFO S1 beat to others,term=14,accessTime=971237263,
+114311 INFO S1 beat to others,term=14,accessTime=971237263,
+114578 CMIT S1 start 6288 logIndex=116
+114664 CMIT S1 start 5049 logIndex=117
+114707 INFO S1 beat to others,term=14,accessTime=971237263,
+114723 CMIT S1 start 803 logIndex=118
+114794 INFO S0 candidate electionTimeout,restart election
+114795 VOTE S0 termBefore=17,electionTerm=18
+114851 CMIT S1 start 7165 logIndex=119
+114884 VOTE S4 LastLogTerm=13,lastLogIdex=49
+114884 VOTE S4 vote and reset
+114885 VOTE S4 vote for 0
+114978 CMIT S1 start 6204 logIndex=120
+115054 VOTE S2 LastLogTerm=13,lastLogIdex=49
+115055 VOTE S2 vote and reset
+115055 VOTE S2 vote for 0
+115107 INFO S1 beat to others,term=14,accessTime=971237263,
+115109 CMIT S1 start 8217 logIndex=121
+115206 CMIT S1 start 1199 logIndex=122
+115313 CMIT S1 start 7550 logIndex=123
+115400 CMIT S1 start 7783 logIndex=124
+115443 CMIT S1 start 2246 logIndex=125
+115476 CMIT S1 start 9990 logIndex=126
+115508 INFO S1 beat to others,term=14,accessTime=971237263,
+115544 CMIT S1 start 8804 logIndex=127
+115665 CMIT S1 start 497 logIndex=128
+115697 CMIT S1 start 4809 logIndex=129
+115760 CMIT S1 start 4643 logIndex=130
+115826 CMIT S1 start 549 logIndex=131
+115827 CMIT S1 start 7557 logIndex=132
+115870 CMIT S1 start 5137 logIndex=133
+115901 INFO S1 beat to others,term=14,accessTime=971237263,
+115924 CMIT S1 start 4071 logIndex=134
+115990 CMIT S1 start 1924 logIndex=135
+116098 CMIT S1 start 2661 logIndex=136
+116197 CMIT S1 start 5286 logIndex=137
+116305 INFO S1 beat to others,term=14,accessTime=971237263,
+116329 CMIT S1 start 7473 logIndex=138
+116428 CMIT S1 start 5326 logIndex=139
+116482 CMIT S1 start 365 logIndex=140
+116505 CMIT S1 start 2330 logIndex=141
+116526 CMIT S1 start 7719 logIndex=142
+116644 CMIT S1 start 4249 logIndex=143
+116666 CMIT S1 start 6272 logIndex=144
+116708 INFO S1 beat to others,term=14,accessTime=971237263,
+116710 CMIT S1 start 7787 logIndex=145
+116711 CMIT S1 start 8911 logIndex=146
+117106 INFO S1 beat to others,term=14,accessTime=971237263,
+117500 INFO S1 beat to others,term=14,accessTime=971237263,
+117908 INFO S1 beat to others,term=14,accessTime=971237263,
+118302 INFO S1 beat to others,term=14,accessTime=971237263,
+118710 INFO S1 beat to others,term=14,accessTime=971237263,
+118863 INFO S3 candidate electionTimeout,restart election
+118864 VOTE S3 termBefore=13,electionTerm=14
+118887 VOTE S4 electionTimeout,follower -> candidate
+118888 VOTE S4 termBefore=18,electionTerm=19
+119064 VOTE S2 LastLogTerm=13,lastLogIdex=30
+119065 VOTE S2 vote and reset
+119065 VOTE S2 vote for 4
+119107 INFO S1 beat to others,term=14,accessTime=971237263,
+119508 INFO S1 beat to others,term=14,accessTime=971237263,
+119904 INFO S1 beat to others,term=14,accessTime=971237263,
+120302 INFO S1 beat to others,term=14,accessTime=971237263,
+120706 INFO S1 beat to others,term=14,accessTime=971237263,
+120841 CMIT S1 start 5897 logIndex=147
+120884 TRCE iters=300
+120885 CMIT S1 start 136 logIndex=148
+120930 CMIT S1 start 9443 logIndex=149
+120974 CMIT S1 start 8815 logIndex=150
+121073 CMIT S1 start 44 logIndex=151
+121105 INFO S1 beat to others,term=14,accessTime=971237263,
+121127 TRCE S0 backup[4] logIndex[12,14] finish
+121128 TRCE S0 backup[4] logIndex[23,29]
+121128 TRCE S0 backup[4] logIndex[23,29] finish
+121202 CMIT S1 start 4828 logIndex=152
+121309 CMIT S1 start 1431 logIndex=153
+121344 CMIT S1 start 1450 logIndex=154
+121444 CMIT S1 start 7936 logIndex=155
+121509 INFO S1 beat to others,term=14,accessTime=971237263,
+121520 CMIT S1 start 2538 logIndex=156
+121640 CMIT S1 start 7687 logIndex=157
+121770 CMIT S1 start 9311 logIndex=158
+121801 INFO S0 candidate electionTimeout,restart election
+121802 VOTE S0 termBefore=19,electionTerm=20
+121825 CMIT S1 start 89 logIndex=159
+121869 CMIT S1 start 734 logIndex=160
+121901 INFO S1 beat to others,term=14,accessTime=971237263,
+121903 CMIT S1 start 3356 logIndex=161
+121952 CMIT S1 start 5073 logIndex=162
+121974 CMIT S1 start 6924 logIndex=163
+122016 VOTE S4 LastLogTerm=13,lastLogIdex=49
+122017 VOTE S4 vote and reset
+122017 VOTE S4 vote for 0
+122038 VOTE S2 LastLogTerm=13,lastLogIdex=49
+122039 VOTE S2 vote and reset
+122039 VOTE S2 vote for 0
+122093 CMIT S1 start 6120 logIndex=164
+122310 INFO S1 beat to others,term=14,accessTime=971237263,
+122709 INFO S1 beat to others,term=14,accessTime=971237263,
+122854 CMIT S1 start 3924 logIndex=165
+122930 CMIT S1 start 4032 logIndex=166
+123016 CMIT S1 start 4903 logIndex=167
+123103 INFO S1 beat to others,term=14,accessTime=971237263,
+123137 CMIT S1 start 9990 logIndex=168
+123201 CMIT S1 start 6414 logIndex=169
+123314 CMIT S1 start 1779 logIndex=170
+123505 INFO S1 beat to others,term=14,accessTime=971237263,
+123909 INFO S1 beat to others,term=14,accessTime=971237263,
+124308 INFO S1 beat to others,term=14,accessTime=971237263,
+124691 TRCE S3 backup[0] logIndex[23,29] finish
+124692 TRCE S3 backup[0] logIndex[23,66]
+124692 TRCE S3 backup[0] logIndex[23,66] finish
+124703 INFO S1 beat to others,term=14,accessTime=971237263,
+125103 INFO S1 beat to others,term=14,accessTime=971237263,
+125503 INFO S1 beat to others,term=14,accessTime=971237263,
+125905 INFO S1 beat to others,term=14,accessTime=971237263,
+126026 VOTE S4 electionTimeout,follower -> candidate
+126027 VOTE S4 termBefore=20,electionTerm=21
+126311 INFO S1 beat to others,term=14,accessTime=971237263,
+126472 INFO S3 candidate electionTimeout,restart election
+126473 VOTE S3 termBefore=14,electionTerm=15
+126700 INFO S1 beat to others,term=14,accessTime=971237263,
+127108 INFO S1 beat to others,term=14,accessTime=971237263,
+127510 INFO S1 beat to others,term=14,accessTime=971237263,
+127910 INFO S1 beat to others,term=14,accessTime=971237263,
+128204 INFO S0 candidate electionTimeout,restart election
+128205 VOTE S0 termBefore=21,electionTerm=22
+128239 VOTE S4 LastLogTerm=13,lastLogIdex=49
+128239 VOTE S4 vote and reset
+128240 VOTE S4 vote for 0
+128293 CMIT S1 start 4369 logIndex=171
+128295 CMIT S1 start 8979 logIndex=172
+128303 INFO S1 beat to others,term=14,accessTime=971237263,
+128706 INFO S1 beat to others,term=14,accessTime=971237263,
+129102 INFO S1 beat to others,term=14,accessTime=971237263,
+129505 INFO S1 beat to others,term=14,accessTime=971237263,
+129908 INFO S1 beat to others,term=14,accessTime=971237263,
+130307 INFO S1 beat to others,term=14,accessTime=971237263,
+130461 CMIT S1 start 5942 logIndex=173
+130494 CMIT S1 start 25 logIndex=174
+130539 CMIT S1 start 1217 logIndex=175
+130622 CMIT S1 start 2231 logIndex=176
+130644 CMIT S1 start 8855 logIndex=177
+130708 INFO S1 beat to others,term=14,accessTime=971237263,
+130731 CMIT S1 start 7053 logIndex=178
+130818 CMIT S1 start 8503 logIndex=179
+130849 VOTE S2 electionTimeout,follower -> candidate
+130850 VOTE S2 termBefore=20,electionTerm=21
+130895 CMIT S1 start 2563 logIndex=180
+130896 CMIT S1 start 6259 logIndex=181
+130916 VOTE S4 reject vote for 2, stale term
+130918 VOTE S2 more up-to-date term,candidate->follower
+130939 CMIT S1 start 9668 logIndex=182
+130993 CMIT S1 start 6617 logIndex=183
+131082 VOTE S0 reject vote for 2, stale term
+131103 INFO S1 beat to others,term=14,accessTime=971237263,
+131106 CMIT S1 start 4537 logIndex=184
+131138 CMIT S1 start 2300 logIndex=185
+131159 CMIT S1 start 5574 logIndex=186
+131225 CMIT S1 start 3393 logIndex=187
+131292 CMIT S1 start 7664 logIndex=188
+131293 CMIT S1 start 495 logIndex=189
+131376 CMIT S1 start 3616 logIndex=190
+131508 INFO S1 beat to others,term=14,accessTime=971237263,
+131510 CMIT S1 start 3784 logIndex=191
+131542 CMIT S1 start 5963 logIndex=192
+131552 TRCE S3 backup[1] logIndex[27,29] finish
+131608 CMIT S1 start 5681 logIndex=193
+131662 CMIT S1 start 3147 logIndex=194
+131687 CMIT S1 start 5438 logIndex=195
+131904 INFO S1 beat to others,term=14,accessTime=971237263,
+132303 INFO S1 beat to others,term=14,accessTime=971237263,
+132709 INFO S1 beat to others,term=14,accessTime=971237263,
+133103 INFO S1 beat to others,term=14,accessTime=971237263,
+133254 VOTE S2 more up-to-date term,candidate->follower
+133500 INFO S1 beat to others,term=14,accessTime=971237263,
+133900 INFO S1 beat to others,term=14,accessTime=971237263,
+134041 VOTE S4 electionTimeout,follower -> candidate
+134041 VOTE S4 termBefore=22,electionTerm=23
+134292 VOTE S2 LastLogTerm=13,lastLogIdex=30
+134293 VOTE S2 vote and reset
+134293 VOTE S2 vote for 4
+134302 INFO S1 beat to others,term=14,accessTime=971237263,
+134703 INFO S1 beat to others,term=14,accessTime=971237263,
+135108 INFO S1 beat to others,term=14,accessTime=971237263,
+135283 INFO S3 candidate electionTimeout,restart election
+135284 VOTE S3 termBefore=15,electionTerm=16
+135511 INFO S1 beat to others,term=14,accessTime=971237263,
+135903 INFO S1 beat to others,term=14,accessTime=971237263,
+135992 CMIT S1 start 2786 logIndex=196
+136096 CMIT S1 start 1182 logIndex=197
+136205 CMIT S1 start 6678 logIndex=198
+136296 CMIT S1 start 9344 logIndex=199
+136305 INFO S1 beat to others,term=14,accessTime=971237263,
+136350 CMIT S1 start 2727 logIndex=200
+136414 INFO S0 candidate electionTimeout,restart election
+136414 VOTE S0 termBefore=23,electionTerm=24
+136668 VOTE S2 LastLogTerm=13,lastLogIdex=49
+136668 VOTE S2 vote and reset
+136668 VOTE S2 vote for 0
+136708 INFO S1 beat to others,term=14,accessTime=971237263,
+137101 INFO S1 beat to others,term=14,accessTime=971237263,
+137505 INFO S1 beat to others,term=14,accessTime=971237263,
+137909 INFO S1 beat to others,term=14,accessTime=971237263,
+138306 INFO S1 beat to others,term=14,accessTime=971237263,
+138396 CMIT S1 start 9141 logIndex=201
+138418 CMIT S1 start 9416 logIndex=202
+138523 CMIT S1 start 5491 logIndex=203
+138555 CMIT S1 start 3704 logIndex=204
+138557 CMIT S1 start 9233 logIndex=205
+138676 CMIT S1 start 4410 logIndex=206
+138707 INFO S1 beat to others,term=14,accessTime=971237263,
+138753 CMIT S1 start 355 logIndex=207
+138862 CMIT S1 start 1851 logIndex=208
+138983 CMIT S1 start 9973 logIndex=209
+139071 CMIT S1 start 5920 logIndex=210
+139102 INFO S1 beat to others,term=14,accessTime=971237263,
+139115 CMIT S1 start 5261 logIndex=211
+139138 CMIT S1 start 4263 logIndex=212
+139213 CMIT S1 start 3046 logIndex=213
+139500 INFO S1 beat to others,term=14,accessTime=971237263,
+139892 INFO S3 candidate electionTimeout,restart election
+139893 VOTE S3 termBefore=16,electionTerm=17
+139903 INFO S1 beat to others,term=14,accessTime=971237263,
+140070 CMIT S1 start 3994 logIndex=214
+140126 CMIT S1 start 621 logIndex=215
+140199 CMIT S1 start 9480 logIndex=216
+140275 CMIT S1 start 5065 logIndex=217
+140305 INFO S1 beat to others,term=14,accessTime=971237263,
+140340 CMIT S1 start 5787 logIndex=218
+140428 CMIT S1 start 4354 logIndex=219
+140446 INFO S4 candidate electionTimeout,restart election
+140447 VOTE S4 termBefore=23,electionTerm=24
+140557 CMIT S1 start 6024 logIndex=220
+140600 VOTE S2 reject vote for 4, voted
+140686 VOTE S0 reject vote for 4, voted
+140707 INFO S1 beat to others,term=14,accessTime=971237263,
+141108 INFO S1 beat to others,term=14,accessTime=971237263,
+141501 INFO S1 beat to others,term=14,accessTime=971237263,
+141615 INFO S0 candidate electionTimeout,restart election
+141615 VOTE S0 termBefore=24,electionTerm=25
+141789 VOTE S4 LastLogTerm=13,lastLogIdex=49
+141789 VOTE S4 vote and reset
+141789 VOTE S4 vote for 0
+141872 VOTE S2 electionTimeout,follower -> candidate
+141873 VOTE S2 termBefore=24,electionTerm=25
+141885 VOTE S2 reject vote for 0, voted
+141906 INFO S1 beat to others,term=14,accessTime=971237263,
+141940 VOTE S4 reject vote for 2, voted
+142073 VOTE S0 reject vote for 2, voted
+142304 INFO S1 beat to others,term=14,accessTime=971237263,
+142706 INFO S1 beat to others,term=14,accessTime=971237263,
+143109 INFO S1 beat to others,term=14,accessTime=971237263,
+143316 CMIT S1 start 4460 logIndex=221
+143338 CMIT S1 start 1215 logIndex=222
+143381 CMIT S1 start 4752 logIndex=223
+143446 CMIT S1 start 6248 logIndex=224
+143500 INFO S1 beat to others,term=14,accessTime=971237263,
+143545 CMIT S1 start 9364 logIndex=225
+143589 CMIT S1 start 4249 logIndex=226
+143633 CMIT S1 start 632 logIndex=227
+143665 CMIT S1 start 9813 logIndex=228
+143777 CMIT S1 start 2439 logIndex=229
+143799 CMIT S1 start 2299 logIndex=230
+143896 CMIT S1 start 9216 logIndex=231
+143905 INFO S1 beat to others,term=14,accessTime=971237263,
+143940 CMIT S1 start 1954 logIndex=232
+143994 CMIT S1 start 8707 logIndex=233
+143996 CMIT S1 start 1576 logIndex=234
+144103 CMIT S1 start 5364 logIndex=235
+144136 CMIT S1 start 3976 logIndex=236
+144269 CMIT S1 start 5296 logIndex=237
+144300 INFO S1 beat to others,term=14,accessTime=971237263,
+144325 CMIT S1 start 2894 logIndex=238
+144704 INFO S1 beat to others,term=14,accessTime=971237263,
+145108 INFO S1 beat to others,term=14,accessTime=971237263,
+145501 INFO S1 beat to others,term=14,accessTime=971237263,
+145904 INFO S1 beat to others,term=14,accessTime=971237263,
+146306 INFO S1 beat to others,term=14,accessTime=971237263,
+146393 VOTE S4 electionTimeout,follower -> candidate
+146394 VOTE S4 termBefore=25,electionTerm=26
+146514 VOTE S2 LastLogTerm=13,lastLogIdex=30
+146515 VOTE S2 vote and reset
+146515 VOTE S2 vote for 4
+146707 INFO S1 beat to others,term=14,accessTime=971237263,
+147103 INFO S1 beat to others,term=14,accessTime=971237263,
+147502 INFO S1 beat to others,term=14,accessTime=971237263,
+147905 INFO S1 beat to others,term=14,accessTime=971237263,
+148016 INFO S0 candidate electionTimeout,restart election
+148016 VOTE S0 termBefore=26,electionTerm=27
+148081 VOTE S4 LastLogTerm=13,lastLogIdex=49
+148082 VOTE S4 vote and reset
+148082 VOTE S4 vote for 0
+148222 VOTE S2 LastLogTerm=13,lastLogIdex=49
+148223 VOTE S2 vote and reset
+148223 VOTE S2 vote for 0
+148224 VOTE S0 win the election, candidate -> Leader
+148308 INFO S1 beat to others,term=14,accessTime=971237263,
+148342 INFO S2 receive AE from 0,PLIdx=49 PLTerm=13
+148343 INFO S2 receive heartbeat, but no sync
+148343 INFO S2 from S0,term=27,PLTerm=49,PLIdx=49
+148473 INFO S4 receive AE from 0,PLIdx=49 PLTerm=13
+148474 INFO S4 receive heartbeat, but no sync
+148474 INFO S4 from S0,term=27,PLTerm=49,PLIdx=49
+148635 INFO S0 beat to others,term=27,accessTime=363661780,
+148649 INFO S2 receive AE from 0,PLIdx=49 PLTerm=13
+148650 INFO S2 receive heartbeat, but no sync
+148650 INFO S2 from S0,term=27,PLTerm=49,PLIdx=49
+148700 INFO S1 beat to others,term=14,accessTime=971237263,
+148724 INFO S2 receive AE from 0,PLIdx=49 PLTerm=13
+148725 INFO S2 receive heartbeat, but no sync
+148725 INFO S2 from S0,term=27,PLTerm=49,PLIdx=49
+148776 CMIT S0 start 5884 logIndex=50
+148779 CMIT S1 start 5232 logIndex=239
+148802 CMIT S0 start 7522 logIndex=51
+148803 INFO S2 receive AE from 0,PLIdx=49 PLTerm=13
+148803 VOTE S2 expect XIndex=11 len=6 xterm=7
+148804 CMIT S1 start 1281 logIndex=240
+148805 INFO S4 receive AE from 0,PLIdx=49 PLTerm=13
+148805 VOTE S4 expect XIndex=30 len=1 xterm=13
+148839 TRCE disconnect S0
+148840 CMIT S0 start 9748 logIndex=52
+148840 INFO S2 receive AE from 0,PLIdx=50 PLTerm=27
+148840 VOTE S2 expect XIndex=11 len=6 xterm=7
+148841 CMIT S1 start 2634 logIndex=241
+148865 INFO S4 receive AE from 0,PLIdx=49 PLTerm=13
+148866 VOTE S4 expect XIndex=30 len=1 xterm=13
+148961 CMIT S0 start 7664 logIndex=53
+148963 CMIT S1 start 84 logIndex=242
+148993 TRCE reconnect S0
+148994 CMIT S0 start 2433 logIndex=54
+148996 CMIT S1 start 1459 logIndex=243
+149026 INFO S0 beat to others,term=27,accessTime=363661780,
+149028 INFO S2 receive AE from 0,PLIdx=53 PLTerm=27
+149028 VOTE S2 expect XIndex=11 len=6 xterm=7
+149029 CMIT S0 s2.nextIndex->17
+149029 TRCE S0 backup[2] logIndex[17,22]
+149030 INFO S2 receive AE from 0,PLIdx=16 PLTerm=7
+149030 CMIT S2 disLogIndex->22 value=9700
+149031 CMIT S2 commitIdx:16->20
+149031 CMIT S0 s2.nextIndex->23
+149032 TRCE S0 backup[2] logIndex[17,22] finish
+149050 CMIT S0 start 6344 logIndex=55
+149052 CMIT S1 start 9050 logIndex=244
+149095 INFO S2 receive AE from 0,PLIdx=54 PLTerm=27
+149096 VOTE S2 expect XIndex=17 len=6 xterm=9
+149097 CMIT S0 s2.nextIndex->23
+149097 TRCE S0 backup[2] logIndex[23,29]
+149106 INFO S1 beat to others,term=14,accessTime=971237263,
+149129 CMIT S0 start 3830 logIndex=56
+149131 CMIT S1 start 3557 logIndex=245
+149152 INFO S4 receive AE from 0,PLIdx=54 PLTerm=27
+149153 VOTE S4 expect XIndex=30 len=1 xterm=13
+149205 TRCE disconnect S0
+149205 TRCE reconnect S0
+149206 CMIT S0 start 7901 logIndex=57
+149208 CMIT S1 start 1476 logIndex=246
+149209 INFO S4 receive AE from 0,PLIdx=53 PLTerm=27
+149210 VOTE S4 expect XIndex=30 len=1 xterm=13
+149210 INFO S2 receive AE from 0,PLIdx=22 PLTerm=9
+149211 CMIT S0 s4.nextIndex->31
+149211 CMIT S2 disLogIndex->29 value=2389
+149211 CMIT S2 commitIdx:20
+149211 TRCE S0 backup[4] logIndex[31,49]
+149227 INFO S2 receive AE from 0,PLIdx=54 PLTerm=27
+149228 INFO S4 receive AE from 0,PLIdx=54 PLTerm=27
+149228 VOTE S2 expect XIndex=23 len=7 xterm=12
+149228 VOTE S4 expect XIndex=30 len=1 xterm=13
+149229 TRCE disconnect S0
+149229 TRCE reconnect S0
+149229 CMIT S0 start 4408 logIndex=58
+149231 CMIT S1 start 5907 logIndex=247
+149273 INFO S4 receive AE from 0,PLIdx=57 PLTerm=27
+149273 VOTE S4 expect XIndex=30 len=1 xterm=13
+149274 INFO S4 receive AE from 0,PLIdx=55 PLTerm=27
+149274 CMIT S0 s4.nextIndex->31
+149274 VOTE S4 expect XIndex=30 len=1 xterm=13
+149275 CMIT S0 s4.nextIndex->31
+149294 INFO S3 candidate electionTimeout,restart election
+149294 VOTE S3 termBefore=17,electionTerm=18
+149339 TRCE iters=400
+149340 CMIT S0 start 5548 logIndex=59
+149342 CMIT S1 start 7935 logIndex=248
+149361 CMIT S0 start 3986 logIndex=60
+149363 CMIT S1 start 6895 logIndex=249
+149385 TRCE disconnect S0
+149386 CMIT S0 start 9721 logIndex=61
+149389 CMIT S1 start 2299 logIndex=250
+149403 INFO S4 receive AE from 0,PLIdx=58 PLTerm=27
+149403 VOTE S4 expect XIndex=30 len=1 xterm=13
+149404 INFO S4 receive AE from 0,PLIdx=30 PLTerm=13
+149405 CMIT S4 disLogIndex->49 value=2966
+149405 CMIT S4 commitIdx:20
+149414 INFO S4 receive AE from 0,PLIdx=56 PLTerm=27
+149414 INFO S2 receive AE from 0,PLIdx=56 PLTerm=27
+149415 VOTE S2 expect XIndex=23 len=7 xterm=12
+149414 VOTE S4 expect XIndex=30 len=20 xterm=13
+149426 INFO S0 beat to others,term=27,accessTime=363661780,
+149427 INFO S4 receive AE from 0,PLIdx=49 PLTerm=13
+149428 CMIT S4 disLogIndex->50 value=5884
+149428 CMIT S4 commitIdx:20
+149429 INFO S2 receive AE from 0,PLIdx=55 PLTerm=27
+149430 VOTE S2 expect XIndex=23 len=7 xterm=12
+149462 TRCE reconnect S0
+149462 CMIT S0 start 9211 logIndex=62
+149464 CMIT S1 start 8573 logIndex=251
+149485 CMIT S0 start 1074 logIndex=63
+149486 INFO S2 receive AE from 0,PLIdx=61 PLTerm=27
+149487 CMIT S1 start 4373 logIndex=252
+149491 VOTE S2 expect XIndex=23 len=7 xterm=12
+149501 INFO S1 beat to others,term=14,accessTime=971237263,
+149561 TRCE disconnect S0
+149563 CMIT S0 start 6393 logIndex=64
+149564 CMIT S1 start 3130 logIndex=253
+149607 INFO S4 receive AE from 0,PLIdx=59 PLTerm=27
+149607 INFO S2 receive AE from 0,PLIdx=58 PLTerm=27
+149607 VOTE S4 expect XIndex=50 len=1 xterm=27
+149608 VOTE S2 expect XIndex=23 len=7 xterm=12
+149609 INFO S2 receive AE from 0,PLIdx=59 PLTerm=27
+149609 VOTE S2 expect XIndex=23 len=7 xterm=12
+149730 INFO S4 receive AE from 0,PLIdx=62 PLTerm=27
+149731 VOTE S4 expect XIndex=50 len=1 xterm=27
+149751 INFO S2 receive AE from 0,PLIdx=62 PLTerm=27
+149752 VOTE S2 expect XIndex=23 len=7 xterm=12
+149826 INFO S0 beat to others,term=27,accessTime=363661780,
+149903 INFO S1 beat to others,term=14,accessTime=971237263,
+150233 INFO S0 beat to others,term=27,accessTime=363661780,
+150300 INFO S1 beat to others,term=14,accessTime=971237263,
+150629 INFO S0 beat to others,term=27,accessTime=363661780,
+150674 CMIT S0 s2.matchidx->49
+150706 INFO S1 beat to others,term=14,accessTime=971237263,
+151030 INFO S0 beat to others,term=27,accessTime=363661780,
+151106 INFO S1 beat to others,term=14,accessTime=971237263,
+151434 INFO S0 beat to others,term=27,accessTime=363661780,
+151500 INFO S1 beat to others,term=14,accessTime=971237263,
+151827 INFO S0 beat to others,term=27,accessTime=363661780,
+151904 INFO S1 beat to others,term=14,accessTime=971237263,
+152111 CMIT S0 s4.matchidx->49
+152232 INFO S0 beat to others,term=27,accessTime=363661780,
+152308 INFO S1 beat to others,term=14,accessTime=971237263,
+152458 CMIT S0 commitIndex:20->49
+152633 INFO S0 beat to others,term=27,accessTime=363661780,
+152709 INFO S1 beat to others,term=14,accessTime=971237263,
+153034 INFO S0 beat to others,term=27,accessTime=363661780,
+153109 INFO S1 beat to others,term=14,accessTime=971237263,
+153425 INFO S0 beat to others,term=27,accessTime=363661780,
+153504 INFO S1 beat to others,term=14,accessTime=971237263,
+153505 CMIT S0 start 1322 logIndex=65
+153507 CMIT S1 start 4088 logIndex=254
+153560 CMIT S0 s4.nextIndex->31
+153603 CMIT S0 start 5522 logIndex=66
+153605 CMIT S1 start 6859 logIndex=255
+153660 CMIT S0 start 9850 logIndex=67
+153662 CMIT S1 start 2763 logIndex=256
+153787 TRCE reconnect S1
+153788 CMIT S0 start 2563 logIndex=68
+153791 CMIT S1 start 857 logIndex=257
+153831 INFO S0 beat to others,term=27,accessTime=363661780,
+153907 INFO S1 beat to others,term=14,accessTime=971237263,
+153918 TRCE disconnect S1
+153918 CMIT S0 start 5630 logIndex=69
+153920 CMIT S1 start 8427 logIndex=258
+154026 TRCE reconnect S3
+154028 CMIT S0 start 7673 logIndex=70
+154031 CMIT S1 start 6410 logIndex=259
+154062 CMIT S0 start 5184 logIndex=71
+154064 CMIT S1 start 2198 logIndex=260
+154065 CMIT S0 start 6119 logIndex=72
+154066 CMIT S1 start 4722 logIndex=261
+154095 CMIT S0 start 1687 logIndex=73
+154098 CMIT S1 start 11 logIndex=262
+154112 CMIT S0 start 5021 logIndex=74
+154114 CMIT S1 start 4093 logIndex=263
+154224 INFO S0 beat to others,term=27,accessTime=363661780,
+154225 CMIT S0 start 6374 logIndex=75
+154228 CMIT S1 start 8488 logIndex=264
+154301 INFO S1 beat to others,term=14,accessTime=971237263,
+154302 CMIT S0 start 9069 logIndex=76
+154304 CMIT S1 start 6273 logIndex=265
+154345 CMIT S0 start 9379 logIndex=77
+154347 CMIT S1 start 5053 logIndex=266
+154477 CMIT S0 start 372 logIndex=78
+154479 CMIT S1 start 4604 logIndex=267
+154532 CMIT S0 start 8538 logIndex=79
+154534 CMIT S1 start 3548 logIndex=268
+154628 INFO S0 beat to others,term=27,accessTime=363661780,
+154630 CMIT S0 start 7674 logIndex=80
+154632 CMIT S1 start 2659 logIndex=269
+154674 CMIT S0 start 8887 logIndex=81
+154676 CMIT S1 start 8381 logIndex=270
+154706 INFO S1 beat to others,term=14,accessTime=971237263,
+154806 CMIT S0 start 4246 logIndex=82
+154808 CMIT S1 start 9387 logIndex=271
+154926 CMIT S0 start 3416 logIndex=83
+154928 CMIT S1 start 7141 logIndex=272
+154952 CMIT S0 start 8982 logIndex=84
+154954 CMIT S1 start 7570 logIndex=273
+155029 INFO S0 beat to others,term=27,accessTime=363661780,
+155029 VOTE S2 electionTimeout,follower -> candidate
+155030 VOTE S2 termBefore=27,electionTerm=28
+155085 CMIT S0 s2.nextIndex->17
+155096 CMIT S0 s2.nextIndex->30
+155096 TRCE S0 backup[2] logIndex[23,29] finish
+155096 TRCE S0 backup[2] logIndex[17,22]
+155106 INFO S1 beat to others,term=14,accessTime=971237263,
+155174 CMIT S0 s4.nextIndex->31
+155426 INFO S0 beat to others,term=27,accessTime=363661780,
+155504 INFO S1 beat to others,term=14,accessTime=971237263,
+155559 VOTE S4 electionTimeout,follower -> candidate
+155559 VOTE S4 termBefore=28,electionTerm=29
+155660 VOTE S2 LastLogTerm=27,lastLogIdex=50
+155661 VOTE S2 vote and reset
+155661 VOTE S2 vote for 4
+155810 CMIT S0 start 4686 logIndex=85
+155813 CMIT S1 start 9754 logIndex=274
+155813 VOTE S3 LastLogTerm=27,lastLogIdex=50
+155815 VOTE S3 vote and reset
+155815 VOTE S3 vote for 4
+155831 INFO S0 beat to others,term=27,accessTime=363661780,
+155907 INFO S1 beat to others,term=14,accessTime=971237263,
+155942 CMIT S0 start 5482 logIndex=86
+155945 CMIT S1 start 9526 logIndex=275
+155986 CMIT S0 s2.nextIndex->30
+156053 CMIT S0 start 4850 logIndex=87
+156056 CMIT S1 start 3595 logIndex=276
+156162 CMIT S0 start 9728 logIndex=88
+156164 CMIT S1 start 3014 logIndex=277
+156194 CMIT S0 start 5884 logIndex=89
+156197 CMIT S1 start 1080 logIndex=278
+156221 CMIT S0 start 8263 logIndex=90
+156223 CMIT S1 start 2795 logIndex=279
+156224 INFO S0 beat to others,term=27,accessTime=363661780,
+156307 INFO S1 beat to others,term=14,accessTime=971237263,
+156331 CMIT S0 start 5255 logIndex=91
+156333 CMIT S1 start 2863 logIndex=280
+156440 CMIT S0 start 2666 logIndex=92
+156443 CMIT S1 start 469 logIndex=281
+156504 CMIT S0 start 3664 logIndex=93
+156507 CMIT S1 start 4968 logIndex=282
+156612 CMIT S0 start 8318 logIndex=94
+156615 CMIT S1 start 1585 logIndex=283
+156633 INFO S0 beat to others,term=27,accessTime=363661780,
+156701 CMIT S0 start 4951 logIndex=95
+156702 INFO S1 beat to others,term=14,accessTime=971237263,
+156704 CMIT S1 start 2691 logIndex=284
+156776 CMIT S0 start 7584 logIndex=96
+156778 CMIT S1 start 5805 logIndex=285
+156809 CMIT S0 start 9031 logIndex=97
+156812 CMIT S1 start 9561 logIndex=286
+156851 CMIT S0 start 2681 logIndex=98
+156853 CMIT S1 start 2855 logIndex=287
+156939 CMIT S0 start 125 logIndex=99
+156941 CMIT S1 start 5590 logIndex=288
+156942 CMIT S0 start 5385 logIndex=100
+156944 CMIT S1 start 3369 logIndex=289
+156945 CMIT S0 start 9852 logIndex=101
+156947 CMIT S1 start 4366 logIndex=290
+156982 CMIT S0 start 2330 logIndex=102
+156984 CMIT S1 start 6591 logIndex=291
+156985 CMIT S0 start 5548 logIndex=103
+156987 CMIT S1 start 5272 logIndex=292
+157034 INFO S0 beat to others,term=27,accessTime=363661780,
+157091 CMIT S0 start 6272 logIndex=104
+157093 CMIT S1 start 9740 logIndex=293
+157102 INFO S1 beat to others,term=14,accessTime=971237263,
+157201 CMIT S0 start 8369 logIndex=105
+157204 CMIT S1 start 2523 logIndex=294
+157246 CMIT S0 start 9975 logIndex=106
+157248 CMIT S1 start 3736 logIndex=295
+157321 CMIT S0 start 8135 logIndex=107
+157323 CMIT S1 start 3364 logIndex=296
+157375 CMIT S0 start 5448 logIndex=108
+157377 CMIT S1 start 7088 logIndex=297
+157428 INFO S0 beat to others,term=27,accessTime=363661780,
+157505 INFO S1 beat to others,term=14,accessTime=971237263,
+157832 INFO S0 beat to others,term=27,accessTime=363661780,
+157909 INFO S1 beat to others,term=14,accessTime=971237263,
+158233 INFO S0 beat to others,term=27,accessTime=363661780,
+158309 INFO S1 beat to others,term=14,accessTime=971237263,
+158632 INFO S0 beat to others,term=27,accessTime=363661780,
+158710 INFO S1 beat to others,term=14,accessTime=971237263,
+159034 INFO S0 beat to others,term=27,accessTime=363661780,
+159110 INFO S1 beat to others,term=14,accessTime=971237263,
+159230 CMIT S0 start 5609 logIndex=109
+159233 CMIT S1 start 775 logIndex=298
+159304 CMIT S0 start 843 logIndex=110
+159306 CMIT S1 start 9684 logIndex=299
+159413 CMIT S0 start 7849 logIndex=111
+159416 CMIT S1 start 6322 logIndex=300
+159435 INFO S0 beat to others,term=27,accessTime=363661780,
+159457 CMIT S0 start 2870 logIndex=112
+159459 CMIT S1 start 5473 logIndex=301
+159510 INFO S1 beat to others,term=14,accessTime=971237263,
+159524 CMIT S0 start 7060 logIndex=113
+159526 CMIT S1 start 8630 logIndex=302
+159655 CMIT S0 start 4826 logIndex=114
+159658 CMIT S1 start 5159 logIndex=303
+159826 INFO S0 beat to others,term=27,accessTime=363661780,
+159902 INFO S1 beat to others,term=14,accessTime=971237263,
+160167 INFO S4 candidate electionTimeout,restart election
+160168 VOTE S4 termBefore=29,electionTerm=30
+160234 INFO S0 beat to others,term=27,accessTime=363661780,
+160267 VOTE S2 electionTimeout,follower -> candidate
+160267 VOTE S2 termBefore=29,electionTerm=30
+160300 INFO S1 beat to others,term=14,accessTime=971237263,
+160389 VOTE S4 reject vote for 2, voted
+160390 VOTE S2 reject vote for 4, voted
+160422 VOTE S3 LastLogTerm=27,lastLogIdex=50
+160423 VOTE S3 vote and reset
+160423 VOTE S3 vote for 4
+160629 INFO S0 beat to others,term=27,accessTime=363661780,
+160705 INFO S1 beat to others,term=14,accessTime=971237263,
+161025 INFO S0 beat to others,term=27,accessTime=363661780,
+161111 INFO S1 beat to others,term=14,accessTime=971237263,
+161430 INFO S0 beat to others,term=27,accessTime=363661780,
+161506 INFO S1 beat to others,term=14,accessTime=971237263,
+161825 INFO S0 beat to others,term=27,accessTime=363661780,
+161901 INFO S1 beat to others,term=14,accessTime=971237263,
+162225 INFO S0 beat to others,term=27,accessTime=363661780,
+162303 INFO S1 beat to others,term=14,accessTime=971237263,
+162632 INFO S0 beat to others,term=27,accessTime=363661780,
+162710 INFO S1 beat to others,term=14,accessTime=971237263,
+163026 INFO S0 beat to others,term=27,accessTime=363661780,
+163102 INFO S1 beat to others,term=14,accessTime=971237263,
+163426 INFO S0 beat to others,term=27,accessTime=363661780,
+163508 INFO S1 beat to others,term=14,accessTime=971237263,
+163783 CMIT S0 start 7674 logIndex=115
+163785 CMIT S1 start 1895 logIndex=304
+163817 CMIT S0 start 5163 logIndex=116
+163821 CMIT S1 start 2937 logIndex=305
+163826 INFO S0 beat to others,term=27,accessTime=363661780,
+163860 CMIT S0 start 5569 logIndex=117
+163863 CMIT S1 start 5260 logIndex=306
+163903 INFO S1 beat to others,term=14,accessTime=971237263,
+163970 CMIT S0 start 2395 logIndex=118
+163972 CMIT S1 start 1805 logIndex=307
+164003 CMIT S0 start 8982 logIndex=119
+164005 CMIT S1 start 4729 logIndex=308
+164077 CMIT S0 start 4883 logIndex=120
+164080 CMIT S1 start 9287 logIndex=309
+164145 CMIT S0 start 3031 logIndex=121
+164148 CMIT S1 start 9792 logIndex=310
+164162 CMIT S0 start 2261 logIndex=122
+164165 CMIT S1 start 9139 logIndex=311
+164224 INFO S0 beat to others,term=27,accessTime=363661780,
+164247 CMIT S0 start 8417 logIndex=123
+164250 CMIT S1 start 6093 logIndex=312
+164300 INFO S1 beat to others,term=14,accessTime=971237263,
+164378 CMIT S0 start 4215 logIndex=124
+164381 CMIT S1 start 6486 logIndex=313
+164507 CMIT S0 start 2201 logIndex=125
+164510 CMIT S1 start 4686 logIndex=314
+164534 CMIT S0 start 8626 logIndex=126
+164536 CMIT S1 start 1152 logIndex=315
+164630 INFO S0 beat to others,term=27,accessTime=363661780,
+164654 CMIT S0 start 9931 logIndex=127
+164656 CMIT S1 start 7717 logIndex=316
+164708 INFO S1 beat to others,term=14,accessTime=971237263,
+164764 CMIT S0 start 3643 logIndex=128
+164767 CMIT S1 start 2814 logIndex=317
+164861 CMIT S0 start 4810 logIndex=129
+164864 CMIT S1 start 6981 logIndex=318
+164905 CMIT S0 start 3788 logIndex=130
+164908 CMIT S1 start 5757 logIndex=319
+165015 CMIT S0 start 2159 logIndex=131
+165018 CMIT S1 start 4638 logIndex=320
+165025 INFO S0 beat to others,term=27,accessTime=363661780,
+165101 INFO S1 beat to others,term=14,accessTime=971237263,
+165124 CMIT S0 start 6658 logIndex=132
+165126 CMIT S1 start 6929 logIndex=321
+165253 CMIT S0 start 8686 logIndex=133
+165256 CMIT S1 start 9454 logIndex=322
+165258 CMIT S0 start 7849 logIndex=134
+165260 CMIT S1 start 6612 logIndex=323
+165361 CMIT S0 start 748 logIndex=135
+165364 CMIT S1 start 4845 logIndex=324
+165372 INFO S4 candidate electionTimeout,restart election
+165372 VOTE S4 termBefore=30,electionTerm=31
+165426 INFO S0 beat to others,term=27,accessTime=363661780,
+165483 VOTE S2 LastLogTerm=27,lastLogIdex=50
+165484 VOTE S2 vote and reset
+165484 VOTE S2 vote for 4
+165485 CMIT S0 start 6754 logIndex=136
+165488 CMIT S1 start 503 logIndex=325
+165503 INFO S1 beat to others,term=14,accessTime=971237263,
+165550 CMIT S0 start 5007 logIndex=137
+165553 CMIT S1 start 4014 logIndex=326
+165618 VOTE S3 LastLogTerm=27,lastLogIdex=50
+165619 VOTE S3 vote and reset
+165619 VOTE S3 vote for 4
+165639 CMIT S0 start 9728 logIndex=138
+165641 CMIT S1 start 5644 logIndex=327
+165660 CMIT S0 start 5884 logIndex=139
+165662 CMIT S1 start 5232 logIndex=328
+165781 CMIT S0 start 3458 logIndex=140
+165783 CMIT S1 start 633 logIndex=329
+165825 INFO S0 beat to others,term=27,accessTime=363661780,
+165838 CMIT S0 start 2454 logIndex=141
+165841 CMIT S1 start 9748 logIndex=330
+165902 INFO S1 beat to others,term=14,accessTime=971237263,
+165959 CMIT S0 start 9119 logIndex=142
+165961 CMIT S1 start 7664 logIndex=331
+166014 CMIT S0 start 7793 logIndex=143
+166018 CMIT S1 start 2125 logIndex=332
+166070 CMIT S0 start 3388 logIndex=144
+166073 CMIT S1 start 4482 logIndex=333
+166135 CMIT S0 start 7107 logIndex=145
+166139 CMIT S1 start 8876 logIndex=334
+166157 CMIT S0 start 7216 logIndex=146
+166160 CMIT S1 start 9865 logIndex=335
+166233 INFO S0 beat to others,term=27,accessTime=363661780,
+166309 INFO S1 beat to others,term=14,accessTime=971237263,
+166630 INFO S0 beat to others,term=27,accessTime=363661780,
+166708 INFO S1 beat to others,term=14,accessTime=971237263,
+167027 INFO S0 beat to others,term=27,accessTime=363661780,
+167105 INFO S1 beat to others,term=14,accessTime=971237263,
+167433 INFO S0 beat to others,term=27,accessTime=363661780,
+167509 INFO S1 beat to others,term=14,accessTime=971237263,
+167695 CMIT S0 start 8706 logIndex=147
+167698 CMIT S1 start 7454 logIndex=336
+167805 CMIT S0 start 1713 logIndex=148
+167808 CMIT S1 start 4248 logIndex=337
+167826 INFO S0 beat to others,term=27,accessTime=363661780,
+167902 INFO S1 beat to others,term=14,accessTime=971237263,
+168231 INFO S0 beat to others,term=27,accessTime=363661780,
+168300 INFO S1 beat to others,term=14,accessTime=971237263,
+168632 INFO S0 beat to others,term=27,accessTime=363661780,
+168709 INFO S1 beat to others,term=14,accessTime=971237263,
+169027 INFO S0 beat to others,term=27,accessTime=363661780,
+169105 INFO S1 beat to others,term=14,accessTime=971237263,
+169430 INFO S0 beat to others,term=27,accessTime=363661780,
+169509 INFO S1 beat to others,term=14,accessTime=971237263,
+169826 INFO S0 beat to others,term=27,accessTime=363661780,
+169903 INFO S1 beat to others,term=14,accessTime=971237263,
+170220 VOTE S3 electionTimeout,follower -> candidate
+170220 VOTE S3 termBefore=31,electionTerm=32
+170228 INFO S0 beat to others,term=27,accessTime=363661780,
+170308 INFO S1 beat to others,term=14,accessTime=971237263,
+170342 CMIT S0 start 6939 logIndex=149
+170346 CMIT S1 start 1807 logIndex=338
+170419 CMIT S0 start 3401 logIndex=150
+170421 CMIT S1 start 3797 logIndex=339
+170462 VOTE S2 LastLogTerm=12,lastLogIdex=66
+170463 VOTE S2 vote and reset
+170463 VOTE S2 vote for 3
+170550 CMIT S0 start 9815 logIndex=151
+170552 CMIT S1 start 1249 logIndex=340
+170582 INFO S4 candidate electionTimeout,restart election
+170582 VOTE S4 termBefore=32,electionTerm=33
+170634 INFO S0 beat to others,term=27,accessTime=363661780,
+170658 CMIT S0 start 4913 logIndex=152
+170661 CMIT S1 start 9248 logIndex=341
+170681 VOTE S2 LastLogTerm=27,lastLogIdex=50
+170682 VOTE S2 vote and reset
+170682 VOTE S2 vote for 4
+170702 INFO S1 beat to others,term=14,accessTime=971237263,
+170727 VOTE S3 LastLogTerm=27,lastLogIdex=50
+170728 VOTE S3 vote and reset
+170728 VOTE S3 vote for 4
+170739 CMIT S0 start 5095 logIndex=153
+170741 CMIT S1 start 485 logIndex=342
+170742 CMIT S0 start 1565 logIndex=154
+170744 CMIT S1 start 7144 logIndex=343
+170870 CMIT S0 start 2442 logIndex=155
+170873 CMIT S1 start 9636 logIndex=344
+170874 CMIT S0 start 7771 logIndex=156
+170876 CMIT S1 start 3504 logIndex=345
+170947 CMIT S0 start 1796 logIndex=157
+170950 CMIT S1 start 6797 logIndex=346
+171003 CMIT S0 start 8546 logIndex=158
+171006 CMIT S1 start 5618 logIndex=347
+171034 INFO S0 beat to others,term=27,accessTime=363661780,
+171100 INFO S1 beat to others,term=14,accessTime=971237263,
+171111 TRCE iters=500
+171113 CMIT S0 start 7740 logIndex=159
+171116 CMIT S1 start 4000 logIndex=348
+171156 CMIT S0 start 6087 logIndex=160
+171159 CMIT S1 start 5828 logIndex=349
+171286 CMIT S0 start 4727 logIndex=161
+171290 CMIT S1 start 7463 logIndex=350
+171362 CMIT S0 start 3980 logIndex=162
+171365 CMIT S1 start 515 logIndex=351
+171407 CMIT S0 start 403 logIndex=163
+171410 CMIT S1 start 728 logIndex=352
+171427 INFO S0 beat to others,term=27,accessTime=363661780,
+171429 CMIT S0 start 7414 logIndex=164
+171432 CMIT S1 start 1342 logIndex=353
+171445 CMIT S0 start 2759 logIndex=165
+171455 CMIT S1 start 5421 logIndex=354
+171517 INFO S1 beat to others,term=14,accessTime=971237263,
+171519 CMIT S0 start 3326 logIndex=166
+171523 CMIT S1 start 1270 logIndex=355
+171576 CMIT S0 start 7758 logIndex=167
+171579 CMIT S1 start 565 logIndex=356
+171665 CMIT S0 start 4674 logIndex=168
+171667 CMIT S1 start 2935 logIndex=357
+171709 CMIT S0 start 6119 logIndex=169
+171711 CMIT S1 start 94 logIndex=358
+171805 CMIT S0 start 8885 logIndex=170
+171808 CMIT S1 start 8702 logIndex=359
+171826 INFO S0 beat to others,term=27,accessTime=363661780,
+171883 CMIT S0 start 790 logIndex=171
+171886 CMIT S1 start 7413 logIndex=360
+171903 INFO S1 beat to others,term=14,accessTime=971237263,
+172004 CMIT S0 start 4763 logIndex=172
+172007 CMIT S1 start 5752 logIndex=361
+172059 CMIT S0 start 7888 logIndex=173
+172063 CMIT S1 start 1292 logIndex=362
+172066 CMIT S0 start 2424 logIndex=174
+172069 CMIT S1 start 1508 logIndex=363
+172093 CMIT S0 start 456 logIndex=175
+172097 CMIT S1 start 2368 logIndex=364
+172190 CMIT S0 start 7969 logIndex=176
+172193 CMIT S1 start 6764 logIndex=365
+172234 INFO S0 beat to others,term=27,accessTime=363661780,
+172258 CMIT S0 start 8146 logIndex=177
+172261 CMIT S1 start 5505 logIndex=366
+172300 INFO S1 beat to others,term=14,accessTime=971237263,
+172325 CMIT S0 start 4776 logIndex=178
+172327 CMIT S1 start 8676 logIndex=367
+172424 CMIT S0 start 4324 logIndex=179
+172428 CMIT S1 start 3272 logIndex=368
+172524 CMIT S0 start 818 logIndex=180
+172527 CMIT S1 start 373 logIndex=369
+172546 CMIT S0 start 3453 logIndex=181
+172549 CMIT S1 start 1077 logIndex=370
+172612 CMIT S0 start 827 logIndex=182
+172614 CMIT S1 start 8682 logIndex=371
+172633 INFO S0 beat to others,term=27,accessTime=363661780,
+172710 INFO S1 beat to others,term=14,accessTime=971237263,
+172711 CMIT S0 start 4642 logIndex=183
+172714 CMIT S1 start 4493 logIndex=372
+172810 VOTE S4 win the election, candidate -> Leader
+172844 CMIT S0 start 8294 logIndex=184
+172847 CMIT S1 start 7783 logIndex=373
+172847 CMIT S4 start 2160 logIndex=51
+172920 CMIT S0 start 3690 logIndex=185
+172923 CMIT S1 start 8504 logIndex=374
+172924 CMIT S4 start 508 logIndex=52
+173008 INFO S2 receive AE from 4,PLIdx=50 PLTerm=27
+173009 INFO S2 receive heartbeat, but no sync
+173010 INFO S2 from S4,term=33,PLTerm=50,PLIdx=50
+173010 CMIT S4 s2.matchidx->50
+173018 TRCE disconnect S4
+173018 TRCE reconnect S4
+173020 CMIT S0 start 1706 logIndex=186
+173022 CMIT S1 start 8225 logIndex=375
+173023 CMIT S4 start 3787 logIndex=53
+173024 INFO S0 beat to others,term=27,accessTime=363661780,
+173073 INFO S3 receive AE from 4,PLIdx=50 PLTerm=27
+173074 INFO S3 receive heartbeat, but no sync
+173074 INFO S3 from S4,term=33,PLTerm=50,PLIdx=50
+173074 INFO S3 receive AE from 4,PLIdx=52 PLTerm=33
+173075 VOTE S3 expect XIndex=23 len=30 xterm=12
+173095 INFO S3 receive AE from 4,PLIdx=50 PLTerm=27
+173096 VOTE S3 expect XIndex=23 len=28 xterm=12
+173106 INFO S1 beat to others,term=14,accessTime=971237263,
+173106 INFO S2 receive AE from 4,PLIdx=50 PLTerm=27
+173107 VOTE S2 expect XIndex=23 len=7 xterm=12
+173108 INFO S2 receive AE from 4,PLIdx=51 PLTerm=33
+173109 VOTE S2 expect XIndex=23 len=7 xterm=12
+173152 INFO S2 receive AE from 4,PLIdx=51 PLTerm=33
+173153 VOTE S2 expect XIndex=23 len=7 xterm=12
+173154 CMIT S4 s2.nextIndex->30
+173154 TRCE S4 backup[2] logIndex[30,49]
+173174 INFO S3 receive AE from 4,PLIdx=51 PLTerm=33
+173175 VOTE S3 expect XIndex=23 len=29 xterm=12
+173218 INFO S4 beat to others,term=33,accessTime=822276482,
+173230 INFO S2 receive AE from 4,PLIdx=53 PLTerm=33
+173231 VOTE S2 expect XIndex=23 len=7 xterm=12
+173241 INFO S3 receive AE from 4,PLIdx=50 PLTerm=27
+173242 VOTE S3 expect XIndex=23 len=28 xterm=12
+173243 CMIT S4 s3.nextIndex->30
+173243 TRCE S4 backup[3] logIndex[30,49]
+173275 INFO S2 receive AE from 4,PLIdx=52 PLTerm=33
+173276 VOTE S2 expect XIndex=23 len=7 xterm=12
+173332 INFO S2 receive AE from 4,PLIdx=29 PLTerm=12
+173333 CMIT S2 disLogIndex->49 value=2966
+173333 CMIT S2 commitIdx:20
+173430 INFO S0 beat to others,term=27,accessTime=363661780,
+173487 INFO S3 receive AE from 4,PLIdx=53 PLTerm=33
+173488 VOTE S3 expect XIndex=23 len=31 xterm=12
+173489 CMIT S4 s3.nextIndex->30
+173499 INFO S3 receive AE from 4,PLIdx=29 PLTerm=12
+173500 CMIT S3 disLogIndex->49 value=2966
+173500 CMIT S3 commitIdx:22
+173501 INFO S1 beat to others,term=14,accessTime=971237263,
+173618 INFO S4 beat to others,term=33,accessTime=822276482,
+173762 INFO S2 receive AE from 4,PLIdx=53 PLTerm=33
+173763 VOTE S2 expect XIndex=30 len=20 xterm=13
+173827 INFO S0 beat to others,term=27,accessTime=363661780,
+173904 INFO S1 beat to others,term=14,accessTime=971237263,
+174014 INFO S4 beat to others,term=33,accessTime=822276482,
+174071 INFO S3 receive AE from 4,PLIdx=53 PLTerm=33
+174072 VOTE S3 expect XIndex=30 len=20 xterm=13
+174191 INFO S2 receive AE from 4,PLIdx=53 PLTerm=33
+174192 VOTE S2 expect XIndex=30 len=20 xterm=13
+174213 INFO S3 receive AE from 4,PLIdx=53 PLTerm=33
+174214 VOTE S3 expect XIndex=30 len=20 xterm=13
+174234 INFO S0 beat to others,term=27,accessTime=363661780,
+174302 INFO S1 beat to others,term=14,accessTime=971237263,
+174414 INFO S4 beat to others,term=33,accessTime=822276482,
+174470 INFO S2 receive AE from 4,PLIdx=53 PLTerm=33
+174470 VOTE S2 expect XIndex=30 len=20 xterm=13
+174634 INFO S0 beat to others,term=27,accessTime=363661780,
+174636 INFO S3 receive AE from 4,PLIdx=53 PLTerm=33
+174637 VOTE S3 expect XIndex=30 len=20 xterm=13
+174701 INFO S1 beat to others,term=14,accessTime=971237263,
+174811 INFO S4 beat to others,term=33,accessTime=822276482,
+174966 INFO S2 receive AE from 4,PLIdx=53 PLTerm=33
+174968 VOTE S2 expect XIndex=30 len=20 xterm=13
+175031 INFO S0 beat to others,term=27,accessTime=363661780,
+175109 INFO S1 beat to others,term=14,accessTime=971237263,
+175132 INFO S3 receive AE from 4,PLIdx=53 PLTerm=33
+175133 VOTE S3 expect XIndex=30 len=20 xterm=13
+175220 INFO S4 beat to others,term=33,accessTime=822276482,
+175361 INFO S2 receive AE from 4,PLIdx=53 PLTerm=33
+175362 VOTE S2 expect XIndex=30 len=20 xterm=13
+175363 INFO S3 receive AE from 4,PLIdx=53 PLTerm=33
+175364 VOTE S3 expect XIndex=30 len=20 xterm=13
+175393 TRCE disconnect S4
+175393 TRCE reconnect S1
+175394 CMIT S4 s2.nextIndex->30
+175395 CMIT S0 start 2094 logIndex=187
+175398 CMIT S1 start 1964 logIndex=376
+175398 CMIT S4 start 6711 logIndex=54
+175428 INFO S0 beat to others,term=27,accessTime=363661780,
+175431 VOTE S1 to follower,s3 term=33
+175431 INFO S1 Leader -> follower
+175516 TRCE disconnect S1
+175518 CMIT S0 start 9526 logIndex=188
+175518 CMIT S4 start 4924 logIndex=55
+175532 TRCE reconnect S4
+175533 CMIT S0 start 6015 logIndex=189
+175534 CMIT S4 start 3595 logIndex=56
+175577 INFO S2 receive AE from 4,PLIdx=55 PLTerm=33
+175578 VOTE S2 expect XIndex=30 len=20 xterm=13
+175619 INFO S4 beat to others,term=33,accessTime=822276482,
+175621 CMIT S0 start 5644 logIndex=190
+175621 CMIT S4 start 1634 logIndex=57
+175642 TRCE disconnect S4
+175643 TRCE reconnect S0
+175644 CMIT S0 start 1344 logIndex=191
+175644 INFO S2 receive AE from 4,PLIdx=56 PLTerm=33
+175645 CMIT S4 start 4237 logIndex=58
+175645 VOTE S2 expect XIndex=30 len=20 xterm=13
+175670 INFO S3 receive AE from 4,PLIdx=56 PLTerm=33
+175670 VOTE S3 expect XIndex=30 len=20 xterm=13
+175672 INFO S2 receive AE from 4,PLIdx=56 PLTerm=33
+175672 VOTE S2 expect XIndex=30 len=20 xterm=13
+175702 TRCE disconnect S0
+175703 TRCE reconnect S1
+175704 INFO S3 receive AE from 4,PLIdx=55 PLTerm=33
+175704 VOTE S3 expect XIndex=30 len=20 xterm=13
+175704 CMIT S0 start 2855 logIndex=192
+175705 CMIT S4 start 5255 logIndex=59
+175714 INFO S3 receive AE from 4,PLIdx=56 PLTerm=33
+175715 VOTE S3 expect XIndex=30 len=20 xterm=13
+175782 CMIT S0 start 1504 logIndex=193
+175783 CMIT S4 start 541 logIndex=60
+175831 INFO S0 beat to others,term=27,accessTime=363661780,
+176020 INFO S4 beat to others,term=33,accessTime=822276482,
+176228 INFO S0 beat to others,term=27,accessTime=363661780,
+176420 INFO S4 beat to others,term=33,accessTime=822276482,
+176629 INFO S0 beat to others,term=27,accessTime=363661780,
+176820 INFO S4 beat to others,term=33,accessTime=822276482,
+177031 INFO S0 beat to others,term=27,accessTime=363661780,
+177089 CMIT S4 s3.matchidx->50
+177219 INFO S4 beat to others,term=33,accessTime=822276482,
+177396 CMIT S4 s3.nextIndex->50
+177397 TRCE S4 backup[3] logIndex[30,49] finish
+177397 TRCE S4 backup[3] logIndex[30,49]
+177429 INFO S0 beat to others,term=27,accessTime=363661780,
+177528 VOTE S1 to follower,s3 term=33
+177615 INFO S4 beat to others,term=33,accessTime=822276482,
+177825 INFO S0 beat to others,term=27,accessTime=363661780,
+177916 CMIT S0 start 9093 logIndex=194
+177918 CMIT S4 start 8154 logIndex=61
+177938 CMIT S0 start 3446 logIndex=195
+177939 CMIT S4 start 8455 logIndex=62
+178015 INFO S4 beat to others,term=33,accessTime=822276482,
+178028 CMIT S0 start 9403 logIndex=196
+178028 CMIT S4 start 7288 logIndex=63
+178060 TRCE S1 backup[2] logIndex[11,16] finish
+178083 CMIT S0 start 5060 logIndex=197
+178084 CMIT S4 start 2416 logIndex=64
+178217 CMIT S0 start 2330 logIndex=198
+178218 CMIT S4 start 540 logIndex=65
+178226 INFO S0 beat to others,term=27,accessTime=363661780,
+178295 CMIT S0 start 1915 logIndex=199
+178297 CMIT S4 start 3264 logIndex=66
+178339 CMIT S0 start 6440 logIndex=200
+178340 CMIT S4 start 9740 logIndex=67
+178414 INFO S4 beat to others,term=33,accessTime=822276482,
+178470 CMIT S0 start 9584 logIndex=201
+178471 CMIT S4 start 6686 logIndex=68
+178631 INFO S0 beat to others,term=27,accessTime=363661780,
+178655 VOTE S1 to follower,s2 term=33
+178811 INFO S4 beat to others,term=33,accessTime=822276482,
+179030 INFO S0 beat to others,term=27,accessTime=363661780,
+179219 INFO S4 beat to others,term=33,accessTime=822276482,
+179428 INFO S0 beat to others,term=27,accessTime=363661780,
+179613 INFO S4 beat to others,term=33,accessTime=822276482,
+179824 INFO S0 beat to others,term=27,accessTime=363661780,
+179859 CMIT S0 start 9038 logIndex=202
+179860 CMIT S4 start 51 logIndex=69
+179915 CMIT S0 start 456 logIndex=203
+179917 CMIT S4 start 2384 logIndex=70
+179980 CMIT S0 start 4741 logIndex=204
+179982 CMIT S4 start 8478 logIndex=71
+180012 INFO S4 beat to others,term=33,accessTime=822276482,
+180047 CMIT S0 start 7383 logIndex=205
+180048 CMIT S4 start 2792 logIndex=72
+180068 CMIT S0 start 5970 logIndex=206
+180069 CMIT S4 start 6374 logIndex=73
+180124 CMIT S0 start 3585 logIndex=207
+180129 CMIT S4 start 9209 logIndex=74
+180225 INFO S0 beat to others,term=27,accessTime=363661780,
+180238 CMIT S0 start 2981 logIndex=208
+180239 CMIT S4 start 1616 logIndex=75
+180315 CMIT S0 start 6892 logIndex=209
+180316 CMIT S4 start 8921 logIndex=76
+180421 INFO S4 beat to others,term=33,accessTime=822276482,
+180609 CMIT S4 s3.nextIndex->50
+180630 INFO S0 beat to others,term=27,accessTime=363661780,
+180719 CMIT S4 s2.nextIndex->30
+180821 INFO S4 beat to others,term=33,accessTime=822276482,
+180876 CMIT S0 start 2415 logIndex=210
+180878 CMIT S4 start 5700 logIndex=77
+180891 CMIT S0 start 6322 logIndex=211
+180892 CMIT S4 start 6492 logIndex=78
+180914 CMIT S0 start 8894 logIndex=212
+180915 CMIT S4 start 6565 logIndex=79
+181026 INFO S0 beat to others,term=27,accessTime=363661780,
+181039 CMIT S0 start 3914 logIndex=213
+181040 CMIT S4 start 8169 logIndex=80
+181061 CMIT S0 start 3401 logIndex=214
+181062 CMIT S4 start 3590 logIndex=81
+181172 CMIT S0 start 8033 logIndex=215
+181174 CMIT S4 start 4312 logIndex=82
+181206 CMIT S0 start 3637 logIndex=216
+181208 CMIT S4 start 9593 logIndex=83
+181216 INFO S4 beat to others,term=33,accessTime=822276482,
+181434 INFO S0 beat to others,term=27,accessTime=363661780,
+181611 INFO S4 beat to others,term=33,accessTime=822276482,
+181732 CMIT S4 s2.nextIndex->30
+181828 INFO S0 beat to others,term=27,accessTime=363661780,
+182017 INFO S4 beat to others,term=33,accessTime=822276482,
+182082 VOTE S2 electionTimeout,follower -> candidate
+182082 VOTE S2 termBefore=33,electionTerm=34
+182225 INFO S0 beat to others,term=27,accessTime=363661780,
+182304 VOTE S3 LastLogTerm=13,lastLogIdex=49
+182305 VOTE S3 vote and reset
+182305 VOTE S3 vote for 2
+182412 INFO S4 beat to others,term=33,accessTime=822276482,
+182631 INFO S0 beat to others,term=27,accessTime=363661780,
+182664 VOTE S1 electionTimeout,follower -> candidate
+182664 VOTE S1 termBefore=34,electionTerm=35
+182817 INFO S4 beat to others,term=33,accessTime=822276482,
+182830 VOTE S2 LastLogTerm=15,lastLogIdex=376
+182831 VOTE S2 vote and reset
+182831 VOTE S2 vote for 1
+182883 VOTE S3 LastLogTerm=15,lastLogIdex=376
+182884 VOTE S3 vote and reset
+182884 VOTE S3 vote for 1
+183027 INFO S0 beat to others,term=27,accessTime=363661780,
+183213 INFO S4 beat to others,term=33,accessTime=822276482,
+183434 INFO S0 beat to others,term=27,accessTime=363661780,
+183612 INFO S4 beat to others,term=33,accessTime=822276482,
+183832 INFO S0 beat to others,term=27,accessTime=363661780,
+184018 INFO S4 beat to others,term=33,accessTime=822276482,
+184226 INFO S0 beat to others,term=27,accessTime=363661780,
+184412 INFO S4 beat to others,term=33,accessTime=822276482,
+184632 INFO S0 beat to others,term=27,accessTime=363661780,
+184799 CMIT S4 s3.nextIndex->30
+184821 INFO S4 beat to others,term=33,accessTime=822276482,
+185030 INFO S0 beat to others,term=27,accessTime=363661780,
+185199 CMIT S0 start 3155 logIndex=217
+185201 CMIT S4 start 5915 logIndex=84
+185220 INFO S4 beat to others,term=33,accessTime=822276482,
+185267 CMIT S0 start 4753 logIndex=218
+185268 CMIT S4 start 9753 logIndex=85
+185300 CMIT S0 start 8761 logIndex=219
+185301 CMIT S4 start 9234 logIndex=86
+185303 CMIT S0 start 937 logIndex=220
+185303 CMIT S4 start 9277 logIndex=87
+185329 CMIT S4 s3.nextIndex->30
+185339 CMIT S0 start 1177 logIndex=221
+185340 CMIT S4 start 8764 logIndex=88
+185384 CMIT S0 start 1136 logIndex=222
+185385 CMIT S4 start 7774 logIndex=89
+185427 INFO S0 beat to others,term=27,accessTime=363661780,
+185614 INFO S4 beat to others,term=33,accessTime=822276482,
+185627 CMIT S0 start 5917 logIndex=223
+185629 CMIT S4 start 5721 logIndex=90
+185694 CMIT S0 start 6728 logIndex=224
+185695 CMIT S4 start 6852 logIndex=91
+185805 CMIT S0 start 3326 logIndex=225
+185806 CMIT S4 start 3400 logIndex=92
+185835 INFO S0 beat to others,term=27,accessTime=363661780,
+185904 CMIT S0 start 8332 logIndex=226
+185906 CMIT S4 start 1746 logIndex=93
+185980 CMIT S0 start 4600 logIndex=227
+185981 CMIT S4 start 4327 logIndex=94
+185983 CMIT S0 start 2935 logIndex=228
+185983 CMIT S4 start 3025 logIndex=95
+186012 INFO S4 beat to others,term=33,accessTime=822276482,
+186025 CMIT S0 start 9807 logIndex=229
+186026 CMIT S4 start 635 logIndex=96
+186112 CMIT S0 start 206 logIndex=230
+186114 CMIT S4 start 7421 logIndex=97
+186232 INFO S0 beat to others,term=27,accessTime=363661780,
+186234 CMIT S0 start 7226 logIndex=231
+186235 CMIT S4 start 9663 logIndex=98
+186343 CMIT S0 start 9558 logIndex=232
+186344 CMIT S4 start 2342 logIndex=99
+186365 CMIT S0 start 977 logIndex=233
+186366 CMIT S4 start 258 logIndex=100
+186367 CMIT S0 start 2424 logIndex=234
+186368 CMIT S4 start 2656 logIndex=101
+186418 INFO S4 beat to others,term=33,accessTime=822276482,
+186432 CMIT S0 start 2892 logIndex=235
+186433 CMIT S4 start 381 logIndex=102
+186532 CMIT S0 start 2971 logIndex=236
+186534 CMIT S4 start 5212 logIndex=103
+186597 CMIT S0 start 5412 logIndex=237
+186599 CMIT S4 start 1292 logIndex=104
+186629 INFO S0 beat to others,term=27,accessTime=363661780,
+186709 CMIT S0 start 9610 logIndex=238
+186711 CMIT S4 start 1127 logIndex=105
+186817 INFO S4 beat to others,term=33,accessTime=822276482,
+186830 CMIT S0 start 9012 logIndex=239
+186832 CMIT S4 start 4624 logIndex=106
+186863 CMIT S0 start 5477 logIndex=240
+186865 CMIT S4 start 5551 logIndex=107
+186886 CMIT S0 start 3383 logIndex=241
+186887 CMIT S4 start 6314 logIndex=108
+186918 CMIT S0 start 1077 logIndex=242
+186919 CMIT S4 start 9340 logIndex=109
+186984 CMIT S0 start 827 logIndex=243
+186985 CMIT S4 start 2136 logIndex=110
+187028 INFO S0 beat to others,term=27,accessTime=363661780,
+187030 CMIT S0 start 8039 logIndex=244
+187031 CMIT S4 start 5803 logIndex=111
+187130 CMIT S0 start 3194 logIndex=245
+187132 CMIT S4 start 1106 logIndex=112
+187215 INFO S4 beat to others,term=33,accessTime=822276482,
+187430 INFO S0 beat to others,term=27,accessTime=363661780,
+187619 INFO S4 beat to others,term=33,accessTime=822276482,
+187828 INFO S0 beat to others,term=27,accessTime=363661780,
+188018 INFO S4 beat to others,term=33,accessTime=822276482,
+188228 INFO S0 beat to others,term=27,accessTime=363661780,
+188416 INFO S4 beat to others,term=33,accessTime=822276482,
+188627 INFO S0 beat to others,term=27,accessTime=363661780,
+188628 CMIT S4 s2.nextIndex->50
+188628 TRCE S4 backup[2] logIndex[30,49] finish
+188628 TRCE S4 backup[2] logIndex[30,49]
+188716 CMIT S4 commitIndex:20->49
+188815 INFO S4 beat to others,term=33,accessTime=822276482,
+189035 INFO S0 beat to others,term=27,accessTime=363661780,
+189221 INFO S4 beat to others,term=33,accessTime=822276482,
+189242 VOTE S2 electionTimeout,follower -> candidate
+189243 VOTE S2 termBefore=35,electionTerm=36
+189288 VOTE S3 electionTimeout,follower -> candidate
+189289 VOTE S3 termBefore=35,electionTerm=36
+189416 VOTE S1 reject vote for 2, voted
+189425 INFO S0 beat to others,term=27,accessTime=363661780,
+189427 VOTE S2 reject vote for 3, voted
+189460 VOTE S3 reject vote for 2, voted
+189615 INFO S4 beat to others,term=33,accessTime=822276482,
+189833 INFO S0 beat to others,term=27,accessTime=363661780,
+190020 INFO S4 beat to others,term=33,accessTime=822276482,
+190230 INFO S0 beat to others,term=27,accessTime=363661780,
+190417 INFO S4 beat to others,term=33,accessTime=822276482,
+190629 INFO S0 beat to others,term=27,accessTime=363661780,
+190820 INFO S4 beat to others,term=33,accessTime=822276482,
+190921 CMIT S0 start 9675 logIndex=246
+190922 CMIT S4 start 7064 logIndex=113
+190987 CMIT S0 start 2916 logIndex=247
+190989 CMIT S4 start 4623 logIndex=114
+191029 INFO S0 beat to others,term=27,accessTime=363661780,
+191118 CMIT S0 start 9233 logIndex=248
+191119 CMIT S4 start 5183 logIndex=115
+191161 CMIT S0 start 8336 logIndex=249
+191162 CMIT S4 start 5174 logIndex=116
+191215 INFO S4 beat to others,term=33,accessTime=822276482,
+191428 INFO S0 beat to others,term=27,accessTime=363661780,
+191473 INFO S1 candidate electionTimeout,restart election
+191473 VOTE S1 termBefore=36,electionTerm=37
+191476 VOTE S3 LastLogTerm=15,lastLogIdex=376
+191477 VOTE S3 vote and reset
+191477 VOTE S3 vote for 1
+191615 INFO S4 beat to others,term=33,accessTime=822276482,
+191662 VOTE S2 LastLogTerm=15,lastLogIdex=376
+191663 VOTE S2 vote and reset
+191663 VOTE S2 vote for 1
+191834 INFO S0 beat to others,term=27,accessTime=363661780,
+192011 INFO S4 beat to others,term=33,accessTime=822276482,
+192224 CMIT S4 s2.nextIndex->50
+192225 INFO S0 beat to others,term=27,accessTime=363661780,
+192412 INFO S4 beat to others,term=33,accessTime=822276482,
+192556 CMIT S0 start 3713 logIndex=250
+192558 CMIT S4 start 86 logIndex=117
+192579 CMIT S0 start 794 logIndex=251
+192581 CMIT S4 start 8680 logIndex=118
+192632 INFO S0 beat to others,term=27,accessTime=363661780,
+192706 CMIT S0 start 1447 logIndex=252
+192709 CMIT S4 start 3591 logIndex=119
+192773 CMIT S0 start 1188 logIndex=253
+192775 CMIT S4 start 6056 logIndex=120
+192819 INFO S4 beat to others,term=33,accessTime=822276482,
+192864 CMIT S0 start 9596 logIndex=254
+192866 CMIT S4 start 7010 logIndex=121
+192867 CMIT S0 start 1066 logIndex=255
+192868 CMIT S4 start 1473 logIndex=122
+192881 CMIT S0 start 3361 logIndex=256
+192882 CMIT S4 start 7975 logIndex=123
+192903 CMIT S0 start 7879 logIndex=257
+192904 CMIT S4 start 2957 logIndex=124
+192905 CMIT S0 start 7835 logIndex=258
+192906 CMIT S4 start 6191 logIndex=125
+192906 TRCE iters=600
+192908 CMIT S0 start 4407 logIndex=259
+192909 CMIT S4 start 882 logIndex=126
+193014 CMIT S0 start 3167 logIndex=260
+193015 CMIT S4 start 1870 logIndex=127
+193025 INFO S0 beat to others,term=27,accessTime=363661780,
+193070 CMIT S0 start 1410 logIndex=261
+193071 CMIT S4 start 6699 logIndex=128
+193118 CMIT S0 start 7935 logIndex=262
+193120 CMIT S4 start 4012 logIndex=129
+193163 CMIT S0 start 6780 logIndex=263
+193164 CMIT S4 start 4264 logIndex=130
+193216 INFO S4 beat to others,term=33,accessTime=822276482,
+193218 CMIT S0 start 1910 logIndex=264
+193219 CMIT S4 start 5481 logIndex=131
+193317 CMIT S0 start 6326 logIndex=265
+193319 CMIT S4 start 4517 logIndex=132
+193355 CMIT S0 start 9105 logIndex=266
+193356 CMIT S4 start 3803 logIndex=133
+193426 INFO S0 beat to others,term=27,accessTime=363661780,
+193472 CMIT S0 start 8406 logIndex=267
+193473 CMIT S4 start 5415 logIndex=134
+193528 CMIT S0 start 9296 logIndex=268
+193531 CMIT S4 start 6536 logIndex=135
+193614 INFO S4 beat to others,term=33,accessTime=822276482,
+193639 CMIT S0 start 8782 logIndex=269
+193640 CMIT S4 start 5603 logIndex=136
+193749 VOTE S1 win the election, candidate -> Leader
+193771 CMIT S0 start 2313 logIndex=270
+193775 CMIT S1 start 153 logIndex=377
+193776 CMIT S4 start 3849 logIndex=137
+193816 CMIT S0 start 7448 logIndex=271
+193818 CMIT S1 start 2100 logIndex=378
+193819 CMIT S4 start 4013 logIndex=138
+193828 INFO S0 beat to others,term=27,accessTime=363661780,
+193862 CMIT S0 start 1116 logIndex=272
+193864 CMIT S1 start 4970 logIndex=379
+193865 CMIT S4 start 2519 logIndex=139
+193894 INFO S3 receive AE from 1,PLIdx=377 PLTerm=37
+193895 VOTE S3 expect XIndex=30 len=20 xterm=13
+193906 INFO S2 receive AE from 1,PLIdx=376 PLTerm=15
+193907 INFO S2 receive heartbeat, but no sync
+193907 INFO S2 from S1,term=37,PLTerm=376,PLIdx=376
+193908 CMIT S0 start 40 logIndex=273
+193910 CMIT S1 start 9471 logIndex=380
+193911 CMIT S4 start 7310 logIndex=140
+193928 INFO S2 receive AE from 1,PLIdx=379 PLTerm=37
+193929 VOTE S2 expect XIndex=30 len=20 xterm=13
+193940 INFO S3 receive AE from 1,PLIdx=376 PLTerm=15
+193941 INFO S3 receive heartbeat, but no sync
+193941 INFO S3 from S1,term=37,PLTerm=376,PLIdx=376
+194018 INFO S4 beat to others,term=33,accessTime=822276482,
+194020 CMIT S0 start 9403 logIndex=274
+194021 INFO S2 receive AE from 1,PLIdx=377 PLTerm=37
+194022 VOTE S2 expect XIndex=30 len=20 xterm=13
+194022 CMIT S1 start 8850 logIndex=381
+194023 CMIT S1 s2.nextIndex->31
+194023 TRCE S1 backup[2] logIndex[31,44]
+194023 CMIT S4 start 1725 logIndex=141
+194031 INFO S3 receive AE from 1,PLIdx=376 PLTerm=15
+194032 VOTE S3 expect XIndex=30 len=20 xterm=13
+194043 INFO S3 receive AE from 1,PLIdx=378 PLTerm=37
+194043 VOTE S3 expect XIndex=30 len=20 xterm=13
+194044 INFO S2 receive AE from 1,PLIdx=380 PLTerm=37
+194045 VOTE S2 expect XIndex=30 len=20 xterm=13
+194046 CMIT S1 s2.nextIndex->31
+194054 INFO S2 receive AE from 1,PLIdx=376 PLTerm=15
+194055 VOTE S2 expect XIndex=30 len=20 xterm=13
+194056 CMIT S1 s2.nextIndex->31
+194066 INFO S2 receive AE from 1,PLIdx=30 PLTerm=13
+194067 CMIT S2 disLogIndex->44 value=8715
+194067 CMIT S2 commitIdx:20
+194100 TRCE disconnect S1
+194100 TRCE reconnect S0
+194101 INFO S2 receive AE from 1,PLIdx=378 PLTerm=37
+194102 VOTE S2 expect XIndex=31 len=14 xterm=14
+194104 CMIT S0 start 143 logIndex=275
+194106 CMIT S1 start 8670 logIndex=382
+194108 CMIT S4 start 8470 logIndex=142
+194138 INFO S3 receive AE from 1,PLIdx=379 PLTerm=37
+194138 VOTE S3 expect XIndex=30 len=20 xterm=13
+194150 INFO S1 beat to others,term=37,accessTime=916169834,
+194160 TRCE disconnect S0
+194162 CMIT S0 start 3431 logIndex=276
+194165 CMIT S1 start 3094 logIndex=383
+194166 CMIT S4 start 9993 logIndex=143
+194235 INFO S0 beat to others,term=27,accessTime=363661780,
+194282 INFO S3 receive AE from 1,PLIdx=380 PLTerm=37
+194283 VOTE S3 expect XIndex=30 len=20 xterm=13
+194292 TRCE reconnect S1
+194294 CMIT S0 start 2572 logIndex=277
+194297 CMIT S1 start 5606 logIndex=384
+194298 CMIT S4 start 5398 logIndex=144
+194370 CMIT S0 start 5559 logIndex=278
+194373 CMIT S1 start 1724 logIndex=385
+194375 CMIT S4 start 3210 logIndex=145
+194402 INFO S3 receive AE from 1,PLIdx=383 PLTerm=37
+194403 VOTE S3 expect XIndex=30 len=20 xterm=13
+194413 INFO S4 beat to others,term=33,accessTime=822276482,
+194478 INFO S2 receive AE from 1,PLIdx=384 PLTerm=37
+194479 VOTE S2 expect XIndex=31 len=14 xterm=14
+194501 CMIT S0 start 899 logIndex=279
+194504 CMIT S1 start 6699 logIndex=386
+194505 CMIT S4 start 8122 logIndex=146
+194547 INFO S2 receive AE from 1,PLIdx=385 PLTerm=37
+194548 VOTE S2 expect XIndex=31 len=14 xterm=14
+194557 INFO S1 beat to others,term=37,accessTime=916169834,
+194558 INFO S3 receive AE from 1,PLIdx=385 PLTerm=37
+194559 VOTE S3 expect XIndex=30 len=20 xterm=13
+194559 INFO S2 receive AE from 1,PLIdx=383 PLTerm=37
+194560 VOTE S2 expect XIndex=31 len=14 xterm=14
+194624 INFO S0 beat to others,term=27,accessTime=363661780,
+194625 TRCE disconnect S1
+194626 TRCE reconnect S0
+194626 INFO S3 receive AE from 1,PLIdx=384 PLTerm=37
+194626 VOTE S3 expect XIndex=30 len=20 xterm=13
+194627 CMIT S0 start 6592 logIndex=280
+194630 CMIT S1 start 7693 logIndex=387
+194631 CMIT S4 start 3921 logIndex=147
+194693 TRCE disconnect S0
+194693 TRCE reconnect S0
+194695 CMIT S0 start 6291 logIndex=281
+194699 CMIT S1 start 5052 logIndex=388
+194700 CMIT S4 start 7955 logIndex=148
+194717 VOTE S0 to follower,s3 term=37
+194717 INFO S0 Leader -> follower
+194737 TRCE disconnect S0
+194738 TRCE reconnect S1
+194741 CMIT S1 start 8640 logIndex=389
+194743 CMIT S4 start 1565 logIndex=149
+194805 INFO S2 receive AE from 1,PLIdx=386 PLTerm=37
+194807 VOTE S2 expect XIndex=31 len=14 xterm=14
+194815 INFO S4 beat to others,term=33,accessTime=822276482,
+194838 TRCE disconnect S1
+194842 CMIT S1 start 331 logIndex=390
+194844 CMIT S4 start 9512 logIndex=150
+194950 CMIT S1 start 498 logIndex=391
+194951 CMIT S4 start 8322 logIndex=151
+194952 INFO S1 beat to others,term=37,accessTime=916169834,
+195015 TRCE reconnect S0
+195019 CMIT S1 start 1407 logIndex=392
+195020 CMIT S4 start 8793 logIndex=152
+195050 INFO S2 receive AE from 1,PLIdx=388 PLTerm=37
+195051 VOTE S2 expect XIndex=31 len=14 xterm=14
+195096 CMIT S1 start 5915 logIndex=393
+195098 CMIT S4 start 19 logIndex=153
+195169 CMIT S1 start 4753 logIndex=394
+195170 CMIT S4 start 9753 logIndex=154
+195201 CMIT S1 start 8753 logIndex=395
+195203 CMIT S4 start 9234 logIndex=155
+195205 CMIT S1 start 937 logIndex=396
+195206 CMIT S4 start 7463 logIndex=156
+195221 INFO S4 beat to others,term=33,accessTime=822276482,
+195289 CMIT S1 start 6524 logIndex=397
+195291 CMIT S4 start 2081 logIndex=157
+195356 INFO S1 beat to others,term=37,accessTime=916169834,
+195384 CMIT S1 start 623 logIndex=398
+195386 CMIT S4 start 1342 logIndex=158
+195391 CMIT S1 start 5721 logIndex=399
+195393 CMIT S4 start 37 logIndex=159
+195426 CMIT S1 start 4400 logIndex=400
+195427 CMIT S4 start 5417 logIndex=160
+195460 CMIT S1 start 1270 logIndex=401
+195461 CMIT S4 start 6889 logIndex=161
+195515 CMIT S1 start 6898 logIndex=402
+195516 CMIT S4 start 4103 logIndex=162
+195603 CMIT S1 start 7897 logIndex=403
+195605 CMIT S4 start 3025 logIndex=163
+195612 INFO S4 beat to others,term=33,accessTime=822276482,
+195681 CMIT S1 start 8752 logIndex=404
+195683 CMIT S4 start 4234 logIndex=164
+195755 INFO S1 beat to others,term=37,accessTime=916169834,
+195757 CMIT S1 start 6269 logIndex=405
+195759 CMIT S4 start 2642 logIndex=165
+195814 CMIT S1 start 5377 logIndex=406
+195816 CMIT S4 start 8147 logIndex=166
+195932 CMIT S1 start 3554 logIndex=407
+195935 CMIT S4 start 9558 logIndex=167
+196013 INFO S4 beat to others,term=33,accessTime=822276482,
+196015 CMIT S1 start 1292 logIndex=408
+196017 CMIT S4 start 846 logIndex=168
+196018 CMIT S1 s3.matchidx->376
+196120 CMIT S1 start 6732 logIndex=409
+196122 CMIT S4 start 5216 logIndex=169
+196152 INFO S1 beat to others,term=37,accessTime=916169834,
+196167 CMIT S1 start 4866 logIndex=410
+196168 CMIT S4 start 4450 logIndex=170
+196170 CMIT S1 start 9147 logIndex=411
+196172 CMIT S4 start 6226 logIndex=171
+196289 CMIT S1 s2.matchidx->376
+196300 CMIT S1 start 2367 logIndex=412
+196302 CMIT S4 start 3642 logIndex=172
+196411 INFO S4 beat to others,term=33,accessTime=822276482,
+196415 CMIT S1 start 579 logIndex=413
+196416 CMIT S4 start 363 logIndex=173
+196525 CMIT S1 start 7468 logIndex=414
+196528 CMIT S4 start 1129 logIndex=174
+196554 INFO S1 beat to others,term=37,accessTime=916169834,
+196635 CMIT S1 start 192 logIndex=415
+196637 CMIT S4 start 7233 logIndex=175
+196759 CMIT S1 start 1097 logIndex=416
+196761 CMIT S4 start 8891 logIndex=176
+196800 CMIT S1 s2.nextIndex->45
+196801 TRCE S1 backup[2] logIndex[31,44] finish
+196801 TRCE S1 backup[2] logIndex[31,44]
+196811 INFO S4 beat to others,term=33,accessTime=822276482,
+1: log map[1:2557 2:3545 3:1775 4:1024 5:4361 6:8094 7:4755 8:4972 9:9515 10:4964 11:2522 12:1411 13:9990 14:7593 15:5483 16:1618 17:6059 18:6241 19:9947 20:2546 21:2629 22:9700 23:5371 24:1387 25:9739 26:3605 27:9930 28:5824 29:2389 30:7479]; server map[1:2557 2:3545 3:1775 4:1024 5:4361 6:8094 7:4755 8:4972 9:9515 10:4964 11:2522 12:1411 13:9990 14:7593 15:5483 16:1618 17:6059 18:6241 19:9947 20:2546 21:2629 22:9700 23:5371 24:1387 25:9739 26:3605 27:9930 28:5824 29:2389 30:7479 31:5949 32:4335 33:8929 34:3264 35:3971 36:4420 37:1091 38:7584 39:3611 40:6675 41:7090 42:4716 43:7427 44:6740 45:4328 46:7261 47:5887 48:1681 49:2966]
+1: log map[1:2557 2:3545 3:1775 4:1024 5:4361 6:8094 7:4755 8:4972 9:9515 10:4964 11:2522 12:1411 13:9990 14:7593 15:5483 16:1618 17:6059 18:6241 19:9947 20:2546 21:2629 22:9700 23:5371 24:1387 25:9739 26:3605 27:9930 28:5824 29:2389 30:7479]; server map[1:2557 2:3545 3:1775 4:1024 5:4361 6:8094 7:4755 8:4972 9:9515 10:4964 11:2522 12:1411 13:9990 14:7593 15:5483 16:1618 17:6059 18:6241 19:9947 20:2546 21:2629 22:9700 23:5371 24:1387 25:9739 26:3605 27:9930 28:5824 29:2389 30:7479 31:5949 32:4335 33:8929 34:3264 35:3971 36:4420 37:1091 38:7584 39:3611 40:6675 41:7090 42:4716 43:7427 44:6740 45:4328 46:7261 47:5887 48:1681 49:2966]
+196814 TRCE S0 commitupdater killed
+196814 INFO S0 service killed
+196814 TRCE S1 commitupdater killed
+196814 WARN S0 exit ticker
+196814 INFO S1 service killed
+196814 TRCE S2 commitupdater killed
+196814 INFO S2 service killed
+196814 TRCE S3 commitupdater killed
+196814 INFO S3 service killed
+196814 TRCE S4 commitupdater killed
+196814 INFO S4 service killed
+196815 WARN S4 exit ticker
+196814 WARN S1 exit ticker
+196815 WARN S2 exit ticker
+196815 WARN S3 exit ticker
+200396 TRCE S1 backup[4] logIndex[30,30] finish
+200396 TEST S1 catup worker stop
+200475 VOTE S0 to follower,s2 term=37
+200642 VOTE S0 to follower,s3 term=37
+
+
+206817 TRCE S0 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 13 5949} {32 13 4335} {33 13 8929} {34 13 3264} {35 13 3971} {36 13 4420} {37 13 1091} {38 13 7584} {39 13 3611} {40 13 6675} {41 13 7090} {42 13 4716} {43 13 7427} {44 13 6740} {45 13 4328} {46 13 7261} {47 13 5887} {48 13 1681} {49 13 2966} {50 27 5884} {51 27 7522} {52 27 9748} {53 27 7664} {54 27 2433} {55 27 6344} {56 27 3830} {57 27 7901} {58 27 4408} {59 27 5548} {60 27 3986} {61 27 9721} {62 27 9211} {63 27 1074} {64 27 6393} {65 27 1322} {66 27 5522} {67 27 9850} {68 27 2563} {69 27 5630} {70 27 7673} {71 27 5184} {72 27 6119} {73 27 1687} {74 27 5021} {75 27 6374} {76 27 9069} {77 27 9379} {78 27 372} {79 27 8538} {80 27 7674} {81 27 8887} {82 27 4246} {83 27 3416} {84 27 8982} {85 27 4686} {86 27 5482} {87 27 4850} {88 27 9728} {89 27 5884} {90 27 8263} {91 27 5255} {92 27 2666} {93 27 3664} {94 27 8318} {95 27 4951} {96 27 7584} {97 27 9031} {98 27 2681} {99 27 125} {100 27 5385} {101 27 9852} {102 27 2330} {103 27 5548} {104 27 6272} {105 27 8369} {106 27 9975} {107 27 8135} {108 27 5448} {109 27 5609} {110 27 843} {111 27 7849} {112 27 2870} {113 27 7060} {114 27 4826} {115 27 7674} {116 27 5163} {117 27 5569} {118 27 2395} {119 27 8982} {120 27 4883} {121 27 3031} {122 27 2261} {123 27 8417} {124 27 4215} {125 27 2201} {126 27 8626} {127 27 9931} {128 27 3643} {129 27 4810} {130 27 3788} {131 27 2159} {132 27 6658} {133 27 8686} {134 27 7849} {135 27 748} {136 27 6754} {137 27 5007} {138 27 9728} {139 27 5884} {140 27 3458} {141 27 2454} {142 27 9119} {143 27 7793} {144 27 3388} {145 27 7107} {146 27 7216} {147 27 8706} {148 27 1713} {149 27 6939} {150 27 3401} {151 27 9815} {152 27 4913} {153 27 5095} {154 27 1565} {155 27 2442} {156 27 7771} {157 27 1796} {158 27 8546} {159 27 7740} {160 27 6087} {161 27 4727} {162 27 3980} {163 27 403} {164 27 7414} {165 27 2759} {166 27 3326} {167 27 7758} {168 27 4674} {169 27 6119} {170 27 8885} {171 27 790} {172 27 4763} {173 27 7888} {174 27 2424} {175 27 456} {176 27 7969} {177 27 8146} {178 27 4776} {179 27 4324} {180 27 818} {181 27 3453} {182 27 827} {183 27 4642} {184 27 8294} {185 27 3690} {186 27 1706} {187 27 2094} {188 27 9526} {189 27 6015} {190 27 5644} {191 27 1344} {192 27 2855} {193 27 1504} {194 27 9093} {195 27 3446} {196 27 9403} {197 27 5060} {198 27 2330} {199 27 1915} {200 27 6440} {201 27 9584} {202 27 9038} {203 27 456} {204 27 4741} {205 27 7383} {206 27 5970} {207 27 3585} {208 27 2981} {209 27 6892} {210 27 2415} {211 27 6322} {212 27 8894} {213 27 3914} {214 27 3401} {215 27 8033} {216 27 3637} {217 27 3155} {218 27 4753} {219 27 8761} {220 27 937} {221 27 1177} {222 27 1136} {223 27 5917} {224 27 6728} {225 27 3326} {226 27 8332} {227 27 4600} {228 27 2935} {229 27 9807} {230 27 206} {231 27 7226} {232 27 9558} {233 27 977} {234 27 2424} {235 27 2892} {236 27 2971} {237 27 5412} {238 27 9610} {239 27 9012} {240 27 5477} {241 27 3383} {242 27 1077} {243 27 827} {244 27 8039} {245 27 3194} {246 27 9675} {247 27 2916} {248 27 9233} {249 27 8336} {250 27 3713} {251 27 794} {252 27 1447} {253 27 1188} {254 27 9596} {255 27 1066} {256 27 3361} {257 27 7879} {258 27 7835} {259 27 4407} {260 27 3167} {261 27 1410} {262 27 7935} {263 27 6780} {264 27 1910} {265 27 6326} {266 27 9105} {267 27 8406} {268 27 9296} {269 27 8782} {270 27 2313} {271 27 7448} {272 27 1116} {273 27 40} {274 27 9403} {275 27 143} {276 27 3431} {277 27 2572} {278 27 5559} {279 27 899} {280 27 6592} {281 27 6291}]
+206820 TRCE S1 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 14 7627} {32 14 2125} {33 14 3309} {34 14 7606} {35 14 720} {36 14 6355} {37 14 1624} {38 14 3624} {39 14 4037} {40 14 2631} {41 14 520} {42 14 7151} {43 14 6186} {44 14 8715} {45 15 2838} {46 15 6669} {47 15 4964} {48 15 554} {49 15 647} {50 15 6508} {51 15 5334} {52 15 210} {53 15 3532} {54 15 6621} {55 15 136} {56 15 8965} {57 15 5905} {58 15 2734} {59 15 9779} {60 15 4757} {61 15 6969} {62 15 6983} {63 15 7223} {64 15 1067} {65 15 3207} {66 15 4037} {67 15 607} {68 15 5463} {69 15 7409} {70 15 4585} {71 15 2264} {72 15 5365} {73 15 6928} {74 15 6431} {75 15 911} {76 15 2196} {77 15 3010} {78 15 2702} {79 15 7376} {80 15 9267} {81 15 8977} {82 15 8842} {83 15 2626} {84 15 408} {85 15 7219} {86 15 4070} {87 15 4739} {88 15 8522} {89 15 9573} {90 15 8233} {91 15 7538} {92 15 1377} {93 15 406} {94 15 4828} {95 15 1822} {96 15 367} {97 15 718} {98 15 5341} {99 15 7867} {100 15 1351} {101 15 2152} {102 15 9281} {103 15 901} {104 15 1405} {105 15 7618} {106 15 3690} {107 15 9653} {108 15 234} {109 15 876} {110 15 4796} {111 15 298} {112 15 6766} {113 15 1509} {114 15 2986} {115 15 7161} {116 15 6288} {117 15 5049} {118 15 803} {119 15 7165} {120 15 6204} {121 15 8217} {122 15 1199} {123 15 7550} {124 15 7783} {125 15 2246} {126 15 9990} {127 15 8804} {128 15 497} {129 15 4809} {130 15 4643} {131 15 549} {132 15 7557} {133 15 5137} {134 15 4071} {135 15 1924} {136 15 2661} {137 15 5286} {138 15 7473} {139 15 5326} {140 15 365} {141 15 2330} {142 15 7719} {143 15 4249} {144 15 6272} {145 15 7787} {146 15 8911} {147 15 5897} {148 15 136} {149 15 9443} {150 15 8815} {151 15 44} {152 15 4828} {153 15 1431} {154 15 1450} {155 15 7936} {156 15 2538} {157 15 7687} {158 15 9311} {159 15 89} {160 15 734} {161 15 3356} {162 15 5073} {163 15 6924} {164 15 6120} {165 15 3924} {166 15 4032} {167 15 4903} {168 15 9990} {169 15 6414} {170 15 1779} {171 15 4369} {172 15 8979} {173 15 5942} {174 15 25} {175 15 1217} {176 15 2231} {177 15 8855} {178 15 7053} {179 15 8503} {180 15 2563} {181 15 6259} {182 15 9668} {183 15 6617} {184 15 4537} {185 15 2300} {186 15 5574} {187 15 3393} {188 15 7664} {189 15 495} {190 15 3616} {191 15 3784} {192 15 5963} {193 15 5681} {194 15 3147} {195 15 5438} {196 15 2786} {197 15 1182} {198 15 6678} {199 15 9344} {200 15 2727} {201 15 9141} {202 15 9416} {203 15 5491} {204 15 3704} {205 15 9233} {206 15 4410} {207 15 355} {208 15 1851} {209 15 9973} {210 15 5920} {211 15 5261} {212 15 4263} {213 15 3046} {214 15 3994} {215 15 621} {216 15 9480} {217 15 5065} {218 15 5787} {219 15 4354} {220 15 6024} {221 15 4460} {222 15 1215} {223 15 4752} {224 15 6248} {225 15 9364} {226 15 4249} {227 15 632} {228 15 9813} {229 15 2439} {230 15 2299} {231 15 9216} {232 15 1954} {233 15 8707} {234 15 1576} {235 15 5364} {236 15 3976} {237 15 5296} {238 15 2894} {239 15 5232} {240 15 1281} {241 15 2634} {242 15 84} {243 15 1459} {244 15 9050} {245 15 3557} {246 15 1476} {247 15 5907} {248 15 7935} {249 15 6895} {250 15 2299} {251 15 8573} {252 15 4373} {253 15 3130} {254 15 4088} {255 15 6859} {256 15 2763} {257 15 857} {258 15 8427} {259 15 6410} {260 15 2198} {261 15 4722} {262 15 11} {263 15 4093} {264 15 8488} {265 15 6273} {266 15 5053} {267 15 4604} {268 15 3548} {269 15 2659} {270 15 8381} {271 15 9387} {272 15 7141} {273 15 7570} {274 15 9754} {275 15 9526} {276 15 3595} {277 15 3014} {278 15 1080} {279 15 2795} {280 15 2863} {281 15 469} {282 15 4968} {283 15 1585} {284 15 2691} {285 15 5805} {286 15 9561} {287 15 2855} {288 15 5590} {289 15 3369} {290 15 4366} {291 15 6591} {292 15 5272} {293 15 9740} {294 15 2523} {295 15 3736} {296 15 3364} {297 15 7088} {298 15 775} {299 15 9684} {300 15 6322} {301 15 5473} {302 15 8630} {303 15 5159} {304 15 1895} {305 15 2937} {306 15 5260} {307 15 1805} {308 15 4729} {309 15 9287} {310 15 9792} {311 15 9139} {312 15 6093} {313 15 6486} {314 15 4686} {315 15 1152} {316 15 7717} {317 15 2814} {318 15 6981} {319 15 5757} {320 15 4638} {321 15 6929} {322 15 9454} {323 15 6612} {324 15 4845} {325 15 503} {326 15 4014} {327 15 5644} {328 15 5232} {329 15 633} {330 15 9748} {331 15 7664} {332 15 2125} {333 15 4482} {334 15 8876} {335 15 9865} {336 15 7454} {337 15 4248} {338 15 1807} {339 15 3797} {340 15 1249} {341 15 9248} {342 15 485} {343 15 7144} {344 15 9636} {345 15 3504} {346 15 6797} {347 15 5618} {348 15 4000} {349 15 5828} {350 15 7463} {351 15 515} {352 15 728} {353 15 1342} {354 15 5421} {355 15 1270} {356 15 565} {357 15 2935} {358 15 94} {359 15 8702} {360 15 7413} {361 15 5752} {362 15 1292} {363 15 1508} {364 15 2368} {365 15 6764} {366 15 5505} {367 15 8676} {368 15 3272} {369 15 373} {370 15 1077} {371 15 8682} {372 15 4493} {373 15 7783} {374 15 8504} {375 15 8225} {376 15 1964} {377 37 153} {378 37 2100} {379 37 4970} {380 37 9471} {381 37 8850} {382 37 8670} {383 37 3094} {384 37 5606} {385 37 1724} {386 37 6699} {387 37 7693} {388 37 5052} {389 37 8640} {390 37 331} {391 37 498} {392 37 1407} {393 37 5915} {394 37 4753} {395 37 8753} {396 37 937} {397 37 6524} {398 37 623} {399 37 5721} {400 37 4400} {401 37 1270} {402 37 6898} {403 37 7897} {404 37 8752} {405 37 6269} {406 37 5377} {407 37 3554} {408 37 1292} {409 37 6732} {410 37 4866} {411 37 9147} {412 37 2367} {413 37 579} {414 37 7468} {415 37 192} {416 37 1097}]
+206823 TRCE S2 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 14 7627} {32 14 2125} {33 14 3309} {34 14 7606} {35 14 720} {36 14 6355} {37 14 1624} {38 14 3624} {39 14 4037} {40 14 2631} {41 14 520} {42 14 7151} {43 14 6186} {44 14 8715}]
+206823 TRCE S3 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 13 5949} {32 13 4335} {33 13 8929} {34 13 3264} {35 13 3971} {36 13 4420} {37 13 1091} {38 13 7584} {39 13 3611} {40 13 6675} {41 13 7090} {42 13 4716} {43 13 7427} {44 13 6740} {45 13 4328} {46 13 7261} {47 13 5887} {48 13 1681} {49 13 2966}]
+206823 TRCE S4 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 13 5949} {32 13 4335} {33 13 8929} {34 13 3264} {35 13 3971} {36 13 4420} {37 13 1091} {38 13 7584} {39 13 3611} {40 13 6675} {41 13 7090} {42 13 4716} {43 13 7427} {44 13 6740} {45 13 4328} {46 13 7261} {47 13 5887} {48 13 1681} {49 13 2966} {50 27 5884} {51 33 2160} {52 33 508} {53 33 3787} {54 33 6711} {55 33 4924} {56 33 3595} {57 33 1634} {58 33 4237} {59 33 5255} {60 33 541} {61 33 8154} {62 33 8455} {63 33 7288} {64 33 2416} {65 33 540} {66 33 3264} {67 33 9740} {68 33 6686} {69 33 51} {70 33 2384} {71 33 8478} {72 33 2792} {73 33 6374} {74 33 9209} {75 33 1616} {76 33 8921} {77 33 5700} {78 33 6492} {79 33 6565} {80 33 8169} {81 33 3590} {82 33 4312} {83 33 9593} {84 33 5915} {85 33 9753} {86 33 9234} {87 33 9277} {88 33 8764} {89 33 7774} {90 33 5721} {91 33 6852} {92 33 3400} {93 33 1746} {94 33 4327} {95 33 3025} {96 33 635} {97 33 7421} {98 33 9663} {99 33 2342} {100 33 258} {101 33 2656} {102 33 381} {103 33 5212} {104 33 1292} {105 33 1127} {106 33 4624} {107 33 5551} {108 33 6314} {109 33 9340} {110 33 2136} {111 33 5803} {112 33 1106} {113 33 7064} {114 33 4623} {115 33 5183} {116 33 5174} {117 33 86} {118 33 8680} {119 33 3591} {120 33 6056} {121 33 7010} {122 33 1473} {123 33 7975} {124 33 2957} {125 33 6191} {126 33 882} {127 33 1870} {128 33 6699} {129 33 4012} {130 33 4264} {131 33 5481} {132 33 4517} {133 33 3803} {134 33 5415} {135 33 6536} {136 33 5603} {137 33 3849} {138 33 4013} {139 33 2519} {140 33 7310} {141 33 1725} {142 33 8470} {143 33 9993} {144 33 5398} {145 33 3210} {146 33 8122} {147 33 3921} {148 33 7955} {149 33 1565} {150 33 9512} {151 33 8322} {152 33 8793} {153 33 19} {154 33 9753} {155 33 9234} {156 33 7463} {157 33 2081} {158 33 1342} {159 33 37} {160 33 5417} {161 33 6889} {162 33 4103} {163 33 3025} {164 33 4234} {165 33 2642} {166 33 8147} {167 33 9558} {168 33 846} {169 33 5216} {170 33 4450} {171 33 6226} {172 33 3642} {173 33 363} {174 33 1129} {175 33 7233} {176 33 8891}]
+apply error - 2: commit index=31 server=1 7627 != server=4 5949
+
+
+206817 TRCE S0 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 13 5949} {32 13 4335} {33 13 8929} {34 13 3264} {35 13 3971} {36 13 4420} {37 13 1091} {38 13 7584} {39 13 3611} {40 13 6675} {41 13 7090} {42 13 4716} {43 13 7427} {44 13 6740} {45 13 4328} {46 13 7261} {47 13 5887} {48 13 1681} {49 13 2966} {50 27 5884}..
+206820 TRCE S1 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 14 7627} {32 14 2125} {33 14 3309} {34 14 7606} {35 14 720}  {36 14 6355} {37 14 1624} {38 14 3624} {39 14 4037} {40 14 2631} {41 14 520} {42 14 7151} {43 14 6186} {44 14 8715} 
+206823 TRCE S2 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 13 5949} {32 13 4335} {33 13 8929} {34 13 3264} {35 13 3971} {36 13 4420} {37 13 1091} {38 13 7584} {39 13 3611} {40 13 6675} {41 13 7090} {42 13 4716} {43 13 7427} {44 13 6740} {45 13 4328} {46 13 7261} {47 13 5887} {48 13 1681} {49 13 2966} 
+206823 TRCE S3 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 12 6312} {31 12 4628} {32 12 4228} {33 12 4659} {34 12 3024} {35 12 3659} {36 12 4772} {37 12 4576} {38 13 7584} {39 13 3611} {40 13 6675} {41 13 7090} {42 13 4716} {43 13 7427} {44 13 6740} {45 13 4328} {46 13 7261} {47 13 5887} {48 13 1681} {49 13 2966}  
+206823 TRCE S4 diskLog:[{0 0 <nil>} {1 1 2557} {2 1 3545} {3 3 1775} {4 4 1024} {5 4 4361} {6 4 8094} {7 4 4755} {8 4 4972} {9 4 9515} {10 4 4964} {11 7 2522} {12 7 1411} {13 7 9990} {14 7 7593} {15 7 5483} {16 7 1618} {17 9 6059} {18 9 6241} {19 9 9947} {20 9 2546} {21 9 2629} {22 9 9700} {23 12 5371} {24 12 1387} {25 12 9739} {26 12 3605} {27 12 9930} {28 12 5824} {29 12 2389} {30 13 7479} {31 13 5949} {32 13 4335} {33 13 8929} {34 13 3264} {35 13 3971} {36 13 4420} {37 13 1091} {38 13 7584} {39 13 3611} {40 13 6675} {41 13 7090} {42 13 4716} {43 13 7427} {44 13 6740} {45 13 4328} {46 13 7261} {47 13 5887} {48 13 1681} {49 13 2966} {50 27 5884} {51 33 2160} {52 33 508} {53 33 3787} {54 33 6711}
+apply error - 2: commit index=31 server=1 7627 != server=4 5949
