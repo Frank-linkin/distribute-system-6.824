@@ -310,7 +310,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	}
 
 	//prevLogIdex mismatch
-	MyDebug(dInfo, "S%d receive AE from %v,PLIdx=%v PLTerm=%v", rf.me, args.LeaderID, args.PrevLogIdx, args.PrevLogTerm)
+	//MyDebug(dInfo, "S%d receive AE from %v,PLIdx=%v PLTerm=%v", rf.me, args.LeaderID, args.PrevLogIdx, args.PrevLogTerm)
 
 	rf.currentTerm = args.Term
 	rf.voteFor = args.LeaderID
@@ -341,9 +341,10 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		rf.TryToAdjustCommitIndexLocked(args.LeaderCommit)
 		reply.Term = rf.currentTerm
 		reply.Success = true
+		MyDebug(dVote, "S%d up to date", rf.me)
 		return
 	}
-
+	//走到这一定有数据
 	rf.applyLogEntriesToDiskLocked(args.LogEntries)
 	rf.TryToAdjustCommitIndexLocked(args.LeaderCommit)
 	reply.Term = rf.currentTerm
@@ -391,9 +392,6 @@ func (rf *Raft) TryToAdjustCommitIndexLocked(leaderCommit int) {
 }
 
 func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry) {
-	if logEntries == nil {
-		return
-	}
 	tailLogIndex := logEntries[len(logEntries)-1].Idx
 	if tailLogIndex <= rf.diskLogIndex && rf.diskLog[tailLogIndex].Term == logEntries[0].Term {
 		return
@@ -416,7 +414,7 @@ func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry) {
 }
 
 func upToDateAndNoNeedToAppend(rf *Raft, info *AppendEntriesArgs) bool {
-	return info.PrevLogIdx == rf.diskLogIndex && info.LogEntries == nil
+	return info.LogEntries == nil
 }
 
 // example code to send a RequestVote RPC to a server.
@@ -508,6 +506,9 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 func (rf *Raft) Kill() {
 	rf.exitCh <- true
 	rf.commitUpdater.stop()
+	for i := 0; i < len(rf.catchUpWorkers); i++ {
+		rf.catchUpWorkers[i].Stop()
+	}
 	atomic.StoreInt32(&rf.dead, 1)
 	// Your code here, if desired.
 	MyDebug(dInfo, "S%d service killed", rf.me)
@@ -723,6 +724,8 @@ func (rf *Raft) SendAppendEntriesToFollower(server int, logEntries []logEntry) {
 			term := rf.getCurrentTerm()
 			if term == args.Term {
 				dealWithAppendEntriesResponse(rf, &response, server, args, term)
+			} else {
+				MyDebug(dInfo, "S%v stale term %v, abort AE", rf.me, args.Term)
 			}
 			break
 		}
@@ -737,19 +740,17 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 			return
 		}
 
-		if response.Xterm != 0 {
+		if response.XIndex != 0 {
 			nextIndex := getNextIndexLocked(rf, response)
-			if nextIndex <= rf.nextidx[server] {
-				rf.nextidx[server] = nextIndex
+			if nextIndex > rf.matchidx[server] && nextIndex <= rf.nextidx[server] {
 				if nextIndex < rf.nextidx[server] {
 					MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
 				}
+				rf.nextidx[server] = nextIndex
 				rf.catchUpWorkers[server].sendCatchUpSignal(nextIndex)
 			}
 		}
 	} else {
-		rf.mu.Lock()
-		defer rf.mu.Unlock()
 		var matchIndex, nextIndex int
 		if args.LogEntries != nil {
 			last := len(args.LogEntries) - 1
@@ -760,14 +761,16 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 			nextIndex = args.PrevLogIdx + 1
 		}
 
+		rf.mu.Lock()
+		defer rf.mu.Unlock()
 		if matchIndex > rf.matchidx[server] {
 			MyDebug(dCommit, "S%d s%v.matchidx->%v", rf.me, server, matchIndex)
 			rf.matchidx[server] = matchIndex
 			rf.commitUpdater.addUpdatedFollower(server)
 		}
-		if rf.nextidx[server] < nextIndex && nextIndex > rf.matchidx[server] {
+		if nextIndex > rf.matchidx[server] {
 			rf.nextidx[server] = nextIndex
-			MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)	
+			MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)
 		}
 	}
 }
@@ -987,6 +990,7 @@ type catchUpWorker struct {
 	ch         chan int
 	rf         *Raft
 	followerID int
+	exitCh     chan int
 }
 
 func NewCatchUpWorker(rf *Raft, server int) *catchUpWorker {
@@ -994,29 +998,33 @@ func NewCatchUpWorker(rf *Raft, server int) *catchUpWorker {
 		ch:         make(chan int, 100),
 		rf:         rf,
 		followerID: server,
+		exitCh:     make(chan int, 1),
 	}
 }
 func (w *catchUpWorker) start() {
 	go func() {
 		server := w.followerID
 		for {
-			if w.rf.killed() {
-				MyDebug(dTest, "S%d catup worker stop", w.rf.me)
+			var startValue int
+			select {
+			case <-w.exitCh:
+				MyDebug(dTrace, "S%d s%v catupWorker exit", w.rf.me, w.followerID)
 				return
+			case startValue = <-w.ch:
 			}
+
+			// if w.rf.killed() {
+			// 	MyDebug(dTest, "S%d catup worker stop", w.rf.me)
+			// 	return
+			// }
 
 			matchIndex := w.rf.getMatchIndex(server)
-			minIndex := getMinIndexFromChan(w.ch, matchIndex)
 			nextIndex := w.rf.getNextIndex(server)
-			//不知道为什么？这里回获取到NextIndex旧的值,所以加了前面这个判断
-			if nextIndex <= matchIndex ||  minIndex < nextIndex {
-				nextIndex = minIndex
-			}
-			MyDebug(dTrace, "S%d matchIdx[%v]=%v,minIndex=%v", w.rf.me, server, matchIndex,minIndex)
-			MyDebug(dTrace, "S%d getNextIndex=%v", w.rf.me, nextIndex)
+			minIndex := getMinIndexFromChan(w.ch, matchIndex, startValue)
+			MyDebug(dTrace, "S%d s%v matchIdx=%v,nextIdx=%v,minChan=%v", w.rf.me, server, matchIndex, nextIndex, minIndex)
 
-			if nextIndex <= w.rf.getDiskLogIndex() {
-				data := generateNextCatchUpLogEntries(w.rf, nextIndex)
+			if minIndex <= w.rf.getDiskLogIndex() {
+				data := generateNextCatchUpLogEntries(w.rf, minIndex)
 				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v]", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
 				w.rf.SendAppendEntriesToFollower(w.followerID, data)
 				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v] finish", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
@@ -1025,9 +1033,9 @@ func (w *catchUpWorker) start() {
 	}()
 }
 
-func getMinIndexFromChan(ch chan int, matchIndex int) int {
+func getMinIndexFromChan(ch chan int, matchIndex int, startValue int) int {
 	nextIndexs := make([]int, 0, 100)
-	nextIndexs = append(nextIndexs, <-ch)
+	nextIndexs = append(nextIndexs, startValue)
 	lenCh := len(ch)
 	for i := 0; i < lenCh; i++ {
 		nextIndexs = append(nextIndexs, <-ch)
@@ -1052,12 +1060,17 @@ func (w *catchUpWorker) sendCatchUpSignal(nextIndex int) {
 		// MyDebug(dVote, "S%d fail sent catch-up-signal, no longer Leader", w.rf.me)
 	}
 }
+
+func (w *catchUpWorker) Stop() {
+	w.exitCh <- 1
+}
 func generateNextCatchUpLogEntries(rf *Raft, startIndex int) []logEntry {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	lastIndex := startIndex
 	for ; lastIndex < len(rf.diskLog) && rf.diskLog[lastIndex].Term == rf.diskLog[startIndex].Term; lastIndex++ {
 	}
+	MyDebug(dCommit, "S%d startIndex=%v,lastIndex=%v", rf.me, startIndex, lastIndex)
 	return rf.diskLog[startIndex:lastIndex]
 }
 

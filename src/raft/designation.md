@@ -112,32 +112,25 @@ rf里面用edit记录修改nextIndex的Follower的数量，超过半数的时候
 20221119
 [knowledge]尽量写易读的代码，这样调试起来会非常容易。
 
-##2C:persistence
-1.是否要persis存在disk里面的状态呢。答：应该是要的
-2.思考一下持久化的变量是什么，写完之后直接测试。
-分为两个文件：
-1.data.meta:存储currentTerm和voteFor信息
-2.data.logEntry:存储disLogEntry
-
 from Persist22C, we can indicate commitIndex should also be persist. 这一点在论文里根本没有提到。
 
-TODO:一次一个Term再优化一下，一个Term或min(leader的上一个Term的最后一数据，len(data)==100,aTerm.lenth())
-
-
-2C问题
-50%的概率通过，50%的概率通不过
-目前有2个问题
-1.执行时间非常长
-2.one fail to reach agreement
-One这种是正常情况，时间到了，但是还有一个s3没有完全replicate
-3.直接退出
 
 
 TODO:觉得这种设计思路得记下来，比如commit为什么不能用投票，已经记不清楚了。
 
-2.查看一下截止上一个commit之前的改动，想一下CatchUpWorker的逻辑，再修改一下。
-TODO nextIndex[server]应该有catupWorker负责管理,matchIdx[]应该由commitUpdater负责管理
+[knowledge]当一个模块设计的时候漏考虑了某件事，不能简单到缝缝补补，越是缝缝补补越容易
+出难以预料的BUg。缝补过多的时候，就需要将这个模块的思路整体都思考一遍，然后用新思考的逻辑
+重新编写代码。比如，我在设计CatchUpWorker的时候没有考虑到matchIdx，后来再2C的某个实验中
+MatchIdx是必须要使用的。于是我简单将我可以想到的，设计MatchIndex的地方更改的了一下，导致总是莫名其妙出很多很多问题。
+这时候，其实应该：
+重新捋一遍AppendEntrie和CatchUpWorker的逻辑，明确他们在考虑是做什么的，调整代码。确定逻辑没问题，再进行测试。
 
-找到问题了matchIdx会在第一次心跳后变成diskLogIndex.
+AppendEntrie:
+1.接到心跳->初上位的心跳 prevLogTerm != args.Term
+          ->稳定后的心跳 prevLogTerm == args.Term
+
+2.接到带数据的AppendEntry
+  -     判断是否prevLogTerm是否匹配， ->匹配则使用它
+  -                                  ->不匹配发送Xterm
 
 

@@ -777,6 +777,8 @@ s5 0  1(11)     1(12)    4(13)
 将上述过程重复5次
 
 **从这个实验可以看出commitIndex也应该被持久化，而论文里面没有提
+
+不用持久化。
 */
 func TestPersist22C(t *testing.T) {
 	servers := 5
