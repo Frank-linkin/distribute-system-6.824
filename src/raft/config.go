@@ -360,13 +360,12 @@ func (cfg *config) cleanup() {
 	for i := 0; i < len(cfg.rafts); i++ {
 		if cfg.rafts[i] != nil {
 			cfg.rafts[i].Kill()
-	// 		cfg.rafts[i].showRaftInfo()
-	// 	}
-	// }
-	// time.Sleep(1*time.Second)
-	// for i := 0; i < len(cfg.rafts); i++ {
-	// 	if cfg.rafts[i] != nil {
-	// 		cfg.rafts[i].showRaftInfo()
+		}
+	}
+	time.Sleep(1*time.Second)
+	for i := 0; i < len(cfg.rafts); i++ {
+		if cfg.rafts[i] != nil {
+			cfg.rafts[i].showRaftInfo()
 		}
 	}
 	cfg.net.Cleanup()

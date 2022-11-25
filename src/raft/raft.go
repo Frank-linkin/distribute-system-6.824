@@ -115,7 +115,7 @@ type Raft struct {
 // return currentTerm and whether this server
 // believes it is the leader.
 func (rf *Raft) GetState() (int, bool) {
-	
+
 	var term int
 	var isleader bool
 	// Your code here (2A).
@@ -323,7 +323,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		rf.sendSetToFollowerSignal()
 		if args.PrevLogTerm != args.Term {
 			reply.Term = rf.currentTerm
-			reply.Success = true
+			reply.Success = false
 			MyDebug(dInfo, "S%d receive heartbeat, but no sync", rf.me)
 			MyDebug(dInfo, "S%d from S%v,term=%v,PLTerm=%v,PLIdx=%v", rf.me, args.LeaderID, args.Term, args.PrevLogIdx, args.PrevLogIdx)
 			return
@@ -474,9 +474,8 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	isLeader := true
 
 	// Your code here (2B).
-	MyDebug(dCommit, "S%d getCurrentTerm", rf.me)
 	term = rf.getCurrentTerm()
-	MyDebug(dCommit, "S%d start getRole", rf.me)
+
 	currentRole := rf.getRole()
 	if currentRole != ROLE_PRIMARY {
 		isLeader = false
@@ -713,15 +712,12 @@ func (rf *Raft) heartbeatToFollowers() {
 }
 
 func (rf *Raft) SendAppendEntriesToFollower(server int, logEntries []logEntry) {
-	//MyDebug(dCommit, "S%v new AppendEntries to s%v", rf.me, server)
 	args := getAppendEntriesArgs(rf, server, logEntries)
 	for {
 		if rf.killed() || rf.getRole() != ROLE_PRIMARY {
-			//MyDebug(dCommit, "S%v retry AE s%v,PLIdx=%v,JUMP out", rf.me, server, args.PrevLogIdx)
 			return
 		}
 
-		//MyDebug(dCommit, "S%v try AE s%v,PLIdx=%v,pTerm=%v", rf.me, server, args.PrevLogIdx, args.PrevLogTerm)
 		response := AppendEntriesReply{}
 		if success := rf.sendAppendEntries(server, args, &response); success {
 			term := rf.getCurrentTerm()
@@ -741,13 +737,15 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 			return
 		}
 
-		nextIndex := getNextIndexLocked(rf, response)
-		if nextIndex <= rf.nextidx[server] {
-			rf.nextidx[server] = nextIndex
-			if nextIndex < rf.nextidx[server] {
-				MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
+		if response.Xterm != 0 {
+			nextIndex := getNextIndexLocked(rf, response)
+			if nextIndex <= rf.nextidx[server] {
+				rf.nextidx[server] = nextIndex
+				if nextIndex < rf.nextidx[server] {
+					MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
+				}
+				rf.catchUpWorkers[server].sendCatchUpSignal(nextIndex)
 			}
-			rf.catchUpWorkers[server].sendCatchUpSignal(nextIndex)
 		}
 	} else {
 		rf.mu.Lock()
@@ -765,15 +763,12 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 		if matchIndex > rf.matchidx[server] {
 			MyDebug(dCommit, "S%d s%v.matchidx->%v", rf.me, server, matchIndex)
 			rf.matchidx[server] = matchIndex
-		}
-		if rf.nextidx[server] < nextIndex {
-			rf.nextidx[server] = nextIndex
-			rf.matchidx[server] = nextIndex - 1
-			MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)
-
 			rf.commitUpdater.addUpdatedFollower(server)
 		}
-
+		if rf.nextidx[server] < nextIndex && nextIndex > rf.matchidx[server] {
+			rf.nextidx[server] = nextIndex
+			MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)	
+		}
 	}
 }
 
@@ -980,8 +975,8 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
 	// start ticker goroutine to start elections
-	deadlock.Opts.DeadlockTimeout = 3*time.Second
-	
+	deadlock.Opts.DeadlockTimeout = 1 * time.Second
+
 	go rf.ticker()
 
 	return rf
@@ -1010,11 +1005,16 @@ func (w *catchUpWorker) start() {
 				return
 			}
 
-			minIndex := getMinIndex(w.ch, w.rf.getMatchIndex(server))
+			matchIndex := w.rf.getMatchIndex(server)
+			minIndex := getMinIndexFromChan(w.ch, matchIndex)
 			nextIndex := w.rf.getNextIndex(server)
-			if minIndex < nextIndex {
+			//不知道为什么？这里回获取到NextIndex旧的值,所以加了前面这个判断
+			if nextIndex <= matchIndex ||  minIndex < nextIndex {
 				nextIndex = minIndex
 			}
+			MyDebug(dTrace, "S%d matchIdx[%v]=%v,minIndex=%v", w.rf.me, server, matchIndex,minIndex)
+			MyDebug(dTrace, "S%d getNextIndex=%v", w.rf.me, nextIndex)
+
 			if nextIndex <= w.rf.getDiskLogIndex() {
 				data := generateNextCatchUpLogEntries(w.rf, nextIndex)
 				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v]", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
@@ -1025,7 +1025,7 @@ func (w *catchUpWorker) start() {
 	}()
 }
 
-func getMinIndex(ch chan int, matchIndex int) int {
+func getMinIndexFromChan(ch chan int, matchIndex int) int {
 	nextIndexs := make([]int, 0, 100)
 	nextIndexs = append(nextIndexs, <-ch)
 	lenCh := len(ch)
@@ -1110,11 +1110,11 @@ func (c *commitUpdater) stop() {
 }
 
 func (c *commitUpdater) checkCommitUpdate() {
-	c.Lock()
-	defer c.Unlock()
-	if len(c.updatedFollower)+1 >= c.quorom {
-		commitIndex := c.rf.updateCommitIndex(c.quorom, c.criteria)
+	quorom, criteria, updateNum := c.getCommitInfo()
+	if updateNum >= c.quorom {
+		commitIndex := c.rf.updateCommitIndex(quorom, criteria)
 		if commitIndex > 0 {
+			c.Lock()
 			c.updatedFollower = make(map[int]bool)
 			c.pollers.Iter(func(w *commitPoller) {
 				if w.isLive() && w.criteria >= commitIndex {
@@ -1122,6 +1122,8 @@ func (c *commitUpdater) checkCommitUpdate() {
 					w.liveness = false
 				}
 			})
+			c.Unlock()
+
 			c.pollers.gc()
 		}
 	}
@@ -1141,15 +1143,26 @@ func (c *commitUpdater) setCommitCriterial(commitCriterial int) {
 }
 
 func (c *commitUpdater) getCommitCriteria() int {
-	c.Lock()
-	defer c.Unlock()
+	c.RLock()
+	defer c.RUnlock()
 	return c.criteria
 }
 
 func (c *commitUpdater) getQuorom() int {
-	c.Lock()
-	defer c.Unlock()
+	c.RLock()
+	defer c.RUnlock()
 	return c.criteria
+}
+
+func (c *commitUpdater) getUpdateFollowerNum() {
+
+}
+
+func (c *commitUpdater) getCommitInfo() (int, int, int) {
+	c.RLock()
+	defer c.RUnlock()
+	//自己本身也算一个follower
+	return c.quorom, c.criteria, len(c.updatedFollower) + 1
 }
 
 func (c *commitUpdater) addPoller(logIndex int, doneCh chan int) {

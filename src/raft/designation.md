@@ -137,3 +137,7 @@ TODO:觉得这种设计思路得记下来，比如commit为什么不能用投票
 
 2.查看一下截止上一个commit之前的改动，想一下CatchUpWorker的逻辑，再修改一下。
 TODO nextIndex[server]应该有catupWorker负责管理,matchIdx[]应该由commitUpdater负责管理
+
+找到问题了matchIdx会在第一次心跳后变成diskLogIndex.
+
+
