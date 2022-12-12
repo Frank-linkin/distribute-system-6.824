@@ -19,3 +19,8 @@ s3 1 2 2 2 3 3 3
 
 easy_to_deadLock
 在某个Lock的临界区调用一个有锁的方法是非常危险的，一般是在临界区把需要的信息提取出来。不然很容易发生死锁。
+
+request_vote_term_comparation
+一个Server变成candidate,requestVote请求返回之后，比较了args.term，根据结果让其变成follower，这是不对的。因为requestVote请求可能很久之后抵达，
+而Server可能隔了好几个Term又变成了Leader，那么这时候Leader就会step，并且currentTerm可能会减少，造成这种问题。Log1720行左右
+其实已经AppendEntry已经出现过这种问题，当时就应该联想到RequestVote可能也会出现这种情况，把requestVote的逻辑更改过来。这样就可以避免这1hour30min的时间浪费。

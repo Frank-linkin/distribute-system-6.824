@@ -75,7 +75,7 @@ type logEntry struct {
 
 // A Go object implementing a single Raft peer.
 type Raft struct {
-	mu        sync.Mutex          // Lock to protect shared access to this peer's state
+	mu        deadlock.Mutex          // Lock to protect shared access to this peer's state
 	peers     []*labrpc.ClientEnd // RPC end points of all peers
 	persister *Persister          // Object to hold this peer's persisted state
 	me        int                 // this peer's index into peers[]
@@ -621,7 +621,7 @@ func (rf *Raft) ticker() {
 			}
 
 			heartBeatArgs := rf.getAppendEntriesArgs(nil)
-			rf.heartbeatToFollowers(heartBeatArgs)
+			rf.heartbeatToFollowers(*heartBeatArgs)
 			heartbeatTicker := time.NewTicker(time.Duration(HEARTBEAT_INTERVAL) * time.Millisecond)
 		PRIMARY_LOOP:
 			for {
@@ -641,7 +641,7 @@ func (rf *Raft) ticker() {
 				case <-heartbeatTicker.C:
 					changeMutableForHeartbeat(rf, heartBeatArgs)
 					MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, heartBeatArgs.Term, accessionTime.Nanosecond())
-					rf.heartbeatToFollowers(heartBeatArgs)
+					rf.heartbeatToFollowers(*heartBeatArgs)
 				}
 			}
 		}
@@ -697,7 +697,7 @@ func startElection(rf *Raft, resultChan chan int) {
 				response := RequestVoteReply{}
 				success := rf.sendRequestVote(server, &request, &response)
 
-				currentTerm = rf.getCurrentTerm()
+				currentTerm := rf.getCurrentTerm()
 
 				countLock.Lock()
 				if success && response.VoteGranted {
@@ -732,8 +732,8 @@ func startElection(rf *Raft, resultChan chan int) {
 	countLock.Unlock()
 }
 
-func (rf *Raft) heartbeatToFollowers(args *AppendEntriesArgs) {
-	rf.sendAppendEntriesToFollowers(args)
+func (rf *Raft) heartbeatToFollowers(args AppendEntriesArgs) {
+	rf.sendAppendEntriesToFollowers(&args)
 }
 
 func (rf *Raft) SendAppendEntriesToFollower(server int, args *AppendEntriesArgs) {
@@ -757,8 +757,8 @@ func (rf *Raft) SendAppendEntriesToFollower(server int, args *AppendEntriesArgs)
 }
 
 func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, server int, args *AppendEntriesArgs, currentTerm int) {
-	MyDebug(dVote, "S%v s%v res.suc=%v", rf.me, server, response.Success)
-	MyDebug(dVote, "S%v plidx=%v len=%v term=%v", rf.me, args.PrevLogIdx, len(args.LogEntries), response.Term)
+	// MyDebug(dVote, "S%v s%v res.suc=%v", rf.me, server, response.Success)
+	// MyDebug(dVote, "S%v plidx=%v len=%v term=%v", rf.me, args.PrevLogIdx, len(args.LogEntries), response.Term)
 
 	if !response.Success {
 		if response.Term > args.Term {
@@ -768,14 +768,7 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 		}
 
 		if response.XIndex != 0 {
-			nextIndex := getNextIndexLocked(rf, response)
-			if nextIndex > rf.matchidx[server] {
-				if nextIndex < rf.nextidx[server] {
-					MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
-				}
-				rf.nextidx[server] = nextIndex
-				rf.catchUpWorkers[server].sendCatchUpSignal(nextIndex)
-			}
+			tryToUpdateNextIndex(rf, server, response)
 		}
 	} else {
 		var matchIndex, nextIndex int
@@ -799,6 +792,21 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 			}
 		}
 	}
+}
+
+func tryToUpdateNextIndex(rf *Raft, server int, response *AppendEntriesReply) {
+	//[Question] 什么时候单独设置一个方法加锁，什么时候直接加锁就可以呢
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	nextIndex := getNextIndexLocked(rf, response)
+	if nextIndex > rf.matchidx[server] {
+		if nextIndex < rf.nextidx[server] {
+			MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
+		}
+		rf.nextidx[server] = nextIndex
+		rf.catchUpWorkers[server].sendCatchUpSignal(nextIndex)
+	}
+
 }
 
 func getNextIndexLocked(rf *Raft, XInfo *AppendEntriesReply) int {
@@ -1006,7 +1014,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
 	// start ticker goroutine to start elections
-	deadlock.Opts.DeadlockTimeout = 1 * time.Second
+	//deadlock.Opts.DeadlockTimeout = 1 * time.Second
 
 	go rf.ticker()
 
@@ -1150,7 +1158,8 @@ func (c *commitUpdater) start() {
 		atomic.AddInt32(&c.state, 1)
 		ticker := time.NewTicker(time.Duration(COMMIT_CHECK_INTERVAL) * time.Millisecond)
 		for {
-			if c.state > 1 {
+			state := atomic.LoadInt32(&c.state)
+			if state > 1 {
 				c.exitCh <- true
 				MyDebug(dTrace, "S%d commitupdater killed", c.rf.me)
 				return
