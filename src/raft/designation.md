@@ -127,10 +127,37 @@ MatchIdx是必须要使用的。于是我简单将我可以想到的，设计Mat
 
 AppendEntrie:
 1.接到心跳->初上位的心跳 prevLogTerm != args.Term
+          success = true
           ->稳定后的心跳 prevLogTerm == args.Term
-
+          判断prevLogTerm是否匹配，->匹配 sucess =  true
+                                   ->不匹配 succes = true，发送xterm
 2.接到带数据的AppendEntry
   -     判断是否prevLogTerm是否匹配， ->匹配则使用它
   -                                  ->不匹配发送Xterm
 
+Server接到AppendEntry的response:
+1.response != success 
+    计算nextIndex，发送backup信号
+    发送backup信号
+2.reponse == succeess
+    if data != nil 
+        更新matchIndex和nextIndex
+    if data == nil
+        do nothing
 
+
+TODO:
+已测试20次2C,晚上还会测试50次。
+
+20221128
+[knowledge]
+我在写更新commit的逻辑的时候，考虑了前面applyLogEntryIntoDisk后，认为在不论何种情况下，执行完applyLogEntryIntoDisk之后，disklogIndex应该就更新了。
+但是其实还有一种diskLogIndex没有更新的情况，导致出现了一个很难发现的问题，debug消耗了六七个小时的时间。
+如果我在当时写的时候，就点回去applyLogEntryIntoDisk看一下逻辑，其实这个是可以避免。
+我觉得在写函数的时候，一定要把它默认的情况写出来，比如adjustCommitIndex就需要当前diskLogIndex之后没有logEntry了。然后在最后
+测试之后，git commit之前把这些问题都删除，放到其他的地方。
+
+[knowledge]
+一个Server变成candidate,requestVote请求返回之后，比较了args.term，根据结果让其变成follower，这是不对的。因为requestVote请求可能很久之后抵达，
+而Server可能隔了好几个Term又变成了Leader，那么这时候Leader就会step，并且currentTerm可能会减少，造成这种问题。Log1720行左右
+其实已经AppendEntry已经出现过这种问题，当时就应该联想到RequestVote可能也会出现这种情况，把requestVote的逻辑更改过来。这样就可以避免这1hour30min的时间浪费。

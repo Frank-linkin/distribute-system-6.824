@@ -2,7 +2,7 @@ count=1
 result=0
 echo '开始脚本'
 
-while(( $count<=20 && result == 0 ))   
+while(( $count<=500 && result == 0 ))   
 do
     echo ${count}' times try'
     rm -rf /golang_space/6.824/src/raft/log

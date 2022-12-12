@@ -35,7 +35,7 @@ import (
 	"github.com/sasha-s/go-deadlock"
 )
 
-const HEARTBEAT_INTERVAL = 40
+const HEARTBEAT_INTERVAL = 50
 const ROLE_FOLLOWER = 1
 const ROLE_CANDIDATE = 2
 const ROLE_PRIMARY = 3
@@ -316,6 +316,9 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	rf.voteFor = args.LeaderID
 	rf.persist()
 
+	if args.Term > rf.currentTerm {
+		rf.sendSetToFollowerSignal()
+	}
 	//只有currentTerm<=args.Term的时候，才会发送reset信号
 	//currentTerm==args.Term，证明是follower
 	//currentTerm<args.Term，不用说肯定是落后了
@@ -324,11 +327,13 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		if args.PrevLogTerm != args.Term {
 			reply.Term = rf.currentTerm
 			reply.Success = false
-			MyDebug(dInfo, "S%d receive heartbeat, but no sync", rf.me)
-			MyDebug(dInfo, "S%d from S%v,term=%v,PLTerm=%v,PLIdx=%v", rf.me, args.LeaderID, args.Term, args.PrevLogIdx, args.PrevLogIdx)
+			MyDebug(dInfo, "S%d heartbeat from %v, but no sync", rf.me, args.LeaderID)
 			return
 		}
 	}
+
+	MyDebug(dInfo, "S%ds%v,term=%v,PLTerm=%v,PLIdx=%v", rf.me, args.LeaderID, args.Term, args.PrevLogIdx, args.PrevLogIdx)
+	MyDebug(dInfo, "S%d len(logEntries)=%v", rf.me, len(args.LogEntries))
 
 	if args.PrevLogIdx > rf.diskLogIndex || rf.diskLog[args.PrevLogIdx].Term != args.PrevLogTerm {
 		reply.XIndex, reply.Xterm, reply.XLen = rf.getExpectedTermInfoLocked(args.PrevLogIdx)
@@ -345,8 +350,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		return
 	}
 	//走到这一定有数据
-	rf.applyLogEntriesToDiskLocked(args.LogEntries)
-	rf.TryToAdjustCommitIndexLocked(args.LeaderCommit)
+	rf.applyLogEntriesToDiskLocked(args.LogEntries, args.LeaderCommit)
 	reply.Term = rf.currentTerm
 	reply.Success = true
 }
@@ -391,7 +395,7 @@ func (rf *Raft) TryToAdjustCommitIndexLocked(leaderCommit int) {
 	}
 }
 
-func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry) {
+func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry, leaderCommit int) {
 	tailLogIndex := logEntries[len(logEntries)-1].Idx
 	if tailLogIndex <= rf.diskLogIndex && rf.diskLog[tailLogIndex].Term == logEntries[0].Term {
 		return
@@ -410,7 +414,9 @@ func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry) {
 	rf.diskLogIndex = logIndex - 1
 	rf.diskLog = rf.diskLog[:logIndex]
 	rf.persist()
+
 	MyDebug(dCommit, "S%d disLogIndex->%v value=%v", rf.me, rf.diskLogIndex, rf.diskLog[logIndex-1].Data)
+	rf.TryToAdjustCommitIndexLocked(leaderCommit)
 }
 
 func upToDateAndNoNeedToAppend(rf *Raft, info *AppendEntriesArgs) bool {
@@ -589,8 +595,8 @@ func (rf *Raft) ticker() {
 			//Leader退位。而Leader上位之后，term应该是不变的，因为立刻提取出来
 			accessionTime := time.Now()
 			rf.mu.Lock()
-			rf.commitUpdater.setCommitCriterial(rf.diskLogIndex)
-			accesstionTerm := rf.currentTerm
+			currentTerm := rf.currentTerm
+			diskLogIndex := rf.diskLogIndex
 			for i := 0; i < len(rf.nextidx); i++ {
 				if i == rf.me {
 					rf.nextidx[i] = rf.diskLogIndex + 1
@@ -601,7 +607,12 @@ func (rf *Raft) ticker() {
 				rf.matchidx[i] = 0
 			}
 			rf.mu.Unlock()
-			//[Question] 我记得Morres说may not send heartbeat when Leader come to power
+
+			for i := 0; i < len(rf.catchUpWorkers); i++ {
+				rf.catchUpWorkers[i].SetTerm(int32(currentTerm))
+				rf.catchUpWorkers[i].GetTerm()
+			}
+			rf.commitUpdater.setCommitCriterial(diskLogIndex)
 
 			//把已有的followerCh消耗干净
 			select {
@@ -609,7 +620,8 @@ func (rf *Raft) ticker() {
 			default:
 			}
 
-			rf.heartbeatToFollowers()
+			heartBeatArgs := rf.getAppendEntriesArgs(nil)
+			rf.heartbeatToFollowers(heartBeatArgs)
 			heartbeatTicker := time.NewTicker(time.Duration(HEARTBEAT_INTERVAL) * time.Millisecond)
 		PRIMARY_LOOP:
 			for {
@@ -627,8 +639,9 @@ func (rf *Raft) ticker() {
 					rf.setRole(ROLE_FOLLOWER)
 					break PRIMARY_LOOP
 				case <-heartbeatTicker.C:
-					MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, accesstionTerm, accessionTime.Nanosecond())
-					rf.heartbeatToFollowers()
+					changeMutableForHeartbeat(rf, heartBeatArgs)
+					MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, heartBeatArgs.Term, accessionTime.Nanosecond())
+					rf.heartbeatToFollowers(heartBeatArgs)
 				}
 			}
 		}
@@ -637,6 +650,15 @@ EXIT:
 	MyDebug(dWarn, "S%d exit ticker", rf.me)
 }
 
+func changeMutableForHeartbeat(rf *Raft, args *AppendEntriesArgs) {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	args.LeaderCommit = rf.commitIdx
+	diskLogIndex := rf.diskLogIndex
+	args.PrevLogIdx = diskLogIndex
+	args.PrevLogTerm = rf.diskLog[diskLogIndex].Term
+
+}
 func startElection(rf *Raft, resultChan chan int) {
 	var termBefore int
 	var currentTerm int
@@ -674,8 +696,10 @@ func startElection(rf *Raft, resultChan chan int) {
 			go func(server int) {
 				response := RequestVoteReply{}
 				success := rf.sendRequestVote(server, &request, &response)
-				countLock.Lock()
 
+				currentTerm = rf.getCurrentTerm()
+
+				countLock.Lock()
 				if success && response.VoteGranted {
 					count++
 				} else if response.Term > currentTerm {
@@ -708,12 +732,12 @@ func startElection(rf *Raft, resultChan chan int) {
 	countLock.Unlock()
 }
 
-func (rf *Raft) heartbeatToFollowers() {
-	rf.sendAppendEntriesToFollowers(nil)
+func (rf *Raft) heartbeatToFollowers(args *AppendEntriesArgs) {
+	rf.sendAppendEntriesToFollowers(args)
 }
 
-func (rf *Raft) SendAppendEntriesToFollower(server int, logEntries []logEntry) {
-	args := getAppendEntriesArgs(rf, server, logEntries)
+func (rf *Raft) SendAppendEntriesToFollower(server int, args *AppendEntriesArgs) {
+	//args := getAppendEntriesArgs(rf, server, logEntries)
 	for {
 		if rf.killed() || rf.getRole() != ROLE_PRIMARY {
 			return
@@ -725,7 +749,7 @@ func (rf *Raft) SendAppendEntriesToFollower(server int, logEntries []logEntry) {
 			if term == args.Term {
 				dealWithAppendEntriesResponse(rf, &response, server, args, term)
 			} else {
-				MyDebug(dInfo, "S%v stale term %v, abort AE", rf.me, args.Term)
+				//MyDebug(dInfo, "S%v stale term %v, abort AE", rf.me, args.Term)
 			}
 			break
 		}
@@ -733,6 +757,9 @@ func (rf *Raft) SendAppendEntriesToFollower(server int, logEntries []logEntry) {
 }
 
 func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, server int, args *AppendEntriesArgs, currentTerm int) {
+	MyDebug(dVote, "S%v s%v res.suc=%v", rf.me, server, response.Success)
+	MyDebug(dVote, "S%v plidx=%v len=%v term=%v", rf.me, args.PrevLogIdx, len(args.LogEntries), response.Term)
+
 	if !response.Success {
 		if response.Term > args.Term {
 			MyDebug(dVote, "S%v to follower,s%v term=%v", rf.me, server, response.Term)
@@ -742,7 +769,7 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 
 		if response.XIndex != 0 {
 			nextIndex := getNextIndexLocked(rf, response)
-			if nextIndex > rf.matchidx[server] && nextIndex <= rf.nextidx[server] {
+			if nextIndex > rf.matchidx[server] {
 				if nextIndex < rf.nextidx[server] {
 					MyDebug(dCommit, "S%v s%v.nextIndex->%v", rf.me, server, nextIndex)
 				}
@@ -756,21 +783,20 @@ func dealWithAppendEntriesResponse(rf *Raft, response *AppendEntriesReply, serve
 			last := len(args.LogEntries) - 1
 			nextIndex = args.LogEntries[last].Idx + 1
 			matchIndex = args.LogEntries[last].Idx
-		} else {
-			matchIndex = args.PrevLogIdx
-			nextIndex = args.PrevLogIdx + 1
-		}
 
-		rf.mu.Lock()
-		defer rf.mu.Unlock()
-		if matchIndex > rf.matchidx[server] {
-			MyDebug(dCommit, "S%d s%v.matchidx->%v", rf.me, server, matchIndex)
-			rf.matchidx[server] = matchIndex
-			rf.commitUpdater.addUpdatedFollower(server)
-		}
-		if nextIndex > rf.matchidx[server] {
-			rf.nextidx[server] = nextIndex
-			MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)
+			rf.mu.Lock()
+			defer rf.mu.Unlock()
+			if matchIndex > rf.matchidx[server] {
+				MyDebug(dCommit, "S%d s%v.matchidx->%v", rf.me, server, matchIndex)
+				rf.matchidx[server] = matchIndex
+				rf.commitUpdater.addUpdatedFollower(server)
+			}
+			if nextIndex > rf.matchidx[server] {
+				if nextIndex != rf.nextidx[server] {
+					MyDebug(dCommit, "S%d s%v.nextIndex->%v", rf.me, server, nextIndex)
+				}
+				rf.nextidx[server] = nextIndex
+			}
 		}
 	}
 }
@@ -794,7 +820,7 @@ func getNextIndexLocked(rf *Raft, XInfo *AppendEntriesReply) int {
 	}
 }
 
-func getAppendEntriesArgs(rf *Raft, server int, logEntries []logEntry) *AppendEntriesArgs {
+func (rf *Raft) getAppendEntriesArgs(logEntries []logEntry) *AppendEntriesArgs {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	term := rf.currentTerm
@@ -803,10 +829,10 @@ func getAppendEntriesArgs(rf *Raft, server int, logEntries []logEntry) *AppendEn
 
 	if logEntries == nil {
 		prevLogIdx = rf.diskLogIndex
-		//prevLogIdx = rf.nextidx[server] - 1
 	} else {
 		prevLogIdx = logEntries[0].Idx - 1
 	}
+
 	//MyDebug(dCommit, "S%v prevLogIdex=%v", rf.me, prevLogIdx)
 	prevLogTerm = rf.diskLog[prevLogIdx].Term
 	commitIdx := rf.commitIdx
@@ -883,7 +909,9 @@ func (rf *Raft) tryToCommit(data logEntry) chan int {
 
 	var logEntries []logEntry
 	logEntries = append(logEntries, data)
-	rf.sendAppendEntriesToFollowers(logEntries)
+
+	args := rf.getAppendEntriesArgs(logEntries)
+	rf.sendAppendEntriesToFollowers(args)
 	return doneCh
 
 }
@@ -916,12 +944,12 @@ func (rf *Raft) persistToDisk(command interface{}) logEntry {
 	return logEntry
 }
 
-func (rf *Raft) sendAppendEntriesToFollowers(data []logEntry) {
+func (rf *Raft) sendAppendEntriesToFollowers(args *AppendEntriesArgs) {
 	for i := 0; i < len(rf.peers); i++ {
 		if i == rf.me {
 			continue
 		}
-		go rf.SendAppendEntriesToFollower(i, data)
+		go rf.SendAppendEntriesToFollower(i, args)
 	}
 }
 
@@ -991,6 +1019,7 @@ type catchUpWorker struct {
 	rf         *Raft
 	followerID int
 	exitCh     chan int
+	term       int32
 }
 
 func NewCatchUpWorker(rf *Raft, server int) *catchUpWorker {
@@ -1013,21 +1042,24 @@ func (w *catchUpWorker) start() {
 			case startValue = <-w.ch:
 			}
 
-			// if w.rf.killed() {
-			// 	MyDebug(dTest, "S%d catup worker stop", w.rf.me)
-			// 	return
-			// }
-
+			MyDebug(dTrace, "S%d start backup", w.rf.me)
 			matchIndex := w.rf.getMatchIndex(server)
 			nextIndex := w.rf.getNextIndex(server)
 			minIndex := getMinIndexFromChan(w.ch, matchIndex, startValue)
 			MyDebug(dTrace, "S%d s%v matchIdx=%v,nextIdx=%v,minChan=%v", w.rf.me, server, matchIndex, nextIndex, minIndex)
 
+			//可能会会出现收到的minIndex> nextIndex情况，其实每次发送都是按照min(Signal,NextIdx)
+			if minIndex > nextIndex {
+				minIndex = nextIndex
+			}
+
 			if minIndex <= w.rf.getDiskLogIndex() {
-				data := generateNextCatchUpLogEntries(w.rf, minIndex)
-				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v]", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
-				w.rf.SendAppendEntriesToFollower(w.followerID, data)
-				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v] finish", w.rf.me, w.followerID, data[0].Idx, data[len(data)-1].Idx)
+				logEntries := generateNextCatchUpLogEntries(w.rf, minIndex)
+				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v]", w.rf.me, w.followerID, logEntries[0].Idx, logEntries[len(logEntries)-1].Idx)
+				args := w.rf.getAppendEntriesArgs(logEntries)
+				args.Term = int(w.GetTerm())
+				w.rf.SendAppendEntriesToFollower(w.followerID, args)
+				//MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v] t=%v finish", w.rf.me, w.followerID, logEntries[0].Idx, logEntries[len(logEntries)-1].Idx, w.GetTerm())
 			}
 		}
 	}()
@@ -1064,6 +1096,19 @@ func (w *catchUpWorker) sendCatchUpSignal(nextIndex int) {
 func (w *catchUpWorker) Stop() {
 	w.exitCh <- 1
 }
+
+// TODO：移动到catupWorker里面
+var accessTerm int32 = 0
+
+func (w *catchUpWorker) SetTerm(term int32) {
+	atomic.StoreInt32(&accessTerm, term)
+}
+
+func (w *catchUpWorker) GetTerm() int32 {
+	term := atomic.LoadInt32(&accessTerm)
+	return term
+}
+
 func generateNextCatchUpLogEntries(rf *Raft, startIndex int) []logEntry {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
