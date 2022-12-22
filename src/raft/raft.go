@@ -75,7 +75,7 @@ type logEntry struct {
 
 // A Go object implementing a single Raft peer.
 type Raft struct {
-	mu        deadlock.Mutex          // Lock to protect shared access to this peer's state
+	mu        deadlock.Mutex      // Lock to protect shared access to this peer's state
 	peers     []*labrpc.ClientEnd // RPC end points of all peers
 	persister *Persister          // Object to hold this peer's persisted state
 	me        int                 // this peer's index into peers[]
@@ -89,6 +89,7 @@ type Raft struct {
 
 	commitIdx   int
 	lastApplied int
+	cmdApplier  commandApplier
 
 	//yo record follower's log state
 	nextidx  []int
@@ -311,30 +312,30 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 
 	//prevLogIdex mismatch
 	//MyDebug(dInfo, "S%d receive AE from %v,PLIdx=%v PLTerm=%v", rf.me, args.LeaderID, args.PrevLogIdx, args.PrevLogTerm)
+	if args.Term > rf.currentTerm || args.LogEntries == nil{
+		rf.sendSetToFollowerSignal()
+	}
 
 	rf.currentTerm = args.Term
 	rf.voteFor = args.LeaderID
 	rf.persist()
 
-	if args.Term > rf.currentTerm {
-		rf.sendSetToFollowerSignal()
-	}
+
 	//只有currentTerm<=args.Term的时候，才会发送reset信号
 	//currentTerm==args.Term，证明是follower
 	//currentTerm<args.Term，不用说肯定是落后了
-	if args.LogEntries == nil {
-		rf.sendSetToFollowerSignal()
-		if args.PrevLogTerm != args.Term {
+	if args.LogEntries == nil && args.PrevLogTerm != args.Term{
 			reply.Term = rf.currentTerm
 			reply.Success = false
 			MyDebug(dInfo, "S%d heartbeat from %v, but no sync", rf.me, args.LeaderID)
 			return
-		}
+		
 	}
 
 	MyDebug(dInfo, "S%ds%v,term=%v,PLTerm=%v,PLIdx=%v", rf.me, args.LeaderID, args.Term, args.PrevLogIdx, args.PrevLogIdx)
 	MyDebug(dInfo, "S%d len(logEntries)=%v", rf.me, len(args.LogEntries))
 
+	lastLogEntry := rf.diskLog[rf.diskLogIndex]
 	if args.PrevLogIdx > rf.diskLogIndex || rf.diskLog[args.PrevLogIdx].Term != args.PrevLogTerm {
 		reply.XIndex, reply.Xterm, reply.XLen = rf.getExpectedTermInfoLocked(args.PrevLogIdx)
 		reply.Success = false
@@ -342,15 +343,20 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		return
 	}
 
-	if upToDateAndNoNeedToAppend(rf, args) {
-		rf.TryToAdjustCommitIndexLocked(args.LeaderCommit)
+	if args.LogEntries == nil {
+		if args.LeaderCommit > rf.commitIdx && rf.commitIdx < lastLogEntry.Idx {
+			newCommitIndex := Min(args.LeaderCommit, lastLogEntry.Idx)
+			MyDebug(dCommit, "S%d commitIdx:%v->%v", rf.me, rf.commitIdx, newCommitIndex)
+			rf.commitIdx = newCommitIndex
+			rf.persist()
+			rf.cmdApplier.signalToApplyLogEntry()
+		}
 		reply.Term = rf.currentTerm
 		reply.Success = true
-		MyDebug(dVote, "S%d up to date", rf.me)
 		return
 	}
 	//走到这一定有数据
-	rf.applyLogEntriesToDiskLocked(args.LogEntries, args.LeaderCommit)
+	rf.persistLogEntriesToDiskLocked(args.LogEntries, args.LeaderCommit)
 	reply.Term = rf.currentTerm
 	reply.Success = true
 }
@@ -373,29 +379,7 @@ func (rf *Raft) getExpectedTermInfoLocked(prevLogIdex int) (int, int, int) {
 	return xIndex, rf.diskLog[xIndex].Term, (lastIndex - xIndex + 1)
 }
 
-func (rf *Raft) TryToAdjustCommitIndexLocked(leaderCommit int) {
-	//TODO 这里可以优化成updateCommit()函数
-	if leaderCommit > rf.commitIdx {
-		commitIndexBefore := rf.commitIdx
-		for logIndex := rf.commitIdx + 1; logIndex <= leaderCommit &&
-			logIndex <= rf.diskLogIndex; logIndex++ {
-
-			rf.applyCh <- ApplyMsg{
-				CommandValid: true,
-				CommandIndex: logIndex,
-				Command:      rf.diskLog[logIndex].Data,
-			}
-			rf.commitIdx = logIndex
-
-		}
-		rf.persist()
-		MyDebug(dCommit, "S%d commitIdx:%v->%v", rf.me, commitIndexBefore, rf.commitIdx)
-	} else {
-		MyDebug(dCommit, "S%d commitIdx:%v", rf.me, rf.commitIdx)
-	}
-}
-
-func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry, leaderCommit int) {
+func (rf *Raft) persistLogEntriesToDiskLocked(logEntries []logEntry, leaderCommit int) {
 	tailLogIndex := logEntries[len(logEntries)-1].Idx
 	if tailLogIndex <= rf.diskLogIndex && rf.diskLog[tailLogIndex].Term == logEntries[0].Term {
 		return
@@ -415,8 +399,16 @@ func (rf *Raft) applyLogEntriesToDiskLocked(logEntries []logEntry, leaderCommit 
 	rf.diskLog = rf.diskLog[:logIndex]
 	rf.persist()
 
+	lastLogEntry := rf.diskLog[rf.diskLogIndex]
 	MyDebug(dCommit, "S%d disLogIndex->%v value=%v", rf.me, rf.diskLogIndex, rf.diskLog[logIndex-1].Data)
-	rf.TryToAdjustCommitIndexLocked(leaderCommit)
+	if leaderCommit > rf.commitIdx && rf.commitIdx < lastLogEntry.Idx {
+		newCommitIndex := Min(leaderCommit, lastLogEntry.Idx)
+		MyDebug(dCommit, "S%d commitIdx:%v->%v", rf.me, rf.commitIdx, newCommitIndex)
+		rf.commitIdx = newCommitIndex
+		rf.persist()
+		rf.cmdApplier.signalToApplyLogEntry()
+	}
+
 }
 
 func upToDateAndNoNeedToAppend(rf *Raft, info *AppendEntriesArgs) bool {
@@ -512,6 +504,7 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 func (rf *Raft) Kill() {
 	rf.exitCh <- true
 	rf.commitUpdater.stop()
+	rf.cmdApplier.stop()
 	for i := 0; i < len(rf.catchUpWorkers); i++ {
 		rf.catchUpWorkers[i].Stop()
 	}
@@ -582,11 +575,17 @@ func (rf *Raft) ticker() {
 					rf.setRole(ROLE_PRIMARY)
 					break
 				}
+				MyDebug(dVote, "S%d more up-to-date term,candidate->follower", rf.me)
+				rf.mu.Lock()
+				rf.currentTerm = result
+				rf.persist()
 				rf.setRole(ROLE_FOLLOWER)
+				rf.mu.Unlock()
+				
 			case <-electionTicker.C:
 				MyDebug(dInfo, "S%d candidate electionTimeout,restart election", rf.me)
 			case <-rf.followerCh:
-				rf.setRole(ROLE_FOLLOWER)
+				
 			case <-rf.exitCh:
 				goto EXIT
 			}
@@ -635,8 +634,6 @@ func (rf *Raft) ticker() {
 				case <-rf.exitCh:
 					goto EXIT
 				case <-rf.followerCh:
-					MyDebug(dInfo, "S%d Leader -> follower", rf.me)
-					rf.setRole(ROLE_FOLLOWER)
 					break PRIMARY_LOOP
 				case <-heartbeatTicker.C:
 					changeMutableForHeartbeat(rf, heartBeatArgs)
@@ -690,7 +687,7 @@ func startElection(rf *Raft, resultChan chan int) {
 		LastLogIdx:  lastLogIndex,
 		LastLogTerm: LastLogTerm,
 	}
-	//maxReceivedTerm := rf.currentTerm
+	
 	for i := 0; i < len(rf.peers); i++ {
 		if i != rf.me {
 			go func(server int) {
@@ -703,11 +700,6 @@ func startElection(rf *Raft, resultChan chan int) {
 				if success && response.VoteGranted {
 					count++
 				} else if response.Term > currentTerm {
-					MyDebug(dVote, "S%d more up-to-date term,candidate->follower", rf.me)
-					rf.mu.Lock()
-					rf.currentTerm = response.Term
-					rf.persist()
-					rf.mu.Unlock()
 					resultChan <- response.Term
 				}
 				finished++
@@ -1003,6 +995,8 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.commitUpdater = *newCommitUpdater(rf, quorom)
 	rf.commitUpdater.start()
 	rf.applyCh = applyCh
+	rf.cmdApplier = *newCommandApplier(rf)
+	rf.cmdApplier.start()
 
 	//配置log
 	file := "log"
@@ -1123,7 +1117,6 @@ func generateNextCatchUpLogEntries(rf *Raft, startIndex int) []logEntry {
 	lastIndex := startIndex
 	for ; lastIndex < len(rf.diskLog) && rf.diskLog[lastIndex].Term == rf.diskLog[startIndex].Term; lastIndex++ {
 	}
-	MyDebug(dCommit, "S%d startIndex=%v,lastIndex=%v", rf.me, startIndex, lastIndex)
 	return rf.diskLog[startIndex:lastIndex]
 }
 
@@ -1248,16 +1241,10 @@ func (rf *Raft) updateCommitIndex(quorom int, commitCriterial int) int {
 
 	commitIndex := matchidxs[quorom-1]
 	if commitIndex > rf.commitIdx && commitIndex > commitCriterial {
-		for logIndex := rf.commitIdx + 1; logIndex <= commitIndex; logIndex++ {
-			rf.applyCh <- ApplyMsg{
-				CommandValid: true,
-				CommandIndex: logIndex,
-				Command:      rf.diskLog[logIndex].Data,
-			}
-		}
 		MyDebug(dCommit, "S%d commitIndex:%v->%v", rf.me, rf.commitIdx, commitIndex)
 		rf.commitIdx = commitIndex
 		rf.persist()
+		rf.cmdApplier.signalToApplyLogEntry()
 		return commitIndex
 	} else if commitIndex == rf.commitIdx {
 		return -1
@@ -1275,6 +1262,13 @@ func (rf *Raft) getRole() int {
 }
 
 func (rf *Raft) setRole(role int) {
+	rf.roleLock.Lock()
+	defer rf.roleLock.Unlock()
+
+	rf.role = role
+}
+
+func (rf *Raft) setRoleLocked(role int) {
 	rf.roleLock.Lock()
 	defer rf.roleLock.Unlock()
 
@@ -1306,6 +1300,12 @@ func (rf *Raft) getDiskLogIndex() int {
 }
 
 func (rf *Raft) sendSetToFollowerSignal() {
+
+	if rf.getRole() != ROLE_FOLLOWER {
+		MyDebug(dVote, "S%d  -> follower ", rf.me)
+		rf.setRole(ROLE_FOLLOWER)
+	}
+
 	select {
 	case rf.followerCh <- true:
 	default:
@@ -1320,4 +1320,69 @@ func (rf *Raft) showDiskLog() {
 	// defer rf.mu.Unlock()
 
 	MyDebug(dTrace, "S%v diskLog:%v", rf.me, rf.diskLog)
+}
+
+// commandApplier [TODO]感觉这玩意不应该独立出来，Raft启动的时候开一个线程就好了，Raft关掉的时候这个线程也会随之关掉
+// 应该怎样优雅实现呢?
+type commandApplier struct {
+	exitCh   chan int
+	updateCh chan int
+	rf       *Raft
+}
+
+func newCommandApplier(rf *Raft) *commandApplier {
+	return &commandApplier{
+		exitCh:   make(chan int, 1),
+		updateCh: make(chan int, 100),
+		rf:       rf,
+	}
+}
+
+func (ca *commandApplier) start() {
+	go func() {
+	APPLIER_LOOP:
+		for {
+			select {
+			case <-ca.exitCh:
+				break APPLIER_LOOP
+			default:
+			}
+
+			select {
+			case <-ca.updateCh:
+				len := len(ca.updateCh)
+				for i := 0; i < len; i++ {
+					<-ca.updateCh
+				}
+				ca.rf.applyLogEntriesToStateMache()
+			case <-ca.exitCh:
+				break APPLIER_LOOP
+			}
+		}
+
+		MyDebug(dInfo, "S%d commandApplier exit", ca.rf.me)
+	}()
+}
+
+func (ca *commandApplier) signalToApplyLogEntry() {
+	ca.updateCh <- 1
+}
+
+func (ca *commandApplier) stop() {
+	ca.exitCh <- 1
+}
+
+func (rf *Raft) applyLogEntriesToStateMache() {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+	offset := rf.diskLog[0].Idx
+	for logIndex := rf.lastApplied; logIndex <= rf.commitIdx; logIndex++ {
+		rf.applyCh <- ApplyMsg{
+			CommandValid: true,
+			CommandIndex: logIndex,
+			Command:      rf.diskLog[logIndex-offset].Data,
+		}
+	}
+	MyDebug(dInfo, "S%v lastApply %d->%d", rf.me, rf.lastApplied, rf.commitIdx)
+	rf.lastApplied = rf.commitIdx
 }

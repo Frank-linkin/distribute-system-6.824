@@ -73,3 +73,19 @@ func getVerbosity() int {
 	}
 	return level
 }
+
+func Max(a int, b int) int {
+	if a < b {
+		return b
+	} else {
+		return a
+	}
+}
+
+func Min(a int, b int) int {
+	if a < b {
+		return a
+	} else {
+		return b
+	}
+}

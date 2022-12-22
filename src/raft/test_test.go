@@ -1073,9 +1073,10 @@ func internalChurn(t *testing.T, unreliable bool) {
 		values := []int{}
 		for atomic.LoadInt32(&stop) == 0 {
 			x := rand.Int()
+			x = x % 1000
 			index := -1
 			ok := false
-			MyDebug(dTrace, "m%v start a new value [me]", me)
+			MyDebug(dTrace, "m%v start a new value %v", me, x)
 			for i := 0; i < servers; i++ {
 				// try them all, maybe one of them is a leader
 				cfg.mu.Lock()
@@ -1090,7 +1091,7 @@ func internalChurn(t *testing.T, unreliable bool) {
 				}
 			}
 			if ok {
-				MyDebug(dTrace, "m%v I am OK[me]", me)
+				//MyDebug(dTrace, "m%v I am OK", me)
 				// maybe leader will commit our value, maybe not.
 				// but don't wait forever.
 				for _, to := range []int{10, 20, 50, 100, 200} {
@@ -1185,7 +1186,7 @@ func internalChurn(t *testing.T, unreliable bool) {
 	time.Sleep(RaftElectionTimeout)
 
 	MyDebug(dTrace, "try to one a value")
-	lastIndex := cfg.one(rand.Int(), servers, true)
+	lastIndex := cfg.one(rand.Int()%1000, servers, true)
 
 	//等到commit到lastIndex，将从1开始commit的值拼接到really里面
 	really := make([]int, lastIndex+1)
