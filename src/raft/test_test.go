@@ -928,6 +928,7 @@ func TestFigure82C(t *testing.T) {
 		}
 		//将leader crash 掉
 		if leader != -1 {
+			MyDebug(dTest, "crash %v",leader)
 			cfg.crash1(leader)
 			nup -= 1
 		}
@@ -949,6 +950,7 @@ func TestFigure82C(t *testing.T) {
 		}
 	}
 
+	MyDebug(dTest, "start to one")
 	cfg.one(rand.Int(), servers, true)
 
 	cfg.end()
@@ -1076,7 +1078,7 @@ func internalChurn(t *testing.T, unreliable bool) {
 			x = x % 1000
 			index := -1
 			ok := false
-			MyDebug(dTrace, "m%v start a new value %v", me, x)
+			//MyDebug(dTrace, "m%v start a new value %v", me, x)
 			for i := 0; i < servers; i++ {
 				// try them all, maybe one of them is a leader
 				cfg.mu.Lock()
@@ -1111,7 +1113,7 @@ func internalChurn(t *testing.T, unreliable bool) {
 					time.Sleep(time.Duration(to) * time.Millisecond)
 				}
 			} else {
-				MyDebug(dTrace, "m%v I am not OK [me]", me)
+				//MyDebug(dTrace, "m%v I am not OK [me]", me)
 				time.Sleep(time.Duration(79+me*17) * time.Millisecond)
 			}
 		}
@@ -1233,7 +1235,7 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 	defer cfg.cleanup()
 
 	cfg.begin(name)
-
+	//先commit一个data
 	cfg.one(rand.Int(), servers, true)
 	leader1 := cfg.checkOneLeader()
 

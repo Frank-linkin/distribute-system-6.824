@@ -172,3 +172,52 @@ type struct {
 UpdateCommitIndex()//更新commitIndex{
     会向更新goroutine发出一个信号
 }
+20221213
+2D Designation
+1.制作snapshot Snapshot()
+2.应用snapshot：InstallSnapShot包括发送和接接收
+    设当前snapshot所存储的最大index为x
+    ①对于catchup的来说，如果下一个nextIndex[server]<=x，发snapshot；如果nextIndex[server]>x，保持原来的逻辑不变。
+
+diskLog第0个位置永远置为无效位,但是Term和Idx数据是有效的
+
+installSnapshot：
+to receiver:
+    if commitIndex <= snapshot.Index
+        安装snapshot
+        修改commitIndex
+    记录并持久化此snapshot
+to sender:
+    不会永远执行同一个snapshot，只试一次，因为可能有新的snapshot
+
+AppendEntry()
+to recever:
+    由于snapshot的原因，diskLog现在有可能是截断的。
+to sender:
+    当xTerm = 0时，直接发送xIndex+1的一个Term的数据，不管目前Term是什么
+
+关于appendEntry中的xterm信息的生成
+    ①如果什么logEntry也没存过
+    Term : 0
+    Index: 0
+    xTerm=0,xIndex=0,Xlen=1
+    ②如果要发送的xTerm正好以index=1为起点，就把这个Term发送过去,Xindex=4,xTerm=4,Xlen=3
+    Term : 3 | 4 4 4
+    Index: 3 | 4 5 6
+    ③安装snapshot之后，什么logEntry也没存过，发送xIndex=3,xTerm=3,Xlen=1
+    Term : 3 |
+    Index: 3 |
+    ④如果要发送的xTerm是普通情况，即XIndex=5,xTerm=4,xLen=3
+    Term : 3 | 3 4 4 4
+    Index: 3 | 3 5 6 7
+关于appendEntry中的xterm信息的处理
+    ①xIndex <= offset
+        发送snapshot
+    ②xIndex > offset
+    //以下可以复用旧的代码
+      if tailIndex存在且匹配
+         nextIndex = tailIndex + 1
+      if xIndex的term不同
+      if tailIndex存在且不匹配
+         找到最后一个匹配的logEntry,next=logEntry.Idx+1
+      
