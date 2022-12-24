@@ -211,8 +211,16 @@ to sender:
     Term : 3 | 3 4 4 4
     Index: 3 | 3 5 6 7
 关于appendEntry中的xterm信息的处理
-    ①xIndex <= offset
+    server中的disk与Leader中的snapshot的关系有
+    1.server [5,10]
+    LeaderSnapshot
+
+    ①xIndex < offset
         发送snapshot
+    ②xIndex==offset&& matchIdx[server]<offset
+    发送snapshot
+    ③xIndex==offset&& matchIdx[server]==offset
+    return offset + 1
     ②xIndex > offset
     //以下可以复用旧的代码
       if tailIndex存在且匹配

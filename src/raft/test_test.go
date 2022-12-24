@@ -928,7 +928,7 @@ func TestFigure82C(t *testing.T) {
 		}
 		//将leader crash 掉
 		if leader != -1 {
-			MyDebug(dTest, "crash %v",leader)
+			MyDebug(dTest, "crash %v", leader)
 			cfg.crash1(leader)
 			nup -= 1
 		}
@@ -1236,7 +1236,9 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 
 	cfg.begin(name)
 	//先commit一个data
-	cfg.one(rand.Int(), servers, true)
+	MyDebug(dTrace, "trying to one a value")
+	cfg.one(rand.Int()%1000, servers, true)
+	MyDebug(dTrace, "one over")
 	leader1 := cfg.checkOneLeader()
 
 	for i := 0; i < iters; i++ {
@@ -1248,10 +1250,12 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 		}
 
 		if disconnect {
+			MyDebug(dTrace, "disconnect S%v", victim)
 			cfg.disconnect(victim)
 			cfg.one(rand.Int(), servers-1, true)
 		}
 		if crash {
+			MyDebug(dTrace, "crash S%v", victim)
 			cfg.crash1(victim)
 			cfg.one(rand.Int(), servers-1, true)
 		}
@@ -1278,11 +1282,13 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 		if disconnect {
 			// reconnect a follower, who maybe behind and
 			// needs to rceive a snapshot to catch up.
+			MyDebug(dTrace, "reconnect S%v", victim)
 			cfg.connect(victim)
 			cfg.one(rand.Int(), servers, true)
 			leader1 = cfg.checkOneLeader()
 		}
 		if crash {
+			MyDebug(dTrace, "restarted S%v", victim)
 			cfg.start1(victim, cfg.applierSnap)
 			cfg.connect(victim)
 			cfg.one(rand.Int(), servers, true)

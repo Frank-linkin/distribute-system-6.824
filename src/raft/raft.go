@@ -20,6 +20,7 @@ package raft
 import (
 	//	"bytes"
 	"bytes"
+	"fmt"
 	"log"
 	"math/rand"
 	"os"
@@ -161,6 +162,7 @@ func (rf *Raft) persist() {
 	e.Encode(diskLog)
 	e.Encode(diskLogIndex)
 	e.Encode(commitIndex)
+
 	data := w.Bytes()
 	//rf.persister.SaveRaftState(data)
 	rf.persister.SaveStateAndSnapshot(data, rf.snapshot)
@@ -202,10 +204,12 @@ func (rf *Raft) readPersist(data []byte) {
 		rf.diskLog = diskLog
 		rf.diskLogIndex = diskLogIndex
 		rf.commitIdx = commitIdx
-		MyDebug(dInfo, "S%v restore cTerm=%v,lIdx=%v,cmt=%v", rf.me, currentTerm, diskLogIndex, commitIdx)
+		//rf.lastApplied = lastApplied
+		MyDebug(dInfo, "S%v restore cTerm=%v,cmt=%v", rf.me, currentTerm, commitIdx)
 	}
-
+	MyDebug(dInfo, "S%v restore snapIdx=%v", rf.me, rf.diskLog[0].Idx)
 	rf.snapshot = rf.persister.ReadSnapshot()
+	rf.lastApplied = rf.diskLog[0].Idx
 }
 
 // A service wants to switch to snapshot.  Only do so if Raft hasn't
@@ -223,6 +227,7 @@ func (rf *Raft) CondInstallSnapshot(lastIncludedTerm int, lastIncludedIndex int,
 // that index. Raft should now trim its log as much as possible.
 func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	// Your code here (2D).
+
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	offset := rf.diskLog[0].Idx
@@ -231,14 +236,16 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	//TODO: 0号Term由恒为0 -> 永远有效的Term，检查此约束
 	newDiskLog = append(newDiskLog, logEntry{
 		Term: rf.diskLog[newStart-1].Term,
-		Idx:  newStart - 1,
+		Idx:  index,
 	})
 	//paper上的意思，这里还有判断Term
 	if newStart <= rf.diskLogIndex {
 		newDiskLog = append(newDiskLog, rf.diskLog[newStart:]...)
 	}
 	rf.diskLog = newDiskLog
+	rf.diskLogIndex = len(rf.diskLog) - 1
 	rf.snapshot = snapshot
+	MyDebug(dInfo, "S%v make snapshot,Idx=%v", rf.me, index)
 }
 
 // example RequestVote RPC arguments structure.
@@ -385,16 +392,17 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 func (rf *Raft) getExpectedTermInfoLocked(prevLogIdx int) (int, int, int) {
 	var lastIndex int
 	lastLogEntry := rf.diskLog[rf.diskLogIndex]
+	offset := rf.diskLog[0].Idx
 	if prevLogIdx > lastLogEntry.Idx {
 		lastIndex = rf.diskLogIndex
 	} else {
-		lastIndex = prevLogIdx
+		lastIndex = prevLogIdx - offset
 	}
 
 	var firstIndex int
 	for firstIndex = lastIndex; firstIndex >= 1 && rf.diskLog[firstIndex].Term == rf.diskLog[lastIndex].Term; firstIndex-- {
 	}
-	if firstIndex == 0 && rf.diskLogIndex == 0 {
+	if firstIndex < 0 || (firstIndex == 0 && len(rf.diskLog) == 1) {
 		return rf.diskLog[0].Idx, rf.diskLog[0].Term, 1
 	}
 	firstIndex++
@@ -425,7 +433,7 @@ func (rf *Raft) persistLogEntriesToDiskLocked(logEntries []logEntry, leaderCommi
 	rf.persist()
 
 	lastLogEntry := rf.diskLog[rf.diskLogIndex]
-	MyDebug(dCommit, "S%d disLogIndex->%v value=%v", rf.me, rf.diskLogIndex, rf.diskLog[rf.diskLogIndex].Data)
+	MyDebug(dCommit, "S%d recentLogIndex->%v value=%v", rf.me, rf.diskLog[rf.diskLogIndex].Idx, rf.diskLog[rf.diskLogIndex].Data)
 	if leaderCommit > rf.commitIdx && rf.commitIdx < lastLogEntry.Idx {
 		newCommitIndex := Min(leaderCommit, lastLogEntry.Idx)
 		MyDebug(dCommit, "S%d commitIdx:%v->%v", rf.me, rf.commitIdx, newCommitIndex)
@@ -480,10 +488,14 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapsho
 		newDiskLog = append(newDiskLog, rf.diskLog[newStart:]...)
 	}
 	rf.diskLog = newDiskLog
+	rf.diskLogIndex = len(rf.diskLog) - 1
 	rf.snapshot = args.Data
 	if rf.commitIdx < args.LastIncludedIndex {
 		rf.commitIdx = args.LastIncludedIndex
+		MyDebug(dCommit, "S%d cmdIdx->%v", rf.me, args.LastIncludedIndex)
+
 	}
+	MyDebug(dCommit, "S%d recvSnap idx=%v len(diskLog)=%v", rf.me, args.LastIncludedIndex, len(newDiskLog))
 	rf.cmdApplier.signalToApplySnapshot()
 	reply.Term = rf.currentTerm
 }
@@ -508,10 +520,12 @@ func dealWithInstallSnapshotResponse(rf *Raft, server int, args *InstallSnapshot
 
 	if args.LastIncludedIndex+1 > rf.nextidx[server] {
 		rf.nextidx[server] = args.LastIncludedIndex + 1
+		MyDebug(dCommit, "S%d s%v.nextIdx->%v", rf.me, server, args.LastIncludedIndex+1)
 	}
 
-	if args.LastIncludedIndex > -rf.matchidx[server] {
+	if args.LastIncludedIndex > rf.matchidx[server] {
 		rf.matchidx[server] = args.LastIncludedIndex
+		MyDebug(dCommit, "S%d s%v.matchidx->%v", rf.me, server, args.LastIncludedIndex)
 	}
 }
 
@@ -733,7 +747,7 @@ func (rf *Raft) ticker() {
 			default:
 			}
 
-			heartBeatArgs := rf.getAppendEntriesArgs(nil)
+			heartBeatArgs, _ := rf.getAppendEntriesArgs(nil)
 			MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, heartBeatArgs.Term, accessionTime.Nanosecond())
 			rf.heartbeatToFollowers(*heartBeatArgs)
 			heartbeatTicker := time.NewTicker(time.Duration(HEARTBEAT_INTERVAL) * time.Millisecond)
@@ -781,7 +795,7 @@ func startElection(rf *Raft, resultChan chan int) {
 	me := rf.me
 	currentTerm = rf.currentTerm
 	lastLogIndex := rf.diskLog[rf.diskLogIndex].Idx
-	LastLogTerm := rf.diskLog[lastLogIndex].Term
+	LastLogTerm := rf.diskLog[rf.diskLogIndex].Term
 	rf.mu.Unlock()
 	MyDebug(dVote, "S%d termBefore=%d,electionTerm=%d", rf.me, termBefore, currentTerm)
 
@@ -868,12 +882,17 @@ func dealWithAppendEntriesResponse(rf *Raft, reply *AppendEntriesReply, server i
 		return
 	}
 
+	// panicValue := 0
+	// if panicValue == 0 {
+	// 	panicValue = 3 / panicValue
+	// }
+
 	if currentTerm != args.Term {
 		return
 	}
 
 	if !reply.Success {
-		if args.PrevLogTerm != args.Term && args.LogEntries == nil{
+		if args.PrevLogTerm != args.Term && args.LogEntries == nil {
 			return
 		}
 		tryToUpdateNextIndex(rf, server, reply)
@@ -905,8 +924,8 @@ func tryToUpdateNextIndex(rf *Raft, server int, response *AppendEntriesReply) {
 	//[Question] 什么时候单独设置一个方法加锁，什么时候直接加锁就可以呢
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
-	nextIndex := getNextIndexLocked(rf, response)
-	MyDebug(dCommit, "S%d s%v.nIdx_Cal->%v", rf.me,server, nextIndex)
+	nextIndex := getNextIndexLocked(rf, response, server)
+	MyDebug(dCommit, "S%d s%v.nIdx_Cal->%v\n", rf.me, server, nextIndex)
 
 	if nextIndex > rf.matchidx[server] {
 		if nextIndex < rf.nextidx[server] {
@@ -918,7 +937,7 @@ func tryToUpdateNextIndex(rf *Raft, server int, response *AppendEntriesReply) {
 
 }
 
-func getNextIndexLocked(rf *Raft, XInfo *AppendEntriesReply) int {
+func getNextIndexLocked(rf *Raft, XInfo *AppendEntriesReply, server int) int {
 	xTerm := XInfo.Xterm
 	xIndex := XInfo.XIndex
 	xLen := XInfo.XLen
@@ -927,12 +946,12 @@ func getNextIndexLocked(rf *Raft, XInfo *AppendEntriesReply) int {
 	offset := rf.diskLog[0].Idx
 	lastEntry := rf.diskLog[rf.diskLogIndex]
 	switch {
-	case offset == 0 && xIndex <= offset://这里用派单失败了rf.snapshot == nil
-		return 1
-	case xIndex <= offset:
-		return offset
-	case xTailIndex <= lastEntry.Idx && rf.diskLog[xTailIndex-offset].Term == xTerm:
+	case xTailIndex >= offset && xTailIndex <= lastEntry.Idx && rf.diskLog[xTailIndex-offset].Term == xTerm:
 		return xTailIndex + 1
+	case xIndex < offset || (xIndex == offset && rf.matchidx[server] < offset): //这里用派单失败了rf.snapshot == nil
+		return offset
+	case xIndex == offset && rf.matchidx[server] == offset:
+		return offset + 1
 	case rf.diskLog[xIndex-offset].Term == xTerm:
 		nextOne := xIndex - offset
 		for ; nextOne <= rf.diskLogIndex && rf.diskLog[nextOne].Term == xTerm; nextOne++ {
@@ -943,7 +962,7 @@ func getNextIndexLocked(rf *Raft, XInfo *AppendEntriesReply) int {
 	}
 }
 
-func (rf *Raft) getAppendEntriesArgs(logEntries []logEntry) *AppendEntriesArgs {
+func (rf *Raft) getAppendEntriesArgs(logEntries []logEntry) (*AppendEntriesArgs, error) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	term := rf.currentTerm
@@ -951,9 +970,13 @@ func (rf *Raft) getAppendEntriesArgs(logEntries []logEntry) *AppendEntriesArgs {
 	var prevLogIdx, prevLogTerm int
 
 	offset := rf.diskLog[0].Idx
+
 	if logEntries == nil {
 		prevLogIdx = rf.diskLog[rf.diskLogIndex].Idx
 	} else {
+		if logEntries[0].Idx <= offset {
+			return nil, fmt.Errorf("stale logEntries than snapshot")
+		}
 		prevLogIdx = logEntries[0].Idx - 1
 	}
 
@@ -968,7 +991,7 @@ func (rf *Raft) getAppendEntriesArgs(logEntries []logEntry) *AppendEntriesArgs {
 		PrevLogTerm:  prevLogTerm,
 		LeaderCommit: commitIdx,
 		LogEntries:   logEntries,
-	}
+	}, nil
 }
 
 type pollerGroup struct {
@@ -1034,7 +1057,7 @@ func (rf *Raft) tryToCommit(data logEntry) chan int {
 	var logEntries []logEntry
 	logEntries = append(logEntries, data)
 
-	args := rf.getAppendEntriesArgs(logEntries)
+	args, _ := rf.getAppendEntriesArgs(logEntries)
 	rf.sendAppendEntriesToFollowers(args)
 	return doneCh
 
@@ -1134,7 +1157,7 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
 	// start ticker goroutine to start elections
-	//deadlock.Opts.DeadlockTimeout = 1 * time.Second
+	deadlock.Opts.DeadlockTimeout = 30 * time.Second
 
 	go rf.ticker()
 
@@ -1186,7 +1209,7 @@ func (w *catchUpWorker) start() {
 			lastIncludeIndex := w.rf.diskLog[0].Idx
 			lastIncludeTerm := w.rf.diskLog[0].Term
 			snapshot := w.rf.snapshot
-			diskLogIndex := w.rf.diskLogIndex
+			lastEntry := w.rf.diskLog[w.rf.diskLogIndex]
 			w.rf.mu.Unlock()
 
 			minIndex := getMinIndexFromChan(w.ch, matchIndex, startValue)
@@ -1205,12 +1228,20 @@ func (w *catchUpWorker) start() {
 					LastIncludedTerm:  lastIncludeTerm,
 					Data:              snapshot,
 				}
-				MyDebug(dTrace, "S%d IST->%v,LIIDX=%v", w.rf.me, w.followerID, lastIncludeIndex)
+				MyDebug(dTrace, "S%d s%v,snapIdx=%v", w.rf.me, w.followerID, lastIncludeIndex)
 				w.rf.installSnapshotToFollower(w.followerID, args)
-			} else if minIndex <= diskLogIndex {
-				logEntries := generateNextCatchUpLogEntries(w.rf, minIndex)
+			} else if minIndex <= lastEntry.Idx {
+				logEntries,err := generateNextCatchUpLogEntries(w.rf, minIndex)
+				if err != nil {
+					MyDebug(dTrace, "S%d %v", w.rf.me, err.Error())
+					continue
+				}
 				MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v]", w.rf.me, w.followerID, logEntries[0].Idx, logEntries[len(logEntries)-1].Idx)
-				args := w.rf.getAppendEntriesArgs(logEntries)
+				args, err := w.rf.getAppendEntriesArgs(logEntries)
+				if err != nil {
+					MyDebug(dTrace, "S%d %v", w.rf.me, err.Error())
+					continue
+				}
 				args.Term = int(w.GetTerm())
 				w.rf.SendAppendEntriesToFollower(w.followerID, args)
 				//MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v] t=%v finish", w.rf.me, w.followerID, logEntries[0].Idx, logEntries[len(logEntries)-1].Idx, w.GetTerm())
@@ -1263,15 +1294,18 @@ func (w *catchUpWorker) GetTerm() int32 {
 	return term
 }
 
-func generateNextCatchUpLogEntries(rf *Raft, startLogIndex int) []logEntry {
+func generateNextCatchUpLogEntries(rf *Raft, startLogIndex int) ([]logEntry,error) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	offset := rf.diskLog[0].Idx
 	lastIndex := startLogIndex - offset
+	if lastIndex <= 0 {
+		return nil,fmt.Errorf("failed due to generated snapshot")
+	}
 	startIndex := lastIndex
 	for ; lastIndex < len(rf.diskLog) && rf.diskLog[lastIndex].Term == rf.diskLog[startIndex].Term; lastIndex++ {
 	}
-	return rf.diskLog[startIndex:lastIndex]
+	return rf.diskLog[startIndex:lastIndex],nil
 }
 
 type commitUpdater struct {
@@ -1532,43 +1566,59 @@ func (ca *commandApplier) stop() {
 }
 
 func (rf *Raft) applyLogEntriesToStateMache() {
+
+	logEntries := rf.getUnappiedLogEntries()
+	if len(logEntries) == 0 {
+		return 
+	}
+	for _, logEntry := range logEntries {
+		rf.applyCh <- ApplyMsg{
+			CommandValid: true,
+			CommandIndex: logEntry.Idx,
+			Command:      logEntry.Data,
+		}
+	}
+
+	oldLastApplied := logEntries[0].Idx - 1
+	lastApplied := logEntries[len(logEntries)-1].Idx
+
+	MyDebug(dInfo, "S%v lastApply %d->%d", rf.me, oldLastApplied, lastApplied)
+	rf.tryToSetLastApplied(lastApplied)
+}
+
+func (rf *Raft) tryToSetLastApplied(lastApplied int) {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+
+	if rf.lastApplied < lastApplied {
+		rf.lastApplied = lastApplied
+	}
+}
+
+func (rf *Raft) getUnappiedLogEntries() []logEntry {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	offset := rf.diskLog[0].Idx
-	for logIndex := rf.lastApplied; logIndex <= rf.commitIdx; logIndex++ {
-		rf.applyCh <- ApplyMsg{
-			CommandValid: true,
-			CommandIndex: logIndex,
-			Command:      rf.diskLog[logIndex-offset].Data,
-		}
-	}
-	MyDebug(dInfo, "S%v lastApply %d->%d", rf.me, rf.lastApplied, rf.commitIdx)
-	rf.lastApplied = rf.commitIdx
+	var resp []logEntry
+	resp = append(resp, rf.diskLog[rf.lastApplied+1-offset:rf.commitIdx+1-offset]...)
+	return resp
 }
 
 func (rf *Raft) applySnapshotToStateMache() {
 	rf.mu.Lock()
-	defer rf.mu.Unlock()
+	snapshotTerm := rf.diskLog[0].Term
+	snapshotIndex := rf.diskLog[0].Idx
+	snapshot := rf.snapshot
+	rf.mu.Unlock()
 
 	rf.applyCh <- ApplyMsg{
 		SnapshotValid: true,
-		SnapshotTerm:  rf.diskLog[0].Term,
-		SnapshotIndex: rf.diskLog[0].Idx,
-		Snapshot:      rf.snapshot,
-	}
-	oldLastApply := rf.lastApplied
-	offset := rf.diskLog[0].Idx
-	if rf.lastApplied < offset {
-		rf.lastApplied = offset
+		SnapshotTerm:  snapshotTerm,
+		SnapshotIndex: snapshotIndex,
+		Snapshot:      snapshot,
 	}
 
-	for logIndex := rf.lastApplied; logIndex <= rf.commitIdx; logIndex++ {
-		rf.applyCh <- ApplyMsg{
-			CommandValid: true,
-			CommandIndex: logIndex,
-			Command:      rf.diskLog[logIndex-offset].Data,
-		}
-	}
-	MyDebug(dInfo, "S%v lastApply %d->%d", rf.me, oldLastApply, rf.commitIdx)
-	rf.lastApplied = rf.commitIdx
+	MyDebug(dCommit, "S%d snapshot.idx=%v installed", rf.me, snapshotIndex)
+
+	rf.tryToSetLastApplied(snapshotIndex)
 }
