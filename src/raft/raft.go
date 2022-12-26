@@ -854,18 +854,20 @@ func startElection(rf *Raft, resultChan chan int) {
 }
 
 func (rf *Raft) heartbeatToFollowers(args AppendEntriesArgs) {
-	rf.sendAppendEntriesToFollowers(&args)
+	rf.sendAppendEntriesToFollowers(args)
 }
 
-func (rf *Raft) SendAppendEntriesToFollower(server int, args *AppendEntriesArgs) {
+func (rf *Raft) SendAppendEntriesToFollower(server int, args AppendEntriesArgs) {
 	for {
-		if rf.killed() || rf.getCurrentTerm() != args.Term || rf.getRole() != ROLE_PRIMARY {
+		if rf.killed() || 
+		   rf.getCurrentTerm() != args.Term || 
+		   rf.getRole() != ROLE_PRIMARY {
 			return
 		}
 
 		response := AppendEntriesReply{}
-		if success := rf.sendAppendEntries(server, args, &response); success {
-			dealWithAppendEntriesResponse(rf, &response, server, args)
+		if success := rf.sendAppendEntries(server, &args, &response); success {
+			dealWithAppendEntriesResponse(rf, &response, server, &args)
 			return
 		}
 	}
@@ -874,13 +876,16 @@ func (rf *Raft) SendAppendEntriesToFollower(server int, args *AppendEntriesArgs)
 func dealWithAppendEntriesResponse(rf *Raft, reply *AppendEntriesReply, server int, args *AppendEntriesArgs) {
 	// MyDebug(dVote, "S%v s%v res.suc=%v", rf.me, server, response.Success)
 	// MyDebug(dVote, "S%v plidx=%v len=%v term=%v", rf.me, args.PrevLogIdx, len(args.LogEntries), response.Term)
+	rf.mu.Lock()
 	currentTerm := rf.currentTerm
 	if currentTerm < reply.Term {
 		rf.setRole(ROLE_FOLLOWER)
 		rf.currentTerm = reply.Term
 		rf.sendSetToFollowerSignal()
+		rf.mu.Unlock()
 		return
 	}
+	rf.mu.Unlock()
 
 	// panicValue := 0
 	// if panicValue == 0 {
@@ -1058,7 +1063,7 @@ func (rf *Raft) tryToCommit(data logEntry) chan int {
 	logEntries = append(logEntries, data)
 
 	args, _ := rf.getAppendEntriesArgs(logEntries)
-	rf.sendAppendEntriesToFollowers(args)
+	rf.sendAppendEntriesToFollowers(*args)
 	return doneCh
 
 }
@@ -1093,7 +1098,7 @@ func (rf *Raft) persistToDisk(command interface{}) logEntry {
 	return logEntry
 }
 
-func (rf *Raft) sendAppendEntriesToFollowers(args *AppendEntriesArgs) {
+func (rf *Raft) sendAppendEntriesToFollowers(args AppendEntriesArgs) {
 	for i := 0; i < len(rf.peers); i++ {
 		if i == rf.me {
 			continue
@@ -1101,6 +1106,8 @@ func (rf *Raft) sendAppendEntriesToFollowers(args *AppendEntriesArgs) {
 		go rf.SendAppendEntriesToFollower(i, args)
 	}
 }
+
+var LOG_FILE string = ""
 
 // the service or tester wants to create a Raft server. the ports
 // of all the Raft servers (including this one) are in peers[]. this
@@ -1148,8 +1155,11 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	rf.cmdApplier.start()
 
 	//配置log
-	file := "log"
-	logFile, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0766)
+	//file := "log"
+	if len(LOG_FILE) == 0 {
+		LOG_FILE = "log"
+	}
+	logFile, err := os.OpenFile(LOG_FILE, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0766)
 	if err != nil {
 		panic(err)
 	}
@@ -1231,7 +1241,7 @@ func (w *catchUpWorker) start() {
 				MyDebug(dTrace, "S%d s%v,snapIdx=%v", w.rf.me, w.followerID, lastIncludeIndex)
 				w.rf.installSnapshotToFollower(w.followerID, args)
 			} else if minIndex <= lastEntry.Idx {
-				logEntries,err := generateNextCatchUpLogEntries(w.rf, minIndex)
+				logEntries, err := generateNextCatchUpLogEntries(w.rf, minIndex)
 				if err != nil {
 					MyDebug(dTrace, "S%d %v", w.rf.me, err.Error())
 					continue
@@ -1243,7 +1253,7 @@ func (w *catchUpWorker) start() {
 					continue
 				}
 				args.Term = int(w.GetTerm())
-				w.rf.SendAppendEntriesToFollower(w.followerID, args)
+				w.rf.SendAppendEntriesToFollower(w.followerID, *args)
 				//MyDebug(dTrace, "S%d backup[%v] logIndex[%v,%v] t=%v finish", w.rf.me, w.followerID, logEntries[0].Idx, logEntries[len(logEntries)-1].Idx, w.GetTerm())
 			}
 		}
@@ -1294,18 +1304,18 @@ func (w *catchUpWorker) GetTerm() int32 {
 	return term
 }
 
-func generateNextCatchUpLogEntries(rf *Raft, startLogIndex int) ([]logEntry,error) {
+func generateNextCatchUpLogEntries(rf *Raft, startLogIndex int) ([]logEntry, error) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	offset := rf.diskLog[0].Idx
 	lastIndex := startLogIndex - offset
 	if lastIndex <= 0 {
-		return nil,fmt.Errorf("failed due to generated snapshot")
+		return nil, fmt.Errorf("failed due to generated snapshot")
 	}
 	startIndex := lastIndex
 	for ; lastIndex < len(rf.diskLog) && rf.diskLog[lastIndex].Term == rf.diskLog[startIndex].Term; lastIndex++ {
 	}
-	return rf.diskLog[startIndex:lastIndex],nil
+	return rf.diskLog[startIndex:lastIndex], nil
 }
 
 type commitUpdater struct {
@@ -1569,7 +1579,7 @@ func (rf *Raft) applyLogEntriesToStateMache() {
 
 	logEntries := rf.getUnappiedLogEntries()
 	if len(logEntries) == 0 {
-		return 
+		return
 	}
 	for _, logEntry := range logEntries {
 		rf.applyCh <- ApplyMsg{

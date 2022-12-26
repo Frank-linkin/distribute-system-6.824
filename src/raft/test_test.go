@@ -706,6 +706,7 @@ loop:
 }
 
 func TestPersist12C(t *testing.T) {
+	LOG_FILE="log_2C"
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -781,6 +782,7 @@ s5 0  1(11)     1(12)    4(13)
 不用持久化。
 */
 func TestPersist22C(t *testing.T) {
+	LOG_FILE="log_2C"
 	servers := 5
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -843,6 +845,7 @@ s2 0  1(101) 1(102)  -            +
 s3 0  1(101) 1(102)       2(103)
 */
 func TestPersist32C(t *testing.T) {
+	LOG_FILE="log_2C"
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -898,6 +901,7 @@ s3 0   3(103) cmt->3    4(104)             5(105)        6(106)         L  7(107
 s4 0   3(103) cmt->3                  +    5(105)        6(106) cmt->6
 */
 func TestFigure82C(t *testing.T) {
+	LOG_FILE="log_2C"
 	servers := 5
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -957,6 +961,7 @@ func TestFigure82C(t *testing.T) {
 }
 
 func TestUnreliableAgree2C(t *testing.T) {
+	LOG_FILE="log_2C"
 	servers := 5
 	cfg := make_config(t, servers, true, false)
 	defer cfg.cleanup()
@@ -986,6 +991,7 @@ func TestUnreliableAgree2C(t *testing.T) {
 }
 
 func TestFigure8Unreliable2C(t *testing.T) {
+	LOG_FILE="log_2C"
 	servers := 5
 	cfg := make_config(t, servers, true, false)
 	defer cfg.cleanup()
@@ -1219,10 +1225,12 @@ func internalChurn(t *testing.T, unreliable bool) {
 }
 
 func TestReliableChurn2C(t *testing.T) {
+	LOG_FILE="log_2C"
 	internalChurn(t, false)
 }
 
 func TestUnreliableChurn2C(t *testing.T) {
+	LOG_FILE="log_2C"
 	internalChurn(t, true)
 }
 
@@ -1299,23 +1307,28 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 }
 
 func TestSnapshotBasic2D(t *testing.T) {
+	LOG_FILE="log_2D"
 	snapcommon(t, "Test (2D): snapshots basic", false, true, false)
 }
 
 func TestSnapshotInstall2D(t *testing.T) {
+	LOG_FILE="log_2D"
 	snapcommon(t, "Test (2D): install snapshots (disconnect)", true, true, false)
 }
 
 func TestSnapshotInstallUnreliable2D(t *testing.T) {
+	LOG_FILE="log_2D"
 	snapcommon(t, "Test (2D): install snapshots (disconnect+unreliable)",
 		true, false, false)
 }
 
 func TestSnapshotInstallCrash2D(t *testing.T) {
+	LOG_FILE="log_2D"
 	snapcommon(t, "Test (2D): install snapshots (crash)", false, true, true)
 }
 
 func TestSnapshotInstallUnCrash2D(t *testing.T) {
+	LOG_FILE="log_2D"
 	snapcommon(t, "Test (2D): install snapshots (unreliable+crash)", false, false, true)
 }
 
