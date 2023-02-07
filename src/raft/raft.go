@@ -285,6 +285,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 	case args.Term > rf.currentTerm:
 		rf.currentTerm = args.Term
 		rf.persist()
+		rf.SetToFollower()
 	}
 
 	//update-to-date as receiver这个条件的判断
@@ -296,7 +297,7 @@ func (rf *Raft) RequestVote(args *RequestVoteArgs, reply *RequestVoteReply) {
 
 		//如果当前是primary，收到VoteRequest也要stopDown
 		MyDebug(dVote, "S%d vote and reset", rf.me)
-		rf.sendSetToFollowerSignal()
+		rf.SetToFollower()
 		MyDebug(dVote, "S%d vote for %d", rf.me, args.CandidateID)
 
 		reply.Term = rf.currentTerm
@@ -335,13 +336,13 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		reply.Term = rf.currentTerm
 		return
 	} else if args.Term > rf.currentTerm {
-		rf.currentTerm = args.Term
 		rf.voteFor = args.LeaderID
 		rf.persist()
 	}
 
 	if args.Term > rf.currentTerm || args.LogEntries == nil {
-		rf.sendSetToFollowerSignal()
+		rf.currentTerm = args.Term
+		rf.SetToFollower()
 	}
 
 	//只有currentTerm<=args.Term的时候，才会发送reset信号
@@ -468,7 +469,7 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapsho
 		rf.currentTerm = args.Term
 		rf.voteFor = args.LeaderID
 		rf.persist()
-		rf.sendSetToFollowerSignal()
+		rf.SetToFollower()
 	}
 
 	if args.LastIncludedIndex <= rf.diskLog[0].Idx {
@@ -512,9 +513,8 @@ func dealWithInstallSnapshotResponse(rf *Raft, server int, args *InstallSnapshot
 	defer rf.mu.Unlock()
 	currentTerm := rf.currentTerm
 	if currentTerm < reply.Term {
-		rf.setRole(ROLE_FOLLOWER)
 		rf.currentTerm = reply.Term
-		rf.sendSetToFollowerSignal()
+		rf.SetToFollower()
 		return
 	}
 
@@ -609,8 +609,8 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 		isLeader = true
 	}
 
-	logEntry := rf.persistToDisk(command)
-	MyDebug(dCommit, "S%d start %v logIndex=%v", rf.me, command, logEntry.Idx)
+	logEntry := rf.persistToDisk(command, term)
+	MyDebug(dCommit, "S%d %v LogIndex=%v,T=%v", rf.me, command, logEntry.Idx, logEntry.Term)
 	index = logEntry.Idx
 
 	rf.tryToCommit(logEntry)
@@ -859,9 +859,9 @@ func (rf *Raft) heartbeatToFollowers(args AppendEntriesArgs) {
 
 func (rf *Raft) SendAppendEntriesToFollower(server int, args AppendEntriesArgs) {
 	for {
-		if rf.killed() || 
-		   rf.getCurrentTerm() != args.Term || 
-		   rf.getRole() != ROLE_PRIMARY {
+		if rf.killed() ||
+			rf.getCurrentTerm() != args.Term ||
+			rf.getRole() != ROLE_PRIMARY {
 			return
 		}
 
@@ -879,9 +879,8 @@ func dealWithAppendEntriesResponse(rf *Raft, reply *AppendEntriesReply, server i
 	rf.mu.Lock()
 	currentTerm := rf.currentTerm
 	if currentTerm < reply.Term {
-		rf.setRole(ROLE_FOLLOWER)
 		rf.currentTerm = reply.Term
-		rf.sendSetToFollowerSignal()
+		rf.SetToFollower()
 		rf.mu.Unlock()
 		return
 	}
@@ -1068,7 +1067,7 @@ func (rf *Raft) tryToCommit(data logEntry) chan int {
 
 }
 
-func (rf *Raft) persistToDisk(command interface{}) logEntry {
+func (rf *Raft) persistToDisk(command interface{}, term int) logEntry {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 
@@ -1081,7 +1080,7 @@ func (rf *Raft) persistToDisk(command interface{}) logEntry {
 
 	logEntry := logEntry{
 		//[TODO]这里的currentTerm应该用上一个临界区的currentTerm
-		Term: rf.currentTerm,
+		Term: term,
 		Idx:  logIndex,
 		Data: command,
 	}
@@ -1202,14 +1201,14 @@ func (w *catchUpWorker) start() {
 			case startValue = <-w.ch:
 			}
 
-			if w.rf.getRole() != ROLE_PRIMARY {
-				continue
-			}
-
 			//[knowlegement]在getMatchIdx和getNextIndex分别加锁显然不是好主意，因为这两个是有匹配关系的
 			//所以需要在同一个临界区取得，而分别加锁就不是同一个临界区取得了。
 			//我的想法是，这种有依赖关系的两个变量，最好包到一个结构体里，get set都是获取这个结构体，好了
 			w.rf.mu.Lock()
+			if w.rf.role != ROLE_PRIMARY {
+				w.rf.mu.Unlock()
+				continue
+			}
 			matchIndex := w.rf.matchidx[w.followerID]
 			nextIndex := w.rf.nextidx[w.followerID]
 			offset := w.rf.diskLog[0].Idx
@@ -1493,7 +1492,7 @@ func (rf *Raft) getDiskLogIndex() int {
 	return rf.diskLogIndex
 }
 
-func (rf *Raft) sendSetToFollowerSignal() {
+func (rf *Raft) SetToFollower() {
 	if rf.getRole() != ROLE_FOLLOWER {
 		MyDebug(dVote, "S%d  -> follower ", rf.me)
 		rf.setRole(ROLE_FOLLOWER)

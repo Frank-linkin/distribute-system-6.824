@@ -228,4 +228,8 @@ to sender:
       if xIndex的term不同
       if tailIndex存在且不匹配
          找到最后一个匹配的logEntry,next=logEntry.Idx+1
+20221216 2D 通过1000次测试，2/1000的概率有npe错误
+2C有部分commit错误
+
+
       
