@@ -74,6 +74,14 @@ func (cfg *config) cleanup() {
 			cfg.kvservers[i].Kill()
 		}
 	}
+	
+
+	time.Sleep(1*time.Second)
+	for i := 0; i < len(cfg.kvservers); i++ {
+		if cfg.kvservers[i].rf != nil {
+			cfg.kvservers[i].rf.ShowRaftInfo()
+		}
+	}
 	cfg.net.Cleanup()
 	cfg.checkTimeout()
 }

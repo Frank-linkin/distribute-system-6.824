@@ -19,25 +19,26 @@ func DPrintf(format string, a ...interface{}) (n int, err error) {
 }
 
 // 下面是blog上的log相关组件
-type logTopic string
+type LogTopic string
 
 const (
-	dClient  logTopic = "CLNT"
-	dCommit  logTopic = "CMIT"
-	dDrop    logTopic = "DROP"
-	dError   logTopic = "ERRO"
-	dInfo    logTopic = "INFO"
-	dLeader  logTopic = "LEAD"
-	dLog     logTopic = "LOG1"
-	dLog2    logTopic = "LOG2"
-	dPersist logTopic = "PERS"
-	dSnap    logTopic = "SNAP"
-	dTerm    logTopic = "TERM"
-	dTest    logTopic = "TEST"
-	dTimer   logTopic = "TIMR"
-	dTrace   logTopic = "TRCE"
-	dVote    logTopic = "VOTE"
-	dWarn    logTopic = "WARN"
+	DClient  LogTopic = "CLNT"
+	dCommit  LogTopic = "CMIT"
+	dDrop    LogTopic = "DROP"
+	dError   LogTopic = "ERRO"
+	DInfo    LogTopic = "INFO"
+	dLeader  LogTopic = "LEAD"
+	dLog     LogTopic = "LOG1"
+	dLog2    LogTopic = "LOG2"
+	dPersist LogTopic = "PERS"
+	dSnap    LogTopic = "SNAP"
+	dTerm    LogTopic = "TERM"
+	dTest    LogTopic = "TEST"
+	dTimer   LogTopic = "TIMR"
+	dTrace   LogTopic = "TRCE"
+	dVote    LogTopic = "VOTE"
+	DWarn    LogTopic = "WARN"
+	DServer  LogTopic = "SERV"
 )
 
 var debugStart time.Time
@@ -50,7 +51,7 @@ func init() {
 	log.SetFlags(log.Flags() &^ (log.Ldate | log.Ltime))
 }
 
-func MyDebug(topic logTopic, format string, a ...interface{}) {
+func MyDebug(topic LogTopic, format string, a ...interface{}) {
 	if debugVerbosity >= 1 {
 		time := time.Since(debugStart).Microseconds()
 		time /= 100

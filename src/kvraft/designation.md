@@ -35,6 +35,9 @@ TODO：
 思考的是，application中，需要分布式保存的状态有哪些？
 1.maxIDs和lastestResp
 2.disk(即storage)
+
+20230210
+感受到了在日志打印RequestID的作用，使用一个RequestID就可以追踪一个Request所有的处理流程。刚开始没有这么做，在处理bug的时候难受地一笔。
 ## 1.2 Part2
 
 # 2.TestB

@@ -1,16 +1,20 @@
 package kvraft
 
-import "6.824/porcupine"
-import "6.824/models"
-import "testing"
-import "strconv"
-import "time"
-import "math/rand"
-import "strings"
-import "sync"
-import "sync/atomic"
-import "fmt"
-import "io/ioutil"
+import (
+	"fmt"
+	"io/ioutil"
+	"math/rand"
+	"strconv"
+	"strings"
+	"sync"
+	"sync/atomic"
+	"testing"
+	"time"
+
+	"6.824/models"
+	"6.824/porcupine"
+	"6.824/raft"
+)
 
 // The tester generously allows solutions to complete elections in one second
 // (much more than the paper's range of timeouts).
@@ -256,6 +260,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 		// log.Printf("Iteration %v\n", i)
 		atomic.StoreInt32(&done_clients, 0)
 		atomic.StoreInt32(&done_partitioner, 0)
+		DPrintf(raft.DWarn, "----new round")
 		go spawn_clients_and_wait(t, cfg, nclients, func(cli int, myck *Clerk, t *testing.T) {
 			j := 0
 			defer func() {
@@ -265,29 +270,33 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			if !randomkeys {
 				Put(cfg, myck, strconv.Itoa(cli), last, opLog, cli)
 			}
-			for atomic.LoadInt32(&done_clients) == 0 {
+			for atomic.LoadInt32(&done_clients) == 0 { //如果done_client一直为0
 				var key string
+				//if randomkeys是真，那么就生成随机Key，否则Key就是Client的编号
 				if randomkeys {
 					key = strconv.Itoa(rand.Intn(nclients))
 				} else {
 					key = strconv.Itoa(cli)
 				}
+				//value=x+client编号+j+y
 				nv := "x " + strconv.Itoa(cli) + " " + strconv.Itoa(j) + " y"
-				if (rand.Int() % 1000) < 500 {
+				if (rand.Int() % 1000) < 500 { //1/2的概率append
 					// log.Printf("%d: client new append %v\n", cli, nv)
 					Append(cfg, myck, key, nv, opLog, cli)
 					if !randomkeys {
 						last = NextValue(last, nv)
 					}
 					j++
-				} else if randomkeys && (rand.Int()%1000) < 100 {
+				} else if randomkeys && (rand.Int()%1000) < 100 { //1/10的概率Put,如果是Put的话就j++
 					// we only do this when using random keys, because it would break the
 					// check done after Get() operations
 					Put(cfg, myck, key, nv, opLog, cli)
 					j++
-				} else {
+				} else { //不然就是Get
 					// log.Printf("%d: client new get %v\n", cli, key)
 					v := Get(cfg, myck, key, opLog, cli)
+					DPrintf(raft.DWarn, "Get Value(%v)", v)
+
 					// the following check only makes sense when we're not using random keys
 					if !randomkeys && v != last {
 						t.Fatalf("get wrong value, key %v, wanted:\n%v\n, got\n%v\n", key, last, v)
@@ -302,6 +311,9 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			go partitioner(t, cfg, ch_partitioner, &done_partitioner)
 		}
 		time.Sleep(5 * time.Second)
+
+		//5秒之后就是将done_clients置为1
+		DPrintf(raft.DWarn, "---done_clients置为1")
 
 		atomic.StoreInt32(&done_clients, 1)     // tell clients to quit
 		atomic.StoreInt32(&done_partitioner, 1) // tell partitioner to quit
@@ -335,6 +347,7 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 		}
 
 		// log.Printf("wait for clients\n")
+		DPrintf(raft.DWarn, "---lastGet for all Key")
 		for i := 0; i < nclients; i++ {
 			// log.Printf("read from clients %d\n", i)
 			j := <-clnts[i]
@@ -345,10 +358,12 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 			// log.Printf("Check %v for client %d\n", j, i)
 			v := Get(cfg, ck, key, opLog, 0)
 			if !randomkeys {
+				DPrintf(raft.DWarn, "---check client Appends")
 				checkClntAppends(t, i, v, j)
 			}
 		}
 
+		//snapshot相关
 		if maxraftstate > 0 {
 			// Check maximum after the servers have processed all client
 			// requests and had time to checkpoint.
@@ -433,10 +448,12 @@ func TestSpeed3A(t *testing.T) {
 
 func TestConcurrent3A(t *testing.T) {
 	// Test: many clients (3A) ...
+	DPrintf(raft.DWarn, "Concurrent3A start")
 	GenericTest(t, "3A", 5, 5, false, false, false, -1, false)
 }
 
 func TestUnreliable3A(t *testing.T) {
+	DPrintf(raft.DWarn, "Unreliable3A start")
 	// Test: unreliable net, many clients (3A) ...
 	GenericTest(t, "3A", 5, 5, true, false, false, -1, false)
 }
@@ -568,6 +585,7 @@ func TestPersistOneClient3A(t *testing.T) {
 
 func TestPersistConcurrent3A(t *testing.T) {
 	// Test: restarts, many clients (3A) ...
+	DPrintf(raft.DWarn, "PersistConcurrent3A start")
 	GenericTest(t, "3A", 5, 5, false, true, false, -1, false)
 }
 
@@ -591,12 +609,10 @@ func TestPersistPartitionUnreliableLinearizable3A(t *testing.T) {
 	GenericTest(t, "3A", 15, 7, true, true, true, -1, true)
 }
 
-//
 // if one server falls behind, then rejoins, does it
 // recover by using the InstallSnapshot RPC?
 // also checks that majority discards committed log entries
 // even if minority doesn't respond.
-//
 func TestSnapshotRPC3B(t *testing.T) {
 	const nservers = 3
 	maxraftstate := 1000

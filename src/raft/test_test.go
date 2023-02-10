@@ -62,20 +62,20 @@ func TestReElection2A(t *testing.T) {
 	leader1 := cfg.checkOneLeader()
 
 	// if the leader disconnects, a new one should be elected.
-	MyDebug(dInfo, "--start disconnnect a server, a new leader should be elected")
+	MyDebug(DInfo, "--start disconnnect a server, a new leader should be elected")
 	cfg.disconnect(leader1)
 	cfg.checkOneLeader()
 
 	// if the old leader rejoins, that shouldn't
 	// disturb the new leader. and the old leader
 	// should switch to follower.
-	MyDebug(dInfo, "--start re-connnect the server, leader should be remain")
+	MyDebug(DInfo, "--start re-connnect the server, leader should be remain")
 	cfg.connect(leader1)
 	leader2 := cfg.checkOneLeader()
 
 	// if there's no quorum, no new leader should
 	// be elected.
-	MyDebug(dInfo, "--start disconnnect 2 server, now leader should be elected")
+	MyDebug(DInfo, "--start disconnnect 2 server, now leader should be elected")
 	cfg.disconnect(leader2)
 	cfg.disconnect((leader2 + 1) % servers)
 	time.Sleep(2 * RaftElectionTimeout)
@@ -85,12 +85,12 @@ func TestReElection2A(t *testing.T) {
 	cfg.checkNoLeader()
 
 	// if a quorum arises, it should elect a leader.
-	MyDebug(dInfo, "--connect a server, a leader should be elected")
+	MyDebug(DInfo, "--connect a server, a leader should be elected")
 	cfg.connect((leader2 + 1) % servers)
 	cfg.checkOneLeader()
 
 	// re-join of last node shouldn't prevent leader from existing.
-	MyDebug(dInfo, "--connect another server, a leader should be continue to be a leader")
+	MyDebug(DInfo, "--connect another server, a leader should be continue to be a leader")
 	cfg.connect(leader2)
 	cfg.checkOneLeader()
 
@@ -103,7 +103,7 @@ func TestManyElections2A(t *testing.T) {
 	defer cfg.cleanup()
 
 	cfg.begin("Test (2A): multiple elections")
-	MyDebug(dInfo, "--start ManyElection2A")
+	MyDebug(DInfo, "--start ManyElection2A")
 
 	cfg.checkOneLeader()
 
@@ -113,7 +113,7 @@ func TestManyElections2A(t *testing.T) {
 		i1 := rand.Int() % servers
 		i2 := rand.Int() % servers
 		i3 := rand.Int() % servers
-		MyDebug(dInfo, "--start disconnnect 3 server:%d %d %d", i1, i2, i3)
+		MyDebug(DInfo, "--start disconnnect 3 server:%d %d %d", i1, i2, i3)
 
 		cfg.disconnect(i1)
 		cfg.disconnect(i2)
@@ -123,7 +123,7 @@ func TestManyElections2A(t *testing.T) {
 		// or the remaining four should elect a new one.
 		cfg.checkOneLeader()
 
-		MyDebug(dInfo, "--start reconnnect 3 server:%d %d %d", i1, i2, i3)
+		MyDebug(DInfo, "--start reconnnect 3 server:%d %d %d", i1, i2, i3)
 		cfg.connect(i1)
 		cfg.connect(i2)
 		cfg.connect(i3)
@@ -306,7 +306,7 @@ func TestFailAgree2B(t *testing.T) {
 	// previous agreements, and be able to agree
 	// on new commands.
 	cfg.one(106, servers, true)
-	MyDebug(dInfo, "106 commit")
+	MyDebug(DInfo, "106 commit")
 	time.Sleep(RaftElectionTimeout)
 	cfg.one(107, servers, true)
 
@@ -706,7 +706,7 @@ loop:
 }
 
 func TestPersist12C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -782,7 +782,7 @@ s5 0  1(11)     1(12)    4(13)
 不用持久化。
 */
 func TestPersist22C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	servers := 5
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -845,7 +845,7 @@ s2 0  1(101) 1(102)  -            +
 s3 0  1(101) 1(102)       2(103)
 */
 func TestPersist32C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	servers := 3
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -901,7 +901,7 @@ s3 0   3(103) cmt->3    4(104)             5(105)        6(106)         L  7(107
 s4 0   3(103) cmt->3                  +    5(105)        6(106) cmt->6
 */
 func TestFigure82C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	servers := 5
 	cfg := make_config(t, servers, false, false)
 	defer cfg.cleanup()
@@ -961,7 +961,7 @@ func TestFigure82C(t *testing.T) {
 }
 
 func TestUnreliableAgree2C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	servers := 5
 	cfg := make_config(t, servers, true, false)
 	defer cfg.cleanup()
@@ -991,7 +991,7 @@ func TestUnreliableAgree2C(t *testing.T) {
 }
 
 func TestFigure8Unreliable2C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	servers := 5
 	cfg := make_config(t, servers, true, false)
 	defer cfg.cleanup()
@@ -1225,12 +1225,12 @@ func internalChurn(t *testing.T, unreliable bool) {
 }
 
 func TestReliableChurn2C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	internalChurn(t, false)
 }
 
 func TestUnreliableChurn2C(t *testing.T) {
-	LOG_FILE="log_2C"
+	LOG_FILE = "log_2C"
 	internalChurn(t, true)
 }
 
@@ -1307,28 +1307,28 @@ func snapcommon(t *testing.T, name string, disconnect bool, reliable bool, crash
 }
 
 func TestSnapshotBasic2D(t *testing.T) {
-	LOG_FILE="log_2D"
+	LOG_FILE = "log_2D"
 	snapcommon(t, "Test (2D): snapshots basic", false, true, false)
 }
 
 func TestSnapshotInstall2D(t *testing.T) {
-	LOG_FILE="log_2D"
+	LOG_FILE = "log_2D"
 	snapcommon(t, "Test (2D): install snapshots (disconnect)", true, true, false)
 }
 
 func TestSnapshotInstallUnreliable2D(t *testing.T) {
-	LOG_FILE="log_2D"
+	LOG_FILE = "log_2D"
 	snapcommon(t, "Test (2D): install snapshots (disconnect+unreliable)",
 		true, false, false)
 }
 
 func TestSnapshotInstallCrash2D(t *testing.T) {
-	LOG_FILE="log_2D"
+	LOG_FILE = "log_2D"
 	snapcommon(t, "Test (2D): install snapshots (crash)", false, true, true)
 }
 
 func TestSnapshotInstallUnCrash2D(t *testing.T) {
-	LOG_FILE="log_2D"
+	LOG_FILE = "log_2D"
 	snapcommon(t, "Test (2D): install snapshots (unreliable+crash)", false, false, true)
 }
 

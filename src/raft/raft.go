@@ -205,9 +205,9 @@ func (rf *Raft) readPersist(data []byte) {
 		rf.diskLogIndex = diskLogIndex
 		rf.commitIdx = commitIdx
 		//rf.lastApplied = lastApplied
-		MyDebug(dInfo, "S%v restore cTerm=%v,cmt=%v", rf.me, currentTerm, commitIdx)
+		MyDebug(DInfo, "S%v restore cTerm=%v,cmt=%v", rf.me, currentTerm, commitIdx)
 	}
-	MyDebug(dInfo, "S%v restore snapIdx=%v", rf.me, rf.diskLog[0].Idx)
+	MyDebug(DInfo, "S%v restore snapIdx=%v", rf.me, rf.diskLog[0].Idx)
 	rf.snapshot = rf.persister.ReadSnapshot()
 	rf.lastApplied = rf.diskLog[0].Idx
 }
@@ -245,7 +245,7 @@ func (rf *Raft) Snapshot(index int, snapshot []byte) {
 	rf.diskLog = newDiskLog
 	rf.diskLogIndex = len(rf.diskLog) - 1
 	rf.snapshot = snapshot
-	MyDebug(dInfo, "S%v make snapshot,Idx=%v", rf.me, index)
+	MyDebug(DInfo, "S%v make snapshot,Idx=%v", rf.me, index)
 }
 
 // example RequestVote RPC arguments structure.
@@ -351,11 +351,11 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	if args.LogEntries == nil && args.PrevLogTerm != args.Term {
 		reply.Term = rf.currentTerm
 		reply.Success = false
-		MyDebug(dInfo, "S%d heartbeat from %v, but no sync", rf.me, args.LeaderID)
+		MyDebug(DInfo, "S%d heartbeat from %v, but no sync", rf.me, args.LeaderID)
 		return
 	}
 
-	MyDebug(dInfo, "S%ds%v,term=%v,PLTerm=%v,PLIdx=%v", rf.me, args.LeaderID, args.Term, args.PrevLogIdx, args.PrevLogIdx)
+	MyDebug(DInfo, "S%ds%v,term=%v,PLTerm=%v,PLIdx=%v", rf.me, args.LeaderID, args.Term, args.PrevLogIdx, args.PrevLogIdx)
 
 	offset := rf.diskLog[0].Idx
 	lastLogEntry := rf.diskLog[rf.diskLogIndex]
@@ -373,7 +373,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 	if args.LogEntries == nil {
 		if args.LeaderCommit > rf.commitIdx && rf.commitIdx < lastLogEntry.Idx {
 			newCommitIndex := Min(args.LeaderCommit, lastLogEntry.Idx)
-			MyDebug(dCommit, "S%d commitIdx:%v->%v", rf.me, rf.commitIdx, newCommitIndex)
+			MyDebug(dCommit, "S%d cmtIdx%v->%v", rf.me, rf.commitIdx, newCommitIndex)
 			rf.commitIdx = newCommitIndex
 			rf.persist()
 			rf.cmdApplier.signalToApplyLogEntry()
@@ -382,7 +382,7 @@ func (rf *Raft) AppendEntries(args *AppendEntriesArgs, reply *AppendEntriesReply
 		reply.Success = true
 		return
 	}
-	MyDebug(dInfo, "S%d len(logEntries)=%v,logIdx=%v", rf.me, len(args.LogEntries), args.LogEntries[0].Idx)
+	MyDebug(DInfo, "S%d len(logEntries)=%v,logIdx=%v", rf.me, len(args.LogEntries), args.LogEntries[0].Idx)
 
 	// 走到这一定有数据
 	rf.persistLogEntriesToDiskLocked(args.LogEntries, args.LeaderCommit)
@@ -638,7 +638,7 @@ func (rf *Raft) Kill() {
 	}
 	atomic.StoreInt32(&rf.dead, 1)
 	// Your code here, if desired.
-	MyDebug(dInfo, "S%d service killed", rf.me)
+	MyDebug(DInfo, "S%d service killed", rf.me)
 }
 
 func (rf *Raft) killed() bool {
@@ -650,7 +650,7 @@ func (rf *Raft) killed() bool {
 // heartsbeats recently.
 // 可以看看别的项目里candidate,follower,Primary的转化是怎么写的
 func (rf *Raft) ticker() {
-	MyDebug(dInfo, "S%d start being a follower", rf.me)
+	MyDebug(DInfo, "S%d start being a follower", rf.me)
 	//TODO:这里在真正去写可以改成状态机
 	//https://github.com/salamer/naive_raft/blob/master/node.go
 	for rf.killed() == false {
@@ -680,7 +680,7 @@ func (rf *Raft) ticker() {
 				case <-rf.followerCh:
 					timeOut := (ELECTION_TIMEOUT_BASE + (rand.Int()%ELECTION_TIMEOUT_RATIO)*ELECTION_TIMEOUT_INTERVAl)
 					electionTicker.Reset(time.Duration(timeOut) * time.Millisecond)
-					//MyDebug(dInfo, "S%d reset, follower -> follower", rf.me)
+					//MyDebug(DInfo, "S%d reset, follower -> follower", rf.me)
 				case <-electionTicker.C:
 					MyDebug(dVote, "S%d electionTimeout,follower -> candidate", rf.me)
 					rf.setRole(ROLE_CANDIDATE)
@@ -711,7 +711,7 @@ func (rf *Raft) ticker() {
 				rf.mu.Unlock()
 
 			case <-electionTicker.C:
-				MyDebug(dInfo, "S%d candidate electionTimeout,restart election", rf.me)
+				MyDebug(DInfo, "S%d candidate electionTimeout,restart election", rf.me)
 			case <-rf.followerCh:
 
 			case <-rf.exitCh:
@@ -748,7 +748,7 @@ func (rf *Raft) ticker() {
 			}
 
 			heartBeatArgs, _ := rf.getAppendEntriesArgs(nil)
-			MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, heartBeatArgs.Term, accessionTime.Nanosecond())
+			MyDebug(DInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, heartBeatArgs.Term, accessionTime.Nanosecond())
 			rf.heartbeatToFollowers(*heartBeatArgs)
 			heartbeatTicker := time.NewTicker(time.Duration(HEARTBEAT_INTERVAL) * time.Millisecond)
 		PRIMARY_LOOP:
@@ -766,14 +766,14 @@ func (rf *Raft) ticker() {
 					break PRIMARY_LOOP
 				case <-heartbeatTicker.C:
 					changeMutableForHeartbeat(rf, heartBeatArgs)
-					MyDebug(dInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, heartBeatArgs.Term, accessionTime.Nanosecond())
+					MyDebug(DInfo, "S%d beat to others,term=%d,accessTime=%v,", rf.me, heartBeatArgs.Term, accessionTime.Nanosecond())
 					rf.heartbeatToFollowers(*heartBeatArgs)
 				}
 			}
 		}
 	}
 EXIT:
-	MyDebug(dWarn, "S%d exit ticker", rf.me)
+	MyDebug(DWarn, "S%d exit ticker", rf.me)
 }
 
 func changeMutableForHeartbeat(rf *Raft, args *AppendEntriesArgs) {
@@ -1196,7 +1196,7 @@ func (w *catchUpWorker) start() {
 			var startValue int
 			select {
 			case <-w.exitCh:
-				MyDebug(dTrace, "S%d s%v catupWorker exit", w.rf.me, w.followerID)
+				//MyDebug(dTrace, "S%d s%v catupWorker exit", w.rf.me, w.followerID)
 				return
 			case startValue = <-w.ch:
 			}
@@ -1351,7 +1351,7 @@ func (c *commitUpdater) start() {
 			state := atomic.LoadInt32(&c.state)
 			if state > 1 {
 				c.exitCh <- true
-				MyDebug(dTrace, "S%d commitupdater killed", c.rf.me)
+				//MyDebug(dTrace, "S%d commitupdater killed", c.rf.me)
 				return
 			}
 			<-ticker.C
@@ -1363,7 +1363,7 @@ func (c *commitUpdater) start() {
 func (c *commitUpdater) stop() {
 	atomic.AddInt32(&c.state, 1)
 	//<-c.exitCh
-	MyDebug(dTrace, "S%d commitupdater killed", c.rf.me)
+	//MyDebug(dTrace, "S%d commitupdater killed", c.rf.me)
 }
 
 func (c *commitUpdater) checkCommitUpdate() {
@@ -1504,7 +1504,7 @@ func (rf *Raft) SetToFollower() {
 	}
 }
 
-func (rf *Raft) showRaftInfo() {
+func (rf *Raft) ShowRaftInfo() {
 	rf.showDiskLog()
 }
 func (rf *Raft) showDiskLog() {
@@ -1558,7 +1558,7 @@ func (ca *commandApplier) start() {
 			}
 		}
 
-		MyDebug(dInfo, "S%d commandApplier exit", ca.rf.me)
+		MyDebug(DInfo, "S%d commandApplier exit", ca.rf.me)
 	}()
 }
 
@@ -1591,7 +1591,7 @@ func (rf *Raft) applyLogEntriesToStateMache() {
 	oldLastApplied := logEntries[0].Idx - 1
 	lastApplied := logEntries[len(logEntries)-1].Idx
 
-	MyDebug(dInfo, "S%v lastApply %d->%d", rf.me, oldLastApplied, lastApplied)
+	MyDebug(DInfo, "S%v lastApply %d->%d", rf.me, oldLastApplied, lastApplied)
 	rf.tryToSetLastApplied(lastApplied)
 }
 

@@ -12,11 +12,13 @@ import (
 	"github.com/sasha-s/go-deadlock"
 )
 
-const Debug = false
+const Debug = true
 
-func DPrintf(format string, a ...interface{}) (n int, err error) {
+func DPrintf(topic raft.LogTopic, format string, a ...interface{}) (n int, err error) {
 	if Debug {
 		log.Printf(format, a...)
+	} else {
+		raft.MyDebug(topic, format, a...)
 	}
 	return
 }
@@ -43,18 +45,41 @@ type KVServer struct {
 	maxraftstate int // snapshot if log grows this big
 
 	// Your definitions here.
-	disk map[string]string
+	disk map[string]diskValue
 
-	cmtNotifier commitApplier
+	commitApplier commitApplier
 
-	maxIDs      []int
-	lastestResp []string
+	lastestInfoLock deadlock.RWMutex
+	maxIDs          []int
+	lastestResp     []string
 }
 
 type diskValue struct {
-	lock  deadlock.RWMutex
-	value string
+	//lock  deadlock.RWMutex
+	value     string
+	versionID int
 }
+
+// 既然说用一个大锁，就用一个大锁
+// func(dv *diskValue)setValue(value string,versionID int) {
+// 	dv.lock.Lock()
+// 	defer dv.lock.Unlock()
+
+// 	dv.value = value
+// 	dv.versionID = versionID
+// }
+
+// func(dv *diskValue)getValue()string {
+// 	dv.lock.RLock()
+// 	defer dv.lock.RUnlock()
+// 	return dv.value
+// }
+
+// func(dv *diskValue)getVersionID()int {
+// 	dv.lock.RLock()
+// 	defer dv.lock.RUnlock()
+// 	return dv.versionID
+// }
 
 const OP_TYPE_GET = 0
 const OP_TYPE_PUT = 1
@@ -64,55 +89,55 @@ const COMMIT_TIMEOUT = 5
 const ERR_COMMIT_TIMEOUT = "ERR:commit timeout"
 const ERR_NOT_LEADER = "ERR:I'm not leader"
 const ERR_COMMIT_FAIL = "ERR:commit fail, please retry"
+
 func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 	// Your code here.
-	if args.RequestID == kv.maxIDs[args.ClientID] {
-		reply.Value = kv.lastestResp[args.ClientID]
+
+	lastRequestID, lastResponse := kv.getLastestInfo(args.ClientID)
+	if args.RequestID == lastRequestID {
+		reply.Value = lastResponse
 		return
 	}
 
 	cmd := Op{
-		OpType: OP_TYPE_GET,
-		Key:    args.Key,
+		OpType:    OP_TYPE_GET,
+		Key:       args.Key,
+		RequestID: args.RequestID,
+		ClientID:  args.ClientID,
 	}
 	logIndex, _, isLeader := kv.rf.Start(cmd)
 	if !isLeader {
-		reply.Err = "Error:not leader"
+		reply.Err = ERR_NOT_LEADER
 		return
 	}
+	DPrintf(raft.DServer, "P%d requestID=%v Get k[%v] logIdx=%v", kv.me, args.RequestID, args.Key, logIndex)
 
 	var op Op
-	waitChan := kv.cmtNotifier.addWaiter(logIndex)
+	waitChan := kv.commitApplier.addWaiter(logIndex)
 	timeOut := time.NewTimer(COMMIT_TIMEOUT * time.Second)
 	select {
 	case op = <-waitChan:
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
+		DPrintf(raft.DServer, "P%d RequestID=%v Timeout", kv.me, args.RequestID)
 		return
 	}
 
 	if op.ClientID != args.ClientID || op.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		return  
+		DPrintf(raft.DServer, "P%d RequestID=%v CMTfail", kv.me, args.RequestID)
+		return
 	}
-
-
-	kv.mu.Lock()
-	defer kv.mu.Unlock()
-	value := kv.disk[args.Key]
-	
-	kv.lastestResp[args.ClientID] = reply.Value
-	kv.maxIDs[args.ClientID] = args.ClientID
-
-	reply.Value = value
+	reply.Value = op.Value
 
 }
 
 func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	// Your code here.
 
-	if args.RequestID == kv.maxIDs[args.ClientID] {
+	lastRequestID, _ := kv.getLastestInfo(args.ClientID)
+	if args.RequestID == lastRequestID {
 		return
 	}
 
@@ -124,65 +149,95 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 		opType = 2
 	}
 	cmd := Op{
-		OpType: opType,
-		Key:    args.Key,
-		Value:  args.Value,
+		OpType:    opType,
+		Key:       args.Key,
+		Value:     args.Value,
+		RequestID: args.RequestID,
+		ClientID:  args.ClientID,
 	}
 
 	logIndex, _, isLeader := kv.rf.Start(cmd)
 	if !isLeader {
-		reply.Err = "Error:not leader"
+		reply.Err = ERR_NOT_LEADER
 		return
 	}
+	DPrintf(raft.DServer, "P%d requestID=%v %v k[%v](%v)  logIdx=%v", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
 
 	var op Op
-	waitChan := kv.cmtNotifier.addWaiter(logIndex)
+	waitChan := kv.commitApplier.addWaiter(logIndex)
 	timeOut := time.NewTimer(COMMIT_TIMEOUT * time.Second)
 	select {
 	case op = <-waitChan:
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
+		DPrintf(raft.DServer, "P%d requestID=%v %v k[%v]v[%v] logIdx=%v Timeout", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
 		return
 	}
 
 	if op.ClientID != args.ClientID || op.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		return  
+		DPrintf(raft.DServer, "P%d requestID=%v %v k[%v]v[%v] logIdx=%v CMT fail", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
+		return
 	}
+}
 
+func applyOp(kv *KVServer, op Op) string {
 	kv.mu.Lock()
 	defer kv.mu.Unlock()
-	value := kv.disk[args.Key]
 
-	kv.maxIDs[args.ClientID] = args.ClientID
-	switch args.Op {
-	case "Put":
-		value = args.Value
-	case "Append":
-		value = value + args.Value
+	resp := ""
+	valueWrapper, ok := kv.disk[op.Key]
+	if ok && valueWrapper.versionID >= op.RequestID {
+		return ""
 	}
-	kv.disk[args.Key] = value
+
+	switch op.OpType {
+	case OP_TYPE_GET:
+		if ok {
+			resp = valueWrapper.value
+			DPrintf(raft.DInfo, "P%v requestID=%v get[%v]->(%v)", kv.me, op.RequestID, op.Key, resp)
+		} else {
+			resp = ""
+			DPrintf(raft.DInfo, "P%v requestID=%v get[%v] no this key", kv.me, op.RequestID, op.Key)
+		}
+
+	case OP_TYPE_PUT:
+		kv.disk[op.Key] = diskValue{
+			value:     op.Value,
+			versionID: op.RequestID,
+		}
+		DPrintf(raft.DInfo, "P%v requestID=%v put[%v]->(%v)", kv.me, op.RequestID, op.Key, op.Value)
+		resp = op.Value
+	case OP_TYPE_APPEND:
+		oldValue := ""
+		if ok {
+			oldValue = valueWrapper.value
+		} else {
+			valueWrapper = diskValue{}
+		}
+		valueWrapper.value = oldValue + op.Value
+		valueWrapper.versionID = op.RequestID
+		kv.disk[op.Key] = valueWrapper
+		resp = valueWrapper.value
+		DPrintf(raft.DInfo, "P%v requestID=%v append[%v](%v)->(%v) ", kv.me, op.RequestID, op.Key, op.Value, valueWrapper.value)
+	}
+	kv.setLastestInfo(op.ClientID, op.RequestID, resp)
+
+	return resp
 }
 
-func (kv *KVServer) setMaxIDs(clientID int, requestID int) {
+func (kv *KVServer) setLastestInfo(clientID int, requestID int, response string) {
+	kv.lastestInfoLock.Lock()
+	defer kv.lastestInfoLock.Unlock()
 	kv.maxIDs[clientID] = requestID
-}
-
-func (kv *KVServer) setLatestResponse(clientID int, response string) {
 	kv.lastestResp[clientID] = response
 }
 
-func (kv *KVServer) applyOp(op Op) string {
-	switch op.OpType {
-	case 0:
-		return kv.disk[op.Key]
-	case 1:
-		kv.disk[op.Key] = op.Value
-	case 2:
-		kv.disk[op.Key] = kv.disk[op.Key] + op.Value
-	}
-	return ""
+func (kv *KVServer) getLastestInfo(clientID int) (int, string) {
+	kv.lastestInfoLock.RLock()
+	defer kv.lastestInfoLock.RUnlock()
+	return kv.maxIDs[clientID], kv.lastestResp[clientID]
 }
 
 // the tester calls Kill() when a KVServer instance won't
@@ -195,6 +250,7 @@ func (kv *KVServer) applyOp(op Op) string {
 // to suppress debug output from a Kill()ed instance.
 func (kv *KVServer) Kill() {
 	atomic.StoreInt32(&kv.dead, 1)
+	kv.commitApplier.stop()
 	kv.rf.Kill()
 	// Your code here, if desired.
 }
@@ -231,9 +287,25 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.rf = raft.Make(servers, me, persister, kv.applyCh)
 
 	// You may need initialization code here.
-	kv.cmtNotifier = NewCommitApplier(kv.applyCh)
+	kv.commitApplier = NewCommitApplier(kv.applyCh, kv)
 	kv.maxIDs = make([]int, len(servers))
 	kv.lastestResp = make([]string, len(servers))
+	kv.disk = make(map[string]diskValue)
+	kv.lastestInfoLock = deadlock.RWMutex{}
+
+	//配置log
+	// file := "log_app"
+	// if len(LOG_FILE) == 0 {
+	// 	LOG_FILE = "log"
+	// }
+	// logFile, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0766)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// log.SetOutput(logFile)
+	kv.commitApplier.start()
+
+	log.Printf("An Kvserver made,len(server)=%v\n", len(servers))
 	return kv
 }
 
@@ -244,15 +316,18 @@ type commitApplier struct {
 	applyCh chan raft.ApplyMsg
 
 	kvserver *KVServer
+	me       int
 
 	exitCh chan interface{} //[TODO]只关注信号，不关注信号内容的chan咋写呢？
 }
 
 // [TODO] chan本身就是个指针，按说不加*号完全没有毛病
-func NewCommitApplier(applyCh chan raft.ApplyMsg) commitApplier {
+func NewCommitApplier(applyCh chan raft.ApplyMsg, kvserver *KVServer) commitApplier {
 	return commitApplier{
-		applyCh: applyCh,
-		exitCh:  make(chan interface{}),
+		applyCh:  applyCh,
+		exitCh:   make(chan interface{}),
+		waiters:  make(map[int]chan Op),
+		kvserver: kvserver,
 	}
 }
 
@@ -268,9 +343,12 @@ func (ca *commitApplier) start() {
 			select {
 			case applyMsg := <-ca.applyCh:
 				if applyMsg.CommandValid {
+
 					notifyChan := ca.getWaiter(applyMsg.CommandIndex)
 					op, _ := applyMsg.Command.(Op)
+					//DPrintf(raft.DServer, "S%d Command %v", ca.kvserver.me, op)
 
+					op.Value = applyOp(ca.kvserver, op)
 					if notifyChan != nil {
 						notifyChan <- op
 					}
