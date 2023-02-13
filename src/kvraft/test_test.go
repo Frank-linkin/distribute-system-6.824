@@ -295,10 +295,11 @@ func GenericTest(t *testing.T, part string, nclients int, nservers int, unreliab
 				} else { //不然就是Get
 					// log.Printf("%d: client new get %v\n", cli, key)
 					v := Get(cfg, myck, key, opLog, cli)
-					DPrintf(raft.DWarn, "Get Value(%v)", v)
 
 					// the following check only makes sense when we're not using random keys
 					if !randomkeys && v != last {
+						DPrintf(raft.DWarn, "--Get[%v] Value(%v)", key, v)
+
 						t.Fatalf("get wrong value, key %v, wanted:\n%v\n, got\n%v\n", key, last, v)
 					}
 				}
@@ -471,6 +472,7 @@ func TestUnreliableOneKey3A(t *testing.T) {
 
 	const nclient = 5
 	const upto = 10
+	//启动5个Client，每个Client，append 10 个值
 	spawn_clients_and_wait(t, cfg, nclient, func(me int, myck *Clerk, t *testing.T) {
 		n := 0
 		for n < upto {
@@ -503,13 +505,16 @@ func TestOnePartition3A(t *testing.T) {
 
 	cfg.begin("Test: progress in majority (3A)")
 
+	DPrintf(raft.DWarn, "--make partition and connect to each interally")
 	p1, p2 := cfg.make_partition()
 	cfg.partition(p1, p2)
 
+	DPrintf(raft.DWarn, "--ckp1->partition1,ckp2a,ckp2b->partition2")
 	ckp1 := cfg.makeClient(p1)  // connect ckp1 to p1
 	ckp2a := cfg.makeClient(p2) // connect ckp2a to p2
 	ckp2b := cfg.makeClient(p2) // connect ckp2b to p2
 
+	DPrintf(raft.DWarn, "--put[1](14)")
 	Put(cfg, ckp1, "1", "14", nil, -1)
 	check(cfg, t, ckp1, "1", "14")
 

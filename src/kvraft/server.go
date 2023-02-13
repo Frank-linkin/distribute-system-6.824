@@ -2,6 +2,7 @@ package kvraft
 
 import (
 	"log"
+	"strconv"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -31,8 +32,8 @@ type Op struct {
 	Key    string
 	Value  string
 
-	ClientID  int
-	RequestID int
+	ClientID  string
+	RequestID string
 }
 
 type KVServer struct {
@@ -50,8 +51,10 @@ type KVServer struct {
 	commitApplier commitApplier
 
 	lastestInfoLock deadlock.RWMutex
-	maxIDs          []int
-	lastestResp     []string
+	maxNums         map[string]int
+	lastestResp     map[string]string
+
+	requestIDToLogIndex map[string]int
 }
 
 type diskValue struct {
@@ -84,17 +87,21 @@ type diskValue struct {
 const OP_TYPE_GET = 0
 const OP_TYPE_PUT = 1
 const OP_TYPE_APPEND = 2
-const COMMIT_TIMEOUT = 5
+const COMMIT_TIMEOUT = 8
 
 const ERR_COMMIT_TIMEOUT = "ERR:commit timeout"
 const ERR_NOT_LEADER = "ERR:I'm not leader"
 const ERR_COMMIT_FAIL = "ERR:commit fail, please retry"
 
+//const ERR_REQUEST_HAS_ALREADY_EXECUTED="ERR:request has already executed"
+
 func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 	// Your code here.
 
-	lastRequestID, lastResponse := kv.getLastestInfo(args.ClientID)
-	if args.RequestID == lastRequestID {
+	lastRequestNum, lastResponse := kv.getLastestInfo(args.ClientID)
+	requestNum := requestIDToRequestNum(args.RequestID)
+	if requestNum <= lastRequestNum {
+		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestID=%v", kv.me, args.RequestID, lastRequestNum)
 		reply.Value = lastResponse
 		return
 	}
@@ -130,14 +137,14 @@ func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 		return
 	}
 	reply.Value = op.Value
-
+	DPrintf(raft.DServer, "P%d RequestID=%v reply.Value=%v", kv.me, args.RequestID, reply.Value)
 }
 
 func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	// Your code here.
-
-	lastRequestID, _ := kv.getLastestInfo(args.ClientID)
-	if args.RequestID == lastRequestID {
+	lastRequestNum, _ := kv.getLastestInfo(args.ClientID)
+	if requestIDToRequestNum(args.RequestID) <= lastRequestNum {
+		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestNum=%v", kv.me, args.RequestID, lastRequestNum)
 		return
 	}
 
@@ -163,6 +170,8 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	}
 	DPrintf(raft.DServer, "P%d requestID=%v %v k[%v](%v)  logIdx=%v", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
 
+	kv.requestIDToLogIndex[args.RequestID] = logIndex
+
 	var op Op
 	waitChan := kv.commitApplier.addWaiter(logIndex)
 	timeOut := time.NewTimer(COMMIT_TIMEOUT * time.Second)
@@ -182,13 +191,13 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	}
 }
 
-func applyOp(kv *KVServer, op Op) string {
+func applyOp(kv *KVServer, op Op, logIndex int) string {
 	kv.mu.Lock()
 	defer kv.mu.Unlock()
 
 	resp := ""
 	valueWrapper, ok := kv.disk[op.Key]
-	if ok && valueWrapper.versionID >= op.RequestID {
+	if ok && valueWrapper.versionID >= logIndex {
 		return ""
 	}
 
@@ -196,18 +205,18 @@ func applyOp(kv *KVServer, op Op) string {
 	case OP_TYPE_GET:
 		if ok {
 			resp = valueWrapper.value
-			DPrintf(raft.DInfo, "P%v requestID=%v get[%v]->(%v)", kv.me, op.RequestID, op.Key, resp)
+			DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v get[%v]->(%v)", kv.me, op.RequestID, logIndex, op.Key, resp)
 		} else {
 			resp = ""
-			DPrintf(raft.DInfo, "P%v requestID=%v get[%v] no this key", kv.me, op.RequestID, op.Key)
+			DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v get[%v] no this key", kv.me, op.RequestID, logIndex, op.Key)
 		}
 
 	case OP_TYPE_PUT:
 		kv.disk[op.Key] = diskValue{
 			value:     op.Value,
-			versionID: op.RequestID,
+			versionID: logIndex,
 		}
-		DPrintf(raft.DInfo, "P%v requestID=%v put[%v]->(%v)", kv.me, op.RequestID, op.Key, op.Value)
+		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v put[%v]->(%v)", kv.me, op.RequestID, logIndex, op.Key, op.Value)
 		resp = op.Value
 	case OP_TYPE_APPEND:
 		oldValue := ""
@@ -217,27 +226,27 @@ func applyOp(kv *KVServer, op Op) string {
 			valueWrapper = diskValue{}
 		}
 		valueWrapper.value = oldValue + op.Value
-		valueWrapper.versionID = op.RequestID
+		valueWrapper.versionID = logIndex
 		kv.disk[op.Key] = valueWrapper
 		resp = valueWrapper.value
-		DPrintf(raft.DInfo, "P%v requestID=%v append[%v](%v)->(%v) ", kv.me, op.RequestID, op.Key, op.Value, valueWrapper.value)
+		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v append[%v](%v)->(%v) ", kv.me, op.RequestID, logIndex, op.Key, op.Value, valueWrapper.value)
 	}
-	kv.setLastestInfo(op.ClientID, op.RequestID, resp)
+	kv.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), resp)
 
 	return resp
 }
 
-func (kv *KVServer) setLastestInfo(clientID int, requestID int, response string) {
+func (kv *KVServer) setLastestInfo(clientID string, requestNum int, response string) {
 	kv.lastestInfoLock.Lock()
 	defer kv.lastestInfoLock.Unlock()
-	kv.maxIDs[clientID] = requestID
+	kv.maxNums[clientID] = requestNum
 	kv.lastestResp[clientID] = response
 }
 
-func (kv *KVServer) getLastestInfo(clientID int) (int, string) {
+func (kv *KVServer) getLastestInfo(clientID string) (int, string) {
 	kv.lastestInfoLock.RLock()
 	defer kv.lastestInfoLock.RUnlock()
-	return kv.maxIDs[clientID], kv.lastestResp[clientID]
+	return kv.maxNums[clientID], kv.lastestResp[clientID]
 }
 
 // the tester calls Kill() when a KVServer instance won't
@@ -288,10 +297,11 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 
 	// You may need initialization code here.
 	kv.commitApplier = NewCommitApplier(kv.applyCh, kv)
-	kv.maxIDs = make([]int, len(servers))
-	kv.lastestResp = make([]string, len(servers))
+	kv.maxNums = make(map[string]int)
+	kv.lastestResp = make(map[string]string)
 	kv.disk = make(map[string]diskValue)
 	kv.lastestInfoLock = deadlock.RWMutex{}
+	kv.requestIDToLogIndex = make(map[string]int)
 
 	//配置log
 	// file := "log_app"
@@ -315,8 +325,8 @@ type commitApplier struct {
 
 	applyCh chan raft.ApplyMsg
 
-	kvserver *KVServer
-	me       int
+	kvserver     *KVServer
+	lastLogIndex int32
 
 	exitCh chan interface{} //[TODO]只关注信号，不关注信号内容的chan咋写呢？
 }
@@ -348,7 +358,11 @@ func (ca *commitApplier) start() {
 					op, _ := applyMsg.Command.(Op)
 					//DPrintf(raft.DServer, "S%d Command %v", ca.kvserver.me, op)
 
-					op.Value = applyOp(ca.kvserver, op)
+					maxRqNum, _ := ca.kvserver.getLastestInfo(op.ClientID)
+					if maxRqNum < requestIDToRequestNum(op.RequestID) || op.OpType == OP_TYPE_GET {
+						op.Value = applyOp(ca.kvserver, op, applyMsg.CommandIndex)
+					}
+
 					if notifyChan != nil {
 						notifyChan <- op
 					}
@@ -383,4 +397,17 @@ func (ca *commitApplier) addWaiter(logIndex int) chan Op {
 	notifyChan := make(chan Op, 1)
 	ca.waiters[logIndex] = notifyChan
 	return notifyChan
+}
+
+// func (ca *commitApplier) getAppliedLogIndex() int {
+// 	return int(atomic.LoadInt32(&ca.lastLogIndex))
+// }
+
+// func (ca *commitApplier) setAppliedLogIndex(logIndex int) {
+// 	atomic.StoreInt32(&ca.lastLogIndex, int32(logIndex))
+// }
+
+func requestIDToRequestNum(requestID string) int {
+	resp, _ := strconv.Atoi(requestID[12:])
+	return resp
 }

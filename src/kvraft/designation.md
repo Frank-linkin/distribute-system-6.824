@@ -38,6 +38,10 @@ TODO：
 
 20230210
 感受到了在日志打印RequestID的作用，使用一个RequestID就可以追踪一个Request所有的处理流程。刚开始没有这么做，在处理bug的时候难受地一笔。
+
+关于如果一个ReadRequest获得了两个以上的logIndex,则每个logIndex都执行。
+
+
 ## 1.2 Part2
 
 # 2.TestB

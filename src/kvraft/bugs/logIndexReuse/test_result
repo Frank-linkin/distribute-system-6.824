@@ -1,0 +1,6 @@
+Test: partitions, many clients (3A) ...
+--- FAIL: TestManyPartitionsManyClients3A (16.12s)
+    test_test.go:152: duplicate element x 1 19 y in Append result
+FAIL
+exit status 1
+FAIL	6.824/kvraft	16.129s

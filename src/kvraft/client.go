@@ -3,11 +3,14 @@ package kvraft
 import (
 	"crypto/rand"
 	"math/big"
+	"strconv"
 	"sync/atomic"
 	"time"
 
 	"6.824/labrpc"
 	"6.824/raft"
+	"github.com/google/uuid"
+	"github.com/sasha-s/go-deadlock"
 )
 
 type Clerk struct {
@@ -15,7 +18,10 @@ type Clerk struct {
 	// You will have to modify this struct.
 	leader int32
 
-	requestID int32
+	requestID     int32
+	monotonicLock deadlock.Mutex
+
+	clientID string
 }
 
 func nrand() int64 {
@@ -32,6 +38,10 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 	ck.leader = 0
 
 	ck.requestID = 0
+
+	ck.monotonicLock = deadlock.Mutex{}
+
+	ck.clientID = uuid.NewString()
 	return ck
 }
 
@@ -43,9 +53,8 @@ func (ck *Clerk) setLeader(leader int) {
 	atomic.StoreInt32(&ck.leader, int32(leader))
 }
 
-var requestID int32=0
-func (ck *Clerk) getRequestID() int32 {
-	return atomic.AddInt32(&requestID, 1)
+func (ck *Clerk) getRequestNum() int32 {
+	return atomic.AddInt32(&ck.requestID, 1)
 }
 
 // fetch the current value for a key.
@@ -63,39 +72,57 @@ func (ck *Clerk) Get(key string) string {
 
 	var target int
 	var value string
-	initialLeader := ck.getLeader()
-	requestID := ck.getRequestID()
+
+	// ck.monotonicLock.Lock()
+	// defer ck.monotonicLock.Unlock()
+
+	requestID := buildRequestID(ck.clientID, int(ck.getRequestNum()))
 SERVER_LOOP:
+	initialLeader := ck.getLeader()
+	continueLoop:=false
 	for offset := 0; offset < len(ck.servers); offset++ {
 		reply := GetReply{}
 		target = (initialLeader + offset) % len(ck.servers)
+		//DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v len(servers)=%v", ck.clientID, target, requestID, len(ck.servers))
 		args := GetArgs{
 			Key:       key,
-			RequestID: int(requestID),
-			ClientID:  target,
+			RequestID: requestID,
+			ClientID:  ck.clientID,
 		}
-		DPrintf(raft.DClient, "C%v requestID=%v Get[%v]=(%v)", target, requestID, args.Key, reply.Value)
+		DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v prepare to Get[%v]", ck.clientID, target, requestID, args.Key)
 
-		success := false
-		for !success {
+		success := ck.sendGet(target, &args, &reply)
+		count := 0
+		for !success && count < 3 {
+			time.Sleep(time.Second)
+			DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v Get[%v]=(%v) retry", ck.clientID, target, requestID, args.Key, reply.Value)
 			success = ck.sendGet(target, &args, &reply)
+			count++
 		}
-
-		if reply.Err == "" {
-			DPrintf(raft.DClient, "C%v requestID=%v Get[%v]=(%v) success", target, requestID, args.Key, reply.Value)
-			value = reply.Value
+		if success && reply.Err=="" {
+			continueLoop = false
+			DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v Get[%v]=(%v) success", ck.clientID, target, requestID, args.Key, reply.Value)			
 			ck.setLeader(target)
-			return value
-		} else {
-			if reply.Err == ERR_NOT_LEADER && offset == len(ck.servers)-1 {
-				DPrintf(raft.DClient, "C%d requestID=%v, no leader, wait for 1 second\n", target, requestID)
-				time.Sleep(1 * time.Second)
-				goto SERVER_LOOP
-			}
+			value = reply.Value
+			break
+		}else if reply.Err == ERR_COMMIT_TIMEOUT {
+			offset--
+
+		}else{
+			continueLoop = true
 		}
 	}
 
+	if continueLoop {
+		time.Sleep(20 * time.Millisecond)
+		goto SERVER_LOOP
+	}
+	
 	return value
+}
+
+func buildRequestID(clientID string, requestNum int) string {
+	return clientID[:8] + "_No." + strconv.Itoa(int(requestNum))
 }
 
 // shared by Put and Append.
@@ -110,9 +137,14 @@ func (ck *Clerk) PutAppend(key string, value string, op string) {
 	// You will have to modify this function.
 
 	var target int
-	initialLeader := ck.getLeader()
-	requestID := ck.getRequestID()
+
+	// ck.monotonicLock.Lock()
+	// defer ck.monotonicLock.Unlock()
+
+	requestID := buildRequestID(ck.clientID, int(ck.getRequestNum()))
 SERVER_LOOP:
+	initialLeader := ck.getLeader()
+	continueLoop := false
 	for offset := 0; offset < len(ck.servers); offset++ {
 		reply := PutAppendReply{}
 		target = (initialLeader + offset) % len(ck.servers)
@@ -120,30 +152,36 @@ SERVER_LOOP:
 			Key:       key,
 			Value:     value,
 			Op:        op,
-			RequestID: int(requestID),
-			ClientID:  target,
+			RequestID: requestID,
+			ClientID:  ck.clientID,
 		}
-		DPrintf(raft.DClient, "C%v requestID=%v %v k[%v]v(%v)  C%v", target, args.RequestID, op, args.Key, args.Value, target)
+		DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v prepare to %v k[%v]v(%v)", ck.clientID, target, args.RequestID, op, args.Key, args.Value)
 		success := ck.sendPutAppend(target, &args, &reply)
-		for !success {
+		count := 1
+		for !success && count < 3 {
 			time.Sleep(1 * time.Second)
+			DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v %v k[%v]v(%v) Retry", ck.clientID, target, args.RequestID, op, args.Key, args.Value)
 			success = ck.sendPutAppend(target, &args, &reply)
+			count++
 		}
 
-		if reply.Err == "" {
-			DPrintf(raft.DClient, "C%v requestID=%v %v k[%v]v(%v) success", target, args.RequestID, op, args.Key, args.Value)
+		if success && reply.Err=="" {
+			continueLoop = false
+			DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v %v k[%v]v(%v) success", ck.clientID, target, args.RequestID, op, args.Key, args.Value)
 			ck.setLeader(target)
 			break
-		} else {
-			if reply.Err == ERR_NOT_LEADER && offset == len(ck.servers)-1 {
-				DPrintf(raft.DClient, "C%v requestID=%v no leader, wait for 1 second\n", args.RequestID, requestID)
-				time.Sleep(1 * time.Second)
-				goto SERVER_LOOP
-			}
-			//DPrintf(raft.DClient, "C%d %v k[%v] v[%v],Err=%v", target, op, args.Key, args.Value, reply.Err)
+		}else if reply.Err == ERR_COMMIT_TIMEOUT {
+			offset--
+
+		}else{
+			continueLoop = true
 		}
 	}
 
+	if continueLoop {
+		time.Sleep(20 * time.Millisecond)
+		goto SERVER_LOOP
+	}
 }
 
 func (ck *Clerk) Put(key string, value string) {
