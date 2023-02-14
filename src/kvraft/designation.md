@@ -45,3 +45,4 @@ TODO：
 ## 1.2 Part2
 
 # 2.TestB
+感觉上不是很难，到达一定的size就生成image（这个Image一定要可以恢复全部的app状态），然后交给raft。

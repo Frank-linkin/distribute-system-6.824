@@ -7,7 +7,7 @@ do
     echo ${count}' times try'
     rm -rf /golang_space/6.824/src/kvraft/log*
     rm -rf test_result
-    go test -run 3A 
+    go test -run 3B 
     result=$?
     let "count++"
 done

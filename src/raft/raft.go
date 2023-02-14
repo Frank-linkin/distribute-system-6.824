@@ -1108,6 +1108,34 @@ func (rf *Raft) sendAppendEntriesToFollowers(args AppendEntriesArgs) {
 
 var LOG_FILE string = ""
 
+func (rf *Raft) tryToSendSnapshotToStateMachine() {
+	applyMsg := rf.getSnapshotApplyMsg()
+	if applyMsg != nil {
+	 	MyDebug(dTrace, "S%d try to send first snapshot,logIdx=%v", rf.me,applyMsg.SnapshotIndex)
+		rf.applyCh <- *applyMsg
+		MyDebug(dTrace, "S%d send first snapshot,logIdx=%v finished", rf.me,applyMsg.SnapshotIndex)
+
+	}
+}
+
+func (rf *Raft) getSnapshotApplyMsg() *ApplyMsg {
+	rf.mu.Lock()
+	defer rf.mu.Unlock()
+
+	firstEntry := rf.diskLog[0]
+
+	if rf.snapshot != nil && firstEntry.Idx != 0 {
+		applyMsg := ApplyMsg{
+			SnapshotValid: true,
+			Snapshot:      rf.snapshot,
+			SnapshotIndex: firstEntry.Idx,
+			SnapshotTerm:  firstEntry.Term,
+		}
+		return &applyMsg
+	}
+	return nil
+}
+
 // the service or tester wants to create a Raft server. the ports
 // of all the Raft servers (including this one) are in peers[]. this
 // server's port is peers[me]. all the servers' peers[] arrays
@@ -1165,8 +1193,9 @@ func Make(peers []*labrpc.ClientEnd, me int,
 	log.SetOutput(logFile)
 	// initialize from state persisted before a crash
 	rf.readPersist(persister.ReadRaftState())
+	rf.tryToSendSnapshotToStateMachine()
 	// start ticker goroutine to start elections
-	deadlock.Opts.DeadlockTimeout = 30 * time.Second
+	deadlock.Opts.DeadlockTimeout = 10 * time.Second
 
 	go rf.ticker()
 

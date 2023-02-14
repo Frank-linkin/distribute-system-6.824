@@ -1,6 +1,7 @@
 package kvraft
 
 import (
+	"bytes"
 	"log"
 	"strconv"
 	"sync"
@@ -38,33 +39,31 @@ type Op struct {
 
 type KVServer struct {
 	mu      sync.Mutex
-	me      int
+	me      int //√
 	rf      *raft.Raft
 	applyCh chan raft.ApplyMsg
 	dead    int32 // set by Kill()
 
-	maxraftstate int // snapshot if log grows this big
+	maxraftstate int // snapshot if log grows this big //√
 
 	// Your definitions here.
-	disk map[string]diskValue
+	disk map[string]DiskValue //√
 
 	commitApplier commitApplier
 
 	lastestInfoLock deadlock.RWMutex
-	maxNums         map[string]int
-	lastestResp     map[string]string
-
-	requestIDToLogIndex map[string]int
+	maxNums         map[string]int    //√
+	lastestResp     map[string]string //√
 }
 
-type diskValue struct {
+type DiskValue struct {
 	//lock  deadlock.RWMutex
-	value     string
-	versionID int
+	Value     string
+	VersionID int
 }
 
 // 既然说用一个大锁，就用一个大锁
-// func(dv *diskValue)setValue(value string,versionID int) {
+// func(dv *DiskValue)setValue(value string,versionID int) {
 // 	dv.lock.Lock()
 // 	defer dv.lock.Unlock()
 
@@ -72,13 +71,13 @@ type diskValue struct {
 // 	dv.versionID = versionID
 // }
 
-// func(dv *diskValue)getValue()string {
+// func(dv *DiskValue)getValue()string {
 // 	dv.lock.RLock()
 // 	defer dv.lock.RUnlock()
 // 	return dv.value
 // }
 
-// func(dv *diskValue)getVersionID()int {
+// func(dv *DiskValue)getVersionID()int {
 // 	dv.lock.RLock()
 // 	defer dv.lock.RUnlock()
 // 	return dv.versionID
@@ -170,8 +169,6 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	}
 	DPrintf(raft.DServer, "P%d requestID=%v %v k[%v](%v)  logIdx=%v", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
 
-	kv.requestIDToLogIndex[args.RequestID] = logIndex
-
 	var op Op
 	waitChan := kv.commitApplier.addWaiter(logIndex)
 	timeOut := time.NewTimer(COMMIT_TIMEOUT * time.Second)
@@ -197,14 +194,14 @@ func applyOp(kv *KVServer, op Op, logIndex int) string {
 
 	resp := ""
 	valueWrapper, ok := kv.disk[op.Key]
-	if ok && valueWrapper.versionID >= logIndex {
+	if ok && valueWrapper.VersionID >= logIndex {
 		return ""
 	}
 
 	switch op.OpType {
 	case OP_TYPE_GET:
 		if ok {
-			resp = valueWrapper.value
+			resp = valueWrapper.Value
 			DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v get[%v]->(%v)", kv.me, op.RequestID, logIndex, op.Key, resp)
 		} else {
 			resp = ""
@@ -212,24 +209,24 @@ func applyOp(kv *KVServer, op Op, logIndex int) string {
 		}
 
 	case OP_TYPE_PUT:
-		kv.disk[op.Key] = diskValue{
-			value:     op.Value,
-			versionID: logIndex,
+		kv.disk[op.Key] = DiskValue{
+			Value:     op.Value,
+			VersionID: logIndex,
 		}
 		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v put[%v]->(%v)", kv.me, op.RequestID, logIndex, op.Key, op.Value)
 		resp = op.Value
 	case OP_TYPE_APPEND:
 		oldValue := ""
 		if ok {
-			oldValue = valueWrapper.value
+			oldValue = valueWrapper.Value
 		} else {
-			valueWrapper = diskValue{}
+			valueWrapper = DiskValue{}
 		}
-		valueWrapper.value = oldValue + op.Value
-		valueWrapper.versionID = logIndex
+		valueWrapper.Value = oldValue + op.Value
+		valueWrapper.VersionID = logIndex
 		kv.disk[op.Key] = valueWrapper
-		resp = valueWrapper.value
-		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v append[%v](%v)->(%v) ", kv.me, op.RequestID, logIndex, op.Key, op.Value, valueWrapper.value)
+		resp = valueWrapper.Value
+		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v append[%v](%v)->(%v) ", kv.me, op.RequestID, logIndex, op.Key, op.Value, valueWrapper.Value)
 	}
 	kv.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), resp)
 
@@ -247,6 +244,64 @@ func (kv *KVServer) getLastestInfo(clientID string) (int, string) {
 	kv.lastestInfoLock.RLock()
 	defer kv.lastestInfoLock.RUnlock()
 	return kv.maxNums[clientID], kv.lastestResp[clientID]
+}
+
+func (kv *KVServer) makeSnapshot(logIndex int) {
+	kv.mu.Lock()
+	kv.lastestInfoLock.Lock()
+
+	w := new(bytes.Buffer)
+	e := labgob.NewEncoder(w)
+
+	e.Encode(kv.me)
+	e.Encode(kv.disk)
+	e.Encode(kv.maxNums)
+	e.Encode(kv.lastestResp)
+
+	data := w.Bytes()
+
+	//rf.persister.SaveRaftState(data)
+	kv.rf.Snapshot(logIndex, data)
+
+	kv.mu.Unlock()
+	kv.lastestInfoLock.Unlock()
+
+	DPrintf(raft.DServer, "S%d logIndex=%v,snapshotSize=%v", kv.me, logIndex, len(data))
+
+}
+
+func (kv *KVServer) applySnapshot(logIndex int, data []byte) {
+	if data == nil || len(data) < 1 { // bootstrap without any state?
+		panic("nil snapshot")
+	}
+
+	r := bytes.NewBuffer(data)
+	d := labgob.NewDecoder(r)
+	var me int
+	var disk map[string]DiskValue
+	var maxNums map[string]int
+	var lastestResp map[string]string
+	if d.Decode(&me) != nil ||
+		d.Decode(&disk) != nil ||
+		d.Decode(&maxNums) != nil ||
+		d.Decode(&lastestResp) != nil {
+		DPrintf(raft.DServer, "S%d decode error", kv.me)
+	} else {
+		kv.mu.Lock()
+		kv.lastestInfoLock.Lock()
+
+		kv.me = me
+		kv.disk = disk
+		kv.maxNums = maxNums
+		kv.lastestResp = lastestResp
+		//rf.lastApplied = lastApplied
+		kv.mu.Unlock()
+		kv.lastestInfoLock.Unlock()
+		DPrintf(raft.DServer, "S%d logIndex=%v,snapshot applied", kv.me, logIndex)
+		DPrintf(raft.DServer, "S%d me=%v,len(maxNums)=%v len(disk)=%v", kv.me, me, len(maxNums), len(disk))
+
+	}
+
 }
 
 // the tester calls Kill() when a KVServer instance won't
@@ -285,6 +340,7 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	// call labgob.Register on structures you want
 	// Go's RPC library to marshall/unmarshall.
 	labgob.Register(Op{})
+	labgob.Register(DiskValue{})
 
 	kv := new(KVServer)
 	kv.me = me
@@ -293,27 +349,19 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	// You may need initialization code here.
 
 	kv.applyCh = make(chan raft.ApplyMsg)
+
+	kv.commitApplier = NewCommitApplier(kv.applyCh, kv, kv.maxraftstate)
+	kv.maxNums = make(map[string]int)
+	kv.lastestResp = make(map[string]string)
+	kv.disk = make(map[string]DiskValue)
+	kv.lastestInfoLock = deadlock.RWMutex{}
+	kv.commitApplier.start()
+
 	kv.rf = raft.Make(servers, me, persister, kv.applyCh)
 
 	// You may need initialization code here.
-	kv.commitApplier = NewCommitApplier(kv.applyCh, kv)
-	kv.maxNums = make(map[string]int)
-	kv.lastestResp = make(map[string]string)
-	kv.disk = make(map[string]diskValue)
-	kv.lastestInfoLock = deadlock.RWMutex{}
-	kv.requestIDToLogIndex = make(map[string]int)
 
-	//配置log
-	// file := "log_app"
-	// if len(LOG_FILE) == 0 {
-	// 	LOG_FILE = "log"
-	// }
-	// logFile, err := os.OpenFile(file, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0766)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// log.SetOutput(logFile)
-	kv.commitApplier.start()
+
 
 	log.Printf("An Kvserver made,len(server)=%v\n", len(servers))
 	return kv
@@ -325,19 +373,22 @@ type commitApplier struct {
 
 	applyCh chan raft.ApplyMsg
 
-	kvserver     *KVServer
-	lastLogIndex int32
+	kvserver *KVServer
+
+	appliedOpCount int
+	maxraftstate   int
 
 	exitCh chan interface{} //[TODO]只关注信号，不关注信号内容的chan咋写呢？
 }
 
 // [TODO] chan本身就是个指针，按说不加*号完全没有毛病
-func NewCommitApplier(applyCh chan raft.ApplyMsg, kvserver *KVServer) commitApplier {
+func NewCommitApplier(applyCh chan raft.ApplyMsg, kvserver *KVServer, maxraftstate int) commitApplier {
 	return commitApplier{
-		applyCh:  applyCh,
-		exitCh:   make(chan interface{}),
-		waiters:  make(map[int]chan Op),
-		kvserver: kvserver,
+		applyCh:      applyCh,
+		exitCh:       make(chan interface{}),
+		waiters:      make(map[int]chan Op),
+		kvserver:     kvserver,
+		maxraftstate: maxraftstate,
 	}
 }
 
@@ -361,6 +412,15 @@ func (ca *commitApplier) start() {
 					maxRqNum, _ := ca.kvserver.getLastestInfo(op.ClientID)
 					if maxRqNum < requestIDToRequestNum(op.RequestID) || op.OpType == OP_TYPE_GET {
 						op.Value = applyOp(ca.kvserver, op, applyMsg.CommandIndex)
+						ca.appliedOpCount += 20
+
+						if ca.appliedOpCount >= ca.maxraftstate {
+							//TODO:make snapshot
+							//ca.appliedOpCount=0
+							ca.kvserver.makeSnapshot(applyMsg.CommandIndex)
+							DPrintf(raft.DServer, "S%d logIndex=%v,make snapshot", ca.kvserver.me, applyMsg.CommandIndex)
+							ca.appliedOpCount = 0
+						}
 					}
 
 					if notifyChan != nil {
@@ -369,7 +429,7 @@ func (ca *commitApplier) start() {
 				}
 
 				if applyMsg.SnapshotValid {
-					panic("shouldn't have snapshot")
+					ca.kvserver.applySnapshot(applyMsg.SnapshotIndex, applyMsg.Snapshot)
 				}
 			case <-ca.exitCh:
 				return
