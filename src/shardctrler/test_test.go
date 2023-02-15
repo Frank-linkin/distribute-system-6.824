@@ -5,6 +5,8 @@ import (
 	"sync"
 	"testing"
 	"time"
+
+	"6.824/raft"
 )
 
 // import "time"
@@ -92,11 +94,13 @@ func TestBasic(t *testing.T) {
 
 	check(t, []int{}, ck)
 
+	DPrintf(raft.DWarn, "--Start join1")
 	var gid1 int = 1
 	ck.Join(map[int][]string{gid1: []string{"x", "y", "z"}})
 	check(t, []int{gid1}, ck)
 	cfa[1] = ck.Query(-1)
 
+	DPrintf(raft.DWarn, "--Start join2")
 	var gid2 int = 2
 	ck.Join(map[int][]string{gid2: []string{"a", "b", "c"}})
 	check(t, []int{gid1, gid2}, ck)
@@ -112,10 +116,12 @@ func TestBasic(t *testing.T) {
 		t.Fatalf("wrong servers for gid %v: %v\n", gid2, sa2)
 	}
 
+	DPrintf(raft.DWarn, "--Start leave1")
 	ck.Leave([]int{gid1})
 	check(t, []int{gid2}, ck)
 	cfa[4] = ck.Query(-1)
 
+	DPrintf(raft.DWarn, "--Start leave2")
 	ck.Leave([]int{gid2})
 	cfa[5] = ck.Query(-1)
 
@@ -380,11 +386,12 @@ func TestMulti(t *testing.T) {
 	fmt.Printf("  ... Passed\n")
 
 	fmt.Printf("Test: Check Same config on servers ...\n")
-
+	DPrintf(raft.DWarn, "--Check Same config on servers")
 	isLeader, leader := cfg.Leader()
 	if !isLeader {
 		t.Fatalf("Leader not found")
 	}
+	DPrintf(raft.DWarn, "--last Query 1")
 	c := ck.Query(-1) // Config leader claims
 
 	cfg.ShutdownServer(leader)
@@ -396,8 +403,48 @@ func TestMulti(t *testing.T) {
 		}
 	}
 
+	DPrintf(raft.DWarn, "--last Query 2")
 	c1 = ck.Query(-1)
+	DPrintf(raft.DWarn, "--c和c1分別为")
+	c.String()
+	c1.String()
 	check_same_config(t, c, c1)
 
+	fmt.Printf("  ... Passed\n")
+}
+
+func TestQuickSort(t *testing.T) {
+	fmt.Printf("Test: QuickSort ...\n")
+
+	gids := []int{5, 2} //, 6, 100,7
+	timesMap := make(map[int]int, 0)
+	timesMap[2] = 5
+	timesMap[5] = 1
+	timesMap[100] = 2
+	timesMap[6] = 200 //排序结果应该为：6 2 100 5
+	timesMap[7] = 300
+
+	quickSort(gids, timesMap, 0, len(gids)-1)
+	if !(fmt.Sprintf("%v",gids) == "[2 5]") {
+		t.Fatalf("Wrong order")
+	}
+
+	gids = append(gids, 6)
+	quickSort(gids, timesMap, 0, len(gids)-1)
+	if !(fmt.Sprintf("%v",gids) == "[6 2 5]") {
+		t.Fatalf("Wrong order")
+	}
+
+	gids = append(gids, 100)
+	quickSort(gids, timesMap, 0, len(gids)-1)
+	if !(fmt.Sprintf("%v",gids) == "[6 2 100 5]") {
+		t.Fatalf("Wrong order")
+	}
+
+	gids = append(gids, 7)
+	quickSort(gids, timesMap, 0, len(gids)-1)
+	if !(fmt.Sprintf("%v",gids) == "[7 6 2 100 5]") {
+		t.Fatalf("Wrong order")
+	}
 	fmt.Printf("  ... Passed\n")
 }

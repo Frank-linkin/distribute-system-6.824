@@ -361,8 +361,6 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 
 	// You may need initialization code here.
 
-
-
 	log.Printf("An Kvserver made,len(server)=%v\n", len(servers))
 	return kv
 }
@@ -414,7 +412,7 @@ func (ca *commitApplier) start() {
 						op.Value = applyOp(ca.kvserver, op, applyMsg.CommandIndex)
 						ca.appliedOpCount += 20
 
-						if ca.appliedOpCount >= ca.maxraftstate {
+						if ca.maxraftstate != -1 && ca.appliedOpCount >= ca.maxraftstate {
 							//TODO:make snapshot
 							//ca.appliedOpCount=0
 							ca.kvserver.makeSnapshot(applyMsg.CommandIndex)

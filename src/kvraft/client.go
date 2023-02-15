@@ -10,7 +10,6 @@ import (
 	"6.824/labrpc"
 	"6.824/raft"
 	"github.com/google/uuid"
-	"github.com/sasha-s/go-deadlock"
 )
 
 type Clerk struct {
@@ -18,8 +17,7 @@ type Clerk struct {
 	// You will have to modify this struct.
 	leader int32
 
-	requestID     int32
-	monotonicLock deadlock.Mutex
+	requestID int32
 
 	clientID string
 }
@@ -38,8 +36,6 @@ func MakeClerk(servers []*labrpc.ClientEnd) *Clerk {
 	ck.leader = 0
 
 	ck.requestID = 0
-
-	ck.monotonicLock = deadlock.Mutex{}
 
 	ck.clientID = uuid.NewString()
 	return ck
@@ -79,7 +75,7 @@ func (ck *Clerk) Get(key string) string {
 	requestID := buildRequestID(ck.clientID, int(ck.getRequestNum()))
 SERVER_LOOP:
 	initialLeader := ck.getLeader()
-	continueLoop:=false
+	continueLoop := false
 	for offset := 0; offset < len(ck.servers); offset++ {
 		reply := GetReply{}
 		target = (initialLeader + offset) % len(ck.servers)
@@ -99,16 +95,16 @@ SERVER_LOOP:
 			success = ck.sendGet(target, &args, &reply)
 			count++
 		}
-		if success && reply.Err=="" {
+		if success && reply.Err == "" {
 			continueLoop = false
-			DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v Get[%v]=(%v) success", ck.clientID, target, requestID, args.Key, reply.Value)			
+			DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v Get[%v]=(%v) success", ck.clientID, target, requestID, args.Key, reply.Value)
 			ck.setLeader(target)
 			value = reply.Value
 			break
-		}else if reply.Err == ERR_COMMIT_TIMEOUT {
+		} else if reply.Err == ERR_COMMIT_TIMEOUT {
 			offset--
 
-		}else{
+		} else {
 			continueLoop = true
 		}
 	}
@@ -117,7 +113,7 @@ SERVER_LOOP:
 		time.Sleep(20 * time.Millisecond)
 		goto SERVER_LOOP
 	}
-	
+
 	return value
 }
 
@@ -165,15 +161,15 @@ SERVER_LOOP:
 			count++
 		}
 
-		if success && reply.Err=="" {
+		if success && reply.Err == "" {
 			continueLoop = false
 			DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v %v k[%v]v(%v) success", ck.clientID, target, args.RequestID, op, args.Key, args.Value)
 			ck.setLeader(target)
 			break
-		}else if reply.Err == ERR_COMMIT_TIMEOUT {
+		} else if reply.Err == ERR_COMMIT_TIMEOUT {
 			offset--
 
-		}else{
+		} else {
 			continueLoop = true
 		}
 	}
