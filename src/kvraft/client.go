@@ -113,7 +113,7 @@ SERVER_LOOP:
 		time.Sleep(20 * time.Millisecond)
 		goto SERVER_LOOP
 	}
-
+	DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v Get[%v]=(%v) quit", ck.clientID, target, requestID, key, value)
 	return value
 }
 
@@ -178,6 +178,7 @@ SERVER_LOOP:
 		time.Sleep(20 * time.Millisecond)
 		goto SERVER_LOOP
 	}
+	DPrintf(raft.DClient, "C(%v)->(P%v) requestID=%v %v k[%v]v(%v) quit", ck.clientID, target, requestID, op, key, value)
 }
 
 func (ck *Clerk) Put(key string, value string) {

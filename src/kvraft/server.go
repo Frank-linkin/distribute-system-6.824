@@ -86,6 +86,7 @@ type DiskValue struct {
 const OP_TYPE_GET = 0
 const OP_TYPE_PUT = 1
 const OP_TYPE_APPEND = 2
+
 const COMMIT_TIMEOUT = 8
 
 const ERR_COMMIT_TIMEOUT = "ERR:commit timeout"
@@ -100,7 +101,7 @@ func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 	lastRequestNum, lastResponse := kv.getLastestInfo(args.ClientID)
 	requestNum := requestIDToRequestNum(args.RequestID)
 	if requestNum <= lastRequestNum {
-		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestID=%v", kv.me, args.RequestID, lastRequestNum)
+		DPrintf(raft.DServer, "P%vs%v requestID=%v has executed,lastRequestID=%v", kv.me, kv.rf.WhoAmI(), args.RequestID, lastRequestNum)
 		reply.Value = lastResponse
 		return
 	}
@@ -116,7 +117,7 @@ func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 		reply.Err = ERR_NOT_LEADER
 		return
 	}
-	DPrintf(raft.DServer, "P%d requestID=%v Get k[%v] logIdx=%v", kv.me, args.RequestID, args.Key, logIndex)
+	DPrintf(raft.DServer, "P%vs%v requestID=%v Get k[%v] logIdx=%v", kv.me, kv.rf.WhoAmI(), args.RequestID, args.Key, logIndex)
 
 	var op Op
 	waitChan := kv.commitApplier.addWaiter(logIndex)
@@ -126,24 +127,24 @@ func (kv *KVServer) Get(args *GetArgs, reply *GetReply) {
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
-		DPrintf(raft.DServer, "P%d RequestID=%v Timeout", kv.me, args.RequestID)
+		DPrintf(raft.DServer, "P%vs%v RequestID=%v Timeout", kv.me, kv.rf.WhoAmI(), args.RequestID)
 		return
 	}
 
 	if op.ClientID != args.ClientID || op.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		DPrintf(raft.DServer, "P%d RequestID=%v CMTfail", kv.me, args.RequestID)
+		DPrintf(raft.DServer, "P%vs%v RequestID=%v CMTfail", kv.me, kv.rf.WhoAmI(), args.RequestID)
 		return
 	}
 	reply.Value = op.Value
-	DPrintf(raft.DServer, "P%d RequestID=%v reply.Value=%v", kv.me, args.RequestID, reply.Value)
+	DPrintf(raft.DServer, "P%vs%v RequestID=%v reply.Value=%v", kv.me, kv.rf.WhoAmI(), args.RequestID, reply.Value)
 }
 
 func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	// Your code here.
 	lastRequestNum, _ := kv.getLastestInfo(args.ClientID)
 	if requestIDToRequestNum(args.RequestID) <= lastRequestNum {
-		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestNum=%v", kv.me, args.RequestID, lastRequestNum)
+		DPrintf(raft.DServer, "P%vs%v requestID=%v has executed,lastRequestNum=%v", kv.me, kv.rf.WhoAmI(), args.RequestID, lastRequestNum)
 		return
 	}
 
@@ -167,7 +168,7 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 		reply.Err = ERR_NOT_LEADER
 		return
 	}
-	DPrintf(raft.DServer, "P%d requestID=%v %v k[%v](%v)  logIdx=%v", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
+	DPrintf(raft.DServer, "P%vs%v requestID=%v %v k[%v](%v)  logIdx=%v", kv.me, kv.rf.WhoAmI(), args.RequestID, args.Op, args.Key, args.Value, logIndex)
 
 	var op Op
 	waitChan := kv.commitApplier.addWaiter(logIndex)
@@ -177,20 +178,18 @@ func (kv *KVServer) PutAppend(args *PutAppendArgs, reply *PutAppendReply) {
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
-		DPrintf(raft.DServer, "P%d requestID=%v %v k[%v]v[%v] logIdx=%v Timeout", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
+		DPrintf(raft.DServer, "P%vs%v requestID=%v %v k[%v]v[%v] logIdx=%v Timeout", kv.me, kv.rf.WhoAmI(), args.RequestID, args.Op, args.Key, args.Value, logIndex)
 		return
 	}
 
 	if op.ClientID != args.ClientID || op.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		DPrintf(raft.DServer, "P%d requestID=%v %v k[%v]v[%v] logIdx=%v CMT fail", kv.me, args.RequestID, args.Op, args.Key, args.Value, logIndex)
+		DPrintf(raft.DServer, "P%vs%v requestID=%v %v k[%v]v[%v] logIdx=%v CMT fail", kv.me, kv.rf.WhoAmI(), args.RequestID, args.Op, args.Key, args.Value, logIndex)
 		return
 	}
 }
 
 func applyOp(kv *KVServer, op Op, logIndex int) string {
-	kv.mu.Lock()
-	defer kv.mu.Unlock()
 
 	resp := ""
 	valueWrapper, ok := kv.disk[op.Key]
@@ -202,10 +201,10 @@ func applyOp(kv *KVServer, op Op, logIndex int) string {
 	case OP_TYPE_GET:
 		if ok {
 			resp = valueWrapper.Value
-			DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v get[%v]->(%v)", kv.me, op.RequestID, logIndex, op.Key, resp)
+			DPrintf(raft.DInfo, "P%vs%v requestID=%v logIndex=%v get[%v]->(%v)", kv.me, kv.rf.WhoAmI(), op.RequestID, logIndex, op.Key, resp)
 		} else {
 			resp = ""
-			DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v get[%v] no this key", kv.me, op.RequestID, logIndex, op.Key)
+			DPrintf(raft.DInfo, "P%vs%v requestID=%v logIndex=%v get[%v] no this key", kv.me, kv.rf.WhoAmI(), op.RequestID, logIndex, op.Key)
 		}
 
 	case OP_TYPE_PUT:
@@ -213,7 +212,7 @@ func applyOp(kv *KVServer, op Op, logIndex int) string {
 			Value:     op.Value,
 			VersionID: logIndex,
 		}
-		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v put[%v]->(%v)", kv.me, op.RequestID, logIndex, op.Key, op.Value)
+		DPrintf(raft.DInfo, "P%vs%v requestID=%v logIndex=%v put[%v]->(%v)", kv.me, kv.rf.WhoAmI(), op.RequestID, logIndex, op.Key, op.Value)
 		resp = op.Value
 	case OP_TYPE_APPEND:
 		oldValue := ""
@@ -226,7 +225,7 @@ func applyOp(kv *KVServer, op Op, logIndex int) string {
 		valueWrapper.VersionID = logIndex
 		kv.disk[op.Key] = valueWrapper
 		resp = valueWrapper.Value
-		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v append[%v](%v)->(%v) ", kv.me, op.RequestID, logIndex, op.Key, op.Value, valueWrapper.Value)
+		DPrintf(raft.DInfo, "P%vs%v requestID=%v logIndex=%v append[%v](%v)->(%v) ", kv.me, kv.rf.WhoAmI(), op.RequestID, logIndex, op.Key, op.Value, valueWrapper.Value)
 	}
 	kv.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), resp)
 
@@ -266,7 +265,7 @@ func (kv *KVServer) makeSnapshot(logIndex int) {
 	kv.mu.Unlock()
 	kv.lastestInfoLock.Unlock()
 
-	DPrintf(raft.DServer, "S%d logIndex=%v,snapshotSize=%v", kv.me, logIndex, len(data))
+	DPrintf(raft.DServer, "P%vs%v logIndex=%v,snapshotSize=%v", kv.me, kv.rf.WhoAmI(), logIndex, len(data))
 
 }
 
@@ -285,7 +284,7 @@ func (kv *KVServer) applySnapshot(logIndex int, data []byte) {
 		d.Decode(&disk) != nil ||
 		d.Decode(&maxNums) != nil ||
 		d.Decode(&lastestResp) != nil {
-		DPrintf(raft.DServer, "S%d decode error", kv.me)
+		DPrintf(raft.DServer, "P%v decode error", kv.me)
 	} else {
 		kv.mu.Lock()
 		kv.lastestInfoLock.Lock()
@@ -297,8 +296,8 @@ func (kv *KVServer) applySnapshot(logIndex int, data []byte) {
 		//rf.lastApplied = lastApplied
 		kv.mu.Unlock()
 		kv.lastestInfoLock.Unlock()
-		DPrintf(raft.DServer, "S%d logIndex=%v,snapshot applied", kv.me, logIndex)
-		DPrintf(raft.DServer, "S%d me=%v,len(maxNums)=%v len(disk)=%v", kv.me, me, len(maxNums), len(disk))
+		DPrintf(raft.DServer, "P%v logIndex=%v,snapshot applied", kv.me, logIndex)
+		DPrintf(raft.DServer, "P%v me=%v,len(maxNums)=%v len(disk)=%v", kv.me, me, len(maxNums), len(disk))
 
 	}
 
@@ -361,7 +360,7 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 
 	// You may need initialization code here.
 
-	log.Printf("An Kvserver made,len(server)=%v\n", len(servers))
+	log.Printf("An Kvserver made,len(server)=%v,me=%v rf.me=%v\n", len(servers), me, kv.rf.WhoAmI())
 	return kv
 }
 
@@ -375,6 +374,8 @@ type commitApplier struct {
 
 	appliedOpCount int
 	maxraftstate   int
+
+	appliedSnapshotLogIndex int
 
 	exitCh chan interface{} //[TODO]只关注信号，不关注信号内容的chan咋写呢？
 }
@@ -395,6 +396,7 @@ func (ca *commitApplier) start() {
 		for {
 			select {
 			case <-ca.exitCh:
+				DPrintf(raft.DServer, "P%vs%v commitApplier 关闭", ca.kvserver.me, ca.kvserver.rf.WhoAmI())
 				return
 			default:
 			}
@@ -402,21 +404,18 @@ func (ca *commitApplier) start() {
 			select {
 			case applyMsg := <-ca.applyCh:
 				if applyMsg.CommandValid {
-
+					DPrintf(raft.DServer, "P%vs%v new Command logIndex=%v", ca.kvserver.me, ca.kvserver.rf.WhoAmI(), applyMsg.CommandIndex)
 					notifyChan := ca.getWaiter(applyMsg.CommandIndex)
 					op, _ := applyMsg.Command.(Op)
-					//DPrintf(raft.DServer, "S%d Command %v", ca.kvserver.me, op)
 
-					maxRqNum, _ := ca.kvserver.getLastestInfo(op.ClientID)
-					if maxRqNum < requestIDToRequestNum(op.RequestID) || op.OpType == OP_TYPE_GET {
-						op.Value = applyOp(ca.kvserver, op, applyMsg.CommandIndex)
-						ca.appliedOpCount += 20
+					if dealWithOp(ca.kvserver, applyMsg, &op) {
+						ca.addAppliedOpCount()
 
-						if ca.maxraftstate != -1 && ca.appliedOpCount >= ca.maxraftstate {
+						if ca.maxraftstate != -1 && ca.getAppliedOpCount() >= ca.maxraftstate {
 							//TODO:make snapshot
 							//ca.appliedOpCount=0
 							ca.kvserver.makeSnapshot(applyMsg.CommandIndex)
-							DPrintf(raft.DServer, "S%d logIndex=%v,make snapshot", ca.kvserver.me, applyMsg.CommandIndex)
+							DPrintf(raft.DServer, "P%vs%v logIndex=%v,make snapshot", ca.kvserver.me, ca.kvserver.rf.WhoAmI(), applyMsg.CommandIndex)
 							ca.appliedOpCount = 0
 						}
 					}
@@ -427,15 +426,38 @@ func (ca *commitApplier) start() {
 				}
 
 				if applyMsg.SnapshotValid {
-					ca.kvserver.applySnapshot(applyMsg.SnapshotIndex, applyMsg.Snapshot)
+					if applyMsg.SnapshotIndex > ca.appliedSnapshotLogIndex {
+						ca.appliedSnapshotLogIndex = applyMsg.SnapshotIndex
+						ca.kvserver.applySnapshot(applyMsg.SnapshotIndex, applyMsg.Snapshot)
+					}
 				}
 			case <-ca.exitCh:
+				DPrintf(raft.DServer, "P%vs%v commitApplier 关闭", ca.kvserver.me, ca.kvserver.rf.WhoAmI())
 				return
 			}
 		}
 	}()
 }
 
+func dealWithOp(kv *KVServer, applyMsg raft.ApplyMsg, op *Op) bool {
+	kv.mu.Lock()
+	defer kv.mu.Unlock()
+
+	maxRqNum, _ := kv.getLastestInfo(op.ClientID)
+	if maxRqNum < requestIDToRequestNum(op.RequestID) || op.OpType == OP_TYPE_GET {
+		DPrintf(raft.DServer, "P%vs%v maxRequestNum=%v,currentRequestNum=%v", kv.me, kv.rf.WhoAmI(), maxRqNum, requestIDToRequestNum(op.RequestID))
+		op.Value = applyOp(kv, *op, applyMsg.CommandIndex)
+		return true
+	}
+	return false
+}
+
+func (ca *commitApplier) getAppliedOpCount() int {
+	return ca.appliedOpCount
+}
+func (ca *commitApplier) addAppliedOpCount() {
+	ca.appliedOpCount += 20
+}
 func (ca *commitApplier) stop() {
 	close(ca.exitCh)
 }

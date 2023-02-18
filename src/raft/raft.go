@@ -455,7 +455,8 @@ type InstallSnapshotArgs struct {
 }
 
 type InstallSnapshotReply struct {
-	Term int
+	Term      int
+	Installed bool
 }
 
 func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapshotReply) {
@@ -499,6 +500,7 @@ func (rf *Raft) InstallSnapshot(args *InstallSnapshotArgs, reply *InstallSnapsho
 	MyDebug(dCommit, "S%d recvSnap idx=%v len(diskLog)=%v", rf.me, args.LastIncludedIndex, len(newDiskLog))
 	rf.cmdApplier.signalToApplySnapshot()
 	reply.Term = rf.currentTerm
+	reply.Installed = true
 }
 
 func (rf *Raft) installSnapshotToFollower(server int, args InstallSnapshotArgs) {
@@ -518,23 +520,21 @@ func dealWithInstallSnapshotResponse(rf *Raft, server int, args *InstallSnapshot
 		return
 	}
 
-	if args.LastIncludedIndex+1 > rf.nextidx[server] {
+	if reply.Installed {
 		rf.nextidx[server] = args.LastIncludedIndex + 1
 		MyDebug(dCommit, "S%d s%v.nextIdx->%v", rf.me, server, args.LastIncludedIndex+1)
-	}
 
-	if args.LastIncludedIndex > rf.matchidx[server] {
 		rf.matchidx[server] = args.LastIncludedIndex
 		MyDebug(dCommit, "S%d s%v.matchidx->%v", rf.me, server, args.LastIncludedIndex)
 	}
 }
 
 // TODO:最好有一个commitWorker来监听ApplyMsg的情况
-func (rf *Raft) AsyncSendApplyMsg(msg ApplyMsg) {
-	go func() {
-		rf.applyCh <- msg
-	}()
-}
+// func (rf *Raft) AsyncSendApplyMsg(msg ApplyMsg) {
+// 	go func() {
+// 		rf.applyCh <- msg
+// 	}()
+// }
 
 // example code to send a RequestVote RPC to a server.
 // server is the index of the target server in rf.peers[].
@@ -929,7 +929,7 @@ func tryToUpdateNextIndex(rf *Raft, server int, response *AppendEntriesReply) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	nextIndex := getNextIndexLocked(rf, response, server)
-	MyDebug(dCommit, "S%d s%v.nIdx_Cal->%v\n", rf.me, server, nextIndex)
+	MyDebug(dCommit, "S%d s%v.nextIdx_Calculated->%v\n", rf.me, server, nextIndex)
 
 	if nextIndex > rf.matchidx[server] {
 		if nextIndex < rf.nextidx[server] {
@@ -1111,10 +1111,9 @@ var LOG_FILE string = ""
 func (rf *Raft) tryToSendSnapshotToStateMachine() {
 	applyMsg := rf.getSnapshotApplyMsg()
 	if applyMsg != nil {
-	 	MyDebug(dTrace, "S%d try to send first snapshot,logIdx=%v", rf.me,applyMsg.SnapshotIndex)
+		MyDebug(dTrace, "S%d try to send first snapshot,logIdx=%v", rf.me, applyMsg.SnapshotIndex)
 		rf.applyCh <- *applyMsg
-		MyDebug(dTrace, "S%d send first snapshot,logIdx=%v finished", rf.me,applyMsg.SnapshotIndex)
-
+		MyDebug(dTrace, "S%d send first snapshot,logIdx=%v finished", rf.me, applyMsg.SnapshotIndex)
 	}
 }
 
@@ -1604,7 +1603,7 @@ func (ca *commandApplier) stop() {
 }
 
 func (rf *Raft) applyLogEntriesToStateMache() {
-
+	MyDebug(DInfo, "S%v start apply new logEntry to StateMachine", rf.me)
 	logEntries := rf.getUnappiedLogEntries()
 	if len(logEntries) == 0 {
 		return
@@ -1628,17 +1627,21 @@ func (rf *Raft) tryToSetLastApplied(lastApplied int) {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 
-	if rf.lastApplied < lastApplied {
-		rf.lastApplied = lastApplied
-	}
+	//传入snapshot之后，不论怎样，都要发送后面的Snapshot后面的LogEntry
+	//if rf.lastApplied < lastApplied {
+	rf.lastApplied = lastApplied
+	//}
 }
 
 func (rf *Raft) getUnappiedLogEntries() []logEntry {
 	rf.mu.Lock()
 	defer rf.mu.Unlock()
 	offset := rf.diskLog[0].Idx
+	start := rf.lastApplied + 1 - offset
 	var resp []logEntry
-	resp = append(resp, rf.diskLog[rf.lastApplied+1-offset:rf.commitIdx+1-offset]...)
+	if start >= 0 {
+		resp = append(resp, rf.diskLog[start:rf.commitIdx+1-offset]...)
+	}
 	return resp
 }
 
@@ -1656,7 +1659,11 @@ func (rf *Raft) applySnapshotToStateMache() {
 		Snapshot:      snapshot,
 	}
 
-	MyDebug(dCommit, "S%d snapshot.idx=%v installed", rf.me, snapshotIndex)
+	MyDebug(dCommit, "S%d snapshot.idx=%v installed to MS", rf.me, snapshotIndex)
 
 	rf.tryToSetLastApplied(snapshotIndex)
+}
+
+func (rf *Raft) WhoAmI() int {
+	return rf.me
 }
