@@ -1,0 +1,4 @@
+##bug介绍
+raft成为Leader之后，根据raft规则，无法去apply现有的diskLog。但是无法apply现有log
+也就是说config也不会被apply。所以StateMachine的config会永远留在config0,而因为使用config
+来判断是不是WrongGroup，所以会永远拒绝Requst，造成死锁。

@@ -87,10 +87,10 @@ const OP_TYPE_GET = 0
 const OP_TYPE_PUT = 1
 const OP_TYPE_APPEND = 2
 
-const COMMIT_TIMEOUT = 8
+const COMMIT_TIMEOUT = 4
 
 const ERR_COMMIT_TIMEOUT = "ERR:commit timeout"
-const ERR_NOT_LEADER = "ERR:I'm not leader"
+const ERR_NOT_LEADER = "ERR:Im not leader"
 const ERR_COMMIT_FAIL = "ERR:commit fail, please retry"
 
 //const ERR_REQUEST_HAS_ALREADY_EXECUTED="ERR:request has already executed"
@@ -356,7 +356,7 @@ func StartKVServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persiste
 	kv.lastestInfoLock = deadlock.RWMutex{}
 	kv.commitApplier.start()
 
-	kv.rf = raft.Make(servers, me, persister, kv.applyCh)
+	kv.rf = raft.Make(servers, me, persister, kv.applyCh, "KVServer", 0)
 
 	// You may need initialization code here.
 
@@ -406,23 +406,25 @@ func (ca *commitApplier) start() {
 				if applyMsg.CommandValid {
 					DPrintf(raft.DServer, "P%vs%v new Command logIndex=%v", ca.kvserver.me, ca.kvserver.rf.WhoAmI(), applyMsg.CommandIndex)
 					notifyChan := ca.getWaiter(applyMsg.CommandIndex)
-					op, _ := applyMsg.Command.(Op)
+					op, ok := applyMsg.Command.(Op)
+					if ok {
+						if dealWithOp(ca.kvserver, applyMsg, &op) {
+							ca.addAppliedOpCount()
 
-					if dealWithOp(ca.kvserver, applyMsg, &op) {
-						ca.addAppliedOpCount()
+							if ca.maxraftstate != -1 && ca.getAppliedOpCount() >= ca.maxraftstate {
+								//TODO:make snapshot
+								//ca.appliedOpCount=0
+								ca.kvserver.makeSnapshot(applyMsg.CommandIndex)
+								DPrintf(raft.DServer, "P%vs%v logIndex=%v,make snapshot", ca.kvserver.me, ca.kvserver.rf.WhoAmI(), applyMsg.CommandIndex)
+								ca.appliedOpCount = 0
+							}
+						}
 
-						if ca.maxraftstate != -1 && ca.getAppliedOpCount() >= ca.maxraftstate {
-							//TODO:make snapshot
-							//ca.appliedOpCount=0
-							ca.kvserver.makeSnapshot(applyMsg.CommandIndex)
-							DPrintf(raft.DServer, "P%vs%v logIndex=%v,make snapshot", ca.kvserver.me, ca.kvserver.rf.WhoAmI(), applyMsg.CommandIndex)
-							ca.appliedOpCount = 0
+						if notifyChan != nil {
+							notifyChan <- op
 						}
 					}
 
-					if notifyChan != nil {
-						notifyChan <- op
-					}
 				}
 
 				if applyMsg.SnapshotValid {

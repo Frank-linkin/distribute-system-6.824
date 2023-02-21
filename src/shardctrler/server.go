@@ -55,18 +55,18 @@ type Op struct {
 	RequestID string
 }
 
-const ERR_NOT_LEADER = "I'm not leader"
+const ERR_NOT_LEADER = "Im not leader"
 const ERR_COMMIT_FAIL = "Commit Fail"
 const ERR_COMMIT_TIMEOUT = "commit timeout"
 
-const COMMIT_TIMEOUT = 8
+const COMMIT_TIMEOUT = 4
 
 func (sc *ShardCtrler) Join(args *JoinArgs, reply *JoinReply) {
 	// Your code here.
 	lastRequestNum, _ := sc.getLastestInfo(args.ClientID)
 	requestNum := requestIDToRequestNum(args.RequestID)
 	if requestNum <= lastRequestNum {
-		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
+		//DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
 		return
 	}
 
@@ -82,7 +82,7 @@ func (sc *ShardCtrler) Join(args *JoinArgs, reply *JoinReply) {
 		reply.Err = ERR_NOT_LEADER
 		return
 	}
-	DPrintf(raft.DServer, "P%d requestID=%v join logIdx=%v", sc.me, args.RequestID, logIndex)
+	//DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v join logIndex=%v", sc.me, args.RequestID, logIndex)
 
 	var op Op
 	waitChan := sc.commitApplier.addWaiter(logIndex)
@@ -92,7 +92,7 @@ func (sc *ShardCtrler) Join(args *JoinArgs, reply *JoinReply) {
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
-		DPrintf(raft.DServer, "P%d RequestID=%v Timeout", sc.me, args.RequestID)
+		DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v Timeout", sc.me, args.RequestID)
 		return
 	}
 
@@ -100,14 +100,14 @@ func (sc *ShardCtrler) Join(args *JoinArgs, reply *JoinReply) {
 
 	if opArgs.ClientID != args.ClientID || opArgs.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		DPrintf(raft.DServer, "P%d RequestID=%v CMTfail", sc.me, args.RequestID)
+		DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v CMTfail", sc.me, args.RequestID)
 		return
 	}
 	var servers []int
 	for k, _ := range opArgs.Servers {
 		servers = append(servers, k)
 	}
-	DPrintf(raft.DServer, "P%d RequestID=%v join gid[%v] success", sc.me, args.RequestID, servers)
+	DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v join gid[%v] success", sc.me, args.RequestID, servers)
 }
 
 func (sc *ShardCtrler) Leave(args *LeaveArgs, reply *LeaveReply) {
@@ -115,7 +115,7 @@ func (sc *ShardCtrler) Leave(args *LeaveArgs, reply *LeaveReply) {
 	lastRequestNum, _ := sc.getLastestInfo(args.ClientID)
 	requestNum := requestIDToRequestNum(args.RequestID)
 	if requestNum <= lastRequestNum {
-		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
+		//DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
 		return
 	}
 
@@ -131,7 +131,7 @@ func (sc *ShardCtrler) Leave(args *LeaveArgs, reply *LeaveReply) {
 		reply.Err = ERR_NOT_LEADER
 		return
 	}
-	DPrintf(raft.DServer, "P%d requestID=%v leave logIdx=%v", sc.me, args.RequestID, logIndex)
+	//DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v leave logIndex=%v", sc.me, args.RequestID, logIndex)
 
 	var op Op
 	waitChan := sc.commitApplier.addWaiter(logIndex)
@@ -141,7 +141,7 @@ func (sc *ShardCtrler) Leave(args *LeaveArgs, reply *LeaveReply) {
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
-		DPrintf(raft.DServer, "P%d RequestID=%v Timeout", sc.me, args.RequestID)
+		DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v Timeout", sc.me, args.RequestID)
 		return
 	}
 
@@ -149,11 +149,11 @@ func (sc *ShardCtrler) Leave(args *LeaveArgs, reply *LeaveReply) {
 
 	if opArgs.ClientID != args.ClientID || opArgs.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		DPrintf(raft.DServer, "P%d RequestID=%v CMTfail", sc.me, args.RequestID)
+		DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v CMTfail", sc.me, args.RequestID)
 		return
 	}
 
-	DPrintf(raft.DServer, "P%d RequestID=%v gids=[%v]leave success", sc.me, args.RequestID, opArgs.GIDs)
+	DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v gids=[%v]leave success", sc.me, args.RequestID, opArgs.GIDs)
 }
 
 func (sc *ShardCtrler) Move(args *MoveArgs, reply *MoveReply) {
@@ -161,7 +161,7 @@ func (sc *ShardCtrler) Move(args *MoveArgs, reply *MoveReply) {
 	lastRequestNum, _ := sc.getLastestInfo(args.ClientID)
 	requestNum := requestIDToRequestNum(args.RequestID)
 	if requestNum <= lastRequestNum {
-		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
+		DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
 		return
 	}
 
@@ -177,7 +177,7 @@ func (sc *ShardCtrler) Move(args *MoveArgs, reply *MoveReply) {
 		reply.Err = ERR_NOT_LEADER
 		return
 	}
-	DPrintf(raft.DServer, "P%d requestID=%v move(%v)->Group{%v} logIdx=%v", sc.me, args.RequestID, args.Shard, args.GID, logIndex)
+	//DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v move(%v)->Group{%v} logIndex=%v", sc.me, args.RequestID, args.Shard, args.GID, logIndex)
 
 	var op Op
 	waitChan := sc.commitApplier.addWaiter(logIndex)
@@ -187,7 +187,7 @@ func (sc *ShardCtrler) Move(args *MoveArgs, reply *MoveReply) {
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
-		DPrintf(raft.DServer, "P%d RequestID=%v Timeout", sc.me, args.RequestID)
+		DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v Timeout", sc.me, args.RequestID)
 		return
 	}
 
@@ -195,10 +195,10 @@ func (sc *ShardCtrler) Move(args *MoveArgs, reply *MoveReply) {
 
 	if opArgs.ClientID != args.ClientID || opArgs.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		DPrintf(raft.DServer, "P%d RequestID=%v CMTfail", sc.me, args.RequestID)
+		DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v CMTfail", sc.me, args.RequestID)
 		return
 	}
-	DPrintf(raft.DServer, "P%d RequestID=%v move(%v)->Group{%v} success", sc.me, args.RequestID, opArgs.Shard, opArgs.GID)
+	DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v move(%v)->Group{%v} success", sc.me, args.RequestID, opArgs.Shard, opArgs.GID)
 }
 
 func (sc *ShardCtrler) Query(args *QueryArgs, reply *QueryReply) {
@@ -207,7 +207,7 @@ func (sc *ShardCtrler) Query(args *QueryArgs, reply *QueryReply) {
 	requestNum := requestIDToRequestNum(args.RequestID)
 	if requestNum <= lastRequestNum {
 		reply.Config = lastestResp
-		DPrintf(raft.DServer, "P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
+		DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v has executed,lastRequestID=%v", sc.me, args.RequestID, lastRequestNum)
 		return
 	}
 
@@ -223,7 +223,7 @@ func (sc *ShardCtrler) Query(args *QueryArgs, reply *QueryReply) {
 		reply.Err = ERR_NOT_LEADER
 		return
 	}
-	DPrintf(raft.DServer, "P%d requestID=%v Query logIdx=%v", sc.me, args.RequestID, logIndex)
+	//DPrintf(raft.DServer, "ShardCtrl P%d requestID=%v Query logIndex=%v", sc.me, args.RequestID, logIndex)
 
 	var op Op
 	waitChan := sc.commitApplier.addWaiter(logIndex)
@@ -233,7 +233,7 @@ func (sc *ShardCtrler) Query(args *QueryArgs, reply *QueryReply) {
 	case <-timeOut.C:
 		//TODO：我觉得waitChan应该想办法回收掉，不然会占用空间把
 		reply.Err = ERR_COMMIT_TIMEOUT
-		DPrintf(raft.DServer, "P%d RequestID=%v Timeout", sc.me, args.RequestID)
+		//DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v Timeout", sc.me, args.RequestID)
 		return
 	}
 
@@ -241,11 +241,11 @@ func (sc *ShardCtrler) Query(args *QueryArgs, reply *QueryReply) {
 
 	if opArgs.ClientID != args.ClientID || opArgs.RequestID != args.RequestID {
 		reply.Err = ERR_COMMIT_FAIL
-		DPrintf(raft.DServer, "P%d RequestID=%v CMTfail", sc.me, args.RequestID)
+		//DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v CMTfail", sc.me, args.RequestID)
 		return
 	}
 	reply.Config = op.Config
-	DPrintf(raft.DServer, "P%d RequestID=%v Query success", sc.me, args.RequestID)
+	//DPrintf(raft.DServer, "ShardCtrl P%d RequestID=%v Query success", sc.me, args.RequestID)
 }
 
 func (sc *ShardCtrler) makeSnapshot(logIndex int) {
@@ -268,7 +268,7 @@ func (sc *ShardCtrler) makeSnapshot(logIndex int) {
 	sc.mu.Unlock()
 	sc.lastestInfoLock.Unlock()
 
-	DPrintf(raft.DServer, "S%d logIndex=%v,snapshotSize=%v", sc.me, logIndex, len(data))
+	//DPrintf(raft.DServer, "ShardCtrl S%d logIndex=%v,snapshotSize=%v", sc.me, logIndex, len(data))
 
 }
 
@@ -287,7 +287,7 @@ func (sc *ShardCtrler) applySnapshot(logIndex int, data []byte) {
 		d.Decode(&configs) != nil ||
 		d.Decode(&maxNums) != nil ||
 		d.Decode(&lastestResp) != nil {
-		DPrintf(raft.DServer, "S%d decode error", sc.me)
+		DPrintf(raft.DServer, "ShardCtrl S%d decode error", sc.me)
 	} else {
 		sc.mu.Lock()
 		sc.lastestInfoLock.Lock()
@@ -299,8 +299,8 @@ func (sc *ShardCtrler) applySnapshot(logIndex int, data []byte) {
 		//rf.lastApplied = lastApplied
 		sc.mu.Unlock()
 		sc.lastestInfoLock.Unlock()
-		DPrintf(raft.DServer, "S%d logIndex=%v,snapshot applied", sc.me, logIndex)
-		DPrintf(raft.DServer, "S%d me=%v,len(maxNums)=%v", sc.me, me, len(maxNums))
+		//DPrintf(raft.DServer, "S%d logIndex=%v,snapshot applied", sc.me, logIndex)
+		//DPrintf(raft.DServer, "S%d me=%v,len(maxNums)=%v", sc.me, me, len(maxNums))
 
 	}
 
@@ -348,7 +348,7 @@ func StartServer(servers []*labrpc.ClientEnd, me int, persister *raft.Persister)
 	sc.lastestResp = make(map[string]Config)
 	sc.lastestInfoLock = deadlock.RWMutex{}
 	sc.commitApplier.start()
-	sc.rf = raft.Make(servers, me, persister, sc.applyCh)
+	sc.rf = raft.Make(servers, me, persister, sc.applyCh, "ShardCtrl",0)
 
 	// Your code here.
 
@@ -394,26 +394,29 @@ func (ca *commitApplier) start() {
 				if applyMsg.CommandValid {
 
 					notifyChan := ca.getWaiter(applyMsg.CommandIndex)
-					op, _ := applyMsg.Command.(Op)
-					//DPrintf(raft.DServer, "S%d Command %v", ca.scserver.me, op)
+					//DPrintf(raft.DServer, "ShardCtrl S%d StateMachine receive logIndex=%v", ca.scserver.me, applyMsg.CommandIndex)
 
-					maxRqNum, _ := ca.scserver.getLastestInfo(op.ClientID)
-					if maxRqNum < requestIDToRequestNum(op.RequestID) || op.OpType == OP_TYPE_QUERY {
-						op.Config = applyOp(ca.scserver, op, applyMsg.CommandIndex)
-						ca.appliedOpCount += 20
+					op, ok := applyMsg.Command.(Op)
+					if ok {
+						maxRqNum, _ := ca.scserver.getLastestInfo(op.ClientID)
+						if maxRqNum < requestIDToRequestNum(op.RequestID) || op.OpType == OP_TYPE_QUERY {
+							op.Config = applyOp(ca.scserver, op, applyMsg.CommandIndex)
+							ca.appliedOpCount += 20
 
-						if ca.maxraftstate != -1 && ca.appliedOpCount >= ca.maxraftstate {
-							//TODO:make snapshot
-							//ca.appliedOpCount=0
-							ca.scserver.makeSnapshot(applyMsg.CommandIndex)
-							DPrintf(raft.DServer, "S%d logIndex=%v,make snapshot", ca.scserver.me, applyMsg.CommandIndex)
-							ca.appliedOpCount = 0
+							if ca.maxraftstate != -1 && ca.appliedOpCount >= ca.maxraftstate {
+								//TODO:make snapshot
+								//ca.appliedOpCount=0
+								ca.scserver.makeSnapshot(applyMsg.CommandIndex)
+								//DPrintf(raft.DServer, "S%d logIndex=%v,make snapshot", ca.scserver.me, applyMsg.CommandIndex)
+								ca.appliedOpCount = 0
+							}
+						}
+
+						if notifyChan != nil {
+							notifyChan <- op
 						}
 					}
 
-					if notifyChan != nil {
-						notifyChan <- op
-					}
 				}
 
 				if applyMsg.SnapshotValid {
@@ -484,8 +487,7 @@ func applyOp(sc *ShardCtrler, op Op, logIndex int) Config {
 		}
 		newConfig = getNewConfig(newConfig, sc.me)
 		sc.configs = append(sc.configs, newConfig)
-		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v Join success", sc.me, op.RequestID, logIndex)
-		newConfig.String()
+		//DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v Join success", sc.me, op.RequestID, logIndex)
 
 	case OP_TYPE_LEAVE:
 		args, ok := op.OpArgs.(LeaveArgs)
@@ -506,8 +508,7 @@ func applyOp(sc *ShardCtrler, op Op, logIndex int) Config {
 
 		newConfig = getNewConfig(newConfig, sc.me)
 		sc.configs = append(sc.configs, newConfig)
-		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v Leave success", sc.me, op.RequestID, logIndex)
-		newConfig.String()
+		//DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v Leave success", sc.me, op.RequestID, logIndex)
 
 	case OP_TYPE_MOVE:
 		args, ok := op.OpArgs.(MoveArgs)
@@ -522,8 +523,7 @@ func applyOp(sc *ShardCtrler, op Op, logIndex int) Config {
 		newConfig.Num++
 
 		sc.configs = append(sc.configs, newConfig)
-		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v move success", sc.me, op.RequestID, logIndex)
-		newConfig.String()
+		//DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v move success", sc.me, op.RequestID, logIndex)
 	case OP_TYPE_QUERY:
 		args, ok := op.OpArgs.(QueryArgs)
 		if !ok {
@@ -535,8 +535,7 @@ func applyOp(sc *ShardCtrler, op Op, logIndex int) Config {
 		} else {
 			resp = deepCopyConfig(sc.configs[args.Num])
 		}
-		DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v query num=%v len(sc.configs)=%v success", sc.me, op.RequestID, logIndex, args.Num, len(sc.configs))
-		resp.String()
+		//DPrintf(raft.DInfo, "P%v requestID=%v logIndex=%v query num=%v len(sc.configs)=%v success", sc.me, op.RequestID, logIndex, args.Num, len(sc.configs))
 	}
 	sc.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), resp)
 
@@ -572,7 +571,6 @@ func getNewConfig(config Config, me int) Config {
 	}
 
 	quickSort(gids, gidTimesMap, 0, len(gids)-1)
-	DPrintf(raft.DInfo, "gids=%v", gids)
 
 	shardsLeft := NShards
 	replicaGroupLeft := len(gids)
@@ -584,15 +582,15 @@ func getNewConfig(config Config, me int) Config {
 		for _, gid := range gids {
 			expectNum := getExpectShardsNum(shardsLeft, replicaGroupLeft)
 			have := gidTimesMap[gid]
-			DPrintf(raft.DInfo, "P%v gid=%v,shardLeft=%v replicaGroupLeft=%v", me, gid, shardsLeft, replicaGroupLeft)
-			DPrintf(raft.DInfo, "P%v gid=%v,have=%v expectNum=%v", me, gid, have, expectNum)
+			//DPrintf(raft.DInfo, "P%v gid=%v,shardLeft=%v replicaGroupLeft=%v", me, gid, shardsLeft, replicaGroupLeft)
+			//DPrintf(raft.DInfo, "P%v gid=%v,have=%v expectNum=%v", me, gid, have, expectNum)
 
 			if expectNum > have {
 				transferNum := expectNum - have
 				for i := 0; i < NShards; i++ {
 					if config.Shards[i] == 0 {
 						config.Shards[i] = gid
-						DPrintf(raft.DInfo, "P%v shard(%v)->Gid(%v)", me, i, gid)
+						//DPrintf(raft.DInfo, "P%v shard(%v)->Gid(%v)", me, i, gid)
 						transferNum--
 						if transferNum == 0 {
 							break
@@ -604,7 +602,7 @@ func getNewConfig(config Config, me int) Config {
 				for i := 0; i < NShards; i++ {
 					if config.Shards[i] == gid {
 						config.Shards[i] = 0
-						DPrintf(raft.DInfo, "P%v shard(%v)->0", me, i)
+						//DPrintf(raft.DInfo, "P%v shard(%v)->0", me, i)
 						transferNum--
 						if transferNum == 0 {
 							break
@@ -652,16 +650,16 @@ func quickSort(gids []int, gidTimesMap map[int]int, start int, end int) {
 	if start >= end {
 		return
 	}
-	
+
 	sentinel := start
 
 	left, right := start, end
 	for left < right {
-		for left < right && !judge(gids,gidTimesMap,right,sentinel) {
+		for left < right && !judge(gids, gidTimesMap, right, sentinel) {
 			right--
 		}
 
-		for left < right && judge(gids,gidTimesMap,left,sentinel) {
+		for left < right && judge(gids, gidTimesMap, left, sentinel) {
 			left++
 		}
 
@@ -679,7 +677,7 @@ func judge(gids []int, gidTimesMap map[int]int, p int, q int) bool {
 	if gidTimesMap[gids[p]] == gidTimesMap[gids[q]] {
 		return gids[p] > gids[q]
 	}
-	return gidTimesMap[gids[p]]>gidTimesMap[gids[q]]
+	return gidTimesMap[gids[p]] > gidTimesMap[gids[q]]
 }
 
 func (c *Config) String() {

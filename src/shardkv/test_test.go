@@ -1,15 +1,19 @@
 package shardkv
 
-import "6.824/porcupine"
-import "6.824/models"
-import "testing"
-import "strconv"
-import "time"
-import "fmt"
-import "sync/atomic"
-import "sync"
-import "math/rand"
-import "io/ioutil"
+import (
+	"fmt"
+	"io/ioutil"
+	"math/rand"
+	"strconv"
+	"sync"
+	"sync/atomic"
+	"testing"
+	"time"
+
+	"6.824/models"
+	"6.824/porcupine"
+	"6.824/raft"
+)
 
 const linearizabilityCheckTimeout = 1 * time.Second
 
@@ -20,23 +24,24 @@ func check(t *testing.T, ck *Clerk, key string, value string) {
 	}
 }
 
-//
 // test static 2-way sharding, without shard movement.
-//
 func TestStaticShards(t *testing.T) {
 	fmt.Printf("Test: static shards ...\n")
 
 	cfg := make_config(t, 3, false, -1)
 	defer cfg.cleanup()
-
+	DPrintf(raft.DWarn, "---- makeClient")
 	ck := cfg.makeClient()
 
+	DPrintf(raft.DWarn, "---- join0")
 	cfg.join(0)
+
 	cfg.join(1)
 
 	n := 10
 	ka := make([]string, n)
 	va := make([]string, n)
+	DPrintf(raft.DWarn, "---- put for ten times")
 	for i := 0; i < n; i++ {
 		ka[i] = strconv.Itoa(i) // ensure multiple shards
 		va[i] = randstring(20)
@@ -52,6 +57,7 @@ func TestStaticShards(t *testing.T) {
 	cfg.ShutdownGroup(1)
 	cfg.checklogs() // forbid snapshots
 
+	DPrintf(raft.DWarn, "---- check all ten key's value")
 	ch := make(chan string)
 	for xi := 0; xi < n; xi++ {
 		ck1 := cfg.makeClient() // only one call allowed per client
@@ -86,8 +92,10 @@ func TestStaticShards(t *testing.T) {
 	}
 
 	// bring the crashed shard/group back to life.
+	DPrintf(raft.DWarn, "---- bring the crashed shard/group back to life")
 	cfg.StartGroup(1)
 	for i := 0; i < n; i++ {
+		DPrintf(raft.DWarn, "---- get(%v)",ka[i])
 		check(t, ck, ka[i], va[i])
 	}
 
@@ -160,6 +168,8 @@ func TestSnapshot(t *testing.T) {
 	n := 30
 	ka := make([]string, n)
 	va := make([]string, n)
+	DPrintf(raft.DWarn, "---- 30次put")
+
 	for i := 0; i < n; i++ {
 		ka[i] = strconv.Itoa(i) // ensure multiple shards
 		va[i] = randstring(20)
@@ -169,10 +179,14 @@ func TestSnapshot(t *testing.T) {
 		check(t, ck, ka[i], va[i])
 	}
 
+	DPrintf(raft.DWarn, "---- 加入101 configNum=2 100[5,6,7,8,9] 101[0,1,2,3,4]")
 	cfg.join(1)
+	DPrintf(raft.DWarn, "---- 加入102 configNum=3 100[7,8,9] 101[1,2,3,4] 102[0,5,6]")
 	cfg.join(2)
+	DPrintf(raft.DWarn, "---- 100离开 configNum=4 101[1,2,3,4,7] 102[0,5,6,8,9]")
 	cfg.leave(0)
 
+	DPrintf(raft.DWarn, "---- 30次append")
 	for i := 0; i < n; i++ {
 		check(t, ck, ka[i], va[i])
 		x := randstring(20)
@@ -180,9 +194,12 @@ func TestSnapshot(t *testing.T) {
 		va[i] += x
 	}
 
+	DPrintf(raft.DWarn, "---- 101离开")
 	cfg.leave(1)
+	DPrintf(raft.DWarn, "---- 100加入")
 	cfg.join(0)
 
+	DPrintf(raft.DWarn, "---- 又30次append")
 	for i := 0; i < n; i++ {
 		check(t, ck, ka[i], va[i])
 		x := randstring(20)
@@ -378,10 +395,8 @@ func TestConcurrent1(t *testing.T) {
 	fmt.Printf("  ... Passed\n")
 }
 
-//
 // this tests the various sources from which a re-starting
 // group might need to fetch shard contents.
-//
 func TestConcurrent2(t *testing.T) {
 	fmt.Printf("Test: more concurrent puts and configuration changes...\n")
 
@@ -540,8 +555,11 @@ func TestUnreliable1(t *testing.T) {
 		ck.Put(ka[i], va[i])
 	}
 
+	DPrintf(raft.DWarn, "---- 101 join configNum=2 100[5,6,7,8,9] 101[0,1,2,3,4]")
 	cfg.join(1)
+	DPrintf(raft.DWarn, "---- 102 join configNum=3 100[7,8,9] 101[1,2,3,4] 102[0,5,6]")
 	cfg.join(2)
+	DPrintf(raft.DWarn, "---- 100 leave configNum=4 101[1,2,3,4,7] 102[0,5,6,8,9]")
 	cfg.leave(0)
 
 	for ii := 0; ii < n*2; ii++ {
@@ -552,7 +570,9 @@ func TestUnreliable1(t *testing.T) {
 		va[i] += x
 	}
 
+	DPrintf(raft.DWarn, "---- 100 rejoin configNum=5 100[1,2,9] 101[3,4,7] 102[0,5,6]")
 	cfg.join(0)
+	DPrintf(raft.DWarn, "---- 101 leave configNum=5 100[7,8,9] 101[1,2,3,4] 102[0,5,6]")
 	cfg.leave(1)
 
 	for ii := 0; ii < n*2; ii++ {
@@ -731,10 +751,8 @@ func TestUnreliable3(t *testing.T) {
 	fmt.Printf("  ... Passed\n")
 }
 
-//
 // optional test to see whether servers are deleting
 // shards for which they are no longer responsible.
-//
 func TestChallenge1Delete(t *testing.T) {
 	fmt.Printf("Test: shard deletion (challenge 1) ...\n")
 
@@ -816,11 +834,9 @@ func TestChallenge1Delete(t *testing.T) {
 	fmt.Printf("  ... Passed\n")
 }
 
-//
 // optional test to see whether servers can handle
 // shards that are not affected by a config change
 // while the config change is underway
-//
 func TestChallenge2Unaffected(t *testing.T) {
 	fmt.Printf("Test: unaffected shard access (challenge 2) ...\n")
 
@@ -886,11 +902,9 @@ func TestChallenge2Unaffected(t *testing.T) {
 	fmt.Printf("  ... Passed\n")
 }
 
-//
 // optional test to see whether servers can handle operations on shards that
 // have been received as a part of a config migration when the entire migration
 // has not yet completed.
-//
 func TestChallenge2Partial(t *testing.T) {
 	fmt.Printf("Test: partial migration shard access (challenge 2) ...\n")
 

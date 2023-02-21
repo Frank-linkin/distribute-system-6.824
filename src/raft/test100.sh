@@ -2,7 +2,7 @@
 #分别执行每个脚本1000次，如果出错，就给这个Log一个序号并显示
 function execute() {
     count=1
-    while(( $count<=1000 ))   
+    while(( $count<=100 ))   
     do
         echo ${count}' times try'
         rm -rf /golang_space/6.824/src/raft/$2
@@ -51,6 +51,18 @@ then
     do
         echo $name
         execute $name ${LOG_2C_FILE}
+    done
+elif [ $1 == '2CD' ]
+then
+    for name in ${names_2C[@]}
+    do
+        echo $name
+        execute $name ${LOG_2C_FILE}
+    done
+    for name in ${names_2D[@]}
+    do
+        echo $name
+        execute $name ${LOG_2D_FILE}
     done
 else 
     echo "Wrong params"

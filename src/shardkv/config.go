@@ -135,7 +135,7 @@ func (cfg *config) makeClient() *Clerk {
 		cfg.net.Connect(name, servername)
 		cfg.net.Enable(name, true)
 		return end
-	})
+	},cfg.nextClientId)
 	cfg.clerks[ck] = endnames
 	cfg.nextClientId++
 	return ck

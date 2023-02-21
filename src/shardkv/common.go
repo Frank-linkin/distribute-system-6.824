@@ -14,6 +14,12 @@ const (
 	ErrNoKey       = "ErrNoKey"
 	ErrWrongGroup  = "ErrWrongGroup"
 	ErrWrongLeader = "ErrWrongLeader"
+	ErrExecuted = "ErrExecuted"
+
+	ErrCommitTimeout = "ERR:commit timeout"
+    ErrCommitFail = "ERR:commit fail, please retry"
+    ErrConfigNumMismatch = "ERR:ConfigNum mismatch"
+
 )
 
 type Err string
@@ -27,6 +33,9 @@ type PutAppendArgs struct {
 	// You'll have to add definitions here.
 	// Field names must start with capital letters,
 	// otherwise RPC will break.
+
+	RequestID string
+	ClientID string
 }
 
 type PutAppendReply struct {
@@ -36,9 +45,40 @@ type PutAppendReply struct {
 type GetArgs struct {
 	Key string
 	// You'll have to add definitions here.
+	RequestID string
+	ClientID string
 }
 
 type GetReply struct {
 	Err   Err
 	Value string
+}
+
+type PullShardArgs struct {
+	ConfigNum int
+	GID int
+	ShardID int
+}
+
+type PullShardReply struct {
+	Err   Err
+	Shard Shard
+}
+
+type ConfirmReceivedShardArgs struct {
+	ConfigNum int
+	GID int
+	ShardID int
+}
+
+type ConfirmReceivedShardReply struct {
+	Err   Err
+}
+
+type Shard struct {
+	//mu deadlock.Mutex
+	Disk map[string]DiskValue
+
+	MaxNums     map[string]int    //√
+	LastestResp map[string]string //√
 }

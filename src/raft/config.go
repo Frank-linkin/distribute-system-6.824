@@ -182,7 +182,7 @@ func (cfg *config) applier(i int, applyCh chan ApplyMsg) {
 				// for i:=0;i<len(cfg.rafts);i++ {
 				// 	cfg.rafts[i].showRaftInfo()
 				// }
- 				// log.Fatalf("apply error - 2: %v", err_msg)
+				// log.Fatalf("apply error - 2: %v", err_msg)
 				cfg.applyErr[i] = err_msg
 				// keep reading after error so that Raft doesn't block
 				// holding locks...
@@ -329,7 +329,7 @@ func (cfg *config) start1(i int, applier func(int, chan ApplyMsg)) {
 
 	applyCh := make(chan ApplyMsg)
 
-	rf := Make(ends, i, cfg.saved[i], applyCh)
+	rf := Make(ends, i, cfg.saved[i], applyCh, "raft_test", 0)
 
 	cfg.mu.Lock()
 	cfg.rafts[i] = rf
@@ -362,7 +362,7 @@ func (cfg *config) cleanup() {
 			cfg.rafts[i].Kill()
 		}
 	}
-	time.Sleep(1*time.Second)
+	time.Sleep(1 * time.Second)
 	for i := 0; i < len(cfg.rafts); i++ {
 		if cfg.rafts[i] != nil {
 			cfg.rafts[i].ShowRaftInfo()

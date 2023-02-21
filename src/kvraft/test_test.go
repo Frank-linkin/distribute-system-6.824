@@ -704,6 +704,7 @@ func TestSnapshotSize3B(t *testing.T) {
 	if ssz > maxsnapshotstate {
 		t.Fatalf("snapshot too large (%v > %v)", ssz, maxsnapshotstate)
 	}
+	DPrintf(raft.DServer, "---- [logSize=%v,maxraftstate=%v],[SnapshotSize=%v maxsnapshotstate=%v]", sz, maxraftstate, ssz, maxsnapshotstate)
 
 	cfg.end()
 }

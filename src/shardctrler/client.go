@@ -54,10 +54,19 @@ func (ck *Clerk) Query(num int) Config {
 		for offset := 0; offset < len(ck.servers); offset++ {
 			var reply QueryReply
 			target := (initialLeader + offset) % len(ck.servers)
+
+			DPrintf(raft.DClient, "C(%v) requestID=%v Querying", ck.clientID, args.RequestID)
+
 			ok := ck.servers[target].Call("ShardCtrler.Query", args, &reply)
-			if ok && reply.WrongLeader == false {
+
+			DPrintf(raft.DClient, "C(%v) requestID=%v QueryReply=%v", ck.clientID, args.RequestID, reply)
+			if ok && reply.WrongLeader == false && reply.Err == "" {
 				ck.setLeader(target)
 				return reply.Config
+			}
+
+			if reply.Err == ERR_COMMIT_TIMEOUT|| reply.Err == ERR_COMMIT_FAIL{
+				offset--
 			}
 		}
 		time.Sleep(100 * time.Millisecond)
@@ -77,9 +86,12 @@ func (ck *Clerk) Join(servers map[int][]string) {
 			var reply JoinReply
 			target := (initialLeader + offset) % len(ck.servers)
 			ok := ck.servers[target].Call("ShardCtrler.Join", args, &reply)
-			if ok && reply.WrongLeader == false {
+			if ok && reply.WrongLeader == false && reply.Err == "" {
 				ck.setLeader(target)
 				return
+			}
+			if reply.Err == ERR_COMMIT_TIMEOUT|| reply.Err == ERR_COMMIT_FAIL{
+				offset--
 			}
 		}
 		time.Sleep(100 * time.Millisecond)
@@ -101,9 +113,12 @@ func (ck *Clerk) Leave(gids []int) {
 			target := (initialLeader + offset) % len(ck.servers)
 
 			ok := ck.servers[target].Call("ShardCtrler.Leave", args, &reply)
-			if ok && reply.WrongLeader == false {
+			if ok && reply.WrongLeader == false && reply.Err == "" {
 				ck.setLeader(target)
 				return
+			}
+			if reply.Err == ERR_COMMIT_TIMEOUT|| reply.Err == ERR_COMMIT_FAIL{
+				offset--
 			}
 		}
 		time.Sleep(100 * time.Millisecond)
@@ -118,7 +133,7 @@ func (ck *Clerk) Move(shard int, gid int) {
 
 	args.RequestID = buildRequestID(ck.clientID, int(ck.getRequestNum()))
 	args.ClientID = ck.clientID
-	DPrintf(raft.DClient, "C(%v) requestID=%v move(%v)->Group{%v}", ck.clientID, args.RequestID, shard,gid)
+	DPrintf(raft.DClient, "C(%v) requestID=%v move(%v)->Group{%v}", ck.clientID, args.RequestID, shard, gid)
 	for {
 		initialLeader := ck.getLeader()
 
@@ -128,9 +143,12 @@ func (ck *Clerk) Move(shard int, gid int) {
 			target := (initialLeader + offset) % len(ck.servers)
 
 			ok := ck.servers[target].Call("ShardCtrler.Move", args, &reply)
-			if ok && reply.WrongLeader == false {
+			if ok && reply.WrongLeader == false && reply.Err == "" {
 				ck.setLeader(target)
 				return
+			}
+			if reply.Err == ERR_COMMIT_TIMEOUT|| reply.Err == ERR_COMMIT_FAIL{
+				offset--
 			}
 		}
 		time.Sleep(100 * time.Millisecond)
