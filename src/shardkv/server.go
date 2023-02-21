@@ -729,7 +729,7 @@ func applyKVOp(kv *ShardKV, op Op, logIndex int) (string, error) {
 
 		DPrintf(raft.DInfo, "G%vP%vs%v requestID=%v logIndex=%v put[%v]->(%v)", kv.gid, kv.me, kv.rf.WhoAmI(), op.RequestID, logIndex, op.Key, op.Value)
 		resp = op.Value
-		shard.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), "")
+		shard.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), "E")
 
 	case OP_TYPE_APPEND:
 		oldValue := ""
@@ -743,7 +743,7 @@ func applyKVOp(kv *ShardKV, op Op, logIndex int) (string, error) {
 		shard.Disk[op.Key] = valueWrapper
 		resp = valueWrapper.Value
 		DPrintf(raft.DInfo, "G%vP%vs%v requestID=%v logIndex=%v append[%v](%v)->(%v) ", kv.gid, kv.me, kv.rf.WhoAmI(), op.RequestID, logIndex, op.Key, op.Value, valueWrapper.Value)
-		shard.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), "")
+		shard.setLastestInfo(op.ClientID, requestIDToRequestNum(op.RequestID), "E")
 	
 	}
 	
@@ -844,7 +844,7 @@ func (kv *ShardKV) makeSnapshot(logIndex int) {
 
 	DPrintf(raft.DServer, "P%vs%v logIndex=%v,snapshotSize=%v", kv.me, kv.rf.WhoAmI(), logIndex, len(data))
 
-	//kv.rf.ForcePersist()
+	kv.rf.ForcePersist()
 }
 
 func (kv *ShardKV) applySnapshot(logIndex int, data []byte) {
